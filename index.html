@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 色彩系统 */
+        /* 提取主图色调重构色彩系统 */
         :root { 
             --bg: #030308; 
             --text: #ffffff; 
             --neon-blue: #00e5ff;
             --neon-purple: #ff007f;
+            --accent: #0071e3;
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
@@ -21,7 +22,6 @@
         .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
         .design-line-h { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent); }
 
-        /* 渐变文字效果 */
         .text-gradient {
             background: linear-gradient(90deg, var(--neon-blue), #8a2be2);
             -webkit-background-clip: text;
@@ -53,12 +53,12 @@
         
         .glass-nav { background: rgba(3, 3, 8, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         
-        /* 增强版时间线：蓝紫渐变 */
+        /* 时间线 */
         .timeline-wrap { position: relative; padding-left: 4rem; }
         .timeline-line { position: absolute; left: 23px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple), transparent); opacity: 0.6;}
         .timeline-dot { position: absolute; left: 14px; top: 44px; width: 20px; height: 20px; background: var(--neon-blue); border: 4px solid #000; border-radius: 50%; box-shadow: 0 0 15px var(--neon-blue), inset 0 0 4px #fff; z-index: 10; }
         
-        /* 弹窗与 50% 交互 */
+        /* 弹窗 */
         #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: #030308; z-index: 1000; transform: translateY(100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; overflow-x: hidden; }
         #project-modal.show { transform: translateY(0); }
         .viewer-header { position: sticky; top: 0; width: 100%; padding: 25px 40px; background: rgba(3,3,8,0.9); backdrop-filter: blur(10px); z-index: 1010; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -326,13 +326,13 @@
                 </div>
                 <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group" onclick="openProj('p7')">
                     <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5">
-                        <img src="https://i.postimg.cc/Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100">
+                        <img src="https://i.postimg.cc/3wvxTcSr/casine.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100">
                     </div>
                     <div class="pt-6 px-2 mt-2 flex justify-between items-start"><div><h4 class="text-2xl font-bold text-white mb-2">海外智能家电系列</h4><p class="text-white/50 text-base">Listing 视觉呈现与转化设计</p></div><span class="text-[10px] font-bold text-[var(--neon-purple)] px-3 py-1 border border-[var(--neon-purple)]/30 rounded-full uppercase">Project 06</span></div>
                 </div>
                 <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-0 md:mt-32" onclick="openProj('p8')">
                     <div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5">
-                        <img src="https://i.postimg.cc/gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100">
+                        <img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100">
                     </div>
                     <div class="pt-6 px-2 mt-2 flex justify-between items-start"><div><h4 class="text-2xl font-bold text-white mb-2">旗舰新品视觉重构</h4><p class="text-white/50 text-base">高转化率 A+ 场景逻辑展示</p></div><span class="text-[10px] font-bold text-[var(--neon-purple)] px-3 py-1 border border-[var(--neon-purple)]/30 rounded-full uppercase">Project 07</span></div>
                 </div>
