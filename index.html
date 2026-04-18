@@ -21,15 +21,24 @@
         .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
         .design-line-h { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(196,160,95,0.1), transparent); }
 
-        /* 金属高光扫过动画 */
-        .text-gradient-flow {
-            background: linear-gradient(90deg, #ffffff 0%, var(--accent-gold) 40%, #ffffff 60%, var(--accent-gold) 100%);
+        /* 🌟 核心优化：全文本流光动画 (解决突兀感，保持内容完整) */
+        .text-shimmer {
+            background: linear-gradient(90deg, 
+                #ffffff 0%, 
+                #ffffff 35%, 
+                var(--accent-gold-light) 50%, 
+                #ffffff 65%, 
+                #ffffff 100%
+            );
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: textShine 5s linear infinite;
+            animation: shimmerFlow 6s infinite linear;
         }
-        @keyframes textShine { to { background-position: 200% center; } }
+        @keyframes shimmerFlow {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
 
         .text-gradient {
             background: linear-gradient(90deg, #ffffff, var(--accent-gold-light));
@@ -53,17 +62,16 @@
         @keyframes goldFlow { 0% { transform: translate(8%, 8%) scale(1); } 100% { transform: translate(-8%, -8%) scale(1.15); } }
         @keyframes goldFlow2 { 0% { transform: translate(-12%, 5%) scale(1.1); } 100% { transform: translate(8%, -12%) scale(1.25); } }
 
-        /* 设计元素：架构师辅助网格与水印 */
+        /* 🌟 设计元素：架构师辅助网格与水印 */
         .architect-grid { position: fixed; inset: 0; pointer-events: none; z-index: 1; display: flex; justify-content: space-between; padding: 0 15vw; border-left: 1px solid rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.02); }
         .architect-grid::before { content: ''; position: absolute; left: 33.33%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.02); }
         .architect-grid::after { content: ''; position: absolute; left: 66.66%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.02); }
         .crosshair { position: absolute; width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; opacity: 0.3; }
         .crosshair::before { content: ''; position: absolute; width: 100%; height: 1px; background: var(--accent-gold); }
         .crosshair::after { content: ''; position: absolute; width: 1px; height: 100%; background: var(--accent-gold); }
-        
         .editorial-watermark { position: fixed; left: -2vw; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8vw; font-weight: 900; color: rgba(255,255,255,0.03); white-space: nowrap; pointer-events: none; z-index: 1; letter-spacing: 0.1em; font-family: 'Cinzel', serif; mix-blend-mode: overlay; }
 
-        /* 🌟 滞后磁吸双层光标 */
+        /* 🌟 磁吸双层光标 */
         .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; }
         .cursor-outline { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1px solid rgba(196,160,95,0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s; box-shadow: 0 0 10px rgba(196,160,95,0.2); }
         .cursor-outline.hover-mode { width: 60px; height: 60px; background: rgba(196,160,95,0.1); backdrop-filter: blur(2px); border-color: rgba(196,160,95,0.8); }
@@ -77,47 +85,24 @@
         .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 28px; font-size: 12px; font-weight: 700; color: #030308; background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%); border-radius: 22px; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 4px 15px rgba(196, 160, 95, 0.3), inset 0 0 0 1px rgba(255,255,255,0.2); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); font-family: 'Cinzel', serif; cursor: none; }
         .action-btn:hover { box-shadow: 0 6px 20px rgba(196, 160, 95, 0.5), inset 0 0 0 1px rgba(255,255,255,0.4); transform: translateY(-2px) scale(1.02); filter: brightness(1.1); }
 
-        /* 强化玻璃卡片 */
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.01); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); transform: perspective(1000px) translateZ(0); }
-        .glass-card:hover { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(196, 160, 95, 0.3); box-shadow: 0 20px 40px -10px rgba(196, 160, 95, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.03); transform: perspective(1000px) translateZ(20px) translateY(-8px); }
-        
-        /* 黑白渐彩与呼吸视差融合 */
+        /* 强化玻璃卡片与视差彩色切换 */
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); transform: perspective(1000px) translateZ(0); }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(196, 160, 95, 0.3); transform: perspective(1000px) translateZ(20px) translateY(-8px); }
         .parallax-img { filter: grayscale(100%); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .glass-card:hover .parallax-img { transform: scale(1.08) translateY(-2%); filter: grayscale(0%); }
+        .glass-card:hover .parallax-img { filter: grayscale(0%); transform: scale(1.08) translateY(-2%); }
 
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .glass-nav { background: rgba(3, 3, 8, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); }
         
-        /* 履历时间线 */
         .timeline-wrap { position: relative; padding-left: 4rem; }
         .timeline-line { position: absolute; left: 23px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent-gold), transparent); opacity: 0.3;}
         .timeline-dot { position: absolute; left: 18px; top: 44px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold); z-index: 10; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .timeline-wrap:hover .timeline-dot { transform: scale(1.5); background: #fff; box-shadow: 0 0 20px #fff; }
         
-        /* 弹窗 */
         #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: #030308; z-index: 1000; transform: translateY(100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; overflow-x: hidden; }
         #project-modal.show { transform: translateY(0); }
-        .viewer-header { position: sticky; top: 0; width: 100%; padding: 25px 40px; background: rgba(3,3,8,0.98); backdrop-filter: blur(20px); z-index: 1010; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .close-btn { width: 44px; height: 44px; background: #111; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; transition: all 0.3s; cursor: none; }
-        .close-btn:hover { background: #fff; color: #000; transform: rotate(90deg); }
-        .slice-container { width: 100%; max-width: 1600px; margin: 0 auto; display: flex; flex-direction: column; padding-bottom: 100px; transition: max-width 0.5s ease; }
-        .slice-container.narrow-view { max-width: 50%; }
-        @media (max-width: 1024px) { .slice-container.narrow-view { max-width: 95%; } }
-        .slice-container img { width: 100%; height: auto; display: block; margin: 0; }
-        .section-title { font-size: 32px; font-weight: 700; color: #fff; text-align: center; margin: 100px 0 50px 0; text-transform: uppercase; letter-spacing: 0.2em; font-family: 'Cinzel', serif; }
         #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-gold)); width: 0%; z-index: 1020; pointer-events: none;}
-
-        /* 🌟 修正版：柔和动态文字过渡 */
-        @keyframes softTransition {
-          0%, 2% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
-          8%, 92% { opacity: 1; transform: translateY(0); filter: blur(0); }
-          98%, 100% { opacity: 0; transform: translateY(-10px); filter: blur(5px); }
-        }
-        .dynamic-text {
-          display: inline-block;
-          animation: softTransition 6s infinite ease-in-out;
-        }
     </style>
 </head>
 <body class="text-white relative bg-[#030308]">
@@ -143,7 +128,7 @@
         </nav>
 
         <header id="intro" class="min-h-screen flex flex-col justify-center relative overflow-hidden">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-90 transform scale-105" style="filter: sepia(1) hue-rotate(-15deg) saturate(1.2) brightness(0.8);">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-80 transform scale-105" style="filter: sepia(0.8) hue-rotate(-15deg) saturate(1.2) brightness(0.7);">
                 <source src="./Seedance 2.0 video.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-r from-[#030308] via-[#030308]/90 to-transparent z-0 pointer-events-none"></div>
@@ -152,9 +137,10 @@
             <div class="max-w-[1600px] w-full mx-auto px-8 md:px-24 pt-40 pb-20 relative z-10">
                 <div class="crosshair top-32 left-8 md:left-24"></div>
                 <div class="crosshair bottom-20 left-8 md:left-24"></div>
+
                 <div class="flex items-center gap-6 mb-8 reveal">
                     <div class="relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 hover-target group rounded-full p-[2px] bg-gradient-to-tr from-[var(--accent-gold)] to-transparent">
-                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="邝先生" class="w-full h-full object-cover rounded-full border-2 border-[#030308] filter brightness-90 group-hover:brightness-110 transition-all duration-500">
+                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="邝先生" class="w-full h-full object-cover rounded-full border-2 border-[#030308] filter group-hover:brightness-110 transition-all duration-500">
                     </div>
                     <div class="flex flex-col">
                         <p class="text-white/60 uppercase tracking-[0.4em] text-sm leading-loose">Visual Architect</p>
@@ -164,7 +150,7 @@
 
                 <h1 class="text-6xl md:text-[8vw] leading-[1.05] tracking-tighter font-extrabold cinzel reveal delay-100 mb-12 whitespace-nowrap">
                     邝先生 <span class="text-white/20 text-4xl md:text-[5vw] ml-2">KUANG</span><br>
-                    <span class="text-gradient-flow">视觉赋能 <span class="dynamic-text">商业.</span></span>
+                    <span class="text-shimmer">视觉赋能商业.</span>
                 </h1>
                 
                 <div class="flex flex-col md:flex-row gap-16 md:gap-24 mt-10 reveal delay-200 items-center">
@@ -184,7 +170,8 @@
             <div class="design-line-h"></div>
             <div class="max-w-[1400px] mx-auto w-full relative z-10">
                 <h2 class="text-5xl font-bold tracking-tight mb-24 reveal cinzel tracking-widest text-center uppercase text-gradient">工作经历 / Experience</h2>
-                <div class="space-y-12 reveal delay-100">
+                <div class="space-y-12 reveal">
+                    
                     <div class="timeline-wrap py-8 glass-card rounded-2xl px-6 md:px-10 hover-target">
                         <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-8 md:gap-16">
@@ -197,46 +184,40 @@
                             <div class="flex-1">
                                 <p class="text-white/80 font-medium mb-4">内容：主要管理设计团队。</p>
                                 <ul class="text-white/70 space-y-3 text-base font-light leading-relaxed">
-                                    <li><strong class="text-white">团队管理：</strong>重构海外设计团队，制定标准，提升团队效率。</li>
-                                    <li><strong class="text-white">品牌策略：</strong>确保主图和A+页面符合当地审美。</li>
-                                    <li><strong class="text-white">数据驱动：</strong><span class="text-[var(--accent-gold)] font-bold">核心产品转化率提升10%-30%，点击率提升10%-20%</span>。</li>
-                                    <li><strong class="text-white">AI提效：</strong>支持多版本快速测试。</li>
+                                    <li><strong class="text-white">团队管理：</strong>重构海外设计团队，制定标准，提升团队协作能力。</li>
+                                    <li><strong class="text-white">品牌策略：</strong>确保主图和A+页面符合当地审美语境。</li>
+                                    <li><strong class="text-white">数据驱动：</strong>通过A/B测试优化图片，<span class="text-[var(--accent-gold)] font-bold">核心产品转化率提升10%-30%，点击率提升10%-20%</span>。</li>
+                                    <li><strong class="text-white">AI提效：</strong>引入AIGC工具缩短制作周期，支持多版本快速测试。</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+
                     <div class="timeline-wrap py-8 glass-card rounded-2xl px-6 md:px-10 hover-target">
                         <div class="timeline-line"></div><div class="timeline-dot" style="background: rgba(196, 160, 95, 0.7);"></div>
                         <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                             <div class="md:w-1/4"><div class="text-3xl font-black text-white/40 cinzel tracking-wider mb-2">2023.06 - 2024.10</div><h3 class="text-2xl font-bold text-white mb-2">广东久量科技</h3><p class="text-white/50 text-sm uppercase tracking-widest font-bold">设计主管</p></div>
-                            <div class="flex-1 text-white/70 leading-relaxed">负责洗护系列产品视觉建设。核心负责新品视觉构建，涵盖内衣裤洗衣机、烘干机等。</div>
+                            <div class="flex-1 text-white/70 leading-relaxed">负责洗护系列产品的品牌视觉建设。涵盖内衣裤洗衣机、烘干机等。完成外拍对接、拍摄跟进、图片精修及渲染，形成高度契合的视觉语言。</div>
                         </div>
                     </div>
+
                     <div class="timeline-wrap py-8 glass-card rounded-2xl px-6 md:px-10 hover-target">
                         <div class="timeline-line"></div><div class="timeline-dot" style="background: rgba(196, 160, 95, 0.4);"></div>
                         <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                             <div class="md:w-1/4"><div class="text-3xl font-black text-white/40 cinzel tracking-wider mb-2">2020.05 - 2023.05</div><h3 class="text-2xl font-bold text-white mb-2">广州奕至家居科技</h3><p class="text-white/50 text-sm uppercase tracking-widest font-bold">平面设计主管</p></div>
-                            <div class="flex-1 text-white/70 leading-relaxed">统筹国内及出海视觉设计，完成近三十款产品站设计，海外产品已成为行业视觉标杆。</div>
+                            <div class="flex-1 text-white/70 leading-relaxed">统筹国内业务及后续出海战略视觉。带领团队完成近三十款产品站设计，成功从0-1建立海外品牌视觉，如今海外产品已成为行业标杆。</div>
                         </div>
                     </div>
+
                     <div class="timeline-wrap py-8 glass-card rounded-2xl px-6 md:px-10 hover-target">
                         <div class="timeline-line" style="background: transparent;"></div><div class="timeline-dot" style="background: #555;"></div>
                         <div class="flex flex-col md:flex-row gap-8 md:gap-16">
                             <div class="md:w-1/4"><div class="text-3xl font-black text-white/40 cinzel tracking-wider mb-2">2018.05 - 2020.05</div><h3 class="text-2xl font-bold text-white mb-2">佛山市云米电器</h3><p class="text-white/50 text-sm uppercase tracking-widest font-bold">平面设计</p></div>
-                            <div class="flex-1 text-white/70">负责天猫、京东S级大促主视觉设计；统筹参与超50款小家电详情页标准化。</div>
+                            <div class="flex-1 text-white/70 space-y-3">
+                                <p>● <strong class="text-white">大促统筹：</strong>负责天猫、京东S级大促(双十一、618等)主视觉设计，助力转化。</p>
+                                <p>● <strong class="text-white">详情页负责人：</strong>统筹参与超50款小家电详情页设计流程标准化，兼顾调性与信息传达。</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="py-20 px-6 md:px-24 relative z-10 bg-transparent">
-            <div class="max-w-[1400px] mx-auto glass-card p-10 md:p-12 rounded-3xl reveal flex flex-col md:flex-row gap-16 hover-target">
-                <div class="flex-[1]"><h3 class="text-2xl font-bold text-white mb-8 cinzel tracking-widest text-gradient uppercase">教育经历</h3><p class="text-white font-bold text-xl mb-2">广东机电职业技术学院</p><p class="text-white/70 text-base">现代装备设计与制造 | 大专 | 2011-2014</p></div>
-                <div class="flex-[2]"><h3 class="text-2xl font-bold text-white mb-8 cinzel tracking-widest text-gradient uppercase">专业技能</h3>
-                    <div class="space-y-8">
-                        <div><p class="text-white/40 text-xs uppercase tracking-[0.2em] mb-3">AIGC</p><div class="flex flex-wrap gap-3 text-sm font-bold text-white uppercase"><span class="border border-white/10 px-5 py-2 rounded-full bg-black/50">ComfyUI</span><span class="border border-white/10 px-5 py-2 rounded-full bg-black/50">Midjourney</span></div></div>
-                        <div><p class="text-white/40 text-xs uppercase tracking-[0.2em] mb-3">三维渲染</p><div class="flex flex-wrap gap-3 text-sm font-bold text-white uppercase"><span class="border border-white/10 px-5 py-2 rounded-full bg-black/50">C4D</span><span class="border border-white/10 px-5 py-2 rounded-full bg-black/50">Keyshot</span></div></div>
                     </div>
                 </div>
             </div>
@@ -246,41 +227,39 @@
             <div class="max-w-[1600px] mx-auto w-full">
                 <div class="mb-24 reveal text-center"><h2 class="text-5xl font-bold cinzel tracking-widest text-gradient uppercase">精选作品 / Works</h2></div>
                 <div class="flex items-center gap-6 mb-16 reveal"><h3 class="text-2xl md:text-3xl font-bold text-white cinzel tracking-[0.2em] uppercase">国内电商</h3><div class="flex-1 h-px bg-white/10"></div></div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 mb-40 items-start">
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group" onclick="openProj('p1')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/BbZFbpDx/yi-chu-wen-an.png" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米扫拖机器人 1</h4><p class="text-white/50 text-base">LDS 激光导航卖点可视化</p></div><span class="project-tag">Project 01</span></div></div>
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-0 md:mt-32" onclick="openProj('p2')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米扫拖机器人 (精选)</h4><p class="text-white/50 text-base">全矩阵视觉标准重塑</p></div><span class="project-tag">Project 02</span></div></div>
+                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group" onclick="openProj('p1')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/BbZFbpDx/yi-chu-wen-an.png" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米扫拖机器人 1</h4><p class="text-white/50 text-base">LDS 激光导航可视化</p></div><span class="project-tag">Project 01</span></div></div>
+                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:mt-32" onclick="openProj('p2')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米扫拖机器人 (精选)</h4><p class="text-white/50 text-base">全矩阵视觉标准重塑</p></div><span class="project-tag">Project 02</span></div></div>
                     <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group" onclick="openProj('p3')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/k504LcfS/tuo.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米手持无线吸尘器</h4><p class="text-white/50 text-base">结构化拆解呈现</p></div><span class="project-tag">Project 03</span></div></div>
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-0 md:mt-32" onclick="openProj('p4')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/g0dt4FP9/kong.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米空气消毒净化器</h4><p class="text-white/50 text-base">全效杀菌逻辑</p></div><span class="project-tag">Project 04</span></div></div>
+                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:mt-32" onclick="openProj('p4')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/g0dt4FP9/kong.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">云米空气消毒净化器</h4><p class="text-white/50 text-base">全效杀菌逻辑</p></div><span class="project-tag">Project 04</span></div></div>
                     <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:col-span-2 mt-10" onclick="openProj('p5')"><div class="aspect-[21/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/02vqF3vL/shui.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-10 px-4 mt-4 flex justify-between items-center"><div><h3 class="text-4xl font-bold text-white cinzel tracking-wider mb-3">米家电水壶 1S 全案</h3><p class="text-white/50 text-lg">米家极简语言 / 高质感家居渲染</p></div><span class="action-btn">阅览长卷</span></div></div>
                 </div>
 
                 <div class="flex items-center gap-6 mb-16 mt-40 reveal"><h3 class="text-2xl md:text-3xl font-bold text-white cinzel tracking-[0.2em] uppercase text-gradient">跨境出海 / GLOBAL</h3><div class="flex-1 h-px bg-white/10"></div></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 items-start">
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:col-span-2" onclick="openProj('p6')"><div class="aspect-[21/9] bg-black rounded-xl overflow-hidden border border-white/5"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-10 px-4 mt-4 flex justify-between items-center"><div><h3 class="text-4xl font-bold text-white cinzel tracking-wider mb-3">海外品牌视觉精选全案</h3><p class="text-white/50 text-lg">基于欧美审美语境视觉再造</p></div><span class="action-btn">Case Study</span></div></div>
+                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:col-span-2" onclick="openProj('p6')"><div class="aspect-[21/9] bg-black rounded-xl border border-white/5 overflow-hidden"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-10 px-4 mt-4 flex justify-between items-center"><div><h3 class="text-4xl font-bold text-white cinzel tracking-wider mb-3">海外品牌视觉全案</h3><p class="text-white/50 text-lg">欧美审美语境下的品牌再造</p></div><span class="action-btn">Case Study</span></div></div>
                     <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group" onclick="openProj('p7')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/3wvxTcSr/casine.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">海外智能家电系列</h4><p class="text-white/50 text-base">Listing 视觉呈现</p></div><span class="project-tag">Project 06</span></div></div>
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-0 md:mt-32" onclick="openProj('p8')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">旗舰新品视觉重构</h4><p class="text-white/50 text-base">A+ 场景逻辑展示</p></div><span class="project-tag">Project 07</span></div></div>
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-10" onclick="openProj('p9')"><div class="aspect-[4/5] bg-black rounded-xl border border-white/5 overflow-hidden"><img src="https://i.postimg.cc/mDRF8qQD/4.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-8 px-2 mt-2 flex justify-between items-center"><div><h3 class="text-2xl font-bold text-white cinzel tracking-wider mb-2">智能橱柜灯 2.0</h3><p class="text-white/50 text-sm">Listing 全案及 A+ 系统</p></div><span class="project-tag">23 图</span></div></div>
-                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group mt-10 md:mt-32" onclick="openProj('p10')"><div class="aspect-[4/5] bg-black rounded-xl border border-white/5 overflow-hidden"><img src="https://i.postimg.cc/DwjjVrxB/5.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-8 px-2 mt-2 flex justify-between items-center"><div><h3 class="text-2xl font-bold text-white cinzel tracking-wider mb-2">超薄感应灯全案</h3><p class="text-white/50 text-sm">旗舰新品全链路视觉</p></div><span class="project-tag">27 图</span></div></div>
-                    <div class="md:col-span-2 flex justify-center mt-10"><div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group w-full max-w-2xl" onclick="openProj('p11')"><div class="aspect-[4/5] bg-black rounded-xl border border-white/5 overflow-hidden"><img src="https://i.postimg.cc/FKF4pV7w/wei-biao-ti-1.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-8 px-2 mt-2 flex justify-between items-center"><div><h3 class="text-2xl font-bold text-white cinzel tracking-wider mb-2">智能橱柜灯 A+ 进阶</h3><p class="text-white/50 text-sm">场景化视觉呈现</p></div><span class="project-tag">13 图</span></div></div></div>
+                    <div class="relative overflow-hidden glass-card rounded-2xl p-4 hover-target cursor-none group md:mt-32" onclick="openProj('p8')"><div class="aspect-[16/9] bg-black overflow-hidden rounded-xl border border-white/5"><img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="w-full h-full object-cover parallax-img"></div><div class="pt-6 px-2 mt-2 flex justify-between items-center"><div><h4 class="text-2xl font-bold text-white mb-2">旗舰新品视觉重构</h4><p class="text-white/50 text-base">A+ 场景逻辑展示</p></div><span class="project-tag">Project 07</span></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="min-h-[60vh] py-32 px-6 md:px-24 relative flex flex-col justify-center z-10">
+        <section id="contact" class="py-32 px-6 md:px-24 relative flex flex-col justify-center z-10 min-h-[60vh]">
             <div class="design-line-h"></div>
-            <div class="max-w-[1600px] mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-16 mt-10 reveal">
-                <div class="flex-1"><h2 class="text-5xl font-bold cinzel tracking-widest text-gradient mb-8 uppercase">合作探讨</h2><a href="mailto:dyk162@163.com" class="text-4xl md:text-6xl font-black text-white hover:text-[var(--accent-gold)] transition-colors duration-500 leading-none inline-block hover-target tracking-tighter cinzel">dyk162@163.com</a></div>
+            <div class="max-w-[1600px] mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-16 reveal">
+                <div class="flex-1"><h2 class="text-5xl font-bold cinzel tracking-widest text-gradient mb-8 uppercase">合作探讨 / Contact</h2><a href="mailto:dyk162@163.com" class="text-4xl md:text-6xl font-black text-white hover:text-[var(--accent-gold)] transition-colors duration-500 hover-target tracking-tighter cinzel">dyk162@163.com</a></div>
                 <div class="flex-1 flex flex-col gap-10 md:border-l border-white/10 md:pl-16">
-                    <div><p class="text-white/40 text-sm uppercase tracking-widest mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[var(--accent-gold)]"></span> 电话</p><a href="tel:13751868717" class="text-4xl md:text-5xl font-bold text-white hover:text-[var(--accent-gold)] transition-colors duration-300 hover-target tracking-wider block">+86 137 5186 8717</a></div>
+                    <div><p class="text-white/40 text-sm uppercase tracking-widest mb-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[var(--accent-gold)]"></span> 电话 / Phone</p><a href="tel:13751868717" class="text-4xl md:text-5xl font-bold text-white hover:text-[var(--accent-gold)] transition-colors duration-300 hover-target tracking-wider block">+86 137 5186 8717</a></div>
                 </div>
             </div>
         </section>
-        <footer class="py-16 text-center relative z-10"><div class="design-line-h"></div><p class="text-white/30 text-[10px] font-medium tracking-[0.5em] uppercase cinzel mt-6">Kuang.Design © 2026</p></footer>
+        <footer class="py-16 text-center relative z-10"><div class="design-line-h"></div><p class="text-white/30 text-[10px] font-medium tracking-[0.5em] uppercase cinzel mt-6">Kuang.Design © 2026 / Visual Architect</p></footer>
     </main>
 
     <div id="project-modal" onclick="closeOnOutsideClick(event)">
         <div class="modal-click-area">
-            <div class="viewer-header sticky top-0 w-full flex justify-between px-10 py-8 bg-[#030308]/90 backdrop-blur-xl z-[1010]"><h2 id="modal-title" class="cinzel text-xl font-bold tracking-widest uppercase text-gradient">阅览</h2><button onclick="closeProject()" class="text-3xl hover:rotate-90 transition-transform cursor-none hover-target text-white/50 hover:text-white">✕</button></div>
+            <div class="viewer-header sticky top-0 w-full flex justify-between px-10 py-8 bg-[#030308]/95 backdrop-blur-xl z-[1010]"><h2 id="modal-title" class="cinzel text-xl font-bold tracking-widest uppercase text-gradient">阅览</h2><button onclick="closeProject()" class="text-3xl hover:rotate-90 transition-transform cursor-none hover-target text-white/50 hover:text-white">✕</button></div>
             <div id="modal-gallery" class="w-full flex flex-col items-center"></div>
             <div class="py-40 flex justify-center w-full"><button onclick="closeProject()" class="action-btn hover-target">Close Project</button></div>
         </div>
@@ -294,12 +273,9 @@
             p3:{t:"云米手持无线吸尘器",n:false,s:[{t:"结构拆解分析",i:["mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg","xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg","RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg","d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg","Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg","bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg","DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg","76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg","JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg","SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg","26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg","wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg","wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg","zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg","6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"]}]},
             p4:{t:"云米空气消毒净化器",n:false,s:[{t:"科技调性重构",i:["L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg","XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg","GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg","K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg","jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg","bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg","fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg","dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg","kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg","T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg","13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg","6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg","MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg","wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg","VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"]}]},
             p5:{t:"米家电水壶 1S 全案",n:false,s:[{t:"全景视觉呈现",i:["KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg","G2zRwdKk/2018-2020-zuo-pin-ji-jing-xuan-17-02.jpg","0QZvRPnS/2018-2020-zuo-pin-ji-jing-xuan-17-03.jpg","3R9h5Y1v/2018-2020-zuo-pin-ji-jing-xuan-17-04.jpg","J0nLRvYK/2018-2020-zuo-pin-ji-jing-xuan-18.jpg","PJxjd9V6/2018-2020-zuo-pin-ji-jing-xuan-19.jpg","Wz3vsCY5/2018-2020-zuo-pin-ji-jing-xuan-20-01.jpg","0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg","L5bM5DGb/2018-2020-zuo-pin-ji-jing-xuan-20-03.jpg","2yKfyGgX/2018-2020-zuo-pin-ji-jing-xuan-20-04.jpg","7h6kqdQv/2018-2020-zuo-pin-ji-jing-xuan-20-05.jpg","yxbzxj22/2018-2020-zuo-pin-ji-jing-xuan-20-06.jpg","KjHyjfdx/2018-2020-zuo-pin-ji-jing-xuan-20-07.jpg","tJMHJkLG/2018-2020-zuo-pin-ji-jing-xuan-20-08.jpg","BbVGbpds/2018-2020-zuo-pin-ji-jing-xuan-20-09.jpg","HnhCnzfT/2018-2020-zuo-pin-ji-jing-xuan-20-10.jpg","0jBqjnLk/2018-2020-zuo-pin-ji-jing-xuan-20-11.jpg","tJMHJkLT/2018-2020-zuo-pin-ji-jing-xuan-20-12.jpg","90nj0bvf/2018-2020-zuo-pin-ji-jing-xuan-20-13.jpg","Y0sw0RJv/2018-2020-zuo-pin-ji-jing-xuan-20-14.jpg","gjTPjsfn/2018-2020-zuo-pin-ji-jing-xuan-20-15.jpg","dQHF5QDn/2018-2020-zuo-pin-ji-jing-xuan-20-16.jpg","mZX4mZhw/2018-2020-zuo-pin-ji-jing-xuan-20-17.jpg"]}]},
-            p6:{t:"海外品牌视觉精选全案",n:false,s:[{t:"主图与 A+ 系统",i:["mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg","CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg","k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg","FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg","fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg","0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg","g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg","tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg","cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg","W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg","N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg","CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg","3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg","bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg","Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg","bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"]}]},
-            p7:{t:"海外智能家电系列",n:false,s:[{t:"Listing 视觉设计",i:["Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg","DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg","yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg","mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg","Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg","br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg","L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg","gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg","XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg","59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg","VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg","mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg","CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg","qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg","DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg","05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg","yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg","zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"]}]},
-            p8:{t:"旗舰新品视觉重构",n:false,s:[{t:"A+ 场景",i:["gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg","Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg","ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg","c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg","GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg","WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg","Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg","hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg","FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg","Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg","VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg","0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg","7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg","SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg","Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg","rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg","L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"]}]},
-            p9:{t:"智能橱柜灯 2.0",n:true,s:[{t:"Listing Main",i:["5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg","fycwbpxT/UCL01-2-0-wu-yao-kong-20-zhu-tu-2.jpg","PJWtq9mx/UCL01-2-0-wu-yao-kong-20-zhu-tu-3.jpg","j2Hsjmzj/UCL01-2-0-wu-yao-kong-20-zhu-tu-4.jpg","VvqYNpjd/UCL01-2-0-wu-yao-kong-20-zhu-tu-5.png","yxmVNtFR/UCL01-2-0-wu-yao-kong-20-zhu-tu-6.jpg","7h3xLdgS/UCL01-2-0-wu-yao-kong-20-zhu-tu-7.jpg","j2Hsjmzz/UCL01-2-0-wu-yao-kong-20-zhu-tu-8.jpg","vTrQmkW3/UCL01-2-0-fei-IR-ban-zhu-tu-6.png"]},{t:"A+ Enhanced",i:["dV1YMLSC/UCL01-2-0-wu-yao-kong-20-A-PC-1.png","Qdt3LHn1/UCL01-2-0-wu-yao-kong-20-A-PC-2.png","kg4mrBh8/UCL01-2-0-wu-yao-kong-20-A-PC-3.png","htjBFf3V/UCL01-2-0-wu-yao-kong-20-A-PC-4.png","BnVGJ4d2/UCL01-2-0-wu-yao-kong-20-A-PC-5.png","RZDzv4jc/UCL01-2-0-wu-yao-kong-20-A-PC-6-1.png","9QMh3rNJ/UCL01-2-0-wu-yao-kong-20-A-PC-6-2.jpg","DwMK7ntP/UCL01-2-0-wu-yao-kong-20-A-PC-6-3.png","4xSTXsr8/UCL01-2-0-wu-yao-kong-20-A-PC-8-1.png","y8bz7swv/UCL01-2-0-wu-yao-kong-20-A-PC-8-2.png","QdyrjhRy/UCL01-2-0-wu-yao-kong-20-A-PC-8-3.png","T34XTfZN/UCL01-2-0-wu-yao-kong-20-A-PC-8-3-kao-bei.png","4xSTXsrr/UCL01-2-0-wu-yao-kong-20-A-PC-9-1.png","Jz2WRM9f/UCL01-2-0-wu-yao-kong-20-A-PC-9-2.png"]}]},
-            p10:{t:"超薄智能感应灯全案",n:true,s:[{t:"Listing Content",i:["fymL155B/UCL06-20-zhu-tu-1-2.png","6qn3Fzz0/UCL06-20-zhu-tu-2.png","d3r1gnn5/UCL06-20-zhu-tu-3.png","Wzg3xSSw/UCL06-20-zhu-tu-4.png","PJYx0KKg/UCL06-20-zhu-tu-5.png","cCwHPTXq/UCL06-20-zhu-tu-6.png","66vy75wQ/UCL06-20-zhu-tu-7.png","tJWT8DD8/UCL06-20-zhu-tu-8.jpg","05wb62xw/UCL06-20-zhu-tu-9.png"]},{t:"A+ Sections",i:["3rvdyJ7p/UCL06-20cm-A-PC-1.png","NGH5yfYm/UCL06-20cm-A-PC-2.png","mZHtc2RQ/UCL06-20cm-A-PC-3-1.png","59C6HN1n/UCL06-20cm-A-PC-3-2.png","kMbBVX9w/UCL06-20cm-A-PC-3-3.png","RCHN3V9s/UCL06-20cm-A-PC-3-4.png","sDC15dDY/UCL06-20cm-A-PC-4-1.png","zXY3TZX6/UCL06-20cm-A-PC-4-2.png","m2Wh7f2q/UCL06-20cm-A-PC-4-3.png","kXPDW3X0/UCL06-20cm-A-PC-4-4.png","ZKz06t5J/UCL06-20cm-A-PC-5-1.png","BQ5bgYXd/UCL06-20cm-A-PC-5-2.png","ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png","wT5MVf1p/UCL06-20cm-A-PC-5-4.png","8PdcHK7D/UCL06-20cm-A-PC-6-1.png","gkyjDSx2/UCL06-20cm-A-PC-6-2.png","tCdJ5SsY/UCL06-20cm-A-PC-6-3.png","VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"]}]},
-            p11:{t:"智能橱柜灯 A+ 进阶",n:true,s:[{t:"A+ Enhanced",i:["nzYFCmJs/UCL01-2-0-A-1.jpg","D0v2szv8/UCL01-2-0-A-2.jpg","GtLcYpLT/UCL01-2-0-A-3.jpg","gjzYR0z3/UCL01-2-0-A-4.jpg","x8f0Hdfm/UCL01-2-0-A-4-2.png","MH6WRG6R/UCL01-2-0-A-4-3.png","1Xm96zm0/UCL01-2-0-A-5-1.png","WzN2r4NW/UCL01-2-0-A-5-2.png","PJXtZqXF/UCL01-2-0-A-5-3.png","QC8X5M8Y/UCL01-2-0-A-6-1.png","wMw9kdMF/UCL01-2-0-A-6-2-1.png","4yWX1TyB/UCL01-2-0-A-7-1.jpg","J0pRQW06/UCL01-2-0-A-7-2.png"]}]}
+            p6:{t:"海外品牌视觉全案",n:false,s:[{t:"主图与 A+ 系统",i:["mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg","CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg","k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg","FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg","fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg","0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg","g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg","tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg","cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg","W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg","N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg","CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg","3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg","bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg","Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg","bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"]}]},
+            p7:{t:"海外智能家电",n:false,s:[{t:"Listing 设计",i:["Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg","DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg","yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg","mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg","Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg","br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg","L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg","gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg","XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg","59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg","VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg","mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg","CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg","qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg","DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg","05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg","yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg","zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"]}]},
+            p8:{t:"旗舰新品重构",n:false,s:[{t:"A+ 场景",i:["gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg","Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg","ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg","c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg","GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg","WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg","Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg","hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg","FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg","Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg","VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg","0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg","7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg","SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg","Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg","rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg","L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"]}]}
         };
 
         const dot = document.getElementById('cursor-dot');
@@ -320,7 +296,7 @@
         }
         animateOutline();
 
-        document.querySelectorAll('.hover-target, a, button, .project-card, .glass-card').forEach(el => { 
+        document.querySelectorAll('.hover-target, a, button, .glass-card').forEach(el => { 
             el.addEventListener('mouseenter', () => { outline.classList.add('hover-mode'); dot.classList.add('hover-mode'); }); 
             el.addEventListener('mouseleave', () => { outline.classList.remove('hover-mode'); dot.classList.remove('hover-mode'); }); 
         });
@@ -330,7 +306,7 @@
         
         function openProj(id) {
             const d = pd[id]; document.getElementById('modal-title').innerText = d.t; const gal = document.getElementById('modal-gallery'); gal.innerHTML = ''; 
-            d.s.forEach(s => { gal.innerHTML += `<h3 class="section-title tracking-[0.3em] cinzel">${s.t}</h3><div class="slice-container ${d.n?'narrow-view':''}">${s.i.map(img => `<img src="${B}${img}" loading="lazy">`).join('')}</div>`; });
+            d.s.forEach(s => { gal.innerHTML += `<h3 class="section-title tracking-[0.3em] cinzel">${s.t}</h3><div class="slice-container">${s.i.map(img => `<img src="${B}${img}" loading="lazy">`).join('')}</div>`; });
             document.getElementById('project-modal').classList.add('show'); document.body.style.overflow = 'hidden';
             outline.classList.remove('hover-mode'); dot.classList.remove('hover-mode');
         }
