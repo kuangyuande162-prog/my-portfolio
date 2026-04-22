@@ -57,71 +57,62 @@
         .glass-nav { background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); transition: all 0.6s; }
 
         /* 滚动渐显动画 */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* =========================================
-           📐 核心：巨幅全宽板块 (Massive Blocks)
+           📐 核心：画册级全宽板块 (Editorial Massive Blocks)
            ========================================= */
         .massive-img-wrap {
             width: 100%;
-            aspect-ratio: 4 / 5; /* 手机端高屏占比 */
+            aspect-ratio: 4 / 5; /* 手机端比例 */
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 16px; /* 更精致的圆角 */
             position: relative;
             background: #111113;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(255,255,255,0.03); /* 极弱边框 */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: all 0.6s ease;
         }
+        
         @media (min-width: 768px) {
-            .massive-img-wrap { aspect-ratio: 16 / 9; border-radius: 32px; }
+            .massive-img-wrap { aspect-ratio: 16 / 9; }
         }
         @media (min-width: 1280px) {
-            /* 超大屏幕下锁定最大高度，防止图片过大导致需要疯狂滚动 */
-            .massive-img-wrap { aspect-ratio: auto; height: 85vh; }
+            /* 桌面端高度克制，保持宽屏电影感 */
+            .massive-img-wrap { aspect-ratio: auto; height: 75vh; }
         }
         
         .massive-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
         }
         .massive-card:hover .massive-img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
         
+        /* 高定级悬浮遮罩 (调弱遮罩，移除 View 按钮) */
         .m-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(0, 0, 0, 0.15);
             opacity: 0;
-            transition: opacity 0.5s ease;
-            backdrop-filter: blur(4px);
+            transition: opacity 0.6s ease;
+            pointer-events: none;
         }
         .massive-card:hover .m-overlay {
             opacity: 1;
         }
-        
-        .m-view-btn {
-            padding: 16px 48px;
-            background: #ffffff;
-            color: #000000;
-            border-radius: 40px;
-            font-weight: 900;
-            font-size: 14px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+        /* 底部信息区排版优化 - 移除边框，更通透 */
+        .meta-line {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            transition: border-color 0.4s;
         }
-        .massive-card:hover .m-view-btn {
-            transform: translateY(0);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        .massive-card:hover .meta-line {
+            border-color: rgba(196, 160, 95, 0.3);
         }
 
         /* =========================================
@@ -150,7 +141,7 @@
         #project-modal.show { transform: translateY(0); }
         .viewer-header { background: rgba(5, 5, 5, 0.95); border-bottom: 1px solid var(--border-subtle); }
         
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--text); width: 0%; z-index: 1020; transition: width 0.1s; }
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent-gold); width: 0%; z-index: 1020; transition: width 0.1s; }
     </style>
 </head>
 <body>
@@ -165,22 +156,22 @@
 
     <main class="relative z-10 w-full">
 
-        <!-- 导航栏 -->
+        <!-- 导航栏 (字体变细，按钮变精致) -->
         <nav class="fixed w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 md:py-5 glass-nav hover-target">
-            <div class="text-xl md:text-2xl font-bold cinzel tracking-widest uppercase">KUANG</div>
-            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-[0.2em] font-medium text-gray-400">
+            <div class="text-xl md:text-2xl font-normal cinzel tracking-widest uppercase text-[var(--accent-gold)]">KUANG</div>
+            <div class="hidden md:flex space-x-12 text-[11px] uppercase tracking-[0.2em] font-light text-gray-400">
                 <a href="#intro" class="hover:text-white transition-colors">Profile</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
                 <a href="#portfolio" class="hover:text-white transition-colors">Work</a>
                 <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </div>
-            <a href="mailto:dyk162@163.com" class="text-[10px] md:text-xs uppercase tracking-[0.1em] border border-white/20 px-5 py-2.5 md:px-6 md:py-2.5 rounded-full hover:bg-white hover:text-black transition-all hover-target font-bold">
+            <a href="mailto:dyk162@163.com" class="text-[9px] md:text-[10px] uppercase tracking-[0.15em] border border-white/20 px-6 py-2.5 rounded-full hover:bg-[var(--accent-gold)] hover:border-[var(--accent-gold)] hover:text-black transition-all hover-target font-medium">
                 <span class="hidden md:inline">Hire Me</span>
                 <span class="inline md:hidden">Email</span>
             </a>
         </nav>
 
-        <!-- 头部首屏 -->
+        <!-- 头部首屏 (大号字体变轻盈，描述更精细) -->
         <header id="intro" class="min-h-screen flex flex-col justify-center relative overflow-hidden bg-[#050505]">
             <!-- 弱化了视频饱和度，符合 Behance 的清爽高级感 -->
             <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 grayscale" style="mix-blend-mode: luminosity;">
@@ -189,204 +180,241 @@
             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-transparent z-0"></div>
             
             <div class="max-w-[1600px] w-full mx-auto px-6 md:px-24 pt-32 relative z-10">
-                <div class="flex items-center gap-5 md:gap-6 mb-8 reveal">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full p-1 bg-white/10" id="avatar-container">
+                <div class="flex items-center gap-5 md:gap-6 mb-10 reveal">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full p-[1px] border border-white/10" id="avatar-container">
                         <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="Avatar" class="w-full h-full object-cover rounded-full" id="avatar-img">
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-white/60 uppercase tracking-[0.2em] text-xs mb-1">Visual Architect</p>
-                        <p class="text-white uppercase tracking-[0.1em] text-sm font-bold">Design Manager</p>
+                        <p class="text-[var(--accent-gold)] uppercase tracking-[0.3em] text-[10px] mb-1.5 font-medium">Visual Architect</p>
+                        <p class="text-white/40 uppercase tracking-[0.2em] text-[10px] font-light">Design Manager</p>
                     </div>
                 </div>
 
-                <h1 class="text-4xl md:text-7xl leading-[1.15] font-black reveal mb-8 tracking-tight">
-                    邝先生 <span class="text-white/30 text-3xl md:text-5xl ml-2 font-normal">KUANG</span><br>
-                    <span class="text-gradient mt-2 block">视觉赋能商业.</span>
+                <h1 class="text-4xl md:text-6xl leading-[1.2] font-semibold reveal mb-10 tracking-tight text-white/90">
+                    邝先生 <span class="text-white/30 text-3xl md:text-4xl ml-2 font-light cinzel tracking-widest">KUANG</span><br>
+                    <span class="text-gradient mt-3 block font-light tracking-wide md:text-5xl">视觉赋能商业.</span>
                 </h1>
                 
-                <div class="max-w-3xl reveal">
-                    <p class="text-[#aaaaaa] text-lg md:text-xl font-light leading-relaxed mb-6">能搭建设计团队和品牌视觉体系，懂数据，会用 AI 工具提升设计效果和效率。</p>
-                    <ul class="text-[#888888] space-y-3 text-sm md:text-base font-light">
-                        <li><span class="font-bold text-white pr-2">体系搭建</span>建立品牌视觉标准和团队工作流程，跨部门沟通更顺畅。</li>
-                        <li><span class="font-bold text-white pr-2">增长结果</span>通过持续优化页面图片，转化率和点击率都有明显提升。</li>
-                        <li><span class="font-bold text-white pr-2">技术敏锐</span>紧跟AI设计趋势，率先引入AIGC工具优化作图流程。</li>
+                <div class="max-w-2xl reveal">
+                    <p class="text-[#888888] text-base md:text-lg font-light leading-relaxed mb-8">能搭建设计团队和品牌视觉体系，懂数据，会用 AI 工具提升设计效果和效率。</p>
+                    <ul class="text-[#777777] space-y-4 text-xs md:text-sm font-light tracking-wide">
+                        <li><span class="font-medium text-white/80 pr-3 text-[10px] uppercase tracking-widest">体系</span>建立品牌视觉标准和团队工作流程，跨部门沟通更顺畅。</li>
+                        <li><span class="font-medium text-white/80 pr-3 text-[10px] uppercase tracking-widest">增长</span>通过持续优化页面图片，转化率和点击率都有明显提升。</li>
+                        <li><span class="font-medium text-white/80 pr-3 text-[10px] uppercase tracking-widest">技术</span>紧跟AI设计趋势，率先引入AIGC工具优化作图流程。</li>
                     </ul>
                 </div>
             </div>
         </header>
 
-        <!-- Behance 风格作品集 (直接将作品集提上来，符合 Behance 直入主题的习惯) -->
-        <section id="portfolio" class="py-20 md:py-32 px-4 md:px-12 lg:px-20 relative z-10">
-            <div class="max-w-[1800px] mx-auto w-full">
+        <!-- 画册级巨幅作品展示 (排版粗中有细) -->
+        <section id="portfolio" class="py-20 md:py-32 px-4 md:px-12 lg:px-24 relative z-10">
+            <div class="max-w-[1600px] mx-auto w-full">
                 
-                <!-- 国内电商 -->
-                <div class="flex items-center justify-between mb-12 md:mb-20 reveal px-2">
-                    <h3 class="text-3xl md:text-5xl font-black tracking-tight">国内电商 <span class="text-white/30 ml-3 font-normal text-2xl md:text-4xl">Domestic</span></h3>
+                <!-- 国内电商 Header -->
+                <div class="flex items-center gap-6 mb-16 md:mb-20 reveal px-2">
+                    <h3 class="text-2xl md:text-3xl font-medium tracking-wide text-white/90">国内电商</h3>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <span class="text-[var(--accent-gold)] font-light tracking-[0.3em] text-xs uppercase">Domestic</span>
                 </div>
                 
                 <!-- 巨幅板块容器 1 -->
-                <div class="flex flex-col">
+                <div class="flex flex-col gap-24 md:gap-36">
                     
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p5')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p5')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" class="massive-img" alt="米家电水壶">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">米家电水壶 1S 全案</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">米家极简语言 / 高质感家居渲染</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">01</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">米家电水壶 1S 全案</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">01</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">米家极简语言 / 高质感家居渲染</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p1')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p1')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/BbZFbpDx/yi-chu-wen-an.png" class="massive-img" alt="云米扫拖机器人">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 1</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">LDS 激光导航卖点可视化</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">02</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 1</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">02</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">LDS 激光导航卖点可视化</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p2')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p2')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" class="massive-img" alt="云米扫拖机器人精选">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 (精选)</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">全矩阵视觉标准重塑</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">03</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 (精选)</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">03</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">全矩阵视觉标准重塑</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p3')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p3')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/k504LcfS/tuo.jpg" class="massive-img" alt="云米手持无线吸尘器">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米手持无线吸尘器</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">结构化拆解核心性能呈现</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">04</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">云米手持无线吸尘器</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">04</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">结构化拆解核心性能呈现</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p4')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p4')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/g0dt4FP9/kong.jpg" class="massive-img" alt="云米空气消毒净化器">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米空气消毒净化器</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">科技感调性全效杀菌逻辑</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">05</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">云米空气消毒净化器</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">05</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">科技感调性全效杀菌逻辑</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 跨境出海 -->
-                <div class="flex items-center justify-between mb-12 md:mb-20 mt-10 md:mt-24 reveal px-2">
-                    <h3 class="text-3xl md:text-5xl font-black tracking-tight">跨境出海 <span class="text-white/30 ml-3 font-normal text-2xl md:text-4xl">Global</span></h3>
+                <!-- 跨境出海 Header -->
+                <div class="flex items-center gap-6 mb-16 md:mb-20 mt-32 md:mt-40 reveal px-2">
+                    <h3 class="text-2xl md:text-3xl font-medium tracking-wide text-white/90">跨境出海</h3>
+                    <div class="h-px flex-1 bg-white/10"></div>
+                    <span class="text-[var(--accent-gold)] font-light tracking-[0.3em] text-xs uppercase">Global</span>
                 </div>
                 
                 <!-- 巨幅板块容器 2 -->
-                <div class="flex flex-col">
+                <div class="flex flex-col gap-24 md:gap-36">
                     
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p6')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p6')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" class="massive-img" alt="海外品牌视觉精选">
-                            <div class="m-overlay"><span class="m-view-btn">Case Study</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">海外品牌视觉精选全案</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">基于欧美审美语境品牌视觉再造</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">06</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">海外品牌视觉精选全案</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">06</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">基于欧美审美语境品牌视觉再造</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p9')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p9')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/mDRF8qQD/4.jpg" class="massive-img" alt="智能橱柜灯">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 2.0</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">Listing 全案及 A+ 系统</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">07</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 2.0</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">07</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">Listing 全案及 A+ 系统</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p7')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p7')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/3wvxTcSr/casine.jpg" class="massive-img" alt="海外智能家电系列">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">海外智能家电系列</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">Listing 视觉呈现与转化设计</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">08</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">海外智能家电系列</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">08</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">Listing 视觉呈现与转化设计</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p10')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p10')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/DwjjVrxB/5.jpg" class="massive-img" alt="超薄感应灯全案">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">超薄感应灯全案</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">海外旗舰新品全链路视觉</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">09</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">超薄感应灯全案</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">09</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">海外旗舰新品全链路视觉</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p8')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p8')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="massive-img" alt="旗舰新品视觉重构">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">旗舰新品视觉重构</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">高转化率 A+ 场景逻辑展示</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">10</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">旗舰新品视觉重构</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">10</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">高转化率 A+ 场景逻辑展示</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p11')">
+                    <div class="massive-card group cursor-pointer reveal" onclick="openProj('p11')">
                         <div class="massive-img-wrap">
                             <img src="https://i.postimg.cc/FKF4pV7w/wei-biao-ti-1.jpg" class="massive-img" alt="智能橱柜灯 A+ 进阶">
-                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                            <div class="m-overlay"></div>
                         </div>
-                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
-                            <div>
-                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 A+ 进阶</h4>
-                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">高级场景化视觉呈现</p>
+                        <div class="mt-6 md:mt-8 px-1 md:px-2 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                            <div class="flex items-center gap-4 md:gap-6">
+                                <span class="cinzel text-xs md:text-sm text-[var(--accent-gold)] font-light tracking-[0.2em] opacity-80">11</span>
+                                <div class="h-px w-6 md:w-12 bg-white/20"></div>
+                                <h4 class="text-lg md:text-2xl font-normal tracking-wide text-white/90 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 A+ 进阶</h4>
                             </div>
-                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">11</div>
+                            <div>
+                                <p class="text-white/40 text-[10px] md:text-xs tracking-[0.2em] uppercase font-light">高级场景化视觉呈现</p>
+                            </div>
                         </div>
                     </div>
 
@@ -394,80 +422,79 @@
             </div>
         </section>
 
-        <!-- 履历部分 (融入极简风) -->
+        <!-- 履历部分 (字体精细化) -->
         <section id="experience" class="py-20 md:py-32 px-6 md:px-24 relative z-10 bg-[#080808] border-t border-white/5">
             <div class="max-w-[1200px] mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-16 reveal">工作经历 <span class="text-white/30 ml-2 font-normal text-lg">Experience</span></h2>
-                <div class="space-y-8 md:space-y-12">
+                <h2 class="text-xl md:text-2xl font-medium tracking-widest mb-16 reveal text-white/90">Experience <span class="text-white/30 ml-3 font-light text-sm">工作经历</span></h2>
+                <div class="space-y-6 md:space-y-10">
                     
-                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                    <div class="timeline-wrap reveal content-card p-6 md:p-8 hover-target group">
                         <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-                            <div class="md:w-1/3">
-                                <div class="text-sm font-bold text-white/50 mb-2">2024.10 - Present</div>
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广州奕至家居科技</h3>
-                                <p class="text-white/60 text-sm">设计经理 (公司返聘)</p>
+                            <div class="md:w-1/4">
+                                <div class="text-[10px] font-normal text-[var(--accent-gold)] mb-1 tracking-widest uppercase">2024.10 - Present</div>
+                                <h3 class="text-base font-medium mb-1 text-white/90 group-hover:text-[var(--accent-gold)] transition-colors tracking-wide">广州奕至家居科技</h3>
+                                <p class="text-white/40 text-xs font-light">设计经理 (公司返聘)</p>
                             </div>
-                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
+                            <div class="flex-1 text-[#888888] space-y-3 text-xs md:text-sm font-light leading-loose">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white font-medium">团队管理：</strong>重构海外设计团队，制定工作流程和交付标准。</li>
-                                    <li><strong class="text-white font-medium">品牌策略：</strong>落地欧美品牌视觉风格，确保主图和A+符合当地审美。</li>
-                                    <li><strong class="text-white font-medium">AI提效：</strong>引入AIGC工具，缩短素材制作周期，支持多版本快速测试。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">团队管理：</strong>重构海外设计团队，制定工作流程和交付标准。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">品牌策略：</strong>落地欧美品牌视觉风格，确保主图和A+符合当地审美。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">AI提效：</strong>引入AIGC工具，缩短素材制作周期，支持多版本快速测试。</li>
                                 </ul>
-                                <div class="mt-6 bg-[#000000] border-l-2 border-[var(--accent-gold)] p-5 rounded">
-                                    <p class="text-white text-sm mb-1 font-medium">核心业绩：</p>
-                                    <p class="text-xs">建立统一品牌视觉系统。核心产品转化率提升10%-30%，点击率提升10%-20%。</p>
+                                <div class="mt-4 bg-[#0a0a0a] border-l border-[var(--accent-gold)] p-4 rounded-sm">
+                                    <p class="text-[var(--accent-gold)] text-xs font-light tracking-wide">建立统一品牌视觉系统。核心产品转化率提升10%-30%，点击率提升10%-20%。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                    <div class="timeline-wrap reveal content-card p-6 md:p-8 hover-target group">
                         <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-                            <div class="md:w-1/3">
-                                <div class="text-sm font-bold text-white/50 mb-2">2023.06 - 2024.10</div>
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广东久量科技</h3>
-                                <p class="text-white/60 text-sm">设计主管</p>
+                            <div class="md:w-1/4">
+                                <div class="text-[10px] font-normal text-white/40 mb-1 tracking-widest uppercase">2023.06 - 2024.10</div>
+                                <h3 class="text-base font-medium mb-1 text-white/90 group-hover:text-[var(--accent-gold)] transition-colors tracking-wide">广东久量科技</h3>
+                                <p class="text-white/40 text-xs font-light">设计主管</p>
                             </div>
-                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
+                            <div class="flex-1 text-[#888888] space-y-3 text-xs md:text-sm font-light leading-loose">
                                 <p>负责洗护系列产品品牌视觉建设，独立完成全链路设计。核心负责内衣裤洗衣机、烘干机等新品视觉构建（外拍对接、精修渲染）。承担日常页面维护及主图优化。</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                    <div class="timeline-wrap reveal content-card p-6 md:p-8 hover-target group">
                         <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-                            <div class="md:w-1/3">
-                                <div class="text-sm font-bold text-white/50 mb-2">2020.05 - 2023.05</div>
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广州奕至家居科技</h3>
-                                <p class="text-white/60 text-sm">平面设计主管</p>
+                            <div class="md:w-1/4">
+                                <div class="text-[10px] font-normal text-white/40 mb-1 tracking-widest uppercase">2020.05 - 2023.05</div>
+                                <h3 class="text-base font-medium mb-1 text-white/90 group-hover:text-[var(--accent-gold)] transition-colors tracking-wide">广州奕至家居科技</h3>
+                                <p class="text-white/40 text-xs font-light">平面设计主管</p>
                             </div>
-                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
+                            <div class="flex-1 text-[#888888] space-y-3 text-xs md:text-sm font-light leading-loose">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white font-medium">国内业务：</strong>带领团队负责新品视觉及天猫/京东店铺活动视觉统筹。</li>
-                                    <li><strong class="text-white font-medium">出海战略：</strong>任海外产品设计部负责人。负责海外产品视觉设计及品牌建设。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">国内业务：</strong>带领团队负责新品视觉及天猫/京东店铺活动视觉统筹。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">出海战略：</strong>任海外产品设计部负责人。负责海外产品视觉设计及品牌建设。</li>
                                 </ul>
-                                <div class="mt-6 bg-[#000000] p-5 rounded border border-white/5">
-                                    <p class="text-[var(--accent-gold)] text-xs font-medium">成功帮助公司从零到一建立了视觉品牌概念，完成产品出海布局。海外产品成为行业标杆。</p>
+                                <div class="mt-4 bg-[#0a0a0a] border-l border-white/10 p-4 rounded-sm">
+                                    <p class="text-white/50 text-xs font-light tracking-wide">成功帮助公司从零到一建立了视觉品牌概念，完成产品出海布局。海外产品成为行业标杆。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                    <div class="timeline-wrap reveal content-card p-6 md:p-8 hover-target group">
                         <div class="timeline-line" style="background:transparent"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-                            <div class="md:w-1/3">
-                                <div class="text-sm font-bold text-white/50 mb-2">2018.05 - 2020.05</div>
-                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">佛山市云米电器</h3>
-                                <p class="text-white/60 text-sm">平面设计</p>
+                            <div class="md:w-1/4">
+                                <div class="text-[10px] font-normal text-white/40 mb-1 tracking-widest uppercase">2018.05 - 2020.05</div>
+                                <h3 class="text-base font-medium mb-1 text-white/90 group-hover:text-[var(--accent-gold)] transition-colors tracking-wide">佛山市云米电器</h3>
+                                <p class="text-white/40 text-xs font-light">平面设计</p>
                             </div>
-                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
+                            <div class="flex-1 text-[#888888] space-y-3 text-xs md:text-sm font-light leading-loose">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white font-medium">大促统筹：</strong>负责S级大促(双十一等)主视觉设计，输出关键素材。</li>
-                                    <li><strong class="text-white font-medium">详情页设计：</strong>统筹超50款小家电产品详情页设计，建立标准流程。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">大促统筹：</strong>负责S级大促(双十一等)主视觉设计，输出关键素材。</li>
+                                    <li><strong class="text-white/70 font-normal pr-1">详情页设计：</strong>统筹超50款小家电产品详情页设计，建立标准流程。</li>
                                 </ul>
                             </div>
                         </div>
@@ -476,34 +503,34 @@
             </div>
         </section>
 
-        <!-- 技能与教育 -->
+        <!-- 技能与教育 (标签更加纤细轻盈) -->
         <section id="skills" class="py-16 md:py-24 px-6 md:px-24 relative z-10 border-t border-white/5">
             <div class="max-w-[1200px] mx-auto reveal flex flex-col md:flex-row gap-12 md:gap-24">
                 <div class="flex-1">
-                    <h3 class="text-lg font-bold mb-6 text-white/50 uppercase tracking-widest">Education</h3>
-                    <p class="font-bold text-xl mb-1">广东机电职业技术学院</p>
-                    <p class="text-[#888888] text-sm md:text-base">现代装备设计与制造 | 大专 | 2011-2014</p>
+                    <h3 class="text-[10px] font-light mb-6 text-white/40 uppercase tracking-[0.2em]">Education</h3>
+                    <p class="font-normal text-base md:text-lg mb-1 text-white/90 tracking-wide">广东机电职业技术学院</p>
+                    <p class="text-[#666666] text-xs font-light tracking-wide">现代装备设计与制造 | 大专 | 2011-2014</p>
                 </div>
                 <div class="flex-1">
-                    <h3 class="text-lg font-bold mb-6 text-white/50 uppercase tracking-widest">Skills</h3>
+                    <h3 class="text-[10px] font-light mb-6 text-white/40 uppercase tracking-[0.2em]">Skills</h3>
                     <div class="space-y-6">
                         <div>
-                            <p class="text-white text-sm mb-3 font-bold">AIGC / 人工智能生成</p>
-                            <div class="flex flex-wrap gap-2 text-xs text-[#aaaaaa]">
-                                <span class="px-3 py-1.5 rounded bg-white/5">ComfyUI</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Midjourney</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Openclaw</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Lovart</span>
+                            <p class="text-white/80 text-xs mb-3 font-normal tracking-wide">AIGC / 人工智能生成</p>
+                            <div class="flex flex-wrap gap-2 text-[10px] font-normal text-white/50">
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">ComfyUI</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Midjourney</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Openclaw</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Lovart</span>
                             </div>
                         </div>
                         <div>
-                            <p class="text-white text-sm mb-3 font-bold">三维渲染 & 平面设计</p>
-                            <div class="flex flex-wrap gap-2 text-xs text-[#aaaaaa]">
-                                <span class="px-3 py-1.5 rounded bg-white/5">C4D</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Keyshot</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Photoshop</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Illustrator</span>
-                                <span class="px-3 py-1.5 rounded bg-white/5">Premiere Pro</span>
+                            <p class="text-white/80 text-xs mb-3 font-normal tracking-wide">三维渲染 & 平面设计</p>
+                            <div class="flex flex-wrap gap-2 text-[10px] font-normal text-white/50">
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">C4D</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Keyshot</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Photoshop</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Illustrator</span>
+                                <span class="px-4 py-1.5 rounded-full border border-white/5 hover:border-white/20 transition-colors">Premiere Pro</span>
                             </div>
                         </div>
                     </div>
@@ -512,36 +539,36 @@
         </section>
 
         <!-- 联系方式 -->
-        <section id="contact" class="py-24 md:py-40 px-6 md:px-24 relative z-10 bg-[#050505] border-t border-white/5">
+        <section id="contact" class="py-24 md:py-32 px-6 md:px-24 relative z-10 bg-[#050505] border-t border-white/5">
             <div class="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-12 reveal">
                 <div class="flex-1">
-                    <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">Let's work together.</h2>
-                    <p class="text-[#888888] text-lg mb-8">随时探讨视觉增长与商业破局之道。</p>
-                    <a href="mailto:dyk162@163.com" class="action-btn text-sm hover-target">Email Me</a>
+                    <h2 class="text-3xl md:text-5xl font-medium mb-4 tracking-tight text-white/90">Let's connect.</h2>
+                    <p class="text-[#666666] text-sm md:text-base mb-10 font-light tracking-wide">随时探讨视觉增长与商业破局之道。</p>
+                    <a href="mailto:dyk162@163.com" class="action-btn text-[10px] font-medium hover-target px-8 h-10">Email Me</a>
                 </div>
                 <div class="flex flex-col gap-8 md:border-l border-white/10 md:pl-16 w-full md:w-auto">
                     <div>
-                        <p class="text-[#666666] text-xs uppercase tracking-widest mb-1">Phone</p>
-                        <a href="tel:13751868717" class="text-2xl font-bold hover:text-[var(--accent-gold)] transition-colors block">+86 137 5186 8717</a>
+                        <p class="text-white/30 text-[10px] uppercase tracking-[0.2em] mb-2 font-light">Phone</p>
+                        <a href="tel:13751868717" class="text-xl md:text-2xl font-light text-white/80 hover:text-[var(--accent-gold)] transition-colors block tracking-widest">+86 137 5186 8717</a>
                     </div>
                     <div>
-                        <p class="text-[#666666] text-xs uppercase tracking-widest mb-1">Location</p>
-                        <p class="text-xl font-medium text-white/90">Guangzhou, China</p>
+                        <p class="text-white/30 text-[10px] uppercase tracking-[0.2em] mb-2 font-light">Location</p>
+                        <p class="text-base md:text-lg font-light text-white/80 tracking-wide">Guangzhou, China</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <footer class="py-10 text-center relative z-10 border-t border-white/5">
-            <p class="text-[#444444] text-xs font-medium">© 2026 Kuang. All rights reserved.</p>
+        <footer class="py-10 text-center relative z-10 border-t border-white/5 bg-[#050505]">
+            <p class="text-[#444444] text-[9px] font-light tracking-[0.2em] uppercase">© 2026 Kuang. All rights reserved.</p>
         </footer>
     </main>
 
     <!-- 项目长图模态框 (保持深色干净风格) -->
     <div id="project-modal" onclick="closeOnOutsideClick(event)">
         <div class="modal-click-area min-h-screen flex flex-col">
-            <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-10 py-4 z-[1010] shadow-lg">
-                <h2 id="modal-title" class="font-bold text-lg tracking-tight">Project View</h2>
+            <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-10 py-4 z-[1010] shadow-lg backdrop-blur-md">
+                <h2 id="modal-title" class="font-bold text-lg tracking-tight text-white">Project View</h2>
                 <button onclick="closeProject()" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white hover:text-black transition-all group outline-none" aria-label="关闭">
                     <svg class="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
@@ -549,8 +576,8 @@
             
             <div id="modal-gallery" class="w-full flex flex-col items-center pb-20 bg-[#050505]"></div>
             
-            <div class="py-20 flex justify-center w-full bg-[#050505]">
-                <button onclick="closeProject()" class="action-btn">Back to Works</button>
+            <div class="py-24 flex justify-center w-full bg-[#050505]">
+                <button onclick="closeProject()" class="action-btn px-10 h-12">Back to Works</button>
             </div>
         </div>
     </div>
@@ -580,7 +607,7 @@
                 });
             });
 
-            document.querySelectorAll('.hover-target, a, button, .behance-card, .action-btn').forEach(el => { 
+            document.querySelectorAll('.hover-target, a, button, .massive-card, .action-btn').forEach(el => { 
                 el.addEventListener('mouseenter', () => { outline.classList.add('hover-mode'); }); 
                 el.addEventListener('mouseleave', () => { outline.classList.remove('hover-mode'); }); 
             });
