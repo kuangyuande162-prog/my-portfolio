@@ -8,404 +8,466 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #030308; 
+            --bg: #050505; 
+            --card-bg: #111113;
             --text: #ffffff; 
+            --text-muted: #888888;
             --accent-gold: #c4a05f; 
             --accent-gold-light: #e5c07b;
+            --border-subtle: rgba(255, 255, 255, 0.06);
         }
         
-        /* 平滑滚动与锚点偏移 */
+        /* 平滑滚动 */
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
         body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; 
             background-color: var(--bg); 
             color: var(--text); 
             overflow-x: hidden; 
             cursor: none; 
-            transition: background-color 0.3s;
+            -webkit-font-smoothing: antialiased;
         }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
         
-        .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; transition: font-family 0.1s; }
+        .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
         
-        /* 🌟 文案流光 */
-        .text-shimmer {
-            background: linear-gradient(90deg, #ffffff 0%, #ffffff 30%, var(--accent-gold-light) 50%, #ffffff 70%, #ffffff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmerFlow 5s infinite linear;
-        }
-        @keyframes shimmerFlow { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-
         .text-gradient {
-            background: linear-gradient(90deg, #ffffff, var(--accent-gold-light));
+            background: linear-gradient(90deg, var(--text), var(--accent-gold-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* 🟢 动态模糊鎏金底 */
-        .gold-flow-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; background: #030308; overflow: hidden; pointer-events: none;
-        }
-        .gold-flow-bg::before, .gold-flow-bg::after {
-            content: ''; position: absolute; width: 150vw; height: 150vh; top: -25vh; left: -25vw;
-            background: radial-gradient(circle at center, rgba(196, 160, 95, 0.12) 0%, transparent 55%);
-            filter: blur(60px); animation: goldFlow 20s infinite alternate ease-in-out;
-        }
-        .gold-flow-bg::after {
-            background: radial-gradient(circle at center, rgba(229, 192, 123, 0.08) 0%, transparent 50%);
-            animation: goldFlow2 25s infinite alternate-reverse ease-in-out;
-        }
-        @keyframes goldFlow { 0% { transform: translate(8%, 8%) scale(1); } 100% { transform: translate(-8%, -8%) scale(1.15); } }
-        @keyframes goldFlow2 { 0% { transform: translate(-12%, 5%) scale(1.1); } 100% { transform: translate(8%, -12%) scale(1.25); } }
-
-        /* 元素网格与水印 */
-        .architect-grid { position: fixed; inset: 0; pointer-events: none; z-index: 1; display: flex; justify-content: space-between; padding: 0 15vw; }
+        /* 元素网格与水印 - 极简弱化 */
+        .architect-grid { position: fixed; inset: 0; pointer-events: none; z-index: 1; display: flex; justify-content: space-between; padding: 0 15vw; opacity: 0.5; }
         .architect-grid::before, .architect-grid::after { content: ''; position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.02); }
         .architect-grid::before { left: 33.33%; } .architect-grid::after { left: 66.66%; }
         
-        .crosshair { position: absolute; width: 15px; height: 15px; display: flex; align-items: center; justify-content: center; opacity: 0.3; }
-        .crosshair::before { content: ''; position: absolute; width: 100%; height: 1px; background: var(--accent-gold); }
-        .crosshair::after { content: ''; position: absolute; width: 1px; height: 100%; background: var(--accent-gold); }
-        
-        .editorial-watermark { position: fixed; left: -2vw; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8vw; font-weight: 900; color: rgba(255,255,255,0.02); white-space: nowrap; pointer-events: none; z-index: 1; letter-spacing: 0.1em; font-family: 'Cinzel', serif; mix-blend-mode: overlay; transition: color 0.3s;}
+        .editorial-watermark { position: fixed; left: -2vw; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8vw; font-weight: 900; color: rgba(255,255,255,0.015); white-space: nowrap; pointer-events: none; z-index: 1; letter-spacing: 0.1em; font-family: 'Cinzel', serif; mix-blend-mode: overlay; }
 
-        /* 🌟 光标无延迟逻辑 */
-        .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; transform: translate(-50%, -50%); }
-        .cursor-outline { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1px solid rgba(196,160,95,0.6); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s, border-radius 0.3s; }
-        .cursor-outline.hover-mode { width: 64px; height: 64px; background: rgba(196,160,95,0.15); border-color: rgba(196,160,95,1); backdrop-filter: blur(2px); }
+        /* 光标逻辑 */
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: var(--text); border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; transform: translate(-50%, -50%); transition: background 0.3s; }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s; }
+        .cursor-outline.hover-mode { width: 72px; height: 72px; background: rgba(196,160,95,0.1); border-color: rgba(196,160,95,0.5); backdrop-filter: blur(2px); }
 
-        /* 统一UI标签 */
-        .project-tag { display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 12px; font-size: 10px; font-weight: 700; color: var(--accent-gold); border: 1px solid rgba(196, 160, 95, 0.35); border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(196, 160, 95, 0.05); backdrop-filter: blur(4px); transition: all 0.3s ease; }
-        .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 28px; font-size: 12px; font-weight: 700; color: #030308; background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%); border-radius: 22px; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; font-family: 'Cinzel', serif; box-shadow: 0 4px 15px rgba(196,160,95,0.3); }
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(196,160,95,0.5); }
+        /* 统一UI按钮 */
+        .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 28px; font-size: 12px; font-weight: 700; color: #000; background: #fff; border-radius: 22px; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; font-family: 'Inter', sans-serif; }
+        .action-btn:hover { background: var(--accent-gold); transform: translateY(-2px); }
 
-        /* 🌟 图片黑白转彩色 + 视差 + 高级毛玻璃 */
-        .glass-card { 
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); 
-            backdrop-filter: blur(20px); 
-            border-top: 1px solid rgba(255, 255, 255, 0.08); 
-            border-left: 1px solid rgba(255, 255, 255, 0.08); 
-            border-right: 1px solid rgba(255, 255, 255, 0.01); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.01); 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-            transform: perspective(1000px) translateZ(0); 
-            overflow: hidden; 
-            border-radius: 1.25rem; 
-        }
-        .glass-card:hover { border-color: rgba(196, 160, 95, 0.4); transform: perspective(1000px) translateZ(20px) translateY(-8px); box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.5); }
-        
-        .parallax-img { filter: grayscale(100%); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; height: 100%; object-fit: cover; }
-        .glass-card:hover .parallax-img { filter: grayscale(0%); transform: scale(1.08) translateY(-2%); }
+        /* 导航栏 */
+        .glass-nav { background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); transition: all 0.6s; }
 
         /* 滚动渐显动画 */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           📐 核心：巨幅全宽板块 (Massive Blocks)
+           ========================================= */
+        .massive-img-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5; /* 手机端高屏占比 */
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+            background: #111113;
+            border: 1px solid var(--border-subtle);
+        }
+        @media (min-width: 768px) {
+            .massive-img-wrap { aspect-ratio: 16 / 9; border-radius: 32px; }
+        }
+        @media (min-width: 1280px) {
+            /* 超大屏幕下锁定最大高度，防止图片过大导致需要疯狂滚动 */
+            .massive-img-wrap { aspect-ratio: auto; height: 85vh; }
+        }
         
-        .glass-nav { background: rgba(3, 3, 8, 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); transition: all 0.3s; }
+        .massive-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .massive-card:hover .massive-img {
+            transform: scale(1.03);
+        }
         
-        /* 响应式时间线 */
+        .m-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            backdrop-filter: blur(4px);
+        }
+        .massive-card:hover .m-overlay {
+            opacity: 1;
+        }
+        
+        .m-view-btn {
+            padding: 16px 48px;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 40px;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .massive-card:hover .m-view-btn {
+            transform: translateY(0);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        /* =========================================
+           🛠️ 简历与排版通用适配
+           ========================================= */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+        }
+
+        /* 时间线 */
         .timeline-wrap { position: relative; padding-left: 2.5rem; }
-        .timeline-line { position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent-gold), transparent); opacity: 0.3;}
-        .timeline-dot { position: absolute; left: 13.5px; top: 44px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold); z-index: 10; transition: transform 0.3s, border-radius 0.3s; }
-        .timeline-wrap:hover .timeline-dot { transform: scale(1.5); background: #fff; }
+        .timeline-line { position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.1);}
+        .timeline-dot { position: absolute; left: 14.5px; top: 40px; width: 10px; height: 10px; background: var(--text-muted); border-radius: 50%; z-index: 10; transition: all 0.3s; }
+        .timeline-wrap:hover .timeline-dot { transform: scale(1.5); background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold); }
 
         @media (min-width: 768px) {
             .timeline-wrap { padding-left: 4rem; }
             .timeline-line { left: 23px; }
-            .timeline-dot { left: 17.5px; }
+            .timeline-dot { left: 18.5px; }
         }
-        
+
         /* 项目画廊弹窗 */
-        #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: #030308; z-index: 1000; transform: translateY(100%); transition: transform 0.7s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; }
+        #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: var(--bg); z-index: 1000; transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; }
         #project-modal.show { transform: translateY(0); }
+        .viewer-header { background: rgba(5, 5, 5, 0.95); border-bottom: 1px solid var(--border-subtle); }
         
-        /* 顶部阅读进度条 */
-        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent-gold); width: 0%; z-index: 1020; transition: width 0.1s; box-shadow: 0 0 10px var(--accent-gold); }
-
-
-        /* =========================================
-           🚀 DIRECTION 4: AIGC X-RAY MODE (透视模式)
-           ========================================= */
-
-        /* Glitch Transition Animation */
-        .glitching {
-            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-            filter: invert(1) hue-rotate(180deg) contrast(200%);
-        }
-        @keyframes glitch-skew {
-            0% { transform: skew(0deg) scale(1); }
-            20% { transform: skew(-15deg) scale(1.02); }
-            40% { transform: skew(15deg) scale(0.98); }
-            60% { transform: skew(-5deg) scale(1.01); }
-            80% { transform: skew(5deg) scale(0.99); }
-            100% { transform: skew(0deg) scale(1); }
-        }
-
-        /* X-RAY Global Override */
-        body.xray-mode {
-            --bg: #030803; 
-            --accent-gold: #00ff41; 
-            --accent-gold-light: #4aff7c;
-            --text: #00ff41;
-            font-family: 'Courier New', Courier, monospace !important;
-        }
-
-        body.xray-mode * {
-            font-family: 'Courier New', Courier, monospace !important;
-            color: var(--text) !important;
-            border-color: rgba(0, 255, 65, 0.5) !important;
-        }
-
-        /* UI Overrides */
-        body.xray-mode .text-gradient, body.xray-mode .text-shimmer {
-            background: none !important;
-            -webkit-text-fill-color: var(--accent-gold) !important;
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-            animation: none;
-        }
-
-        body.xray-mode .glass-card {
-            background: rgba(0, 255, 65, 0.02) !important;
-            border: 1px solid rgba(0, 255, 65, 0.4) !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-            border-radius: 0 !important; /* Sharp terminal edges */
-        }
-
-        body.xray-mode .glass-card:hover {
-            border-color: rgba(0, 255, 65, 1) !important;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2) !important;
-            transform: perspective(1000px) translateZ(10px);
-        }
-
-        /* Image Edge/AIGC Vision */
-        body.xray-mode .parallax-img, body.xray-mode img {
-            filter: grayscale(100%) contrast(150%) brightness(70%) sepia(100%) hue-rotate(75deg) saturate(300%) !important;
-            opacity: 0.6;
-        }
-        body.xray-mode .glass-card:hover .parallax-img {
-            filter: grayscale(100%) contrast(200%) brightness(100%) sepia(100%) hue-rotate(75deg) saturate(400%) !important;
-            opacity: 1;
-            transform: scale(1.02);
-        }
-
-        body.xray-mode video {
-            filter: grayscale(100%) contrast(150%) brightness(40%) sepia(100%) hue-rotate(75deg) saturate(300%) !important;
-            opacity: 0.4 !important;
-        }
-
-        /* Buttons & Tags */
-        body.xray-mode .action-btn {
-            background: rgba(0, 255, 65, 0.1) !important;
-            border: 1px solid #00ff41 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
-            text-shadow: 0 0 5px rgba(0,255,65,0.8);
-        }
-        body.xray-mode .action-btn:hover {
-            background: rgba(0, 255, 65, 0.3) !important;
-        }
-        body.xray-mode .project-tag {
-            background: rgba(0, 255, 65, 0.05) !important;
-            border-radius: 0 !important;
-        }
-        
-        /* Cursor & Timeline */
-        body.xray-mode .cursor-outline, body.xray-mode .cursor-dot { border-radius: 0 !important; mix-blend-mode: normal !important;}
-        body.xray-mode .cursor-outline.hover-mode { border-radius: 0 !important; background: rgba(0,255,65,0.2) !important; border-color: #00ff41 !important; }
-        body.xray-mode .timeline-dot { border-radius: 0 !important; transform: rotate(45deg); box-shadow: 0 0 10px #00ff41 !important;}
-        body.xray-mode .timeline-wrap:hover .timeline-dot { background: #00ff41 !important; transform: rotate(45deg) scale(1.5); }
-        
-        /* Grid & Backgrounds */
-        body.xray-mode .gold-flow-bg { display: none !important; }
-        body.xray-mode .architect-grid::before, body.xray-mode .architect-grid::after { background: rgba(0, 255, 65, 0.2) !important; box-shadow: 0 0 10px rgba(0,255,65,0.3); }
-        body.xray-mode .editorial-watermark { color: rgba(0,255,65,0.08) !important; }
-        body.xray-mode .editorial-watermark::after { content: " // SYS.CORE_DATA"; }
-
-        /* Data Sync Text Effect */
-        body.xray-mode h1::after, body.xray-mode h2::after, body.xray-mode h3::after {
-            content: ' [DATA_SYNC...]';
-            font-size: 0.3em;
-            vertical-align: middle;
-            opacity: 0.6;
-            animation: blink 1s infinite step-end;
-            text-shadow: none;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* CRT Scanline Overlay */
-        .scanlines {
-            position: fixed; inset: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
-            z-index: 9998; pointer-events: none;
-            opacity: 0; transition: opacity 0.5s;
-        }
-        body.xray-mode .scanlines { opacity: 1; }
-
+        #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--text); width: 0%; z-index: 1020; transition: width 0.1s; }
     </style>
 </head>
-<body class="text-white bg-[#030308]">
+<body>
 
     <!-- 光标与进度条 -->
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
     <div id="scroll-progress"></div>
     
-    <!-- 背景元素 -->
-    <div class="gold-flow-bg"></div>
-    <div class="scanlines"></div>
     <div class="architect-grid hidden md:flex"></div>
     <div class="editorial-watermark hidden md:block">VISUAL ARCHITECT</div>
-
-    <!-- 🚀 新增：X-RAY 模式切换按钮 -->
-    <button id="xray-btn" class="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[10001] border border-white/20 px-4 md:px-5 py-2 md:py-3 text-[10px] md:text-xs uppercase tracking-widest bg-black/60 backdrop-blur-xl hover:border-[var(--accent-gold)] transition-all flex items-center gap-3 group outline-none hover-target">
-        <span class="w-2 h-2 bg-white/40 group-hover:bg-white transition-colors" id="xray-indicator"></span>
-        <span id="xray-text" class="font-mono pt-0.5">X-RAY: OFF</span>
-    </button>
 
     <main class="relative z-10 w-full">
 
         <!-- 导航栏 -->
-        <nav class="fixed w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 md:py-6 glass-nav hover-target">
-            <div class="text-xl md:text-2xl font-bold cinzel tracking-widest uppercase text-gradient">KUANG</div>
-            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-[0.2em]">
-                <a href="#intro" class="hover:text-[var(--accent-gold)] transition-colors">简介</a>
-                <a href="#experience" class="hover:text-[var(--accent-gold)] transition-colors">履历</a>
-                <a href="#portfolio" class="hover:text-[var(--accent-gold)] transition-colors">作品</a>
-                <a href="#contact" class="hover:text-[var(--accent-gold)] transition-colors">联系</a>
+        <nav class="fixed w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 md:py-5 glass-nav hover-target">
+            <div class="text-xl md:text-2xl font-bold cinzel tracking-widest uppercase">KUANG</div>
+            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-[0.2em] font-medium text-gray-400">
+                <a href="#intro" class="hover:text-white transition-colors">Profile</a>
+                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">Work</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
             </div>
-            <a href="mailto:dyk162@163.com" class="text-[10px] md:text-xs uppercase tracking-[0.2em] border border-white/20 px-5 py-2.5 md:px-8 md:py-3 rounded-full hover:bg-white hover:text-black transition-all hover-target">
-                <span class="hidden md:inline">dyk162@163.com</span>
+            <a href="mailto:dyk162@163.com" class="text-[10px] md:text-xs uppercase tracking-[0.1em] border border-white/20 px-5 py-2.5 md:px-6 md:py-2.5 rounded-full hover:bg-white hover:text-black transition-all hover-target font-bold">
+                <span class="hidden md:inline">Hire Me</span>
                 <span class="inline md:hidden">Email</span>
             </a>
         </nav>
 
         <!-- 头部首屏 -->
-        <header id="intro" class="min-h-screen flex flex-col justify-center relative overflow-hidden">
-            <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80" style="filter: sepia(0.8) hue-rotate(-15deg) saturate(1.2) brightness(0.7);">
+        <header id="intro" class="min-h-screen flex flex-col justify-center relative overflow-hidden bg-[#050505]">
+            <!-- 弱化了视频饱和度，符合 Behance 的清爽高级感 -->
+            <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 grayscale" style="mix-blend-mode: luminosity;">
                 <source src="./Seedance 2.0 video.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/90 to-transparent z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-transparent z-0"></div>
             
             <div class="max-w-[1600px] w-full mx-auto px-6 md:px-24 pt-32 relative z-10">
-                <div class="crosshair top-32 left-8 md:left-24 hidden md:flex"></div>
-                
                 <div class="flex items-center gap-5 md:gap-6 mb-8 reveal">
-                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full p-[2px] bg-gradient-to-tr from-[var(--accent-gold)] to-transparent" id="avatar-container">
-                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="Avatar" class="w-full h-full object-cover rounded-full border-2 border-[var(--bg)]" id="avatar-img">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full p-1 bg-white/10" id="avatar-container">
+                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="Avatar" class="w-full h-full object-cover rounded-full" id="avatar-img">
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-white/60 uppercase tracking-[0.4em] text-xs md:text-sm mb-1">Visual Architect</p>
-                        <p class="text-white/90 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold text-gradient">Design Manager</p>
+                        <p class="text-white/60 uppercase tracking-[0.2em] text-xs mb-1">Visual Architect</p>
+                        <p class="text-white uppercase tracking-[0.1em] text-sm font-bold">Design Manager</p>
                     </div>
                 </div>
 
-                <h1 class="text-5xl md:text-[8vw] leading-[1.15] font-extrabold cinzel reveal mb-10 md:mb-12">
-                    邝先生 <span class="text-white/20 text-3xl md:text-[5vw] ml-2">KUANG</span><br>
-                    <span class="text-shimmer mt-2 block">视觉赋能商业.</span>
+                <h1 class="text-4xl md:text-7xl leading-[1.15] font-black reveal mb-8 tracking-tight">
+                    邝先生 <span class="text-white/30 text-3xl md:text-5xl ml-2 font-normal">KUANG</span><br>
+                    <span class="text-gradient mt-2 block">视觉赋能商业.</span>
                 </h1>
                 
-                <div class="max-w-3xl border-l-4 border-[var(--accent-gold)] pl-6 md:pl-8 reveal">
-                    <p class="text-white/90 text-lg md:text-2xl font-light leading-relaxed mb-6">能搭建设计团队和品牌视觉体系，懂数据，会用 AI 工具提升设计效果和效率。</p>
-                    <ul class="text-white/70 space-y-4 text-sm md:text-base font-light">
-                        <li><span class="font-bold text-white pr-2">● 体系搭建：</span>建立品牌视觉标准和团队工作流程，跨部门沟通更顺畅。</li>
-                        <li><span class="font-bold text-white pr-2">● 增长结果：</span>通过持续优化页面图片，转化率和点击率都有明显提升。</li>
-                        <li><span class="font-bold text-white pr-2">● 技术敏锐：</span>紧跟AI设计趋势，率先引入AIGC工具优化作图流程，提升产出效率。</li>
+                <div class="max-w-3xl reveal">
+                    <p class="text-[#aaaaaa] text-lg md:text-xl font-light leading-relaxed mb-6">能搭建设计团队和品牌视觉体系，懂数据，会用 AI 工具提升设计效果和效率。</p>
+                    <ul class="text-[#888888] space-y-3 text-sm md:text-base font-light">
+                        <li><span class="font-bold text-white pr-2">体系搭建</span>建立品牌视觉标准和团队工作流程，跨部门沟通更顺畅。</li>
+                        <li><span class="font-bold text-white pr-2">增长结果</span>通过持续优化页面图片，转化率和点击率都有明显提升。</li>
+                        <li><span class="font-bold text-white pr-2">技术敏锐</span>紧跟AI设计趋势，率先引入AIGC工具优化作图流程。</li>
                     </ul>
                 </div>
             </div>
         </header>
 
-        <!-- 履历部分 -->
-        <section id="experience" class="py-24 md:py-32 px-6 md:px-24 relative z-10">
-            <div class="max-w-[1400px] mx-auto">
-                <h2 class="text-3xl md:text-5xl font-bold cinzel tracking-widest text-center uppercase text-gradient mb-16 md:mb-24 reveal">工作经历 / Experience</h2>
-                <div class="space-y-12 md:space-y-16">
+        <!-- Behance 风格作品集 (直接将作品集提上来，符合 Behance 直入主题的习惯) -->
+        <section id="portfolio" class="py-20 md:py-32 px-4 md:px-12 lg:px-20 relative z-10">
+            <div class="max-w-[1800px] mx-auto w-full">
+                
+                <!-- 国内电商 -->
+                <div class="flex items-center justify-between mb-12 md:mb-20 reveal px-2">
+                    <h3 class="text-3xl md:text-5xl font-black tracking-tight">国内电商 <span class="text-white/30 ml-3 font-normal text-2xl md:text-4xl">Domestic</span></h3>
+                </div>
+                
+                <!-- 巨幅板块容器 1 -->
+                <div class="flex flex-col">
                     
-                    <div class="timeline-wrap reveal glass-card p-6 md:p-10">
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p5')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" class="massive-img" alt="米家电水壶">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">米家电水壶 1S 全案</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">米家极简语言 / 高质感家居渲染</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">01</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p1')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/BbZFbpDx/yi-chu-wen-an.png" class="massive-img" alt="云米扫拖机器人">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 1</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">LDS 激光导航卖点可视化</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">02</div>
+                        </div>
+                    </div>
+                    
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p2')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" class="massive-img" alt="云米扫拖机器人精选">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米扫拖机器人 (精选)</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">全矩阵视觉标准重塑</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">03</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p3')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/k504LcfS/tuo.jpg" class="massive-img" alt="云米手持无线吸尘器">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米手持无线吸尘器</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">结构化拆解核心性能呈现</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">04</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p4')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/g0dt4FP9/kong.jpg" class="massive-img" alt="云米空气消毒净化器">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">云米空气消毒净化器</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">科技感调性全效杀菌逻辑</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">05</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 跨境出海 -->
+                <div class="flex items-center justify-between mb-12 md:mb-20 mt-10 md:mt-24 reveal px-2">
+                    <h3 class="text-3xl md:text-5xl font-black tracking-tight">跨境出海 <span class="text-white/30 ml-3 font-normal text-2xl md:text-4xl">Global</span></h3>
+                </div>
+                
+                <!-- 巨幅板块容器 2 -->
+                <div class="flex flex-col">
+                    
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p6')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" class="massive-img" alt="海外品牌视觉精选">
+                            <div class="m-overlay"><span class="m-view-btn">Case Study</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">海外品牌视觉精选全案</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">基于欧美审美语境品牌视觉再造</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">06</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p9')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/mDRF8qQD/4.jpg" class="massive-img" alt="智能橱柜灯">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 2.0</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">Listing 全案及 A+ 系统</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">07</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p7')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/3wvxTcSr/casine.jpg" class="massive-img" alt="海外智能家电系列">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">海外智能家电系列</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">Listing 视觉呈现与转化设计</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">08</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p10')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/DwjjVrxB/5.jpg" class="massive-img" alt="超薄感应灯全案">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">超薄感应灯全案</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">海外旗舰新品全链路视觉</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">09</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p8')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="massive-img" alt="旗舰新品视觉重构">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">旗舰新品视觉重构</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">高转化率 A+ 场景逻辑展示</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">10</div>
+                        </div>
+                    </div>
+
+                    <div class="massive-card group cursor-pointer reveal mb-24 md:mb-40" onclick="openProj('p11')">
+                        <div class="massive-img-wrap">
+                            <img src="https://i.postimg.cc/FKF4pV7w/wei-biao-ti-1.jpg" class="massive-img" alt="智能橱柜灯 A+ 进阶">
+                            <div class="m-overlay"><span class="m-view-btn">View Project</span></div>
+                        </div>
+                        <div class="mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-4 px-2 md:px-6">
+                            <div>
+                                <h4 class="text-3xl md:text-5xl font-black mb-2 md:mb-4 group-hover:text-[var(--accent-gold)] transition-colors">智能橱柜灯 A+ 进阶</h4>
+                                <p class="text-[var(--text-muted)] text-lg md:text-2xl">高级场景化视觉呈现</p>
+                            </div>
+                            <div class="text-[var(--text-muted)] text-base md:text-xl tracking-widest font-bold">11</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 履历部分 (融入极简风) -->
+        <section id="experience" class="py-20 md:py-32 px-6 md:px-24 relative z-10 bg-[#080808] border-t border-white/5">
+            <div class="max-w-[1200px] mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-16 reveal">工作经历 <span class="text-white/30 ml-2 font-normal text-lg">Experience</span></h2>
+                <div class="space-y-8 md:space-y-12">
+                    
+                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
                         <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
                             <div class="md:w-1/3">
-                                <div class="text-xl md:text-3xl font-black text-white/40 cinzel mb-2">2024.10 - 至今</div>
-                                <h3 class="text-xl md:text-2xl font-bold mb-1">广州奕至家居科技</h3>
-                                <p class="text-[var(--accent-gold)] font-bold uppercase text-sm md:text-base">设计经理 (公司返聘)</p>
+                                <div class="text-sm font-bold text-white/50 mb-2">2024.10 - Present</div>
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广州奕至家居科技</h3>
+                                <p class="text-white/60 text-sm">设计经理 (公司返聘)</p>
                             </div>
-                            <div class="flex-1 text-white/70 space-y-4 text-sm md:text-base leading-relaxed">
-                                <p>主要管理设计团队。</p>
+                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white">团队管理：</strong>重构海外设计团队，制定工作流程和交付标准，提升团队协作能力。</li>
-                                    <li><strong class="text-white">品牌策略：</strong>根据亚马逊欧美用户画像，落地品牌视觉风格，确保主图和A+页面符合当地审美。</li>
-                                    <li><strong class="text-white">数据驱动：</strong>建立以转化率为核心的视觉评估体系，通过A/B测试持续优化图片。</li>
-                                    <li><strong class="text-white">AI提效：</strong>引入AIGC工具，缩短素材制作周期，支持多版本快速测试。</li>
+                                    <li><strong class="text-white font-medium">团队管理：</strong>重构海外设计团队，制定工作流程和交付标准。</li>
+                                    <li><strong class="text-white font-medium">品牌策略：</strong>落地欧美品牌视觉风格，确保主图和A+符合当地审美。</li>
+                                    <li><strong class="text-white font-medium">AI提效：</strong>引入AIGC工具，缩短素材制作周期，支持多版本快速测试。</li>
                                 </ul>
-                                <div class="mt-6 bg-black/40 border-l-4 border-[var(--accent-gold)] p-5 md:p-6 rounded-lg backdrop-blur-sm">
-                                    <p class="text-white font-bold mb-2">核心业绩：</p>
-                                    <p class="text-sm mb-2">1. 搭建海外设计团队，建立可视化工作流程，协作效率提升。</p>
-                                    <p class="text-sm mb-2">2. 建立统一品牌视觉系统，完成多款产品的视觉升级。</p>
-                                    <p class="text-[var(--accent-gold)] font-bold mb-0">3. 核心产品转化率提升10%-30%，点击率提升10%-20%。</p>
+                                <div class="mt-6 bg-[#000000] border-l-2 border-[var(--accent-gold)] p-5 rounded">
+                                    <p class="text-white text-sm mb-1 font-medium">核心业绩：</p>
+                                    <p class="text-xs">建立统一品牌视觉系统。核心产品转化率提升10%-30%，点击率提升10%-20%。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal glass-card p-6 md:p-10">
-                        <div class="timeline-line"></div><div class="timeline-dot" style="background:rgba(196,160,95,0.6)"></div>
+                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                        <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
                             <div class="md:w-1/3">
-                                <div class="text-xl md:text-3xl font-black text-white/40 cinzel mb-2">2023.06 - 2024.10</div>
-                                <h3 class="text-xl md:text-2xl font-bold mb-1">广东久量科技</h3>
-                                <p class="text-white/50 font-bold uppercase text-sm md:text-base">设计主管</p>
+                                <div class="text-sm font-bold text-white/50 mb-2">2023.06 - 2024.10</div>
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广东久量科技</h3>
+                                <p class="text-white/60 text-sm">设计主管</p>
                             </div>
-                            <div class="flex-1 text-white/70 space-y-4 text-sm md:text-base leading-relaxed">
-                                <p>在该公司主要负责洗护系列产品的品牌视觉建设，独立完成从详情页到品牌官网的全链路设计工作。</p>
-                                <p>核心负责新品视觉构建，涵盖内衣裤洗衣机、烘干机等产品。工作内容包括外拍对接、拍摄跟进、图片精修及产品渲染，通过系统性设计形成与产品高度契合的视觉语言。</p>
-                                <p>同时承担日常页面维护及平台活动页面的视觉更新，包括主图优化等。</p>
+                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
+                                <p>负责洗护系列产品品牌视觉建设，独立完成全链路设计。核心负责内衣裤洗衣机、烘干机等新品视觉构建（外拍对接、精修渲染）。承担日常页面维护及主图优化。</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal glass-card p-6 md:p-10">
-                        <div class="timeline-line"></div><div class="timeline-dot" style="background:rgba(196,160,95,0.4)"></div>
+                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                        <div class="timeline-line"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
                             <div class="md:w-1/3">
-                                <div class="text-xl md:text-3xl font-black text-white/40 cinzel mb-2">2020.05 - 2023.05</div>
-                                <h3 class="text-xl md:text-2xl font-bold mb-1">广州奕至家居科技</h3>
-                                <p class="text-white/50 font-bold uppercase text-sm md:text-base">平面设计主管</p>
+                                <div class="text-sm font-bold text-white/50 mb-2">2020.05 - 2023.05</div>
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">广州奕至家居科技</h3>
+                                <p class="text-white/60 text-sm">平面设计主管</p>
                             </div>
-                            <div class="flex-1 text-white/70 space-y-4 text-sm md:text-base leading-relaxed">
-                                <p>工作概述：</p>
+                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white">国内业务：</strong>2020年5月-2021年7月，在广州任职设计部负责人。带领团队四个人，对新品做视觉输出，及统筹天猫和京东店铺的活动视觉输出。</li>
-                                    <li><strong class="text-white">出海战略：</strong>2021.8-2023.10，业务调整后任海外产品设计部负责人。负责海外产品视觉设计及品牌建设。</li>
+                                    <li><strong class="text-white font-medium">国内业务：</strong>带领团队负责新品视觉及天猫/京东店铺活动视觉统筹。</li>
+                                    <li><strong class="text-white font-medium">出海战略：</strong>任海外产品设计部负责人。负责海外产品视觉设计及品牌建设。</li>
                                 </ul>
-                                <div class="mt-6 bg-black/40 p-5 md:p-6 rounded-lg border-l-4 border-white/20 backdrop-blur-sm">
-                                    <p class="text-white font-bold mb-2">核心业绩：</p>
-                                    <p class="text-sm mb-2">1. 带领团队完成了品牌建设；</p>
-                                    <p class="text-sm mb-2">2. 带领团队完成近三十款的产品站设计；</p>
-                                    <p class="text-sm mb-4">3. 带领团队完成多场天猫及京东店铺活动输出。</p>
-                                    <p class="text-[var(--accent-gold)] font-medium">成功帮助公司从零到一建立了视觉品牌概念；也成功做了产品出海的品牌布局。如今的海外产品已经成为行业的标杆，受多个品牌方模仿。</p>
+                                <div class="mt-6 bg-[#000000] p-5 rounded border border-white/5">
+                                    <p class="text-[var(--accent-gold)] text-xs font-medium">成功帮助公司从零到一建立了视觉品牌概念，完成产品出海布局。海外产品成为行业标杆。</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-wrap reveal glass-card p-6 md:p-10">
-                        <div class="timeline-line" style="background:transparent"></div><div class="timeline-dot" style="background:#555"></div>
+                    <div class="timeline-wrap reveal content-card p-6 md:p-10 hover-target group">
+                        <div class="timeline-line" style="background:transparent"></div><div class="timeline-dot"></div>
                         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
                             <div class="md:w-1/3">
-                                <div class="text-xl md:text-3xl font-black text-white/40 cinzel mb-2">2018.05 - 2020.05</div>
-                                <h3 class="text-xl md:text-2xl font-bold mb-1">佛山市云米电器</h3>
-                                <p class="text-white/50 font-bold uppercase text-sm md:text-base">平面设计</p>
+                                <div class="text-sm font-bold text-white/50 mb-2">2018.05 - 2020.05</div>
+                                <h3 class="text-xl font-bold mb-1 group-hover:text-[var(--accent-gold)] transition-colors">佛山市云米电器</h3>
+                                <p class="text-white/60 text-sm">平面设计</p>
                             </div>
-                            <div class="flex-1 text-white/70 space-y-4 text-sm md:text-base leading-relaxed">
+                            <div class="flex-1 text-[#aaaaaa] space-y-3 text-sm md:text-base leading-relaxed">
                                 <ul class="space-y-2">
-                                    <li><strong class="text-white">大促视觉统筹：</strong>负责天猫、京东S级大促(双十一、618等)的主视觉设计，输出首页、承接页等关键素材，保证品牌视觉统一，助力活动转化。</li>
-                                    <li><strong class="text-white">产品详情页负责人：</strong>统筹并参与超50款小家电产品详情页设计(榨汁杯、空调、净化器、电视等)，建立标准流程，兼顾品牌调性与信息传达。</li>
-                                    <li><strong class="text-white">品牌活动支持：</strong>参与AWE、季度发布会、年度发布会等品牌活动，负责相关视觉物料设计，支持线下传播。</li>
+                                    <li><strong class="text-white font-medium">大促统筹：</strong>负责S级大促(双十一等)主视觉设计，输出关键素材。</li>
+                                    <li><strong class="text-white font-medium">详情页设计：</strong>统筹超50款小家电产品详情页设计，建立标准流程。</li>
                                 </ul>
                             </div>
                         </div>
@@ -415,141 +477,33 @@
         </section>
 
         <!-- 技能与教育 -->
-        <section id="skills" class="py-16 md:py-20 px-6 md:px-24 relative z-10">
-            <div class="max-w-[1400px] mx-auto glass-card p-8 md:p-12 rounded-3xl reveal flex flex-col md:flex-row gap-12 md:gap-16">
+        <section id="skills" class="py-16 md:py-24 px-6 md:px-24 relative z-10 border-t border-white/5">
+            <div class="max-w-[1200px] mx-auto reveal flex flex-col md:flex-row gap-12 md:gap-24">
                 <div class="flex-1">
-                    <h3 class="text-xl md:text-2xl font-bold cinzel text-gradient mb-6 md:mb-8 uppercase">教育经历 / Education</h3>
-                    <p class="font-bold text-lg md:text-xl mb-2">广东机电职业技术学院</p>
-                    <p class="text-white/70 text-sm md:text-base">现代装备设计与制造 | 大专 | 2011-2014</p>
+                    <h3 class="text-lg font-bold mb-6 text-white/50 uppercase tracking-widest">Education</h3>
+                    <p class="font-bold text-xl mb-1">广东机电职业技术学院</p>
+                    <p class="text-[#888888] text-sm md:text-base">现代装备设计与制造 | 大专 | 2011-2014</p>
                 </div>
                 <div class="flex-1">
-                    <h3 class="text-xl md:text-2xl font-bold cinzel text-gradient mb-6 md:mb-8 uppercase">专业技能 / Skills</h3>
+                    <h3 class="text-lg font-bold mb-6 text-white/50 uppercase tracking-widest">Skills</h3>
                     <div class="space-y-6">
                         <div>
-                            <p class="text-white/40 text-xs uppercase mb-3 tracking-wider">AIGC / 人工智能生成</p>
-                            <div class="flex flex-wrap gap-2 text-[10px] md:text-xs font-bold uppercase">
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">ComfyUI</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Midjourney</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Openclaw</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Lovart</span>
+                            <p class="text-white text-sm mb-3 font-bold">AIGC / 人工智能生成</p>
+                            <div class="flex flex-wrap gap-2 text-xs text-[#aaaaaa]">
+                                <span class="px-3 py-1.5 rounded bg-white/5">ComfyUI</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Midjourney</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Openclaw</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Lovart</span>
                             </div>
                         </div>
                         <div>
-                            <p class="text-white/40 text-xs uppercase mb-3 tracking-wider">三维渲染 / 3D Rendering</p>
-                            <div class="flex flex-wrap gap-2 text-[10px] md:text-xs font-bold uppercase">
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">C4D</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Keyshot</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-white/40 text-xs uppercase mb-3 tracking-wider">平面设计 / Graphic Design</p>
-                            <div class="flex flex-wrap gap-2 text-[10px] md:text-xs font-bold uppercase">
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Photoshop</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Illustrator</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">Premiere Pro</span>
-                                <span class="border border-white/10 px-4 py-2 rounded-full bg-black/50 hover:border-[var(--accent-gold)] transition-colors cursor-default">After Effects</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 作品集 -->
-        <section id="portfolio" class="py-24 md:py-32 px-6 md:px-24 relative z-10 border-t border-white/5">
-            <div class="max-w-[1600px] mx-auto w-full">
-                <!-- 国内电商 -->
-                <div class="flex items-center gap-4 md:gap-6 mb-12 md:mb-16 reveal">
-                    <h3 class="text-2xl md:text-3xl font-bold cinzel uppercase">国内电商 / Domestic</h3>
-                    <div class="flex-1 h-px bg-white/10"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16 md:gap-y-24 mb-32 items-start">
-                    <div class="glass-card p-4 hover-target group cursor-pointer" onclick="openProj('p1')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/BbZFbpDx/yi-chu-wen-an.png" class="parallax-img" alt="云米扫拖机器人"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">云米扫拖机器人 1</h4><p class="text-white/50 text-xs md:text-sm">LDS 激光导航卖点可视化</p></div>
-                            <span class="project-tag">Project 01</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer md:mt-32" onclick="openProj('p2')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" class="parallax-img" alt="云米扫拖机器人精选"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">云米扫拖机器人 (精选)</h4><p class="text-white/50 text-xs md:text-sm">全矩阵视觉标准重塑</p></div>
-                            <span class="project-tag">Project 02</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer" onclick="openProj('p3')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/k504LcfS/tuo.jpg" class="parallax-img" alt="云米手持无线吸尘器"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">云米手持无线吸尘器</h4><p class="text-white/50 text-xs md:text-sm">结构化拆解核心性能呈现</p></div>
-                            <span class="project-tag">Project 03</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer md:mt-32" onclick="openProj('p4')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/g0dt4FP9/kong.jpg" class="parallax-img" alt="云米空气消毒净化器"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">云米空气消毒净化器</h4><p class="text-white/50 text-xs md:text-sm">科技感调性全效杀菌逻辑</p></div>
-                            <span class="project-tag">Project 04</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 md:p-6 hover-target group cursor-pointer md:col-span-2 mt-4 md:mt-10" onclick="openProj('p5')">
-                        <div class="aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/02vqF3vL/shui.jpg" class="parallax-img" alt="米家电水壶 1S 全案"></div>
-                        <div class="pt-8 md:pt-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                            <div><h3 class="text-2xl md:text-4xl font-bold cinzel mb-2">米家电水壶 1S 全案</h3><p class="text-white/50 text-sm md:text-base">米家极简语言 / 高质感家居渲染</p></div>
-                            <span class="action-btn w-full md:w-auto mt-2 md:mt-0">阅览长卷</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 跨境出海 -->
-                <div class="flex items-center gap-4 md:gap-6 mb-12 md:mb-16 mt-24 md:mt-40 reveal">
-                    <h3 class="text-2xl md:text-3xl font-bold cinzel uppercase">跨境出海 / Global</h3>
-                    <div class="flex-1 h-px bg-white/10"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16 md:gap-y-24 items-start">
-                    <div class="glass-card p-4 md:p-6 hover-target group cursor-pointer md:col-span-2" onclick="openProj('p6')">
-                        <div class="aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" class="parallax-img" alt="海外品牌视觉精选"></div>
-                        <div class="pt-8 md:pt-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                            <div><h3 class="text-2xl md:text-4xl font-bold cinzel mb-2">海外品牌视觉精选全案</h3><p class="text-white/50 text-sm md:text-base">基于欧美审美语境品牌视觉再造</p></div>
-                            <span class="action-btn w-full md:w-auto mt-2 md:mt-0">Case Study</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer" onclick="openProj('p7')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/3wvxTcSr/casine.jpg" class="parallax-img" alt="海外智能家电系列"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">海外智能家电系列</h4><p class="text-white/50 text-xs md:text-sm">Listing 视觉呈现与转化设计</p></div>
-                            <span class="project-tag">Project 06</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer md:mt-32" onclick="openProj('p8')">
-                        <div class="aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/Mp4pgSDQ/zhan.jpg" class="parallax-img" alt="旗舰新品视觉重构"></div>
-                        <div class="pt-6 flex justify-between items-center">
-                            <div><h4 class="text-lg md:text-xl font-bold mb-1">旗舰新品视觉重构</h4><p class="text-white/50 text-xs md:text-sm">高转化率 A+ 场景逻辑展示</p></div>
-                            <span class="project-tag">Project 07</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer mt-4 md:mt-10" onclick="openProj('p9')">
-                        <div class="aspect-[4/5] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/mDRF8qQD/4.jpg" class="parallax-img" alt="智能橱柜灯 2.0"></div>
-                        <div class="pt-6 md:pt-8 flex justify-between items-center">
-                            <div><h3 class="text-xl md:text-2xl font-bold mb-1">智能橱柜灯 2.0</h3><p class="text-white/50 text-xs md:text-sm">Listing 全案及 A+ 系统</p></div>
-                            <span class="project-tag">23 图</span>
-                        </div>
-                    </div>
-                    <div class="glass-card p-4 hover-target group cursor-pointer mt-4 md:mt-32" onclick="openProj('p10')">
-                        <div class="aspect-[4/5] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/DwjjVrxB/5.jpg" class="parallax-img" alt="超薄感应灯全案"></div>
-                        <div class="pt-6 md:pt-8 flex justify-between items-center">
-                            <div><h3 class="text-xl md:text-2xl font-bold mb-1">超薄感应灯全案</h3><p class="text-white/50 text-xs md:text-sm">海外旗舰新品全链路视觉</p></div>
-                            <span class="project-tag">27 图</span>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2 flex justify-center mt-4 md:mt-10">
-                        <div class="glass-card p-4 md:p-6 hover-target group cursor-pointer w-full max-w-3xl" onclick="openProj('p11')">
-                            <div class="aspect-[4/5] md:aspect-[16/9] overflow-hidden rounded-xl"><img src="https://i.postimg.cc/FKF4pV7w/wei-biao-ti-1.jpg" class="parallax-img" alt="智能橱柜灯 A+ 进阶"></div>
-                            <div class="pt-6 md:pt-8 flex justify-between items-center">
-                                <div><h3 class="text-xl md:text-2xl font-bold mb-1">智能橱柜灯 A+ 进阶</h3><p class="text-white/50 text-xs md:text-sm">高级场景化视觉呈现</p></div>
-                                <span class="project-tag">13 图</span>
+                            <p class="text-white text-sm mb-3 font-bold">三维渲染 & 平面设计</p>
+                            <div class="flex flex-wrap gap-2 text-xs text-[#aaaaaa]">
+                                <span class="px-3 py-1.5 rounded bg-white/5">C4D</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Keyshot</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Photoshop</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Illustrator</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5">Premiere Pro</span>
                             </div>
                         </div>
                     </div>
@@ -558,82 +512,50 @@
         </section>
 
         <!-- 联系方式 -->
-        <section id="contact" class="py-24 md:py-32 px-6 md:px-24 relative z-10 min-h-[50vh] md:min-h-[60vh] border-t border-white/5">
-            <div class="max-w-[1600px] mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-12 md:gap-16 reveal">
+        <section id="contact" class="py-24 md:py-40 px-6 md:px-24 relative z-10 bg-[#050505] border-t border-white/5">
+            <div class="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-12 reveal">
                 <div class="flex-1">
-                    <h2 class="text-3xl md:text-5xl font-bold cinzel text-gradient mb-6 md:mb-8 uppercase">合作探讨 / Contact</h2>
-                    <p class="text-white/50 text-lg md:text-xl font-light mb-8 md:mb-12">随时探讨视觉增长与商业破局之道。</p>
-                    <a href="mailto:dyk162@163.com" class="text-3xl sm:text-4xl md:text-6xl font-black hover:text-[var(--accent-gold)] transition-colors cinzel break-all">dyk162@163.com</a>
+                    <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">Let's work together.</h2>
+                    <p class="text-[#888888] text-lg mb-8">随时探讨视觉增长与商业破局之道。</p>
+                    <a href="mailto:dyk162@163.com" class="action-btn text-sm hover-target">Email Me</a>
                 </div>
-                <div class="flex flex-col gap-8 md:gap-10 md:border-l border-white/10 md:pl-16 mt-8 md:mt-0 w-full md:w-auto">
+                <div class="flex flex-col gap-8 md:border-l border-white/10 md:pl-16 w-full md:w-auto">
                     <div>
-                        <p class="text-white/40 text-xs md:text-sm uppercase mb-2 md:mb-3 tracking-widest">电话 / Phone</p>
-                        <a href="tel:13751868717" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold hover:text-[var(--accent-gold)] transition-colors block">+86 137 5186 8717</a>
+                        <p class="text-[#666666] text-xs uppercase tracking-widest mb-1">Phone</p>
+                        <a href="tel:13751868717" class="text-2xl font-bold hover:text-[var(--accent-gold)] transition-colors block">+86 137 5186 8717</a>
                     </div>
                     <div>
-                        <p class="text-white/40 text-xs md:text-sm uppercase mb-2 md:mb-3 tracking-widest">坐标 / Location</p>
-                        <p class="text-xl md:text-2xl text-white/80 font-light tracking-wider">中国 · 广州 / Guangzhou</p>
+                        <p class="text-[#666666] text-xs uppercase tracking-widest mb-1">Location</p>
+                        <p class="text-xl font-medium text-white/90">Guangzhou, China</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <footer class="py-12 md:py-16 text-center relative z-10 border-t border-white/5">
-            <p class="text-white/30 text-[10px] md:text-xs uppercase cinzel">Kuang.Design © 2026</p>
+        <footer class="py-10 text-center relative z-10 border-t border-white/5">
+            <p class="text-[#444444] text-xs font-medium">© 2026 Kuang. All rights reserved.</p>
         </footer>
     </main>
 
-    <!-- 项目长图模态框 -->
+    <!-- 项目长图模态框 (保持深色干净风格) -->
     <div id="project-modal" onclick="closeOnOutsideClick(event)">
         <div class="modal-click-area min-h-screen flex flex-col">
-            <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 md:py-6 bg-[#030308]/90 backdrop-blur-xl z-[1010] border-b border-white/10 shadow-lg">
-                <h2 id="modal-title" class="cinzel text-lg md:text-xl font-bold text-gradient">阅览</h2>
-                <button onclick="closeProject()" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-[var(--accent-gold)] hover:text-black transition-all group outline-none" aria-label="关闭">
+            <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-10 py-4 z-[1010] shadow-lg">
+                <h2 id="modal-title" class="font-bold text-lg tracking-tight">Project View</h2>
+                <button onclick="closeProject()" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white hover:text-black transition-all group outline-none" aria-label="关闭">
                     <svg class="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
             
-            <div id="modal-gallery" class="w-full flex flex-col items-center pb-20"></div>
+            <div id="modal-gallery" class="w-full flex flex-col items-center pb-20 bg-[#050505]"></div>
             
-            <div class="py-20 md:py-40 flex justify-center w-full bg-gradient-to-t from-[var(--bg)] to-transparent">
-                <button onclick="closeProject()" class="action-btn">Close Project / 返回大厅</button>
+            <div class="py-20 flex justify-center w-full bg-[#050505]">
+                <button onclick="closeProject()" class="action-btn">Back to Works</button>
             </div>
         </div>
     </div>
 
     <script>
-        // --- 🚀 X-RAY 模式切换逻辑 ---
-        const xrayBtn = document.getElementById('xray-btn');
-        const xrayText = document.getElementById('xray-text');
-        const xrayIndicator = document.getElementById('xray-indicator');
-        const avatarImg = document.getElementById('avatar-img');
-        const avatarContainer = document.getElementById('avatar-container');
-        
-        xrayBtn.addEventListener('click', () => {
-            // 1. 添加 Glitch 转场特效
-            document.body.classList.add('glitching');
-            
-            // 2. 延迟执行真正的切换，配合闪烁时间
-            setTimeout(() => {
-                document.body.classList.remove('glitching');
-                document.body.classList.toggle('xray-mode');
-                
-                // 更新按钮状态与细节
-                if (document.body.classList.contains('xray-mode')) {
-                    xrayText.innerText = 'X-RAY: ON';
-                    xrayIndicator.className = 'w-2 h-2 bg-[#00ff41] shadow-[0_0_8px_#00ff41] animate-pulse';
-                    avatarImg.style.borderRadius = '0';
-                    avatarContainer.style.borderRadius = '0';
-                } else {
-                    xrayText.innerText = 'X-RAY: OFF';
-                    xrayIndicator.className = 'w-2 h-2 bg-white/40 group-hover:bg-white transition-colors';
-                    avatarImg.style.borderRadius = '9999px';
-                    avatarContainer.style.borderRadius = '9999px';
-                }
-            }, 300); // 与 CSS 动画时长一致
-        });
-
-
         // --- 1. 顶部滚动进度条逻辑 ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -649,7 +571,6 @@
             const dot = document.getElementById('cursor-dot');
             const outline = document.getElementById('cursor-outline');
             
-            // 使用 requestAnimationFrame 提升性能
             document.addEventListener('mousemove', (e) => { 
                 requestAnimationFrame(() => {
                     dot.style.left = e.clientX + 'px'; 
@@ -659,12 +580,11 @@
                 });
             });
 
-            document.querySelectorAll('.hover-target, a, button, .glass-card, .project-tag, .action-btn').forEach(el => { 
+            document.querySelectorAll('.hover-target, a, button, .behance-card, .action-btn').forEach(el => { 
                 el.addEventListener('mouseenter', () => { outline.classList.add('hover-mode'); }); 
                 el.addEventListener('mouseleave', () => { outline.classList.remove('hover-mode'); }); 
             });
         } else {
-            // 触屏设备隐藏自定义光标
             document.getElementById('cursor-dot').style.display = 'none';
             document.getElementById('cursor-outline').style.display = 'none';
             document.body.style.cursor = 'auto';
@@ -683,7 +603,7 @@
         // --- 4. 项目数据与模态框逻辑 ---
         const B = "https://i.postimg.cc/";
         const pd = {
-            p1:{t:"云米互联网扫拖机器人",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
+            p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
             p2:{t:"云米扫拖机器人 (精选版)",s:[{t:"多型号视觉重构",i:["4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg","DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg","4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg","J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg","rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png","7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png","MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg","c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg","5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg","4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg","Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg","BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg","gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"]}]},
             p3:{t:"云米手持无线吸尘器",s:[{t:"结构拆解分析",i:["mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg","xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg","RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg","d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg","Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg","bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg","DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg","76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg","JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg","SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg","26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg","wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg","wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg","zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg","6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"]}]},
             p4:{t:"云米空气消毒净化器",s:[{t:"科技调性重构",i:["L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg","XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg","GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg","K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg","jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg","bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg","fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg","dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg","kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg","T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg","13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg","6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg","MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg","wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg","VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"]}]},
@@ -704,13 +624,13 @@
             
             d.s.forEach(s => { 
                 const imgHtml = s.i.map(img => 
-                    `<img src="${B}${img}" loading="lazy" class="w-full h-auto" style="display:block; margin:0; padding:0; border:none; vertical-align:bottom;" alt="${s.t}">`
+                    `<img src="${B}${img}" loading="lazy" class="w-full h-auto block m-0 p-0 border-none align-bottom" alt="${s.t}">`
                 ).join('');
                 
                 gal.innerHTML += `
-                    <h3 class="text-xl md:text-2xl font-bold cinzel text-center my-10 tracking-widest text-[var(--accent-gold)]">${s.t}</h3>
-                    <div class="w-full max-w-[1400px] mx-auto flex flex-col shadow-2xl bg-[var(--bg)]">
-                        ${imgHtml}
+                    <div class="w-full max-w-[1400px] mx-auto flex flex-col mt-10">
+                        <h3 class="text-xl font-bold text-center mb-6 tracking-widest text-[#aaaaaa] uppercase">${s.t}</h3>
+                        <div class="shadow-2xl">${imgHtml}</div>
                     </div>
                 `; 
             });
