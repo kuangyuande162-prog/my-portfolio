@@ -22,10 +22,11 @@
             color: var(--text); 
             overflow-x: hidden; 
             cursor: none; 
+            transition: background-color 0.3s;
         }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
         
-        .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
+        .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.1em; transition: font-family 0.1s; }
         
         /* 🌟 文案流光 */
         .text-shimmer {
@@ -68,11 +69,11 @@
         .crosshair::before { content: ''; position: absolute; width: 100%; height: 1px; background: var(--accent-gold); }
         .crosshair::after { content: ''; position: absolute; width: 1px; height: 100%; background: var(--accent-gold); }
         
-        .editorial-watermark { position: fixed; left: -2vw; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8vw; font-weight: 900; color: rgba(255,255,255,0.02); white-space: nowrap; pointer-events: none; z-index: 1; letter-spacing: 0.1em; font-family: 'Cinzel', serif; mix-blend-mode: overlay; }
+        .editorial-watermark { position: fixed; left: -2vw; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 8vw; font-weight: 900; color: rgba(255,255,255,0.02); white-space: nowrap; pointer-events: none; z-index: 1; letter-spacing: 0.1em; font-family: 'Cinzel', serif; mix-blend-mode: overlay; transition: color 0.3s;}
 
         /* 🌟 光标无延迟逻辑 */
         .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 10000; mix-blend-mode: difference; transform: translate(-50%, -50%); }
-        .cursor-outline { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1px solid rgba(196,160,95,0.6); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s; }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1px solid rgba(196,160,95,0.6); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s, border-radius 0.3s; }
         .cursor-outline.hover-mode { width: 64px; height: 64px; background: rgba(196,160,95,0.15); border-color: rgba(196,160,95,1); backdrop-filter: blur(2px); }
 
         /* 统一UI标签 */
@@ -103,12 +104,12 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        .glass-nav { background: rgba(3, 3, 8, 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .glass-nav { background: rgba(3, 3, 8, 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); transition: all 0.3s; }
         
         /* 响应式时间线 */
         .timeline-wrap { position: relative; padding-left: 2.5rem; }
         .timeline-line { position: absolute; left: 19px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent-gold), transparent); opacity: 0.3;}
-        .timeline-dot { position: absolute; left: 13.5px; top: 44px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold); z-index: 10; transition: transform 0.3s; }
+        .timeline-dot { position: absolute; left: 13.5px; top: 44px; width: 12px; height: 12px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 15px var(--accent-gold); z-index: 10; transition: transform 0.3s, border-radius 0.3s; }
         .timeline-wrap:hover .timeline-dot { transform: scale(1.5); background: #fff; }
 
         @media (min-width: 768px) {
@@ -123,6 +124,128 @@
         
         /* 顶部阅读进度条 */
         #scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent-gold); width: 0%; z-index: 1020; transition: width 0.1s; box-shadow: 0 0 10px var(--accent-gold); }
+
+
+        /* =========================================
+           🚀 DIRECTION 4: AIGC X-RAY MODE (透视模式)
+           ========================================= */
+
+        /* Glitch Transition Animation */
+        .glitching {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            filter: invert(1) hue-rotate(180deg) contrast(200%);
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg) scale(1); }
+            20% { transform: skew(-15deg) scale(1.02); }
+            40% { transform: skew(15deg) scale(0.98); }
+            60% { transform: skew(-5deg) scale(1.01); }
+            80% { transform: skew(5deg) scale(0.99); }
+            100% { transform: skew(0deg) scale(1); }
+        }
+
+        /* X-RAY Global Override */
+        body.xray-mode {
+            --bg: #030803; 
+            --accent-gold: #00ff41; 
+            --accent-gold-light: #4aff7c;
+            --text: #00ff41;
+            font-family: 'Courier New', Courier, monospace !important;
+        }
+
+        body.xray-mode * {
+            font-family: 'Courier New', Courier, monospace !important;
+            color: var(--text) !important;
+            border-color: rgba(0, 255, 65, 0.5) !important;
+        }
+
+        /* UI Overrides */
+        body.xray-mode .text-gradient, body.xray-mode .text-shimmer {
+            background: none !important;
+            -webkit-text-fill-color: var(--accent-gold) !important;
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+            animation: none;
+        }
+
+        body.xray-mode .glass-card {
+            background: rgba(0, 255, 65, 0.02) !important;
+            border: 1px solid rgba(0, 255, 65, 0.4) !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            border-radius: 0 !important; /* Sharp terminal edges */
+        }
+
+        body.xray-mode .glass-card:hover {
+            border-color: rgba(0, 255, 65, 1) !important;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2) !important;
+            transform: perspective(1000px) translateZ(10px);
+        }
+
+        /* Image Edge/AIGC Vision */
+        body.xray-mode .parallax-img, body.xray-mode img {
+            filter: grayscale(100%) contrast(150%) brightness(70%) sepia(100%) hue-rotate(75deg) saturate(300%) !important;
+            opacity: 0.6;
+        }
+        body.xray-mode .glass-card:hover .parallax-img {
+            filter: grayscale(100%) contrast(200%) brightness(100%) sepia(100%) hue-rotate(75deg) saturate(400%) !important;
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        body.xray-mode video {
+            filter: grayscale(100%) contrast(150%) brightness(40%) sepia(100%) hue-rotate(75deg) saturate(300%) !important;
+            opacity: 0.4 !important;
+        }
+
+        /* Buttons & Tags */
+        body.xray-mode .action-btn {
+            background: rgba(0, 255, 65, 0.1) !important;
+            border: 1px solid #00ff41 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            text-shadow: 0 0 5px rgba(0,255,65,0.8);
+        }
+        body.xray-mode .action-btn:hover {
+            background: rgba(0, 255, 65, 0.3) !important;
+        }
+        body.xray-mode .project-tag {
+            background: rgba(0, 255, 65, 0.05) !important;
+            border-radius: 0 !important;
+        }
+        
+        /* Cursor & Timeline */
+        body.xray-mode .cursor-outline, body.xray-mode .cursor-dot { border-radius: 0 !important; mix-blend-mode: normal !important;}
+        body.xray-mode .cursor-outline.hover-mode { border-radius: 0 !important; background: rgba(0,255,65,0.2) !important; border-color: #00ff41 !important; }
+        body.xray-mode .timeline-dot { border-radius: 0 !important; transform: rotate(45deg); box-shadow: 0 0 10px #00ff41 !important;}
+        body.xray-mode .timeline-wrap:hover .timeline-dot { background: #00ff41 !important; transform: rotate(45deg) scale(1.5); }
+        
+        /* Grid & Backgrounds */
+        body.xray-mode .gold-flow-bg { display: none !important; }
+        body.xray-mode .architect-grid::before, body.xray-mode .architect-grid::after { background: rgba(0, 255, 65, 0.2) !important; box-shadow: 0 0 10px rgba(0,255,65,0.3); }
+        body.xray-mode .editorial-watermark { color: rgba(0,255,65,0.08) !important; }
+        body.xray-mode .editorial-watermark::after { content: " // SYS.CORE_DATA"; }
+
+        /* Data Sync Text Effect */
+        body.xray-mode h1::after, body.xray-mode h2::after, body.xray-mode h3::after {
+            content: ' [DATA_SYNC...]';
+            font-size: 0.3em;
+            vertical-align: middle;
+            opacity: 0.6;
+            animation: blink 1s infinite step-end;
+            text-shadow: none;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* CRT Scanline Overlay */
+        .scanlines {
+            position: fixed; inset: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 9998; pointer-events: none;
+            opacity: 0; transition: opacity 0.5s;
+        }
+        body.xray-mode .scanlines { opacity: 1; }
+
     </style>
 </head>
 <body class="text-white bg-[#030308]">
@@ -134,8 +257,15 @@
     
     <!-- 背景元素 -->
     <div class="gold-flow-bg"></div>
+    <div class="scanlines"></div>
     <div class="architect-grid hidden md:flex"></div>
     <div class="editorial-watermark hidden md:block">VISUAL ARCHITECT</div>
+
+    <!-- 🚀 新增：X-RAY 模式切换按钮 -->
+    <button id="xray-btn" class="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[10001] border border-white/20 px-4 md:px-5 py-2 md:py-3 text-[10px] md:text-xs uppercase tracking-widest bg-black/60 backdrop-blur-xl hover:border-[var(--accent-gold)] transition-all flex items-center gap-3 group outline-none hover-target">
+        <span class="w-2 h-2 bg-white/40 group-hover:bg-white transition-colors" id="xray-indicator"></span>
+        <span id="xray-text" class="font-mono pt-0.5">X-RAY: OFF</span>
+    </button>
 
     <main class="relative z-10 w-full">
 
@@ -159,14 +289,14 @@
             <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover z-0 opacity-80" style="filter: sepia(0.8) hue-rotate(-15deg) saturate(1.2) brightness(0.7);">
                 <source src="./Seedance 2.0 video.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#030308] via-[#030308]/90 to-[#030308]/40 z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/90 to-transparent z-0"></div>
             
             <div class="max-w-[1600px] w-full mx-auto px-6 md:px-24 pt-32 relative z-10">
                 <div class="crosshair top-32 left-8 md:left-24 hidden md:flex"></div>
                 
                 <div class="flex items-center gap-5 md:gap-6 mb-8 reveal">
-                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full p-[2px] bg-gradient-to-tr from-[var(--accent-gold)] to-transparent">
-                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="Avatar" class="w-full h-full object-cover rounded-full border-2 border-[#030308]">
+                    <div class="w-16 h-16 md:w-24 md:h-24 rounded-full p-[2px] bg-gradient-to-tr from-[var(--accent-gold)] to-transparent" id="avatar-container">
+                        <img src="https://i.postimg.cc/1zB5GLT4/tu-ceng-2.png" alt="Avatar" class="w-full h-full object-cover rounded-full border-2 border-[var(--bg)]" id="avatar-img">
                     </div>
                     <div class="flex flex-col">
                         <p class="text-white/60 uppercase tracking-[0.4em] text-xs md:text-sm mb-1">Visual Architect</p>
@@ -465,13 +595,45 @@
             
             <div id="modal-gallery" class="w-full flex flex-col items-center pb-20"></div>
             
-            <div class="py-20 md:py-40 flex justify-center w-full bg-gradient-to-t from-[#030308] to-transparent">
+            <div class="py-20 md:py-40 flex justify-center w-full bg-gradient-to-t from-[var(--bg)] to-transparent">
                 <button onclick="closeProject()" class="action-btn">Close Project / 返回大厅</button>
             </div>
         </div>
     </div>
 
     <script>
+        // --- 🚀 X-RAY 模式切换逻辑 ---
+        const xrayBtn = document.getElementById('xray-btn');
+        const xrayText = document.getElementById('xray-text');
+        const xrayIndicator = document.getElementById('xray-indicator');
+        const avatarImg = document.getElementById('avatar-img');
+        const avatarContainer = document.getElementById('avatar-container');
+        
+        xrayBtn.addEventListener('click', () => {
+            // 1. 添加 Glitch 转场特效
+            document.body.classList.add('glitching');
+            
+            // 2. 延迟执行真正的切换，配合闪烁时间
+            setTimeout(() => {
+                document.body.classList.remove('glitching');
+                document.body.classList.toggle('xray-mode');
+                
+                // 更新按钮状态与细节
+                if (document.body.classList.contains('xray-mode')) {
+                    xrayText.innerText = 'X-RAY: ON';
+                    xrayIndicator.className = 'w-2 h-2 bg-[#00ff41] shadow-[0_0_8px_#00ff41] animate-pulse';
+                    avatarImg.style.borderRadius = '0';
+                    avatarContainer.style.borderRadius = '0';
+                } else {
+                    xrayText.innerText = 'X-RAY: OFF';
+                    xrayIndicator.className = 'w-2 h-2 bg-white/40 group-hover:bg-white transition-colors';
+                    avatarImg.style.borderRadius = '9999px';
+                    avatarContainer.style.borderRadius = '9999px';
+                }
+            }, 300); // 与 CSS 动画时长一致
+        });
+
+
         // --- 1. 顶部滚动进度条逻辑 ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -502,7 +664,7 @@
                 el.addEventListener('mouseleave', () => { outline.classList.remove('hover-mode'); }); 
             });
         } else {
-            // 触屏设备隐藏自定义光标，恢复默认，防止误触与卡顿
+            // 触屏设备隐藏自定义光标
             document.getElementById('cursor-dot').style.display = 'none';
             document.getElementById('cursor-outline').style.display = 'none';
             document.body.style.cursor = 'auto';
@@ -541,14 +703,13 @@
             gal.innerHTML = ''; 
             
             d.s.forEach(s => { 
-                // 添加 display:block; vertical-align:bottom; 消除图片拼接白边缝隙
                 const imgHtml = s.i.map(img => 
                     `<img src="${B}${img}" loading="lazy" class="w-full h-auto" style="display:block; margin:0; padding:0; border:none; vertical-align:bottom;" alt="${s.t}">`
                 ).join('');
                 
                 gal.innerHTML += `
                     <h3 class="text-xl md:text-2xl font-bold cinzel text-center my-10 tracking-widest text-[var(--accent-gold)]">${s.t}</h3>
-                    <div class="w-full max-w-[1400px] mx-auto flex flex-col shadow-2xl bg-[#030308]">
+                    <div class="w-full max-w-[1400px] mx-auto flex flex-col shadow-2xl bg-[var(--bg)]">
                         ${imgHtml}
                     </div>
                 `; 
