@@ -184,9 +184,10 @@
         <nav id="main-nav" class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border-subtle)] hover-target transition-all">
             <div class="text-xl md:text-2xl font-black uppercase tracking-tighter">KUANG<sup class="text-xs font-mono ml-0.5">®</sup></div>
             <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest font-bold text-white/70">
-                <a href="#work" class="hover:text-white hover:text-[var(--accent)] transition-colors">Works</a>
                 <a href="#studio" class="hover:text-white hover:text-[var(--accent)] transition-colors">Studio</a>
                 <a href="#expertise" class="hover:text-white hover:text-[var(--accent)] transition-colors">Expertise</a>
+                <a href="#work" class="hover:text-white hover:text-[var(--accent)] transition-colors">Works</a>
+                <a href="#experience" class="hover:text-white hover:text-[var(--accent)] transition-colors">Experience</a>
             </div>
             <a href="mailto:dyk162@163.com" class="text-xs uppercase tracking-widest font-bold hover:text-[var(--accent)] transition-colors hover-target group">
                 Let's Talk <span class="hover-arrow">↗</span>
@@ -264,10 +265,54 @@
             </div>
         </section>
 
+        <!-- 核心业务与技能档案 (Expertise & Capabilities) -->
+        <section id="expertise" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
+            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 02. Expertise & Capabilities ]</h2>
+            <div class="border-t border-[var(--border-subtle)]">
+                
+                <!-- 核心业务板块 (What I Do) -->
+                <div class="archive-row reveal hover-target border-none pb-0 mb-16">
+                    <div class="w-full md:w-[20%] mb-6 md:mb-0 text-[var(--accent)] font-mono text-xs uppercase pt-2">What I Do</div>
+                    <div class="w-full md:w-[80%] grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
+                        <div>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">品牌视觉全案设计</h4>
+                            <p class="text-white/50 text-sm leading-relaxed">从 0 到 1 构建品牌视觉系统与规范，精准传达品牌内核，覆盖线上线下多维触点呈现。</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">AIGC 视觉生态构建</h4>
+                            <p class="text-white/50 text-sm leading-relaxed">深度整合 Gemini、Nano Banana、GPT Image2 及 Seedance 2.0 等前沿大模型，重构团队工作流，大幅压缩渲染与作图周期。</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">全链路电商视觉</h4>
+                            <p class="text-white/50 text-sm leading-relaxed">主导高转化率的亚马逊 A+ 页面及国内电商详情页设计，通过数据驱动重构卖点与视觉逻辑。</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">TVC 美术与后期剪辑</h4>
+                            <p class="text-white/50 text-sm leading-relaxed">把控大型 TVC 宣传片现场跟拍美术调性，统筹落地执行，并熟练驾驭后期动态视觉与视频剪辑。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术栈标签 (Tech & Tools) -->
+                <div class="archive-row reveal hover-target border-t border-[var(--border-subtle)] pt-16 pb-0">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Tech & Tools</div>
+                    <div class="w-full md:w-[80%] flex flex-wrap gap-3 text-xs font-mono uppercase text-white/70">
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Gemini</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Nano Banana</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">GPT Image2</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Seedance 2.0</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Cinema 4D</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Keyshot</span>
+                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Adobe Creative Suite</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 巨幅横向排版作品集 -->
         <section id="work" class="pt-32 pb-0">
             <div class="px-6 md:px-10 mb-16">
-                <h2 class="text-xs font-mono text-white/50 uppercase tracking-widest">[ 02. Selected Works ]</h2>
+                <h2 class="text-xs font-mono text-white/50 uppercase tracking-widest">[ 03. Selected Works ]</h2>
             </div>
 
             <!-- Project Band 01: 置顶最惊艳的扫拖机器人 -->
@@ -348,7 +393,7 @@
 
         <!-- 档案式附录列表 (Index Archive) -->
         <section class="py-24 px-6 md:px-10 border-b border-[var(--border-subtle)]">
-            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 03. Archive Index ]</h2>
+            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 04. Archive Index ]</h2>
             <div class="border-t border-[var(--border-subtle)]">
                 
                 <!-- 扫地机/吸尘器类项目置顶前排 -->
@@ -402,9 +447,9 @@
             </div>
         </section>
 
-        <!-- 履历与技能档案 -->
-        <section id="expertise" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
-            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 04. Experience & Expertise ]</h2>
+        <!-- 职业经历档案 -->
+        <section id="experience" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
+            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 05. Professional Experience ]</h2>
             <div class="border-t border-[var(--border-subtle)]">
                 
                 <div class="archive-row reveal hover-target">
@@ -440,7 +485,7 @@
                     </div>
                 </div>
 
-                <div class="archive-row reveal hover-target">
+                <div class="archive-row reveal hover-target border-none pb-0">
                     <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">2018 — 2020</div>
                     <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
                         <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase">佛山市云米电器</h4>
@@ -451,42 +496,6 @@
                     </div>
                 </div>
 
-                <!-- 核心业务板块 (What I Do) -->
-                <div class="archive-row reveal hover-target mt-12 pt-16 border-t border-[var(--border-subtle)]">
-                    <div class="w-full md:w-[20%] mb-6 md:mb-0 text-[var(--accent)] font-mono text-xs uppercase pt-2">What I Do</div>
-                    <div class="w-full md:w-[80%] grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
-                        <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">品牌视觉全案设计</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">从 0 到 1 构建品牌视觉系统与规范，精准传达品牌内核，覆盖线上线下多维触点呈现。</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">AIGC 视觉生态构建</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">深度整合 Gemini、Nano Banana、GPT Image2 及 Seedance 2.0 等前沿大模型，重构团队工作流，大幅压缩渲染与作图周期。</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">全链路电商视觉</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">主导高转化率的亚马逊 A+ 页面及国内电商详情页设计，通过数据驱动重构卖点与视觉逻辑。</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">TVC 美术与后期剪辑</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">把控大型 TVC 宣传片现场跟拍美术调性，统筹落地执行，并熟练驾驭后期动态视觉与视频剪辑。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 技术栈标签 (Tech & Tools) -->
-                <div class="archive-row reveal hover-target border-none pb-0">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Tech & Tools</div>
-                    <div class="w-full md:w-[80%] flex flex-wrap gap-3 text-xs font-mono uppercase text-white/70">
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Gemini</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Nano Banana</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">GPT Image2</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Seedance 2.0</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Cinema 4D</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Keyshot</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Adobe Creative Suite</span>
-                    </div>
-                </div>
             </div>
         </section>
 
