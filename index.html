@@ -180,7 +180,7 @@
 
     <main class="relative z-10 w-full" id="main-content">
 
-        <!-- 极简导航栏 (移除 mix-blend-difference，加入高级毛玻璃背板防重叠) -->
+        <!-- 极简导航栏 -->
         <nav id="main-nav" class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border-subtle)] hover-target transition-all">
             <div class="text-xl md:text-2xl font-black uppercase tracking-tighter">KUANG<sup class="text-xs font-mono ml-0.5">®</sup></div>
             <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest font-bold text-white/70">
@@ -193,7 +193,7 @@
             </a>
         </nav>
 
-        <!-- 破坏性排版首屏 (优化对齐方式，增加顶部留白避让导航栏) -->
+        <!-- 破坏性排版首屏 -->
         <header id="intro" class="min-h-screen flex flex-col justify-center pt-40 pb-20 relative">
             <div class="px-6 md:px-10 mb-16 reveal">
                 <div class="flex items-center gap-4 mb-8">
@@ -264,68 +264,18 @@
             </div>
         </section>
 
-        <!-- 巨幅横向排版作品集 (Horizontal Bands) -->
+        <!-- 巨幅横向排版作品集 -->
         <section id="work" class="pt-32 pb-0">
             <div class="px-6 md:px-10 mb-16">
                 <h2 class="text-xs font-mono text-white/50 uppercase tracking-widest">[ 02. Selected Works ]</h2>
             </div>
 
-            <!-- Project Band 01 -->
-            <div class="project-band px-6 md:px-10 py-16 md:py-24 hover-target group cursor-pointer reveal" onclick="openProj('p5')">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                    <div class="lg:col-span-5 flex flex-col justify-between h-full order-2 lg:order-1 pr-0 lg:pr-12">
-                        <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—01 / Domestic ]</p>
-                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
-                                Mijia<br>Kettle 1S
-                            </h3>
-                            <p class="text-white/60 text-lg mb-8 leading-relaxed">米家电水壶 1S 全案设计。在极简产品语境下，重构高质感家居渲染场景与视觉卖点逻辑。</p>
-                        </div>
-                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
-                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
-                                <span>3D Rendering</span>
-                                <span>Art Direction</span>
-                            </div>
-                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video order-1 lg:order-2 w-full">
-                        <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" alt="米家电水壶" loading="lazy">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Band 02 -->
-            <div class="project-band px-6 md:px-10 py-16 md:py-24 hover-target group cursor-pointer reveal" onclick="openProj('p6')">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-                    <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video w-full">
-                        <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌视觉精选" loading="lazy">
-                    </div>
-                    <div class="lg:col-span-5 flex flex-col justify-between h-full pl-0 lg:pl-12">
-                        <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—02 / Global ]</p>
-                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
-                                Overseas<br>Branding
-                            </h3>
-                            <p class="text-white/60 text-lg mb-8 leading-relaxed">基于欧美审美语境的品牌视觉系统再造。涵盖高转化亚马逊主图与 A+ 沉浸式详情页矩阵。</p>
-                        </div>
-                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
-                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
-                                <span>E-commerce</span>
-                                <span>AIGC</span>
-                            </div>
-                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Band 03 -->
+            <!-- Project Band 01: 置顶最惊艳的扫拖机器人 -->
             <div class="project-band px-6 md:px-10 py-16 md:py-24 hover-target group cursor-pointer reveal" onclick="openProj('p2')">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                     <div class="lg:col-span-5 flex flex-col justify-between h-full order-2 lg:order-1 pr-0 lg:pr-12">
                         <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—03 / Domestic ]</p>
+                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—01 / Domestic ]</p>
                             <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
                                 Viomi<br>Robot Vac
                             </h3>
@@ -344,6 +294,56 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Project Band 02 -->
+            <div class="project-band px-6 md:px-10 py-16 md:py-24 hover-target group cursor-pointer reveal" onclick="openProj('p5')">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video w-full">
+                        <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" alt="米家电水壶" loading="lazy">
+                    </div>
+                    <div class="lg:col-span-5 flex flex-col justify-between h-full pl-0 lg:pl-12">
+                        <div>
+                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—02 / Domestic ]</p>
+                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
+                                Mijia<br>Kettle 1S
+                            </h3>
+                            <p class="text-white/60 text-lg mb-8 leading-relaxed">米家电水壶 1S 全案设计。在极简产品语境下，重构高质感家居渲染场景与视觉卖点逻辑。</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
+                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
+                                <span>3D Rendering</span>
+                                <span>Art Direction</span>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Band 03 -->
+            <div class="project-band px-6 md:px-10 py-16 md:py-24 hover-target group cursor-pointer reveal" onclick="openProj('p6')">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    <div class="lg:col-span-5 flex flex-col justify-between h-full order-2 lg:order-1 pr-0 lg:pr-12">
+                        <div>
+                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—03 / Global ]</p>
+                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
+                                Overseas<br>Branding
+                            </h3>
+                            <p class="text-white/60 text-lg mb-8 leading-relaxed">基于欧美审美语境的品牌视觉系统再造。涵盖高转化亚马逊主图与 A+ 沉浸式详情页矩阵。</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
+                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
+                                <span>E-commerce</span>
+                                <span>AIGC</span>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video order-1 lg:order-2 w-full">
+                        <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌视觉精选" loading="lazy">
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- 档案式附录列表 (Index Archive) -->
@@ -351,6 +351,19 @@
             <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 03. Archive Index ]</h2>
             <div class="border-t border-[var(--border-subtle)]">
                 
+                <!-- 扫地机/吸尘器类项目置顶前排 -->
+                <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p1')">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2020</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Robot Vac V1</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">LDS 激光导航卖点可视化 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                </div>
+
+                <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p3')">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2020</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Viomi Vacuum</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">手持吸尘器结构化拆解展现 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                </div>
+
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p9')">
                     <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2023</div>
                     <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light 2.0</h4></div>
@@ -369,21 +382,27 @@
                     <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">高转化率 A+ 场景逻辑展示 <span class="hover-arrow inline-block ml-2">↗</span></div>
                 </div>
 
-                <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p3')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2020</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Viomi Vacuum</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">结构化拆解核心性能呈现 <span class="hover-arrow inline-block ml-2">↗</span></div>
-                </div>
-
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p4')">
                     <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2019</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Viomi Air Purifier</h4></div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Air Purifier</h4></div>
                     <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">科技感调性全效杀菌逻辑 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                </div>
+                
+                <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p7')">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2021</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Smart Home Set</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">海外智能家电Listing呈现 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                </div>
+
+                <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p11')">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2023</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light Pro</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">高级场景化视觉进阶版 <span class="hover-arrow inline-block ml-2">↗</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- 履历与技能档案 (Experience & Expertise) -->
+        <!-- 履历与技能档案 -->
         <section id="expertise" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
             <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 04. Experience & Expertise ]</h2>
             <div class="border-t border-[var(--border-subtle)]">
@@ -433,7 +452,7 @@
                 </div>
 
                 <!-- 核心业务板块 (What I Do) -->
-                <div class="archive-row reveal hover-target mt-12 pt-16 border-t-2 border-white/20">
+                <div class="archive-row reveal hover-target mt-12 pt-16 border-t border-[var(--border-subtle)]">
                     <div class="w-full md:w-[20%] mb-6 md:mb-0 text-[var(--accent)] font-mono text-xs uppercase pt-2">What I Do</div>
                     <div class="w-full md:w-[80%] grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
                         <div>
@@ -605,7 +624,8 @@
                 gal.innerHTML += `
                     <div class="w-full max-w-[1400px] mx-auto flex flex-col mt-16 px-4">
                         <h3 class="text-xs font-mono font-bold text-left mb-6 tracking-widest text-[var(--accent)] uppercase border-b border-[var(--border-subtle)] pb-4">${s.t}</h3>
-                        <div class="bg-[var(--bg)]">${imgHtml}</div>
+                        <!-- 👉 核心修改：在 md 及以上屏幕，控制图片容器宽度为 60% 居中，优化主图显示 -->
+                        <div class="bg-[var(--bg)] w-full md:w-[60%] mx-auto">${imgHtml}</div>
                     </div>
                 `; 
             });
