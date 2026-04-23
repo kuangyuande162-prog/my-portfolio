@@ -10,6 +10,11 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        white: '#F4EFE6', // 温润纸白
+                        black: '#121110', // 醇厚暖黑
+                        accent: '#FF3300' // 先锋朱砂红
+                    },
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
@@ -21,17 +26,18 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 🌟 全局动态色彩系统 */
+        /* 🌟 全局动态色彩系统 (光学对比度校准版) */
         :root {
             --bg: #121110;
-            --text: #F4EFE6;
-            /* 使用 color-mix 实现极致的透明度控制，完美适配亮暗双模 */
-            --text-80: color-mix(in srgb, var(--text) 80%, transparent);
-            --text-70: color-mix(in srgb, var(--text) 70%, transparent);
-            --text-60: color-mix(in srgb, var(--text) 60%, transparent);
-            --text-50: color-mix(in srgb, var(--text) 50%, transparent);
-            --text-40: color-mix(in srgb, var(--text) 40%, transparent);
-            --text-30: color-mix(in srgb, var(--text) 30%, transparent);
+            --text: #F4EFE6; /* RGB: 244, 239, 230 */
+            
+            /* 暗色调透明阶梯：白字在黑底上自带膨胀感，透明度可以压低 */
+            --text-80: rgba(244, 239, 230, 0.80);
+            --text-70: rgba(244, 239, 230, 0.70);
+            --text-60: rgba(244, 239, 230, 0.60);
+            --text-50: rgba(244, 239, 230, 0.50);
+            --text-40: rgba(244, 239, 230, 0.40);
+            --text-30: rgba(244, 239, 230, 0.30);
             
             --border-subtle: rgba(244, 239, 230, 0.15);
             --accent: #FF3300;
@@ -45,10 +51,19 @@
         /* 🌞 亮色调模式 (Light Mode) */
         body.light-mode {
             --bg: #F4EFE6;
-            --text: #121110;
+            --text: #121110; /* RGB: 18, 17, 16 */
+            
+            /* 👉核心修复：亮色调透明阶梯，大幅提高黑字透明度基数，解决白底发虚看不清的问题 */
+            --text-80: rgba(18, 17, 16, 0.90);
+            --text-70: rgba(18, 17, 16, 0.85);
+            --text-60: rgba(18, 17, 16, 0.75);
+            --text-50: rgba(18, 17, 16, 0.65);
+            --text-40: rgba(18, 17, 16, 0.55);
+            --text-30: rgba(18, 17, 16, 0.45);
+            
             --border-subtle: rgba(18, 17, 16, 0.15);
-            --nav-bg: rgba(244, 239, 230, 0.9);
-            --modal-header-bg: rgba(244, 239, 230, 0.95);
+            --nav-bg: rgba(244, 239, 230, 0.95); /* 加深亮色模式毛玻璃底色，防止滚动时与文字打架 */
+            --modal-header-bg: rgba(244, 239, 230, 0.98);
             --hover-bg: rgba(18, 17, 16, 0.04);
             --img-bg: #e5e0d8;
         }
@@ -192,10 +207,6 @@
         
         .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; font-size: 13px; font-weight: 700; color: var(--bg); background: var(--text); border-radius: 24px; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; }
         .action-btn:hover { background: var(--accent); color: var(--btn-hover-text); }
-
-        /* 特殊边框和辅助颜色覆盖 */
-        .border-t-subtle { border-top-color: var(--border-subtle); }
-        .border-b-subtle { border-bottom-color: var(--border-subtle); }
     </style>
 </head>
 <body>
@@ -228,18 +239,19 @@
         </nav>
 
         <!-- 破坏性排版首屏 -->
-        <header id="intro" class="min-h-screen flex flex-col justify-center pt-40 pb-20 relative">
-            <div class="px-6 md:px-10 mb-16 reveal">
+        <header id="intro" class="min-h-screen flex flex-col justify-center pt-40 pb-20 relative overflow-hidden">
+            <div class="px-6 md:px-10 mb-16 reveal w-full overflow-hidden">
                 <div class="flex items-center gap-4 mb-8">
                     <span class="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></span>
                     <p class="text-xs font-mono text-[var(--text-50)] uppercase tracking-widest">Visual Architect / Design Manager</p>
                 </div>
                 
-                <h1 class="flex flex-col text-[16vw] md:text-[12vw] leading-[0.85] font-black uppercase tracking-tighter select-none">
+                <!-- 优化了换行与字号，防止窄屏设备撑破横向滚动条 -->
+                <h1 class="flex flex-col text-[14vw] md:text-[12vw] leading-[0.85] font-black uppercase tracking-tighter select-none break-words">
                     <span class="pl-0 md:pl-0 hover-target outline-text accent-hover">Empowering</span>
-                    <span class="pl-12 md:pl-32 text-[var(--text)] transition-colors duration-500">Commerce</span>
-                    <span class="pl-4 md:pl-16 outline-text accent-hover">Through</span>
-                    <span class="pl-24 md:pl-48 text-[var(--accent)]">Vision.</span>
+                    <span class="pl-6 md:pl-32 text-[var(--text)] transition-colors duration-500">Commerce</span>
+                    <span class="pl-2 md:pl-16 outline-text accent-hover">Through</span>
+                    <span class="pl-12 md:pl-48 text-[var(--accent)]">Vision.</span>
                 </h1>
             </div>
 
@@ -598,29 +610,36 @@
         // 获取系统原生滚动条宽度（防止模态框弹出版面跳动）
         const getScrollbarWidth = () => { return window.innerWidth - document.documentElement.clientWidth; };
 
-        // --- 1. 极简阅读进度条逻辑 ---
+        // --- 1. 极简阅读进度条逻辑 (加入 passive 提升滚动性能) ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scroll-progress').style.width = scrolled + '%';
-        });
+        }, { passive: true });
 
-        // --- 2. 硬件加速顺滑光标逻辑 (零延迟绝对跟手) ---
+        // --- 2. 硬件加速顺滑光标逻辑 (加入帧锁解决CPU占用问题) ---
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
         if (!isTouchDevice) {
             const dot = document.getElementById('cursor-dot');
             const outline = document.getElementById('cursor-outline');
+            
+            let mouseX = -100, mouseY = -100;
+            let isFrameRequested = false;
 
             document.addEventListener('mousemove', (e) => { 
-                // 使用 requestAnimationFrame 保证浏览器重绘频率一致，避免掉帧
-                requestAnimationFrame(() => {
-                    const x = e.clientX;
-                    const y = e.clientY;
-                    dot.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`;
-                    outline.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`;
-                });
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                if (!isFrameRequested) {
+                    requestAnimationFrame(() => {
+                        dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                        outline.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                        isFrameRequested = false;
+                    });
+                    isFrameRequested = true;
+                }
             });
 
             // 悬停交互事件
@@ -635,12 +654,12 @@
             document.body.style.cursor = 'auto';
         }
 
-        // --- 3. 性能级渐显动画 (动画完毕自动解绑) ---
+        // --- 3. 性能级渐显动画 (触发后立即解绑 observer) ---
         const observer = new IntersectionObserver((entries, obs) => { 
             entries.forEach(e => { 
                 if (e.isIntersecting) { 
                     e.target.classList.add('active'); 
-                    obs.unobserve(e.target); // 触发后解绑，节省滚动CPU开销
+                    obs.unobserve(e.target); 
                 }
             }); 
         }, { threshold: 0.1 });
@@ -678,6 +697,7 @@
                 gal.innerHTML += `
                     <div class="w-full max-w-[1400px] mx-auto flex flex-col mt-16 px-4">
                         <h3 class="text-xs font-mono font-bold text-left mb-6 tracking-widest text-[var(--accent)] uppercase border-b border-[var(--border-subtle)] pb-4 transition-colors duration-500">${s.t}</h3>
+                        <!-- 👉 核心修改：在 md 及以上屏幕，控制图片容器宽度为 60% 居中，优化主图显示 -->
                         <div class="bg-[var(--bg)] w-full md:w-[60%] mx-auto transition-colors duration-500">${imgHtml}</div>
                     </div>
                 `; 
@@ -689,9 +709,9 @@
             
             clearTimeout(modalTimer);
             
-            // 解决防抖动：给 body 和 fixed navbar 同时增加 padding补偿
+            // 解决防抖动：给 body 增加 padding补偿，给 navbar 修改宽度
             document.body.style.paddingRight = scrollbarWidth + 'px';
-            mainNav.style.marginRight = scrollbarWidth + 'px';
+            mainNav.style.width = `calc(100% - ${scrollbarWidth}px)`;
             document.body.style.overflow = 'hidden';
             
             modal.scrollTop = 0; // 保证每次点开都回到最顶部
@@ -710,7 +730,7 @@
                 if (!modal.classList.contains('show')) {
                     document.body.style.overflow = ''; 
                     document.body.style.paddingRight = '0px';
-                    mainNav.style.marginRight = '0px';
+                    mainNav.style.width = '100%';
                 }
             }, 600); // 配合 CSS 动画的时间
         }
