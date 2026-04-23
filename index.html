@@ -10,11 +10,6 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        white: '#F4EFE6', // 温润纸白
-                        black: '#121110', // 醇厚暖黑
-                        accent: '#FF3300' // 先锋朱砂红
-                    },
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
@@ -26,15 +21,39 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* 🌟 全局动态色彩系统 */
         :root {
             --bg: #121110;
             --text: #F4EFE6;
-            --text-muted: rgba(244, 239, 230, 0.4);
+            /* 使用 color-mix 实现极致的透明度控制，完美适配亮暗双模 */
+            --text-80: color-mix(in srgb, var(--text) 80%, transparent);
+            --text-70: color-mix(in srgb, var(--text) 70%, transparent);
+            --text-60: color-mix(in srgb, var(--text) 60%, transparent);
+            --text-50: color-mix(in srgb, var(--text) 50%, transparent);
+            --text-40: color-mix(in srgb, var(--text) 40%, transparent);
+            --text-30: color-mix(in srgb, var(--text) 30%, transparent);
+            
             --border-subtle: rgba(244, 239, 230, 0.15);
             --accent: #FF3300;
+            --nav-bg: rgba(18, 17, 16, 0.9);
+            --modal-header-bg: rgba(18, 17, 16, 0.95);
+            --hover-bg: rgba(244, 239, 230, 0.03);
+            --img-bg: #1a1918;
+            --btn-hover-text: #F4EFE6;
         }
 
-        ::selection { background: var(--accent); color: var(--bg); }
+        /* 🌞 亮色调模式 (Light Mode) */
+        body.light-mode {
+            --bg: #F4EFE6;
+            --text: #121110;
+            --border-subtle: rgba(18, 17, 16, 0.15);
+            --nav-bg: rgba(244, 239, 230, 0.9);
+            --modal-header-bg: rgba(244, 239, 230, 0.95);
+            --hover-bg: rgba(18, 17, 16, 0.04);
+            --img-bg: #e5e0d8;
+        }
+
+        ::selection { background: var(--accent); color: #F4EFE6; }
 
         html { scroll-behavior: smooth; }
         body {
@@ -45,6 +64,7 @@
             cursor: none;
             -webkit-font-smoothing: antialiased;
             width: 100vw;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
 
@@ -82,6 +102,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            transition: border-color 0.5s, background-color 0.5s;
         }
         .marquee-track {
             display: flex;
@@ -100,7 +121,7 @@
             color: var(--text);
         }
         .marquee-track span.hollow {
-            -webkit-text-stroke: 1px var(--text-muted);
+            -webkit-text-stroke: 1px var(--text-40);
             color: transparent;
         }
         
@@ -110,15 +131,16 @@
         /* 巨型横幅带列表 (Sensei Horizontal Bands) */
         .project-band {
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.4s ease;
+            transition: background 0.4s ease, border-color 0.5s;
         }
         .project-band:hover {
-            background: rgba(244, 239, 230, 0.02);
+            background: var(--hover-bg);
         }
         .band-img-wrap {
             overflow: hidden;
-            background: #1a1918;
+            background: var(--img-bg);
             will-change: transform;
+            transition: background-color 0.5s;
         }
         .band-img-wrap img {
             width: 100%;
@@ -140,13 +162,13 @@
             flex-direction: column;
             border-bottom: 1px solid var(--border-subtle);
             padding: 2rem 0;
-            transition: padding 0.3s, background 0.3s;
+            transition: padding 0.3s, background 0.3s, border-color 0.5s;
         }
         @media (min-width: 768px) {
             .archive-row { flex-direction: row; align-items: baseline; }
         }
         .archive-row:hover { 
-            background: rgba(244,239,230,0.03); 
+            background: var(--hover-bg); 
             padding-left: 2rem; 
             padding-right: 2rem; 
         }
@@ -156,7 +178,7 @@
 
         /* Studio 光标 (硬件加速优化) */
         .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; will-change: transform; }
-        .cursor-outline { position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1px solid rgba(244,239,230,0.3); border-radius: 50%; pointer-events: none; z-index: 9999; transition: width 0.3s, height 0.3s, border-color 0.3s; will-change: transform, width, height; }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1px solid var(--text-40); border-radius: 50%; pointer-events: none; z-index: 9999; transition: width 0.3s, height 0.3s, border-color 0.3s; will-change: transform, width, height; }
         .cursor-outline.hover-mode { width: 64px; height: 64px; background: var(--text); mix-blend-mode: difference; border-color: transparent; }
 
         /* 渐显动画 */
@@ -166,30 +188,41 @@
         /* 模态框重置 */
         #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: var(--bg); z-index: 1000; transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; will-change: transform; }
         #project-modal.show { transform: translateY(0); }
-        .viewer-header { background: rgba(18, 17, 16, 0.95); border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(10px); }
+        .viewer-header { background: var(--modal-header-bg); border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(10px); transition: background-color 0.5s, border-color 0.5s; }
         
         .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; font-size: 13px; font-weight: 700; color: var(--bg); background: var(--text); border-radius: 24px; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; }
-        .action-btn:hover { background: var(--accent); color: var(--text); }
+        .action-btn:hover { background: var(--accent); color: var(--btn-hover-text); }
+
+        /* 特殊边框和辅助颜色覆盖 */
+        .border-t-subtle { border-top-color: var(--border-subtle); }
+        .border-b-subtle { border-bottom-color: var(--border-subtle); }
     </style>
 </head>
 <body>
 
+    <!-- 极简进度条与光标 -->
     <div id="scroll-progress"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
     <div class="cursor-outline" id="cursor-outline"></div>
 
+    <!-- 🌙🌞 亮暗模式切换按钮 -->
+    <button id="theme-toggle" class="fixed bottom-6 left-6 md:bottom-10 md:left-10 z-[10001] h-10 px-5 flex items-center justify-center gap-3 rounded-full border border-[var(--border-subtle)] bg-[var(--bg)] text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 group outline-none shadow-xl hover-target">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--text)] transition-colors" id="theme-indicator"></span>
+        <span id="theme-text" class="text-xs font-mono font-bold tracking-widest uppercase pt-0.5">Light Mode</span>
+    </button>
+
     <main class="relative z-10 w-full" id="main-content">
 
         <!-- 极简导航栏 -->
-        <nav id="main-nav" class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border-subtle)] hover-target transition-all">
-            <div class="text-xl md:text-2xl font-black uppercase tracking-tighter">KUANG<sup class="text-xs font-mono ml-0.5">®</sup></div>
-            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest font-bold text-white/70">
-                <a href="#studio" class="hover:text-white hover:text-[var(--accent)] transition-colors">Studio</a>
-                <a href="#expertise" class="hover:text-white hover:text-[var(--accent)] transition-colors">Expertise</a>
-                <a href="#work" class="hover:text-white hover:text-[var(--accent)] transition-colors">Works</a>
-                <a href="#experience" class="hover:text-white hover:text-[var(--accent)] transition-colors">Experience</a>
+        <nav id="main-nav" class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-5 bg-[var(--nav-bg)] backdrop-blur-xl border-b border-[var(--border-subtle)] hover-target transition-all duration-500">
+            <div class="text-xl md:text-2xl font-black uppercase tracking-tighter text-[var(--text)]">KUANG<sup class="text-xs font-mono ml-0.5">®</sup></div>
+            <div class="hidden md:flex space-x-12 text-xs uppercase tracking-widest font-bold text-[var(--text-70)]">
+                <a href="#studio" class="hover:text-[var(--accent)] transition-colors">Studio</a>
+                <a href="#expertise" class="hover:text-[var(--accent)] transition-colors">Expertise</a>
+                <a href="#work" class="hover:text-[var(--accent)] transition-colors">Works</a>
+                <a href="#experience" class="hover:text-[var(--accent)] transition-colors">Experience</a>
             </div>
-            <a href="mailto:dyk162@163.com" class="text-xs uppercase tracking-widest font-bold hover:text-[var(--accent)] transition-colors hover-target group">
+            <a href="mailto:dyk162@163.com" class="text-xs uppercase tracking-widest font-bold text-[var(--text)] hover:text-[var(--accent)] transition-colors hover-target group">
                 Let's Talk <span class="hover-arrow">↗</span>
             </a>
         </nav>
@@ -199,13 +232,13 @@
             <div class="px-6 md:px-10 mb-16 reveal">
                 <div class="flex items-center gap-4 mb-8">
                     <span class="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse"></span>
-                    <p class="text-xs font-mono text-white/50 uppercase tracking-widest">Visual Architect / Design Manager</p>
+                    <p class="text-xs font-mono text-[var(--text-50)] uppercase tracking-widest">Visual Architect / Design Manager</p>
                 </div>
                 
                 <h1 class="flex flex-col text-[16vw] md:text-[12vw] leading-[0.85] font-black uppercase tracking-tighter select-none">
-                    <span class="pl-0 md:pl-0 hover-target outline-text accent-hover transition-colors">Empowering</span>
-                    <span class="pl-12 md:pl-32 text-[var(--text)]">Commerce</span>
-                    <span class="pl-4 md:pl-16 outline-text accent-hover transition-colors">Through</span>
+                    <span class="pl-0 md:pl-0 hover-target outline-text accent-hover">Empowering</span>
+                    <span class="pl-12 md:pl-32 text-[var(--text)] transition-colors duration-500">Commerce</span>
+                    <span class="pl-4 md:pl-16 outline-text accent-hover">Through</span>
                     <span class="pl-24 md:pl-48 text-[var(--accent)]">Vision.</span>
                 </h1>
             </div>
@@ -234,31 +267,31 @@
         </header>
 
         <!-- 工作室宣言 -->
-        <section id="studio" class="py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
+        <section id="studio" class="py-32 px-6 md:px-10 border-b border-[var(--border-subtle)] transition-colors duration-500">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
                 <div class="md:col-span-3">
-                    <h2 class="text-xs font-mono text-white/50 uppercase tracking-widest">[ 01. The Studio ]</h2>
+                    <h2 class="text-xs font-mono text-[var(--text-50)] uppercase tracking-widest">[ 01. The Studio ]</h2>
                 </div>
                 <div class="md:col-span-9 max-w-5xl">
                     <p class="text-3xl md:text-5xl font-medium leading-[1.2] tracking-tight reveal mb-20 text-[var(--text)]">
                         "不仅懂视觉表现，更懂底层数据逻辑。通过建立标准化的设计体系与 AIGC 工作流，极致赋能品牌商业转化。"
                     </p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16 reveal border-t border-[var(--border-subtle)] pt-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16 reveal border-t border-[var(--border-subtle)] pt-12 transition-colors duration-500">
                         <div>
                             <div class="text-[var(--accent)] font-mono text-xs mb-4">( 01 )</div>
-                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">System Build</h3>
-                            <p class="text-white/50 text-sm leading-relaxed">建立品牌视觉标准和跨国团队工作流程，打破部门壁垒，确保创意高效、精准地跨平台落地。</p>
+                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-[var(--text)]">System Build</h3>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">建立品牌视觉标准和跨国团队工作流程，打破部门壁垒，确保创意高效、精准地跨平台落地。</p>
                         </div>
                         <div>
                             <div class="text-[var(--accent)] font-mono text-xs mb-4">( 02 )</div>
-                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">Data Driven</h3>
-                            <p class="text-white/50 text-sm leading-relaxed">拒绝自嗨式设计。建立以转化率为核心的视觉评估体系，主导核心产品转化率提升 10%-30%。</p>
+                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-[var(--text)]">Data Driven</h3>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">拒绝自嗨式设计。建立以转化率为核心的视觉评估体系，主导核心产品转化率提升 10%-30%。</p>
                         </div>
                         <div>
                             <div class="text-[var(--accent)] font-mono text-xs mb-4">( 03 )</div>
-                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight">AIGC Pioneer</h3>
-                            <p class="text-white/50 text-sm leading-relaxed">前瞻性引入 Gemini、Seedance 2.0 等多模态大模型工作流，颠覆传统渲染与修图周期，实现视觉资产降本增效。</p>
+                            <h3 class="text-xl font-bold mb-4 uppercase tracking-tight text-[var(--text)]">AIGC Pioneer</h3>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">前瞻性引入 Gemini、Seedance 2.0 等多模态大模型工作流，颠覆传统渲染与修图周期，实现视觉资产降本增效。</p>
                         </div>
                     </div>
                 </div>
@@ -266,44 +299,44 @@
         </section>
 
         <!-- 核心业务与技能档案 (Expertise & Capabilities) -->
-        <section id="expertise" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
-            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 02. Expertise & Capabilities ]</h2>
-            <div class="border-t border-[var(--border-subtle)]">
+        <section id="expertise" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)] transition-colors duration-500">
+            <h2 class="text-xs font-mono text-[var(--text-50)] uppercase mb-16 tracking-widest">[ 02. Expertise & Capabilities ]</h2>
+            <div class="border-t border-[var(--border-subtle)] transition-colors duration-500">
                 
                 <!-- 核心业务板块 (What I Do) -->
                 <div class="archive-row reveal hover-target border-none pb-0 mb-16">
                     <div class="w-full md:w-[20%] mb-6 md:mb-0 text-[var(--accent)] font-mono text-xs uppercase pt-2">What I Do</div>
                     <div class="w-full md:w-[80%] grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-16">
                         <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">品牌视觉全案设计</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">从 0 到 1 构建品牌视觉系统与规范，精准传达品牌内核，覆盖线上线下多维触点呈现。</p>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-[var(--text)]">品牌视觉全案设计</h4>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">从 0 到 1 构建品牌视觉系统与规范，精准传达品牌内核，覆盖线上线下多维触点呈现。</p>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">AIGC 视觉生态构建</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">深度整合 Gemini、Nano Banana、GPT Image2 及 Seedance 2.0 等前沿大模型，重构团队工作流，大幅压缩渲染与作图周期。</p>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-[var(--text)]">AIGC 视觉生态构建</h4>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">深度整合 Gemini、Nano Banana、GPT Image2 及 Seedance 2.0 等前沿大模型，重构团队工作流，大幅压缩渲染与作图周期。</p>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">全链路电商视觉</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">主导高转化率的亚马逊 A+ 页面及国内电商详情页设计，通过数据驱动重构卖点与视觉逻辑。</p>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-[var(--text)]">全链路电商视觉</h4>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">主导高转化率的亚马逊 A+ 页面及国内电商详情页设计，通过数据驱动重构卖点与视觉逻辑。</p>
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-white">TVC 美术与后期剪辑</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">把控大型 TVC 宣传片现场跟拍美术调性，统筹落地执行，并熟练驾驭后期动态视觉与视频剪辑。</p>
+                            <h4 class="text-lg font-bold mb-3 uppercase tracking-tight text-[var(--text)]">TVC 美术与后期剪辑</h4>
+                            <p class="text-[var(--text-50)] text-sm leading-relaxed">把控大型 TVC 宣传片现场跟拍美术调性，统筹落地执行，并熟练驾驭后期动态视觉与视频剪辑。</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- 技术栈标签 (Tech & Tools) -->
-                <div class="archive-row reveal hover-target border-t border-[var(--border-subtle)] pt-16 pb-0">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Tech & Tools</div>
-                    <div class="w-full md:w-[80%] flex flex-wrap gap-3 text-xs font-mono uppercase text-white/70">
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Gemini</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Nano Banana</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">GPT Image2</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Seedance 2.0</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Cinema 4D</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Keyshot</span>
-                        <span class="border border-white/20 px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Adobe Creative Suite</span>
+                <div class="archive-row reveal hover-target border-t border-[var(--border-subtle)] pt-16 pb-0 transition-colors duration-500">
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Tech & Tools</div>
+                    <div class="w-full md:w-[80%] flex flex-wrap gap-3 text-xs font-mono uppercase text-[var(--text-70)]">
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Gemini</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Nano Banana</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">GPT Image2</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Seedance 2.0</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Cinema 4D</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Keyshot</span>
+                        <span class="border border-[var(--border-subtle)] px-4 py-2 rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">Adobe Creative Suite</span>
                     </div>
                 </div>
             </div>
@@ -312,7 +345,7 @@
         <!-- 巨幅横向排版作品集 -->
         <section id="work" class="pt-32 pb-0">
             <div class="px-6 md:px-10 mb-16">
-                <h2 class="text-xs font-mono text-white/50 uppercase tracking-widest">[ 03. Selected Works ]</h2>
+                <h2 class="text-xs font-mono text-[var(--text-50)] uppercase tracking-widest">[ 03. Selected Works ]</h2>
             </div>
 
             <!-- Project Band 01: 置顶最惊艳的扫拖机器人 -->
@@ -320,18 +353,18 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                     <div class="lg:col-span-5 flex flex-col justify-between h-full order-2 lg:order-1 pr-0 lg:pr-12">
                         <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—01 / Domestic ]</p>
-                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
+                            <p class="font-mono text-[var(--text-30)] text-xs mb-8 uppercase tracking-widest">[ P—01 / Domestic ]</p>
+                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
                                 Viomi<br>Robot Vac
                             </h3>
-                            <p class="text-white/60 text-lg mb-8 leading-relaxed">云米智能扫拖机器人全矩阵视觉标准重塑。通过精细化结构拆解，实现核心性能的可视化表达。</p>
+                            <p class="text-[var(--text-60)] text-lg mb-8 leading-relaxed">云米智能扫拖机器人全矩阵视觉标准重塑。通过精细化结构拆解，实现核心性能的可视化表达。</p>
                         </div>
-                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
-                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
+                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)] transition-colors duration-500">
+                            <div class="flex gap-4 text-xs font-mono text-[var(--text-40)] uppercase">
                                 <span>Visual Strategy</span>
                                 <span>C4D</span>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
                         </div>
                     </div>
                     <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video order-1 lg:order-2 w-full">
@@ -348,18 +381,18 @@
                     </div>
                     <div class="lg:col-span-5 flex flex-col justify-between h-full pl-0 lg:pl-12">
                         <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—02 / Domestic ]</p>
-                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
+                            <p class="font-mono text-[var(--text-30)] text-xs mb-8 uppercase tracking-widest">[ P—02 / Domestic ]</p>
+                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
                                 Mijia<br>Kettle 1S
                             </h3>
-                            <p class="text-white/60 text-lg mb-8 leading-relaxed">米家电水壶 1S 全案设计。在极简产品语境下，重构高质感家居渲染场景与视觉卖点逻辑。</p>
+                            <p class="text-[var(--text-60)] text-lg mb-8 leading-relaxed">米家电水壶 1S 全案设计。在极简产品语境下，重构高质感家居渲染场景与视觉卖点逻辑。</p>
                         </div>
-                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
-                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
+                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)] transition-colors duration-500">
+                            <div class="flex gap-4 text-xs font-mono text-[var(--text-40)] uppercase">
                                 <span>3D Rendering</span>
                                 <span>Art Direction</span>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
                         </div>
                     </div>
                 </div>
@@ -370,18 +403,18 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
                     <div class="lg:col-span-5 flex flex-col justify-between h-full order-2 lg:order-1 pr-0 lg:pr-12">
                         <div>
-                            <p class="font-mono text-white/30 text-xs mb-8 uppercase tracking-widest">[ P—03 / Global ]</p>
-                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 group-hover:text-[var(--accent)] transition-colors">
+                            <p class="font-mono text-[var(--text-30)] text-xs mb-8 uppercase tracking-widest">[ P—03 / Global ]</p>
+                            <h3 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mb-6 text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
                                 Overseas<br>Branding
                             </h3>
-                            <p class="text-white/60 text-lg mb-8 leading-relaxed">基于欧美审美语境的品牌视觉系统再造。涵盖高转化亚马逊主图与 A+ 沉浸式详情页矩阵。</p>
+                            <p class="text-[var(--text-60)] text-lg mb-8 leading-relaxed">基于欧美审美语境的品牌视觉系统再造。涵盖高转化亚马逊主图与 A+ 沉浸式详情页矩阵。</p>
                         </div>
-                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)]">
-                            <div class="flex gap-4 text-xs font-mono text-white/40 uppercase">
+                        <div class="flex items-center justify-between mt-auto pt-8 border-t border-[var(--border-subtle)] transition-colors duration-500">
+                            <div class="flex gap-4 text-xs font-mono text-[var(--text-40)] uppercase">
                                 <span>E-commerce</span>
                                 <span>AIGC</span>
                             </div>
-                            <span class="text-xs font-bold uppercase tracking-widest group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Explore <span class="hover-arrow">↗</span></span>
                         </div>
                     </div>
                     <div class="lg:col-span-7 band-img-wrap aspect-[4/3] md:aspect-video order-1 lg:order-2 w-full">
@@ -392,106 +425,105 @@
         </section>
 
         <!-- 档案式附录列表 (Index Archive) -->
-        <section class="py-24 px-6 md:px-10 border-b border-[var(--border-subtle)]">
-            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 04. Archive Index ]</h2>
-            <div class="border-t border-[var(--border-subtle)]">
+        <section class="py-24 px-6 md:px-10 border-b border-[var(--border-subtle)] transition-colors duration-500">
+            <h2 class="text-xs font-mono text-[var(--text-50)] uppercase mb-16 tracking-widest">[ 04. Archive Index ]</h2>
+            <div class="border-t border-[var(--border-subtle)] transition-colors duration-500">
                 
-                <!-- 扫地机/吸尘器类项目置顶前排 -->
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p1')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2020</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Robot Vac V1</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">LDS 激光导航卖点可视化 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Domestic / 2020</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Robot Vac V1</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">LDS 激光导航卖点可视化 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p3')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2020</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Viomi Vacuum</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">手持吸尘器结构化拆解展现 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Domestic / 2020</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Viomi Vacuum</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">手持吸尘器结构化拆解展现 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p9')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2023</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light 2.0</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">Listing 全案及 A+ 系统 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Global / 2023</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light 2.0</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">Listing 全案及 A+ 系统 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p10')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2024</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Ultra-thin Sensor</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">海外旗舰新品全链路视觉 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Global / 2024</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Ultra-thin Sensor</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">海外旗舰新品全链路视觉 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p8')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2022</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Flagship Rebuild</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">高转化率 A+ 场景逻辑展示 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Global / 2022</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Flagship Rebuild</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">高转化率 A+ 场景逻辑展示 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p4')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Domestic / 2019</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Air Purifier</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">科技感调性全效杀菌逻辑 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Domestic / 2019</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Air Purifier</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">科技感调性全效杀菌逻辑 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
                 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p7')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2021</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Smart Home Set</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">海外智能家电Listing呈现 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Global / 2021</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Smart Home Set</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">海外智能家电Listing呈现 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
 
                 <div class="archive-row hover-target cursor-pointer reveal group" onclick="openProj('p11')">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">Global / 2023</div>
-                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light Pro</h4></div>
-                    <div class="w-full md:w-[30%] md:text-right text-white/50 text-sm font-medium">高级场景化视觉进阶版 <span class="hover-arrow inline-block ml-2">↗</span></div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">Global / 2023</div>
+                    <div class="w-full md:w-[50%] mb-4 md:mb-0"><h4 class="text-3xl md:text-4xl font-bold uppercase tracking-tighter text-[var(--text)] group-hover:translate-x-4 group-hover:text-[var(--accent)] transition-all">Cabinet Light Pro</h4></div>
+                    <div class="w-full md:w-[30%] md:text-right text-[var(--text-50)] text-sm font-medium">高级场景化视觉进阶版 <span class="hover-arrow inline-block ml-2 text-[var(--text)]">↗</span></div>
                 </div>
             </div>
         </section>
 
         <!-- 职业经历档案 -->
-        <section id="experience" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)]">
-            <h2 class="text-xs font-mono text-white/50 uppercase mb-16 tracking-widest">[ 05. Professional Experience ]</h2>
-            <div class="border-t border-[var(--border-subtle)]">
+        <section id="experience" class="py-24 md:py-32 px-6 md:px-10 border-b border-[var(--border-subtle)] transition-colors duration-500">
+            <h2 class="text-xs font-mono text-[var(--text-50)] uppercase mb-16 tracking-widest">[ 05. Professional Experience ]</h2>
+            <div class="border-t border-[var(--border-subtle)] transition-colors duration-500">
                 
                 <div class="archive-row reveal hover-target">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">2024 — Present</div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">2024 — Present</div>
                     <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
-                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase">广州奕至家居</h4>
+                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase text-[var(--text)]">广州奕至家居</h4>
                         <p class="text-[var(--accent)] font-mono text-[10px] tracking-widest uppercase">Design Manager (返聘)</p>
                     </div>
-                    <div class="w-full md:w-[50%] text-white/60 text-base leading-relaxed">
+                    <div class="w-full md:w-[50%] text-[var(--text-60)] text-base leading-relaxed">
                         重构海外设计团队，建立可视化工作流程。根据亚马逊欧美用户画像落地品牌视觉风格。建立以转化率为核心的视觉评估体系，引入AIGC提效。核心产品转化率提升 10%-30%。
                     </div>
                 </div>
 
                 <div class="archive-row reveal hover-target">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">2023 — 2024</div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">2023 — 2024</div>
                     <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
-                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase">广东久量科技</h4>
-                        <p class="text-white/40 font-mono text-[10px] tracking-widest uppercase">Design Supervisor</p>
+                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase text-[var(--text)]">广东久量科技</h4>
+                        <p class="text-[var(--text-40)] font-mono text-[10px] tracking-widest uppercase">Design Supervisor</p>
                     </div>
-                    <div class="w-full md:w-[50%] text-white/60 text-base leading-relaxed">
+                    <div class="w-full md:w-[50%] text-[var(--text-60)] text-base leading-relaxed">
                         负责洗护系列产品品牌视觉建设，全链路设计。内衣裤洗衣机、烘干机等新品视觉构建（外拍对接、精修渲染），承担平台活动视觉更新。
                     </div>
                 </div>
 
                 <div class="archive-row reveal hover-target">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">2020 — 2023</div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">2020 — 2023</div>
                     <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
-                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase">广州奕至家居</h4>
-                        <p class="text-white/40 font-mono text-[10px] tracking-widest uppercase">Design Lead</p>
+                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase text-[var(--text)]">广州奕至家居</h4>
+                        <p class="text-[var(--text-40)] font-mono text-[10px] tracking-widest uppercase">Design Lead</p>
                     </div>
-                    <div class="w-full md:w-[50%] text-white/60 text-base leading-relaxed">
+                    <div class="w-full md:w-[50%] text-[var(--text-60)] text-base leading-relaxed">
                         前期负责国内新品及大促视觉；后期任海外产品设计部负责人，主导品牌建设与产品站设计，成功从零到一建立视觉品牌概念，完成产品出海布局。
                     </div>
                 </div>
 
                 <div class="archive-row reveal hover-target border-none pb-0">
-                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-white/40 font-mono text-xs uppercase pt-2">2018 — 2020</div>
+                    <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] font-mono text-xs uppercase pt-2">2018 — 2020</div>
                     <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
-                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase">佛山市云米电器</h4>
-                        <p class="text-white/40 font-mono text-[10px] tracking-widest uppercase">Graphic Designer</p>
+                        <h4 class="text-2xl font-bold mb-2 tracking-tight uppercase text-[var(--text)]">佛山市云米电器</h4>
+                        <p class="text-[var(--text-40)] font-mono text-[10px] tracking-widest uppercase">Graphic Designer</p>
                     </div>
-                    <div class="w-full md:w-[50%] text-white/60 text-base leading-relaxed">
+                    <div class="w-full md:w-[50%] text-[var(--text-60)] text-base leading-relaxed">
                         负责天猫/京东 S级大促主视觉设计。统筹超50款小家电产品详情页设计，参与发布会视觉物料支持。
                     </div>
                 </div>
@@ -503,28 +535,28 @@
         <footer id="contact" class="flex flex-col justify-between px-6 md:px-10 pt-32 pb-8 min-h-[80vh]">
             <div class="reveal mt-auto">
                 <p class="text-xs font-mono text-[var(--accent)] uppercase mb-6 tracking-widest">[ Open For New Opportunities ]</p>
-                <a href="mailto:dyk162@163.com" class="text-[15vw] md:text-[11vw] leading-none font-black tracking-tighter uppercase break-words hover-target block mb-20 group w-max transition-opacity hover:opacity-80">
+                <a href="mailto:dyk162@163.com" class="text-[15vw] md:text-[11vw] leading-none font-black tracking-tighter uppercase break-words hover-target block mb-20 group w-max transition-opacity hover:opacity-80 text-[var(--text)]">
                     Let's Talk<span class="hover-arrow text-[var(--accent)]">↗</span>
                 </a>
             </div>
             
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-t border-[var(--border-subtle)] pt-10 reveal mt-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-t border-[var(--border-subtle)] pt-10 reveal mt-auto transition-colors duration-500">
                 <div class="flex flex-col md:flex-row gap-12 md:gap-32">
                     <div>
-                        <p class="font-mono text-white/30 text-[10px] mb-3 uppercase tracking-widest">General Enquiries</p>
-                        <a href="mailto:dyk162@163.com" class="text-lg md:text-xl font-bold hover:text-[var(--accent)] transition-colors">dyk162@163.com</a>
+                        <p class="font-mono text-[var(--text-30)] text-[10px] mb-3 uppercase tracking-widest">General Enquiries</p>
+                        <a href="mailto:dyk162@163.com" class="text-lg md:text-xl font-bold text-[var(--text)] hover:text-[var(--accent)] transition-colors">dyk162@163.com</a>
                     </div>
                     <div>
-                        <p class="font-mono text-white/30 text-[10px] mb-3 uppercase tracking-widest">Direct Line</p>
-                        <a href="tel:13751868717" class="text-lg md:text-xl font-bold hover:text-[var(--accent)] transition-colors">+86 137 5186 8717</a>
+                        <p class="font-mono text-[var(--text-30)] text-[10px] mb-3 uppercase tracking-widest">Direct Line</p>
+                        <a href="tel:13751868717" class="text-lg md:text-xl font-bold text-[var(--text)] hover:text-[var(--accent)] transition-colors">+86 137 5186 8717</a>
                     </div>
                     <div>
-                        <p class="font-mono text-white/30 text-[10px] mb-3 uppercase tracking-widest">Base</p>
-                        <p class="text-lg md:text-xl font-bold text-white/80">Guangzhou, CN</p>
+                        <p class="font-mono text-[var(--text-30)] text-[10px] mb-3 uppercase tracking-widest">Base</p>
+                        <p class="text-lg md:text-xl font-bold text-[var(--text-80)]">Guangzhou, CN</p>
                     </div>
                 </div>
                 <div class="text-left md:text-right mt-6 md:mt-0">
-                    <p class="text-white/30 text-[10px] font-mono tracking-widest leading-loose">© 2026 KUANG STUDIO®<br>ALL RIGHTS RESERVED.</p>
+                    <p class="text-[var(--text-30)] text-[10px] font-mono tracking-widest leading-loose">© 2026 KUANG STUDIO®<br>ALL RIGHTS RESERVED.</p>
                 </div>
             </div>
         </footer>
@@ -535,21 +567,34 @@
     <div id="project-modal" onclick="closeOnOutsideClick(event)">
         <div class="modal-click-area min-h-screen flex flex-col">
             <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-10 py-5 z-[1010] shadow-lg">
-                <h2 id="modal-title" class="font-bold text-lg tracking-tight text-white uppercase">Project View</h2>
-                <button onclick="closeProject()" class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-black transition-all group outline-none" aria-label="关闭">
+                <h2 id="modal-title" class="font-bold text-lg tracking-tight text-[var(--text)] uppercase">Project View</h2>
+                <button onclick="closeProject()" class="w-12 h-12 flex items-center justify-center rounded-full border border-[var(--border-subtle)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all group outline-none" aria-label="关闭">
                     <svg class="w-6 h-6 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
             
-            <div id="modal-gallery" class="w-full flex flex-col items-center pb-20 bg-[var(--bg)]"></div>
+            <div id="modal-gallery" class="w-full flex flex-col items-center pb-20 bg-[var(--bg)] transition-colors duration-500"></div>
             
-            <div class="py-32 flex justify-center w-full bg-[var(--bg)] border-t border-[var(--border-subtle)]">
+            <div class="py-32 flex justify-center w-full bg-[var(--bg)] border-t border-[var(--border-subtle)] transition-colors duration-500">
                 <button onclick="closeProject()" class="action-btn px-12 h-14 hover-target">Close & Return</button>
             </div>
         </div>
     </div>
 
     <script>
+        // --- 🌞🌙 Theme Switcher Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeText = document.getElementById('theme-text');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                themeText.innerText = 'Dark Mode';
+            } else {
+                themeText.innerText = 'Light Mode';
+            }
+        });
+
         // 获取系统原生滚动条宽度（防止模态框弹出版面跳动）
         const getScrollbarWidth = () => { return window.innerWidth - document.documentElement.clientWidth; };
 
@@ -632,9 +677,8 @@
                 
                 gal.innerHTML += `
                     <div class="w-full max-w-[1400px] mx-auto flex flex-col mt-16 px-4">
-                        <h3 class="text-xs font-mono font-bold text-left mb-6 tracking-widest text-[var(--accent)] uppercase border-b border-[var(--border-subtle)] pb-4">${s.t}</h3>
-                        <!-- 👉 核心修改：在 md 及以上屏幕，控制图片容器宽度为 60% 居中，优化主图显示 -->
-                        <div class="bg-[var(--bg)] w-full md:w-[60%] mx-auto">${imgHtml}</div>
+                        <h3 class="text-xs font-mono font-bold text-left mb-6 tracking-widest text-[var(--accent)] uppercase border-b border-[var(--border-subtle)] pb-4 transition-colors duration-500">${s.t}</h3>
+                        <div class="bg-[var(--bg)] w-full md:w-[60%] mx-auto transition-colors duration-500">${imgHtml}</div>
                     </div>
                 `; 
             });
