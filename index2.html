@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>邝先生 | KUANG STUDIO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* 预设 Tailwind 颜色别名，方便类名调用 */
+                        themeBg: 'var(--bg)',
+                        themeText: 'var(--text)',
+                        themeAccent: 'var(--accent)',
+                        themeSubtle: 'var(--border-subtle)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'], // 高奢杂志御用衬线体
+                        mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 引入 Playfair Display 与 Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* 🌟 极简高奢色彩系统 (Quiet Luxury Palette) */
+        :root {
+            /* 默认亮色：温润燕麦色 / 纸白 */
+            --bg: #F7F5F0; 
+            --text: #2A2A2A; 
+            --text-muted: rgba(42, 42, 42, 0.5);
+            --border-subtle: rgba(42, 42, 42, 0.1);
+            --accent: #B59A7A; /* 柔和的香槟金/低饱和玫瑰金 */
+            
+            --nav-bg: rgba(247, 245, 240, 0.85);
+            --modal-header-bg: rgba(247, 245, 240, 0.98);
+            --hover-bg: #EFECE4;
+            --img-bg: #EFECE4;
+            --btn-text: #F7F5F0;
+        }
+
+        /* 🌙 暗色调模式 (Deep Elegance) */
+        body.dark-mode {
+            --bg: #1C1B1A; /* 带有极微弱暖色调的深黑 */
+            --text: #F7F5F0;
+            --text-muted: rgba(247, 245, 240, 0.5);
+            --border-subtle: rgba(247, 245, 240, 0.1);
+            --accent: #C5A98B;
+            
+            --nav-bg: rgba(28, 27, 26, 0.85);
+            --modal-header-bg: rgba(28, 27, 26, 0.98);
+            --hover-bg: #262422;
+            --img-bg: #262422;
+            --btn-text: #1C1B1A;
+        }
+
+        ::selection { background: var(--accent); color: var(--btn-text); }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: none;
+            -webkit-font-smoothing: antialiased;
+            width: 100vw;
+            transition: background-color 0.8s ease, color 0.8s ease;
+        }
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* 顶部进度条变得更纤细柔和 */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 1.5px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 10010;
+            will-change: width;
+            opacity: 0.8;
+        }
+
+        /* 优雅的图片遮罩与视差 */
+        .premium-img-wrap {
+            overflow: hidden;
+            background: var(--img-bg);
+            border-radius: 2rem; /* 大圆角，护肤品/医疗美学的核心特征 */
+            will-change: transform;
+            transition: background-color 0.8s;
+            position: relative;
+        }
+        .premium-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.02);
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1.5s;
+            will-change: transform, filter;
+            /* 赋予图片一种柔和的胶片感 */
+            filter: saturate(0.9) brightness(0.95);
+        }
+        .premium-card:hover .premium-img-wrap img {
+            transform: scale(1.06);
+            filter: saturate(1.1) brightness(1);
+        }
+
+        /* 柔和的卡片悬浮反馈 */
+        .premium-card {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* 极简列表行 */
+        .elegant-row {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 2.5rem 0;
+            transition: padding 0.5s ease, background 0.5s ease, border-color 0.8s ease;
+        }
+        @media (min-width: 768px) {
+            .elegant-row { flex-direction: row; align-items: baseline; }
+        }
+        .elegant-row:hover { 
+            background: var(--hover-bg); 
+            padding-left: 2rem; 
+            padding-right: 2rem; 
+        }
+
+        /* 圆润优雅的箭头 */
+        .hover-arrow { display: inline-block; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s; }
+        .group:hover .hover-arrow, .hover-target:hover .hover-arrow { transform: translate(4px, -4px); color: var(--accent); }
+
+        /* 光标变得如同水滴般柔和 */
+        .cursor-dot { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; will-change: transform; opacity: 0.8; }
+        .cursor-outline { position: fixed; top: 0; left: 0; width: 40px; height: 40px; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 9999; transition: width 0.4s, height 0.4s, background-color 0.4s; will-change: transform, width, height; opacity: 0.3; }
+        .cursor-outline.hover-mode { width: 72px; height: 72px; background: var(--accent); opacity: 0.15; border-color: transparent; }
+
+        /* 缓慢优雅的渐显动画 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 模态框 */
+        #project-modal { position: fixed; inset: 0; width: 100%; height: 100%; background: var(--bg); z-index: 1000; transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1); overflow-y: auto; will-change: transform; }
+        #project-modal.show { transform: translateY(0); }
+        .viewer-header { background: var(--modal-header-bg); border-bottom: 1px solid var(--border-subtle); backdrop-filter: blur(12px); transition: background-color 0.8s, border-color 0.8s; }
+        
+        /* 高奢感药丸按钮 */
+        .action-btn { display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 36px; font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--btn-text); background: var(--text); border-radius: 30px; transition: all 0.4s ease; font-family: 'Inter', sans-serif; }
+        .action-btn:hover { background: var(--accent); color: #fff; transform: scale(1.02); }
+        
+        /* 轮廓按钮 */
+        .outline-btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 24px; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; color: var(--text); border: 1px solid var(--border-subtle); border-radius: 30px; transition: all 0.4s ease; }
+        .outline-btn:hover { border-color: var(--text); background: var(--text); color: var(--btn-text); }
+        
+        /* 强调字体 */
+        .font-serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+
+    </style>
+</head>
+<body>
+
+    <div id="scroll-progress"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- 🌙🌞 亮暗模式切换按钮 (修改为极简风格) -->
+    <button id="theme-toggle" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[10001] w-12 h-12 flex items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--bg)] text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-500 outline-none shadow-sm hover-target group">
+        <svg id="icon-moon" class="w-5 h-5 absolute transition-all duration-500 opacity-0 transform scale-50 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        <svg id="icon-sun" class="w-5 h-5 absolute transition-all duration-500 opacity-100 transform scale-100 rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+    </button>
+
+    <main class="relative z-10 w-full" id="main-content">
+
+        <!-- 柔和优雅的导航栏 -->
+        <nav id="main-nav" class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-[var(--nav-bg)] backdrop-blur-xl border-b border-[var(--border-subtle)] hover-target transition-colors duration-800">
+            <div class="text-xl md:text-2xl font-serif tracking-wide text-[var(--text)] flex items-center gap-2">
+                KUANG <span class="font-sans text-[10px] uppercase tracking-widest text-[var(--text-50)] pt-1">Studio</span>
+            </div>
+            <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-widest font-medium text-[var(--text-60)]">
+                <a href="#studio" class="hover:text-[var(--accent)] transition-colors">Studio</a>
+                <a href="#expertise" class="hover:text-[var(--accent)] transition-colors">Expertise</a>
+                <a href="#work" class="hover:text-[var(--accent)] transition-colors">Works</a>
+                <a href="#experience" class="hover:text-[var(--accent)] transition-colors">Experience</a>
+            </div>
+            <a href="mailto:dyk162@163.com" class="outline-btn hover-target group">
+                Let's Talk
+            </a>
+        </nav>
+
+        <!-- 高级杂志封面首屏 (Hero Section) -->
+        <header id="intro" class="min-h-[90vh] flex flex-col justify-center pt-32 pb-20 relative px-6 md:px-12">
+            <div class="max-w-6xl mx-auto w-full reveal">
+                <div class="flex items-center justify-center gap-4 mb-10">
+                    <span class="w-1.5 h-1.5 bg-[var(--accent)] rounded-full"></span>
+                    <p class="text-[11px] uppercase tracking-widest text-[var(--text-50)]">Visual Architect / Design Manager</p>
+                </div>
+                
+                <!-- 巨大的优雅衬线字体 -->
+                <h1 class="text-center text-[12vw] md:text-[8vw] leading-[1] font-serif text-[var(--text)] transition-colors duration-800">
+                    Empowering <br>
+                    <span class="font-serif-italic text-[var(--accent)]">Commerce</span><br>
+                    Through Vision.
+                </h1>
+                
+                <div class="mt-16 md:mt-24 flex justify-center">
+                    <p class="text-center text-[var(--text-60)] text-base md:text-lg font-light max-w-2xl leading-relaxed">
+                        不仅懂视觉表现，更懂底层数据逻辑。通过建立标准化的设计体系与前沿 AIGC 工作流，极致赋能品牌商业转化与体验升级。
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- 核心业务板块 (What I Do) - 使用悬浮卡片 -->
+        <section id="expertise" class="py-24 md:py-40 px-6 md:px-12 bg-[var(--bg)] transition-colors duration-800">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 reveal">
+                    <h2 class="text-3xl md:text-5xl font-serif text-[var(--text)]">Expertise <span class="font-serif-italic text-[var(--accent)]">&</span> Capabilities</h2>
+                    <p class="text-[11px] uppercase tracking-widest text-[var(--text-50)] mt-6 md:mt-0">Our Core Services</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                    <div class="p-10 md:p-14 border border-[var(--border-subtle)] rounded-[2rem] hover:border-[var(--text-30)] transition-colors duration-500 hover-target">
+                        <div class="text-[var(--accent)] text-3xl mb-6 font-serif-italic">01.</div>
+                        <h4 class="text-xl md:text-2xl font-serif text-[var(--text)] mb-4">品牌视觉全案设计</h4>
+                        <p class="text-[var(--text-60)] text-sm leading-relaxed font-light">从 0 到 1 构建品牌视觉系统与规范，精准传达品牌内核，覆盖线上线下多维触点呈现，建立独一无二的品牌高定心智。</p>
+                    </div>
+                    <div class="p-10 md:p-14 border border-[var(--border-subtle)] rounded-[2rem] hover:border-[var(--text-30)] transition-colors duration-500 hover-target">
+                        <div class="text-[var(--accent)] text-3xl mb-6 font-serif-italic">02.</div>
+                        <h4 class="text-xl md:text-2xl font-serif text-[var(--text)] mb-4">AIGC 视觉生态构建</h4>
+                        <p class="text-[var(--text-60)] text-sm leading-relaxed font-light">深度整合 Gemini、Nano Banana、GPT Image2 及 Seedance 2.0 等前沿多模态大模型，重构团队工作流，大幅压缩渲染周期与成本。</p>
+                    </div>
+                    <div class="p-10 md:p-14 border border-[var(--border-subtle)] rounded-[2rem] hover:border-[var(--text-30)] transition-colors duration-500 hover-target">
+                        <div class="text-[var(--accent)] text-3xl mb-6 font-serif-italic">03.</div>
+                        <h4 class="text-xl md:text-2xl font-serif text-[var(--text)] mb-4">全链路电商视觉</h4>
+                        <p class="text-[var(--text-60)] text-sm leading-relaxed font-light">主导高转化率的亚马逊 A+ 页面及国内电商详情页设计，跳出“唯排版论”，通过数据反哺，重构产品卖点与视觉逻辑。</p>
+                    </div>
+                    <div class="p-10 md:p-14 border border-[var(--border-subtle)] rounded-[2rem] hover:border-[var(--text-30)] transition-colors duration-500 hover-target">
+                        <div class="text-[var(--accent)] text-3xl mb-6 font-serif-italic">04.</div>
+                        <h4 class="text-xl md:text-2xl font-serif text-[var(--text)] mb-4">TVC 美术与后期统筹</h4>
+                        <p class="text-[var(--text-60)] text-sm leading-relaxed font-light">把控大型 TVC 宣传片现场跟拍美术调性，统筹落地执行，并熟练驾驭后期动态视觉、视频剪辑与色彩科学。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 画廊式作品展示 (Gallery Works) -->
+        <section id="work" class="py-24 md:py-32 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col items-center mb-24 reveal">
+                    <p class="text-[11px] uppercase tracking-widest text-[var(--text-50)] mb-4">Portfolio</p>
+                    <h2 class="text-4xl md:text-5xl font-serif text-[var(--text)]">Selected <span class="font-serif-italic text-[var(--accent)]">Works</span></h2>
+                </div>
+
+                <!-- 重点作品 01 -->
+                <div class="premium-card group cursor-pointer reveal mb-32 md:mb-48" onclick="openProj('p2')">
+                    <div class="premium-img-wrap aspect-[4/3] md:aspect-[16/10] w-full max-w-5xl mx-auto shadow-sm">
+                        <img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" alt="云米扫拖机器人" loading="lazy">
+                    </div>
+                    <div class="max-w-4xl mx-auto mt-10 md:mt-16 text-center">
+                        <p class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-3">Visual Strategy · C4D</p>
+                        <h3 class="text-3xl md:text-5xl font-serif text-[var(--text)] mb-6 transition-colors group-hover:text-[var(--accent)]">Viomi Robot Vacuum</h3>
+                        <p class="text-[var(--text-60)] text-sm md:text-base font-light max-w-2xl mx-auto">云米智能扫拖机器人全矩阵视觉标准重塑。通过精细化结构拆解，实现核心性能的可视化表达。</p>
+                    </div>
+                </div>
+
+                <!-- 重点作品 02 -->
+                <div class="premium-card group cursor-pointer reveal mb-32 md:mb-48" onclick="openProj('p5')">
+                    <div class="premium-img-wrap aspect-[4/3] md:aspect-[16/10] w-full max-w-5xl mx-auto shadow-sm">
+                        <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" alt="米家电水壶" loading="lazy">
+                    </div>
+                    <div class="max-w-4xl mx-auto mt-10 md:mt-16 text-center">
+                        <p class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-3">3D Rendering · Art Direction</p>
+                        <h3 class="text-3xl md:text-5xl font-serif text-[var(--text)] mb-6 transition-colors group-hover:text-[var(--accent)]">Mijia Kettle 1S</h3>
+                        <p class="text-[var(--text-60)] text-sm md:text-base font-light max-w-2xl mx-auto">米家电水壶 1S 全案设计。在极简产品语境下，重构高质感家居渲染场景与视觉卖点逻辑。</p>
+                    </div>
+                </div>
+
+                <!-- 重点作品 03 -->
+                <div class="premium-card group cursor-pointer reveal mb-32 md:mb-48" onclick="openProj('p6')">
+                    <div class="premium-img-wrap aspect-[4/3] md:aspect-[16/10] w-full max-w-5xl mx-auto shadow-sm">
+                        <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌视觉精选" loading="lazy">
+                    </div>
+                    <div class="max-w-4xl mx-auto mt-10 md:mt-16 text-center">
+                        <p class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-3">E-commerce · AIGC</p>
+                        <h3 class="text-3xl md:text-5xl font-serif text-[var(--text)] mb-6 transition-colors group-hover:text-[var(--accent)]">Overseas Branding</h3>
+                        <p class="text-[var(--text-60)] text-sm md:text-base font-light max-w-2xl mx-auto">基于欧美审美语境的品牌视觉系统再造。涵盖高转化亚马逊主图与 A+ 沉浸式详情页矩阵。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 附录列表 (The Archive) -->
+        <section class="py-24 px-6 md:px-12 border-t border-[var(--border-subtle)] transition-colors duration-800">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center justify-between mb-16">
+                    <h2 class="text-2xl font-serif text-[var(--text)]">Project <span class="font-serif-italic text-[var(--accent)]">Archive</span></h2>
+                </div>
+                
+                <div class="border-t border-[var(--border-subtle)]">
+                    
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p1')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2020 · Domestic</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Robot Vac V1</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">LDS 激光导航卖点可视化 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p3')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2020 · Domestic</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Viomi Vacuum</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">手持吸尘器结构化拆解展现 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p9')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2023 · Global</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Cabinet Light 2.0</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">Listing 全案及 A+ 系统 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p10')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2024 · Global</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Ultra-thin Sensor</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">海外旗舰新品全链路视觉 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p8')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2022 · Global</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Flagship Rebuild</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">高转化率 A+ 场景逻辑展示 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p4')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2019 · Domestic</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Air Purifier</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">科技感调性全效杀菌逻辑 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+                    
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p7')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2021 · Global</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Smart Home Set</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">海外智能家电Listing呈现 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+
+                    <div class="elegant-row hover-target cursor-pointer reveal group" onclick="openProj('p11')">
+                        <div class="w-full md:w-[20%] mb-2 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2023 · Global</div>
+                        <div class="w-full md:w-[40%] mb-2 md:mb-0"><h4 class="text-xl md:text-2xl font-serif text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">Cabinet Light Pro</h4></div>
+                        <div class="w-full md:w-[40%] md:text-right text-[var(--text-60)] text-sm font-light">高级场景化视觉进阶版 <span class="hover-arrow inline-block ml-3 text-[var(--text)]">↗</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 职业经历 -->
+        <section id="experience" class="py-24 md:py-32 px-6 md:px-12 border-t border-[var(--border-subtle)] transition-colors duration-800">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center justify-between mb-16">
+                    <h2 class="text-2xl font-serif text-[var(--text)]">Career <span class="font-serif-italic text-[var(--accent)]">Journey</span></h2>
+                </div>
+                <div class="border-t border-[var(--border-subtle)]">
+                    
+                    <div class="elegant-row reveal hover-target">
+                        <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2024 — Present</div>
+                        <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
+                            <h4 class="text-xl font-serif font-bold mb-2 text-[var(--text)]">广州奕至家居</h4>
+                            <p class="text-[var(--accent)] text-[10px] tracking-widest uppercase">Design Manager (返聘)</p>
+                        </div>
+                        <div class="w-full md:w-[50%] text-[var(--text-60)] text-sm font-light leading-relaxed">
+                            重构海外设计团队，建立可视化工作流程。根据亚马逊欧美用户画像落地品牌视觉风格。建立以转化率为核心的视觉评估体系，引入AIGC提效。核心产品转化率提升 10%-30%。
+                        </div>
+                    </div>
+
+                    <div class="elegant-row reveal hover-target">
+                        <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2023 — 2024</div>
+                        <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
+                            <h4 class="text-xl font-serif font-bold mb-2 text-[var(--text)]">广东久量科技</h4>
+                            <p class="text-[var(--text-50)] text-[10px] tracking-widest uppercase">Design Supervisor</p>
+                        </div>
+                        <div class="w-full md:w-[50%] text-[var(--text-60)] text-sm font-light leading-relaxed">
+                            负责洗护系列产品品牌视觉建设，全链路设计。内衣裤洗衣机、烘干机等新品视觉构建（外拍对接、精修渲染），承担平台活动视觉更新。
+                        </div>
+                    </div>
+
+                    <div class="elegant-row reveal hover-target">
+                        <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2020 — 2023</div>
+                        <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
+                            <h4 class="text-xl font-serif font-bold mb-2 text-[var(--text)]">广州奕至家居</h4>
+                            <p class="text-[var(--text-50)] text-[10px] tracking-widest uppercase">Design Lead</p>
+                        </div>
+                        <div class="w-full md:w-[50%] text-[var(--text-60)] text-sm font-light leading-relaxed">
+                            前期负责国内新品及大促视觉；后期任海外产品设计部负责人，主导品牌建设与产品站设计，成功从零到一建立视觉品牌概念，完成产品出海布局。
+                        </div>
+                    </div>
+
+                    <div class="elegant-row reveal hover-target">
+                        <div class="w-full md:w-[20%] mb-4 md:mb-0 text-[var(--text-40)] text-[10px] uppercase tracking-widest pt-2">2018 — 2020</div>
+                        <div class="w-full md:w-[30%] mb-4 md:mb-0 pr-8">
+                            <h4 class="text-xl font-serif font-bold mb-2 text-[var(--text)]">佛山市云米电器</h4>
+                            <p class="text-[var(--text-50)] text-[10px] tracking-widest uppercase">Graphic Designer</p>
+                        </div>
+                        <div class="w-full md:w-[50%] text-[var(--text-60)] text-sm font-light leading-relaxed">
+                            负责天猫/京东 S级大促主视觉设计。统筹超50款小家电产品详情页设计，参与发布会视觉物料支持。
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 优雅的底部信息 -->
+        <footer id="contact" class="flex flex-col justify-between px-6 md:px-12 pt-32 pb-10 min-h-[70vh] border-t border-[var(--border-subtle)]">
+            <div class="reveal mt-auto max-w-6xl mx-auto w-full text-center">
+                <h2 class="text-[12vw] md:text-[8vw] leading-none font-serif text-[var(--text)] mb-10">
+                    Let's <span class="font-serif-italic text-[var(--accent)]">Connect</span>
+                </h2>
+                <p class="text-[var(--text-60)] text-base font-light mb-12">随时探讨视觉增长与商业破局之道。</p>
+                <a href="mailto:dyk162@163.com" class="action-btn hover-target shadow-xl shadow-[var(--accent)]/10">
+                    Get in touch
+                </a>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-24 mt-auto max-w-7xl mx-auto w-full">
+                <div class="flex gap-8 text-[11px] uppercase tracking-widest font-medium text-[var(--text-50)]">
+                    <a href="mailto:dyk162@163.com" class="hover:text-[var(--accent)] transition-colors">dyk162@163.com</a>
+                    <a href="tel:13751868717" class="hover:text-[var(--accent)] transition-colors">+86 137 5186 8717</a>
+                </div>
+                <div class="text-[10px] text-[var(--text-40)] uppercase tracking-widest">
+                    © 2026 KUANG STUDIO. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- 项目模态框 (优雅白色背景适应) -->
+    <div id="project-modal" onclick="closeOnOutsideClick(event)">
+        <div class="modal-click-area min-h-screen flex flex-col">
+            <div class="viewer-header sticky top-0 w-full flex justify-between items-center px-6 md:px-12 py-5 z-[1010] shadow-sm">
+                <h2 id="modal-title" class="font-serif text-xl text-[var(--text)]">Project View</h2>
+                <button onclick="closeProject()" class="w-10 h-10 flex items-center justify-center rounded-full border border-[var(--border-subtle)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all group outline-none hover-target" aria-label="关闭">
+                    <svg class="w-5 h-5 transition-transform group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div id="modal-gallery" class="w-full flex flex-col items-center pb-24 bg-[var(--bg)] transition-colors duration-800"></div>
+            
+            <div class="py-24 flex justify-center w-full bg-[var(--bg)] border-t border-[var(--border-subtle)] transition-colors duration-800">
+                <button onclick="closeProject()" class="outline-btn px-12 hover-target">Close & Return</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 🌙🌞 Theme Switcher Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const iconMoon = document.getElementById('icon-moon');
+        const iconSun = document.getElementById('icon-sun');
+
+        // 默认是亮色(Light Mode)，点击切换为暗色(Dark Mode)
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                iconSun.classList.replace('opacity-100', 'opacity-0');
+                iconSun.classList.replace('scale-100', 'scale-50');
+                iconSun.classList.replace('rotate-0', '-rotate-90');
+                
+                iconMoon.classList.replace('opacity-0', 'opacity-100');
+                iconMoon.classList.replace('scale-50', 'scale-100');
+                iconMoon.classList.replace('rotate-90', 'rotate-0');
+            } else {
+                iconMoon.classList.replace('opacity-100', 'opacity-0');
+                iconMoon.classList.replace('scale-100', 'scale-50');
+                iconMoon.classList.replace('rotate-0', 'rotate-90');
+                
+                iconSun.classList.replace('opacity-0', 'opacity-100');
+                iconSun.classList.replace('scale-50', 'scale-100');
+                iconSun.classList.replace('-rotate-90', 'rotate-0');
+            }
+        });
+
+        // 获取系统原生滚动条宽度
+        const getScrollbarWidth = () => { return window.innerWidth - document.documentElement.clientWidth; };
+
+        // --- 阅读进度条逻辑 ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        }, { passive: true });
+
+        // --- 柔和水滴光标 ---
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (!isTouchDevice) {
+            const dot = document.getElementById('cursor-dot');
+            const outline = document.getElementById('cursor-outline');
+            
+            let mouseX = -100, mouseY = -100;
+            let isFrameRequested = false;
+
+            document.addEventListener('mousemove', (e) => { 
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                if (!isFrameRequested) {
+                    requestAnimationFrame(() => {
+                        dot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                        outline.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                        isFrameRequested = false;
+                    });
+                    isFrameRequested = true;
+                }
+            });
+
+            document.querySelectorAll('.hover-target, a, button, .premium-card, .elegant-row').forEach(el => { 
+                el.addEventListener('mouseenter', () => { outline.classList.add('hover-mode'); }); 
+                el.addEventListener('mouseleave', () => { outline.classList.remove('hover-mode'); }); 
+            });
+        } else {
+            document.getElementById('cursor-dot').style.display = 'none';
+            document.getElementById('cursor-outline').style.display = 'none';
+            document.body.style.cursor = 'auto';
+        }
+
+        // --- 渐显动画 ---
+        const observer = new IntersectionObserver((entries, obs) => { 
+            entries.forEach(e => { 
+                if (e.isIntersecting) { 
+                    e.target.classList.add('active'); 
+                    obs.unobserve(e.target); 
+                }
+            }); 
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- 模态框数据与逻辑 ---
+        const B = "https://i.postimg.cc/";
+        const pd = {
+            p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
+            p2:{t:"云米扫拖机器人 (精选版)",s:[{t:"多型号视觉重构",i:["4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg","DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg","4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg","J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg","rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png","7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png","MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg","c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg","5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg","4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg","Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg","BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg","gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"]}]},
+            p3:{t:"云米手持无线吸尘器",s:[{t:"结构拆解分析",i:["mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg","xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg","RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg","d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg","Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg","bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg","DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg","76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg","JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg","SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg","26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg","wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg","wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg","zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg","6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"]}]},
+            p4:{t:"云米空气消毒净化器",s:[{t:"科技调性重构",i:["L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg","XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg","GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg","K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg","jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg","bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg","fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg","dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg","kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg","T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg","13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg","6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg","MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg","wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg","VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"]}]},
+            p5:{t:"米家电水壶 1S 全案",s:[{t:"全景视觉呈现",i:["KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg","G2zRwdKk/2018-2020-zuo-pin-ji-jing-xuan-17-02.jpg","0QZvRPnS/2018-2020-zuo-pin-ji-jing-xuan-17-03.jpg","3R9h5Y1v/2018-2020-zuo-pin-ji-jing-xuan-17-04.jpg","J0nLRvYK/2018-2020-zuo-pin-ji-jing-xuan-18.jpg","PJxjd9V6/2018-2020-zuo-pin-ji-jing-xuan-19.jpg","Wz3vsCY5/2018-2020-zuo-pin-ji-jing-xuan-20-01.jpg","0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg","L5bM5DGb/2018-2020-zuo-pin-ji-jing-xuan-20-03.jpg","2yKfyGgX/2018-2020-zuo-pin-ji-jing-xuan-20-04.jpg","7h6kqdQv/2018-2020-zuo-pin-ji-jing-xuan-20-05.jpg","yxbzxj22/2018-2020-zuo-pin-ji-jing-xuan-20-06.jpg","KjHyjfdx/2018-2020-zuo-pin-ji-jing-xuan-20-07.jpg","tJMHJkLG/2018-2020-zuo-pin-ji-jing-xuan-20-08.jpg","BbVGbpds/2018-2020-zuo-pin-ji-jing-xuan-20-09.jpg","HnhCnzfT/2018-2020-zuo-pin-ji-jing-xuan-20-10.jpg","0jBqjnLk/2018-2020-zuo-pin-ji-jing-xuan-20-11.jpg","tJMHJkLT/2018-2020-zuo-pin-ji-jing-xuan-20-12.jpg","90nj0bvf/2018-2020-zuo-pin-ji-jing-xuan-20-13.jpg","Y0sw0RJv/2018-2020-zuo-pin-ji-jing-xuan-20-14.jpg","gjTPjsfn/2018-2020-zuo-pin-ji-jing-xuan-20-15.jpg","dQHF5QDn/2018-2020-zuo-pin-ji-jing-xuan-20-16.jpg","mZX4mZhw/2018-2020-zuo-pin-ji-jing-xuan-20-17.jpg"]}]},
+            p6:{t:"海外品牌视觉精选全案",s:[{t:"主图与 A+ 系统",i:["mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg","CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg","k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg","FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg","fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg","0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg","g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg","tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg","cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg","W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg","N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg","CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg","3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg","bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg","Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg","bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"]}]},
+            p7:{t:"海外智能家电系列",s:[{t:"Listing 视觉设计",i:["Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg","DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg","yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg","mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg","Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg","br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg","L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg","gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg","XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg","59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg","VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg","mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg","CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg","qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg","DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg","05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg","yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg","zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"]}]},
+            p8:{t:"旗舰新品视觉重构",s:[{t:"A+ 场景",i:["gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg","Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg","ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg","c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg","GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg","WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg","Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg","hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg","FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg","Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg","VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg","0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg","7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg","SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg","Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg","rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg","L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"]}]},
+            p9:{t:"智能橱柜灯 2.0",s:[{t:"Listing Main",i:["5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg","fycwbpxT/UCL01-2-0-wu-yao-kong-20-zhu-tu-2.jpg","PJWtq9mx/UCL01-2-0-wu-yao-kong-20-zhu-tu-3.jpg","j2Hsjmzj/UCL01-2-0-wu-yao-kong-20-zhu-tu-4.jpg","VvqYNpjd/UCL01-2-0-wu-yao-kong-20-zhu-tu-5.png","yxmVNtFR/UCL01-2-0-wu-yao-kong-20-zhu-tu-6.jpg","7h3xLdgS/UCL01-2-0-wu-yao-kong-20-zhu-tu-7.jpg","j2Hsjmzz/UCL01-2-0-wu-yao-kong-20-zhu-tu-8.jpg","vTrQmkW3/UCL01-2-0-fei-IR-ban-zhu-tu-6.png"]},{t:"A+ Enhanced",i:["dV1YMLSC/UCL01-2-0-wu-yao-kong-20-A-PC-1.png","Qdt3LHn1/UCL01-2-0-wu-yao-kong-20-A-PC-2.png","kg4mrBh8/UCL01-2-0-wu-yao-kong-20-A-PC-3.png","htjBFf3V/UCL01-2-0-wu-yao-kong-20-A-PC-4.png","BnVGJ4d2/UCL01-2-0-wu-yao-kong-20-A-PC-5.png","RZDzv4jc/UCL01-2-0-wu-yao-kong-20-A-PC-6-1.png","9QMh3rNJ/UCL01-2-0-wu-yao-kong-20-A-PC-6-2.jpg","DwMK7ntP/UCL01-2-0-wu-yao-kong-20-A-PC-6-3.png","4xSTXsr8/UCL01-2-0-wu-yao-kong-20-A-PC-8-1.png","y8bz7swv/UCL01-2-0-wu-yao-kong-20-A-PC-8-2.png","QdyrjhRy/UCL01-2-0-wu-yao-kong-20-A-PC-8-3.png","T34XTfZN/UCL01-2-0-wu-yao-kong-20-A-PC-8-3-kao-bei.png","4xSTXsrr/UCL01-2-0-wu-yao-kong-20-A-PC-9-1.png","Jz2WRM9f/UCL01-2-0-wu-yao-kong-20-A-PC-9-2.png"]}]},
+            p10:{t:"超薄智能感应灯全案",s:[{t:"Listing Content",i:["fymL155B/UCL06-20-zhu-tu-1-2.png","6qn3Fzz0/UCL06-20-zhu-tu-2.png","d3r1gnn5/UCL06-20-zhu-tu-3.png","Wzg3xSSw/UCL06-20-zhu-tu-4.png","PJYx0KKg/UCL06-20-zhu-tu-5.png","cCwHPTXq/UCL06-20-zhu-tu-6.png","66vy75wQ/UCL06-20-zhu-tu-7.png","tJWT8DD8/UCL06-20-zhu-tu-8.jpg","05wb62xw/UCL06-20-zhu-tu-9.png"]},{t:"A+ Sections",i:["3rvdyJ7p/UCL06-20cm-A-PC-1.png","NGH5yfYm/UCL06-20cm-A-PC-2.png","mZHtc2RQ/UCL06-20cm-A-PC-3-1.png","59C6HN1n/UCL06-20cm-A-PC-3-2.png","kMbBVX9w/UCL06-20cm-A-PC-3-3.png","RCHN3V9s/UCL06-20cm-A-PC-3-4.png","sDC15dDY/UCL06-20cm-A-PC-4-1.png","zXY3TZX6/UCL06-20cm-A-PC-4-2.png","m2Wh7f2q/UCL06-20cm-A-PC-4-3.png","kXPDW3X0/UCL06-20cm-A-PC-4-4.png","ZKz06t5J/UCL06-20cm-A-PC-5-1.png","BQ5bgYXd/UCL06-20cm-A-PC-5-2.png","ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png","wT5MVf1p/UCL06-20cm-A-PC-5-4.png","8PdcHK7D/UCL06-20cm-A-PC-6-1.png","gkyjDSx2/UCL06-20cm-A-PC-6-2.png","tCdJ5SsY/UCL06-20cm-A-PC-6-3.png","VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"]}]},
+            p11:{t:"智能橱柜灯 A+ 进阶",s:[{t:"A+ Enhanced",i:["nzYFCmJs/UCL01-2-0-A-1.jpg","D0v2szv8/UCL01-2-0-A-2.jpg","GtLcYpLT/UCL01-2-0-A-3.jpg","gjzYR0z3/UCL01-2-0-A-4.jpg","x8f0Hdfm/UCL01-2-0-A-4-2.png","MH6WRG6R/UCL01-2-0-A-4-3.png","1Xm96zm0/UCL01-2-0-A-5-1.png","WzN2r4NW/UCL01-2-0-A-5-2.png","PJXtZqXF/UCL01-2-0-A-5-3.png","QC8X5M8Y/UCL01-2-0-A-6-1.png","wMw9kdMF/UCL01-2-0-A-6-2-1.png","4yWX1TyB/UCL01-2-0-A-7-1.jpg","J0pRQW06/UCL01-2-0-A-7-2.png"]}]}
+        };
+
+        let modalTimer;
+
+        function openProj(id) {
+            const d = pd[id]; 
+            document.getElementById('modal-title').innerText = d.t; 
+            const gal = document.getElementById('modal-gallery'); 
+            gal.innerHTML = ''; 
+            
+            d.s.forEach(s => { 
+                const imgHtml = s.i.map(img => 
+                    `<img src="${B}${img}" loading="lazy" class="w-full h-auto block m-0 p-0 border-none align-bottom rounded-lg mb-2 shadow-sm" alt="${s.t}">`
+                ).join('');
+                
+                gal.innerHTML += `
+                    <div class="w-full max-w-6xl mx-auto flex flex-col mt-20 px-6">
+                        <h3 class="text-xs font-serif font-bold text-center mb-8 tracking-widest text-[var(--accent)] uppercase">${s.t}</h3>
+                        <div class="bg-[var(--bg)] w-full md:w-[65%] mx-auto transition-colors duration-500">${imgHtml}</div>
+                    </div>
+                `; 
+            });
+            
+            const modal = document.getElementById('project-modal');
+            const mainNav = document.getElementById('main-nav');
+            const scrollbarWidth = getScrollbarWidth();
+            
+            clearTimeout(modalTimer);
+            
+            document.body.style.paddingRight = scrollbarWidth + 'px';
+            mainNav.style.width = `calc(100% - ${scrollbarWidth}px)`;
+            document.body.style.overflow = 'hidden';
+            
+            modal.scrollTop = 0; 
+            modal.classList.add('show'); 
+        }
+        
+        function closeProject() { 
+            const modal = document.getElementById('project-modal');
+            const mainNav = document.getElementById('main-nav');
+            
+            modal.classList.remove('show'); 
+            
+            clearTimeout(modalTimer);
+            modalTimer = setTimeout(() => {
+                if (!modal.classList.contains('show')) {
+                    document.body.style.overflow = ''; 
+                    document.body.style.paddingRight = '0px';
+                    mainNav.style.width = '100%';
+                }
+            }, 800); 
+        }
+        
+        function closeOnOutsideClick(e) { 
+            if (e.target.id === 'project-modal' || e.target.classList.contains('modal-click-area')) {
+                closeProject(); 
+            }
+        }
+    </script>
+</body>
+</html>
