@@ -3,2149 +3,445 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KUANG Studio portfolio: commerce visual systems, AIGC workflows, product rendering, Amazon A+ and brand conversion design.">
-  <title>KUANG Studio | Commerce Visual Systems</title>
+  <meta name="description" content="邝先生的海外电商视觉作品集，重点展示 Amazon Listing、A+ 内容、家居产品与海外品牌视觉设计。">
+  <title>邝先生｜Amazon 与海外电商视觉设计</title>
   <style>
-    :root {
-      --bg: #0d0e0d;
-      --panel: #151615;
-      --panel-2: #1c1d1b;
-      --text: #f2eee5;
-      --muted: #a7a19a;
-      --soft: #6f6a63;
-      --line: rgba(242, 238, 229, 0.14);
-      --line-strong: rgba(242, 238, 229, 0.28);
-      --accent: #d2ad6c;
-      --red: #ff3300;
-      --paper: #e9e3d7;
-      --ink: #121110;
-      --shadow: rgba(0, 0, 0, 0.38);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background:
-        linear-gradient(rgba(242,238,229,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(242,238,229,0.035) 1px, transparent 1px),
-        var(--bg);
-      background-size: 24px 24px;
-      color: var(--text);
-      font-family: Inter, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-      letter-spacing: 0;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    img { display: block; max-width: 100%; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      height: 72px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 24px;
-      padding: 0 32px;
-      background: rgba(13, 14, 13, 0.88);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-    }
-
-    .brand {
-      font-size: 24px;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .brand small {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .nav {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .nav a,
-    .contact-link,
-    .chip {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 16px;
-      background: rgba(255, 255, 255, 0.025);
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 800;
-      transition: border-color .2s ease, color .2s ease, background .2s ease;
-    }
-
-    .nav a:hover,
-    .contact-link:hover,
-    .chip:hover {
-      color: var(--text);
-      border-color: var(--accent);
-      background: rgba(210, 173, 108, 0.1);
-    }
-
-    .contact-link {
-      justify-self: end;
-      color: var(--text);
-      border-color: rgba(210, 173, 108, 0.42);
-    }
-
-    .section {
-      scroll-margin-top: 96px;
-      padding: 96px 32px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-inner {
-      width: min(1200px, 100%);
-      margin: 0 auto;
-    }
-
-    .kicker {
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .hero {
-      min-height: calc(100vh - 72px);
-      padding: 56px 32px 72px;
-      display: grid;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      width: min(1200px, 100%);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      margin: 0;
-      max-width: 620px;
-      font-size: 74px;
-      line-height: 0.96;
-      font-weight: 1000;
-      word-break: keep-all;
-    }
-
-    .hero h1 span {
-      color: var(--red);
-      display: block;
-    }
-
-    .hero-copy {
-      margin: 24px 0 0;
-      max-width: 520px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      margin-top: 32px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .primary,
-    .secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 900;
-      border: 1px solid var(--accent);
-    }
-
-    .primary { background: var(--accent); color: var(--ink); }
-    .secondary { background: transparent; color: var(--text); }
-
-    .gallery-stage {
-      position: relative;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1100px;
-    }
-
-    .showcase-board {
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      gap: 14px;
-      align-items: stretch;
-      min-height: 560px;
-    }
-
-    .showcase-main,
-    .showcase-thumb {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line-strong);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: 0 24px 80px var(--shadow);
-    }
-
-    .showcase-main img,
-    .showcase-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: 0.92;
-    }
-
-    .showcase-thumb img {
-      padding: 6px;
-      background: #101110;
-    }
-
-    .showcase-main::after,
-    .showcase-thumb::after {
-      content: attr(data-label);
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      padding: 8px 10px;
-      border-radius: 4px;
-      background: rgba(13, 14, 13, 0.72);
-      border: 1px solid rgba(242, 238, 229, 0.18);
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .showcase-main {
-      min-height: 560px;
-    }
-
-    .showcase-main img {
-      object-position: center;
-    }
-
-    .showcase-thumbs {
-      display: grid;
-      gap: 14px;
-    }
-
-    .showcase-thumb {
-      min-height: 126px;
-    }
-
-    .showcase-note {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.018);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .orbit-gallery {
-      position: relative;
-      width: min(760px, 100%);
-      min-height: 560px;
-      border: 1px solid rgba(242, 238, 229, 0.2);
-      overflow: hidden;
-      transform-style: preserve-3d;
-      isolation: isolate;
-      background:
-        linear-gradient(rgba(242,238,229,0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(242,238,229,0.028) 1px, transparent 1px),
-        radial-gradient(circle at 50% 58%, rgba(210, 173, 108, 0.08), transparent 48%),
-        rgba(10, 11, 10, 0.4);
-      background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
-    }
-
-    .gallery-status,
-    .gallery-caption {
-      position: absolute;
-      z-index: 12;
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: 0 10px;
-      border: 1px solid rgba(242, 238, 229, 0.16);
-      border-radius: 999px;
-      background: rgba(13, 14, 13, 0.58);
-      color: rgba(242, 238, 229, 0.66);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 0;
-      backdrop-filter: blur(12px);
-    }
-
-    .gallery-status {
-      left: 18px;
-      top: 18px;
-      color: var(--accent);
-    }
-
-    .gallery-caption {
-      right: 18px;
-      bottom: 18px;
-    }
-
-    .orbit-gallery::before,
-    .orbit-gallery::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .orbit-gallery::before {
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(10, 11, 10, 0.9), transparent 18%, transparent 82%, rgba(10, 11, 10, 0.9)),
-        linear-gradient(180deg, rgba(10, 11, 10, 0.88), transparent 22%, transparent 76%, rgba(10, 11, 10, 0.9));
-      box-shadow:
-        inset 0 0 90px rgba(0, 0, 0, .58),
-        inset 0 0 0 1px rgba(210, 173, 108, 0.06);
-    }
-
-    .orbit-gallery::after {
-      left: 13%;
-      right: 13%;
-      bottom: 82px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(210, 173, 108, .28), rgba(255, 51, 0, .2), transparent);
-      transform: rotate(-2deg);
-      opacity: .78;
-    }
-
-    .orbit-card {
-      position: absolute;
-      left: var(--x, 50%);
-      top: var(--y, 50%);
-      width: var(--w, 168px);
-      aspect-ratio: 1.18 / 1;
-      padding: 0;
-      overflow: hidden;
-      border: 1px solid var(--line-strong);
-      border-radius: 8px;
-      background: #101110;
-      color: inherit;
-      font: inherit;
-      cursor: pointer;
-      box-shadow: 0 20px 72px rgba(0, 0, 0, .5);
-      transform-style: preserve-3d;
-      transform: translate(-50%, -50%) rotateZ(var(--rz, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--scale, 1));
-      animation: floatCard 7s ease-in-out infinite;
-      z-index: var(--z, 2);
-      opacity: var(--alpha, .86);
-      transition: transform .35s ease, border-color .35s ease, opacity .35s ease;
-    }
-
-    .orbit-card:hover {
-      opacity: 1;
-      border-color: rgba(210, 173, 108, 0.78);
-      transform: translate(-50%, -50%) rotateZ(var(--rz, 0deg)) rotateY(var(--ry, 0deg)) scale(calc(var(--scale, 1) + .04));
-    }
-
-    .orbit-card:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    .orbit-gallery:has(.orbit-card:hover) .orbit-card:not(:hover) {
-      filter: brightness(.78);
-    }
-
-    .orbit-gallery:has(.orbit-card:hover) .orbit-card:hover {
-      z-index: 14;
-    }
-
-    .orbit-card.is-core {
-      --w: 230px;
-      border-color: rgba(210, 173, 108, 0.72);
-      box-shadow: 0 34px 100px rgba(0, 0, 0, .62);
-    }
-
-    .orbit-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: .82;
-      filter: saturate(.88) contrast(1.05) brightness(.72);
-    }
-
-    .orbit-card.is-core img,
-    .orbit-card:hover img {
-      opacity: .96;
-      filter: saturate(.96) contrast(1.08) brightness(.86);
-    }
-
-    .orbit-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.1), transparent 34%),
-        linear-gradient(315deg, rgba(0,0,0,.52), transparent 44%);
-      pointer-events: none;
-    }
-
-    .orbit-card::after {
-      content: attr(data-label);
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 42%;
-      aspect-ratio: 1 / 1;
-      display: grid;
-      place-items: center;
-      transform: translate(-50%, -50%);
-      padding: 8px;
-      border-radius: 4px;
-      background: rgba(13, 14, 13, 0.5);
-      border: 1px solid rgba(242, 238, 229, 0.18);
-      color: var(--text);
-      font-size: 11px;
-      line-height: 1.15;
-      text-align: center;
-      font-weight: 900;
-      z-index: 2;
-    }
-
-    .orbit-card.is-core::after {
-      background: rgba(13, 14, 13, 0.56);
-      border-color: rgba(210, 173, 108, 0.34);
-      font-size: 12px;
-    }
-
-    .orbit-card[data-slot="s1"] { --x: 50%; --y: 34%; --w: 132px; --z: 1; --alpha: .16; animation-delay: -.4s; }
-    .orbit-card[data-slot="s2"] { --x: 63%; --y: 30%; --w: 156px; --z: 2; --alpha: .34; animation-delay: -.9s; }
-    .orbit-card[data-slot="s3"] { --x: 76%; --y: 34%; --w: 152px; --z: 3; --alpha: .7; animation-delay: -1.3s; }
-    .orbit-card[data-slot="s4"] { --x: 68%; --y: 47%; --w: 178px; --z: 5; --alpha: .9; animation-delay: -1.8s; }
-    .orbit-card[data-slot="s5"] { --x: 56%; --y: 58%; --w: 202px; --z: 7; --alpha: .96; animation-delay: -2.2s; }
-    .orbit-card[data-slot="s6"] { --x: 43%; --y: 68%; --w: 236px; --z: 8; --alpha: 1; animation-delay: -2.8s; }
-    .orbit-card[data-slot="s7"] { --x: 30%; --y: 73%; --w: 180px; --z: 6; --alpha: .9; animation-delay: -3.2s; }
-    .orbit-card[data-slot="s8"] { --x: 21%; --y: 66%; --w: 158px; --z: 4; --alpha: .72; animation-delay: -3.6s; }
-    .orbit-card[data-slot="s9"] { --x: 25%; --y: 55%; --w: 144px; --z: 3; --alpha: .42; animation-delay: -4.1s; }
-    .orbit-card[data-slot="s10"] { --x: 36%; --y: 46%; --w: 132px; --z: 2; --alpha: .3; animation-delay: -4.6s; }
-
-    @keyframes floatCard {
-      0%, 100% { margin-top: 0; }
-      50% { margin-top: -8px; }
-    }
-
-    .panel-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.018);
-    }
-
-    .panel-cell {
-      min-height: 260px;
-      padding: 28px;
-      border-right: 1px solid var(--line);
-    }
-
-    .panel-cell:last-child { border-right: 0; }
-    .panel-cell .num { color: var(--red); font-weight: 900; margin-bottom: 54px; }
-    .panel-cell h3 { margin: 0 0 16px; font-size: 24px; }
-    .panel-cell p { margin: 0; color: var(--muted); line-height: 1.75; }
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 52px;
-      align-items: end;
-    }
-
-    .big-title {
-      margin: 0;
-      font-size: 64px;
-      line-height: 1;
-      font-weight: 1000;
-    }
-
-    .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: 21px;
-      line-height: 1.8;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .works-layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
-
-    .project {
-      position: relative;
-      min-height: 420px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      cursor: pointer;
-      isolation: isolate;
-    }
-
-    .project img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.76;
-      transform: scale(1.02);
-      transition: transform .45s ease, opacity .45s ease;
-    }
-
-    .project:hover img { transform: scale(1.08); opacity: 0.94; }
-
-    .project::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 20%, rgba(0, 0, 0, 0.78));
-      z-index: 0;
-    }
-
-    .project-text {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 24px;
-      z-index: 1;
-    }
-
-    .project-text p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 12px 0 0;
-      max-width: 560px;
-    }
-
-    .project h3 {
-      margin: 8px 0 0;
-      font-size: 38px;
-      line-height: 1;
-    }
-
-    .project.small {
-      min-height: 202px;
-    }
-
-    .portfolio-grid .project {
-      grid-column: span 4;
-      min-height: 360px;
-    }
-
-    .portfolio-grid .project.featured {
-      grid-column: span 6;
-      min-height: 470px;
-    }
-
-    .project.small h3 { font-size: 28px; }
-
-    .stack {
-      display: grid;
-      gap: 16px;
-    }
-
-    .archive {
-      margin-top: 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .archive-row {
-      display: grid;
-      grid-template-columns: 170px 1fr 220px;
-      gap: 20px;
-      align-items: center;
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-    }
-
-    .archive-row:last-child { border-bottom: 0; }
-    .archive-row strong { color: var(--text); }
-
-    .asset-summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin: 0 0 18px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      color: var(--muted);
-      background: rgba(255, 255, 255, 0.018);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .visual-index {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .visual-group {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 12px;
-      align-items: stretch;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      background: rgba(255, 255, 255, 0.018);
-      color: inherit;
-      cursor: pointer;
-      text-align: left;
-      content-visibility: auto;
-      contain-intrinsic-size: 180px;
-      transition: border-color .2s ease, background .2s ease;
-    }
-
-    .visual-group:hover {
-      border-color: rgba(210, 173, 108, .52);
-      background: rgba(210, 173, 108, .045);
-    }
-
-    .visual-group h3 {
-      margin: 0;
-      font-size: 15px;
-      color: var(--accent);
-    }
-
-    .visual-group p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .visual-group span {
-      display: inline-flex;
-      margin-top: 14px;
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .thumb-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
-
-    .thumb-grid img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-    }
-
-    .lab-layout {
-      display: grid;
-      grid-template-columns: 0.62fr 1.38fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .lab-panel,
-    .timeline,
-    .contact-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.018);
-    }
-
-    .lab-panel { padding: 28px; }
-    .lab-panel h3 { margin: 0 0 18px; font-size: 28px; }
-    .lab-system {
-      min-height: 460px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(255, 51, 0, 0.08), transparent 34%),
-        linear-gradient(315deg, rgba(210, 173, 108, 0.12), transparent 38%),
-        rgba(255, 255, 255, 0.018);
-    }
-
-    .engine-head {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: end;
-      padding: 28px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .engine-head span,
-    .pipeline-node span,
-    .asset-chip span,
-    .proof-strip span {
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 1000;
-    }
-
-    .engine-head strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 36px;
-      line-height: 1;
-      font-weight: 1000;
-    }
-
-    .engine-head em {
-      justify-self: end;
-      max-width: 210px;
-      color: var(--muted);
-      font-style: normal;
-      line-height: 1.55;
-      text-align: right;
-    }
-
-    .pipeline-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .pipeline-node {
-      min-height: 168px;
-      padding: 24px;
-      border-right: 1px solid var(--line);
-      background: rgba(13, 14, 13, 0.32);
-    }
-
-    .pipeline-node:last-child { border-right: 0; }
-    .pipeline-node strong { display: block; margin-top: 34px; font-size: 20px; }
-    .pipeline-node p { margin: 10px 0 0; color: var(--muted); line-height: 1.55; }
-
-    .asset-board {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--line);
-    }
-
-    .asset-chip,
-    .proof-strip {
-      min-height: 150px;
-      padding: 22px;
-      background: rgba(13, 14, 13, 0.78);
-    }
-
-    .asset-chip strong {
-      display: block;
-      margin-top: 12px;
-      color: var(--text);
-      font-size: 24px;
-      line-height: 1.1;
-    }
-
-    .asset-chip p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .proof-thumbs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .proof-thumbs img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border: 1px solid rgba(242, 238, 229, 0.18);
-      border-radius: 4px;
-      background: var(--panel);
-    }
-
-    .timeline {
-      overflow: hidden;
-    }
-
-    .time-row {
-      display: grid;
-      grid-template-columns: 180px 1fr 1.35fr;
-      gap: 24px;
-      padding: 26px 28px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .time-row:last-child { border-bottom: 0; }
-    .time-row h3 { margin: 0 0 8px; font-size: 24px; }
-    .time-row p { margin: 0; color: var(--muted); line-height: 1.7; }
-
-    .contact-section {
-      min-height: 720px;
-      display: grid;
-      align-items: center;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .contact-title {
-      margin: 0;
-      font-size: 110px;
-      line-height: 0.9;
-      font-weight: 1000;
-    }
-
-    .contact-title span { color: var(--red); }
-    .contact-card { padding: 30px; }
-    .contact-row {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .contact-row:last-child { border-bottom: 0; }
-    .contact-row span { color: var(--muted); }
-    .contact-row strong { text-align: right; }
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      display: none;
-      background: rgba(13, 14, 13, 0.96);
-      overflow: auto;
-    }
-
-    .modal.open { display: block; }
-
-    .modal-head {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 32px;
-      background: rgba(13, 14, 13, 0.92);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
-    }
-
-    .modal-head h2 { margin: 0; font-size: 24px; }
-
-    .close {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 24px;
-    }
-
-    .case-hero {
-      width: min(1100px, calc(100% - 48px));
-      margin: 28px auto 18px;
-      display: grid;
-      grid-template-columns: 0.55fr 1.45fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .case-summary {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-      background: var(--panel);
-    }
-
-    .case-summary p {
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .case-image {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--panel);
-    }
-
-    .case-image img {
-      width: 100%;
-      height: 100%;
-      min-height: 420px;
-      object-fit: cover;
-    }
-
-    .case-strip {
-      width: min(900px, calc(100% - 48px));
-      margin: 18px auto 64px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .case-strip img {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-    }
-
-    .case-section-title {
-      margin: 32px 0 4px;
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    @media (max-width: 980px) {
-      .topbar {
-        grid-template-columns: 1fr auto;
-        padding: 0 20px;
-      }
-      .nav { display: none; }
-      .hero-grid,
-      .about-layout,
-      .works-layout,
-      .lab-layout,
-      .contact-grid,
-      .case-hero {
-        grid-template-columns: 1fr;
-      }
-      .hero {
-        padding: 44px 24px 64px;
-      }
-      .hero h1 {
-        font-size: 50px;
-        line-height: 1;
-      }
-      .gallery-stage {
-        min-height: auto;
-        order: -1;
-      }
-      .orbit-gallery {
-        min-height: 470px;
-      }
-      .orbit-card[data-slot="s1"] { --x: 50%; --y: 32%; --w: 108px; }
-      .orbit-card[data-slot="s2"] { --x: 63%; --y: 29%; --w: 128px; }
-      .orbit-card[data-slot="s3"] { --x: 78%; --y: 34%; --w: 124px; }
-      .orbit-card[data-slot="s4"] { --x: 69%; --y: 48%; --w: 146px; }
-      .orbit-card[data-slot="s5"] { --x: 56%; --y: 58%; --w: 166px; }
-      .orbit-card[data-slot="s6"] { --x: 42%; --y: 68%; --w: 194px; }
-      .orbit-card[data-slot="s7"] { --x: 28%; --y: 73%; --w: 148px; }
-      .orbit-card[data-slot="s8"] { --x: 19%; --y: 66%; --w: 130px; }
-      .orbit-card[data-slot="s9"] { --x: 24%; --y: 55%; --w: 118px; }
-      .orbit-card[data-slot="s10"] { --x: 36%; --y: 45%; --w: 108px; }
-      .orbit-card.is-core {
-        --w: 194px;
-      }
-      .portfolio-grid .project,
-      .portfolio-grid .project.featured {
-        grid-column: span 6;
-      }
-      .showcase-board {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-      .showcase-main {
-        min-height: 360px;
-      }
-      .showcase-thumbs {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .showcase-thumb {
-        min-height: 116px;
-      }
-      .panel-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .visual-index {
-        grid-template-columns: 1fr;
-      }
-      .visual-group {
-        grid-template-columns: 1fr 1fr;
-      }
-      .asset-summary {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .panel-cell {
-        border-bottom: 1px solid var(--line);
-      }
-      .archive-row,
-      .time-row {
-        grid-template-columns: 1fr;
-      }
-      .engine-head,
-      .pipeline-grid,
-      .asset-board {
-        grid-template-columns: 1fr;
-      }
-      .engine-head em {
-        justify-self: start;
-        max-width: none;
-        text-align: left;
-      }
-      .pipeline-node {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .pipeline-node:last-child { border-bottom: 0; }
-      .contact-title { font-size: 76px; }
-    }
-
-    @media (max-width: 560px) {
-      .contact-link {
-        padding: 9px 12px;
-        font-size: 12px;
-      }
-      .brand { font-size: 20px; }
-      .brand small { display: none; }
-      .section {
-        padding: 72px 20px;
-      }
-      .hero h1 {
-        font-size: 40px;
-      }
-      .hero-copy {
-        font-size: 16px;
-      }
-      .gallery-stage {
-        min-height: auto;
-      }
-      .orbit-gallery {
-        min-height: 340px;
-      }
-      .gallery-status,
-      .gallery-caption {
-        display: none;
-      }
-      .orbit-card[data-slot="s1"] { --x: 50%; --y: 32%; --w: 74px; }
-      .orbit-card[data-slot="s2"] { --x: 64%; --y: 29%; --w: 86px; }
-      .orbit-card[data-slot="s3"] { --x: 81%; --y: 35%; --w: 84px; }
-      .orbit-card[data-slot="s4"] { --x: 70%; --y: 48%; --w: 98px; }
-      .orbit-card[data-slot="s5"] { --x: 57%; --y: 59%; --w: 112px; }
-      .orbit-card[data-slot="s6"] { --x: 42%; --y: 68%; --w: 130px; }
-      .orbit-card[data-slot="s7"] { --x: 28%; --y: 73%; --w: 100px; }
-      .orbit-card[data-slot="s8"] { --x: 19%; --y: 66%; --w: 88px; }
-      .orbit-card[data-slot="s9"] { --x: 24%; --y: 55%; --w: 80px; }
-      .orbit-card[data-slot="s10"] { --x: 36%; --y: 45%; --w: 74px; }
-      .orbit-card::after {
-        padding: 6px 7px;
-        font-size: 9px;
-      }
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-      .portfolio-grid .project,
-      .portfolio-grid .project.featured {
-        grid-column: auto;
-      }
-      .visual-group {
-        padding: 12px;
-        grid-template-columns: 1fr;
-      }
-      .thumb-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .thumb-grid img {
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-      }
-      .showcase-main {
-        min-height: 240px;
-      }
-      .showcase-thumb {
-        min-height: 88px;
-      }
-      .showcase-note {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .big-title {
-        font-size: 42px;
-      }
-      .lead {
-        font-size: 17px;
-      }
-      .modal-head {
-        padding: 16px 18px;
-      }
-      .case-hero {
-        width: calc(100% - 36px);
-        margin: 18px auto;
-      }
-      .case-image img {
-        min-height: 240px;
-        object-fit: contain;
-      }
-      .case-strip {
-        width: calc(100% - 36px);
-      }
-      .panel-grid {
-        grid-template-columns: 1fr;
-      }
-      .panel-cell {
-        min-height: auto;
-        border-right: 0;
-      }
-      .panel-cell .num { margin-bottom: 24px; }
-      .project,
-      .project.small {
-        min-height: 340px;
-      }
-      .project h3,
-      .project.small h3 {
-        font-size: 30px;
-      }
-      .contact-title {
-        font-size: 58px;
-      }
-      .contact-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .contact-row strong {
-        text-align: left;
-      }
-      .case-image img {
-        min-height: 260px;
-      }
-    }
-  </style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --paper: #f1f2ef;
+  --panel: #fafaf7;
+  --panel-alt: #e7eae7;
+  --ink: #171b1e;
+  --muted: #596267;
+  --faint: #7c8588;
+  --line: #cbd0ce;
+  --accent: #ff9800;
+  --accent-dark: #9c5200;
+  --inverse: #f2f3ef;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #151a1d;
+  --panel: #1d2428;
+  --panel-alt: #273135;
+  --ink: #f1f3f0;
+  --muted: #bac3c3;
+  --faint: #89969a;
+  --line: #3b474b;
+  --accent: #ffad29;
+  --accent-dark: #ffc168;
+  --inverse: #171b1e;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; }
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--accent); color: #171b1e; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.container { width: min(100% - 56px, 1440px); margin-inline: auto; }
+.eyebrow { margin: 0 0 20px; color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.section { padding: 118px 0; }
+.section-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .5fr); align-items: end; gap: 50px; margin-bottom: 54px; }
+.section-head h2 { max-width: 850px; margin: 0; font-size: clamp(42px, 5.4vw, 76px); line-height: 1.06; font-weight: 700; letter-spacing: -.075em; }
+.section-head p:last-child { max-width: 410px; margin: 0 0 6px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 48px; padding: 0 22px; border: 1px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.button:hover { background: var(--ink); color: var(--inverse); }
+.button-primary { background: var(--accent); border-color: var(--accent); color: #171b1e; }
+.button-primary:hover { background: #ffad2e; border-color: #ffad2e; color: #171b1e; }
+.button-outline { border-color: currentColor; color: var(--ink); }
+
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--panel); border-bottom: 1px solid var(--line); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); font-size: 19px; font-weight: 700; letter-spacing: -.08em; text-decoration: none; white-space: nowrap; }
+.brand-mark { display: inline-block; width: 11px; height: 11px; background: var(--accent); }
+.brand span:last-child { margin-left: 4px; color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .03em; }
+.nav-links { display: flex; align-items: center; gap: 33px; }
+.nav-links a { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; text-decoration: none; }
+.nav-links a:hover { color: var(--accent-dark); }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions .button { min-height: 38px; padding: 0 15px; }
+.theme-toggle { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
+.theme-toggle:hover { background: var(--panel-alt); }
+
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); }
+.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, transparent calc(100% - 1px), var(--line) 100%) 0 0 / 9.1% 100%; opacity: .30; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: center; gap: clamp(45px, 5vw, 95px); min-height: 680px; padding-block: 105px; }
+.hero h1 { max-width: 680px; margin: 0; font-size: clamp(60px, 6.8vw, 104px); line-height: 1.04; font-weight: 700; letter-spacing: -.09em; }
+.hero h1 em { color: var(--ink); font-style: normal; }
+.hero h1 em::after { content: ''; display: block; width: 78px; height: 7px; margin-top: 27px; background: var(--accent); }
+.hero-copy { max-width: 555px; margin: 35px 0 31px; color: var(--muted); font-size: 15px; line-height: 1.9; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-visual { position: relative; display: grid; grid-template-columns: 1.7fr 1fr; grid-template-rows: 1fr 1fr; gap: 1px; height: clamp(425px, 41vw, 580px); border: 1px solid var(--line); background: var(--line); }
+.hero-visual::after { content: 'VISUAL SYSTEM / 001'; position: absolute; right: 0; bottom: 0; z-index: 1; padding: 10px 13px; background: var(--ink); color: var(--inverse); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .04em; }
+.hero-visual img { position: static; width: 100%; height: 100%; object-fit: contain; background: var(--panel); border: 0; border-radius: 0; box-shadow: none; transform: none; }
+.hero-visual img:first-child { grid-row: 1 / 3; }
+.hero-visual img:nth-child(2), .hero-visual img:nth-child(3) { width: 100%; height: 100%; transform: none; }
+.proof { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; border: 1px solid var(--line); border-top: 0; }
+.proof-item { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 13px; min-height: 130px; padding: 24px 32px; border-right: 1px solid var(--line); }
+.proof-item:first-child { padding-left: 32px; }
+.proof-item:last-child { border-right: 0; }
+.proof strong { color: var(--ink); font-size: clamp(28px, 3.2vw, 44px); font-weight: 700; letter-spacing: -.065em; line-height: 1; }
+.proof span { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .02em; }
+
+.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.expertise-card { min-height: 290px; padding: 38px 42px; border: 0; border-radius: 0; background: var(--panel); box-shadow: none; transition: background .2s ease; }
+.expertise-card:hover { background: var(--panel-alt); transform: none; }
+.expertise-number { display: inline-block; width: auto; height: auto; margin: 0 0 38px; padding: 0 0 9px; border-bottom: 3px solid var(--accent); border-radius: 0; background: none; color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700; }
+.expertise-card h3 { margin: 0 0 15px; font-size: 28px; font-weight: 700; letter-spacing: -.06em; }
+.expertise-card p { max-width: 570px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+
+.works { background: var(--panel-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.project-card { min-width: 0; }
+.project-card:first-child { grid-column: 1 / -1; }
+.project-card button { display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: var(--panel); color: var(--ink); box-shadow: none; text-align: left; cursor: pointer; transition: background .2s ease; }
+.project-card button:hover { transform: none; border-color: transparent; box-shadow: none; background: var(--paper); }
+.project-card:first-child button { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); }
+.project-cover { display: block; aspect-ratio: 1.43; overflow: hidden; background: var(--panel); }
+.project-card:first-child .project-cover { height: 560px; aspect-ratio: auto; border-right: 1px solid var(--line); }
+.project-cover img { width: 100%; height: 100%; object-fit: contain; transition: none; }
+.project-card button:hover img { transform: none; }
+.project-body { display: flex; flex-direction: column; justify-content: flex-end; min-height: 245px; padding: 35px 38px; }
+.project-card:first-child .project-body { padding: 50px; }
+.project-meta { display: block; margin-bottom: auto; padding-bottom: 46px; color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.project-title { display: block; margin-bottom: 13px; font-size: 31px; font-weight: 700; letter-spacing: -.065em; line-height: 1.17; }
+.project-card:first-child .project-title { font-size: clamp(38px, 4vw, 62px); }
+.project-summary { display: block; min-height: 0; max-width: 390px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.project-link { display: flex; align-items: center; justify-content: space-between; margin-top: 35px; padding-top: 19px; border-top: 1px solid var(--line); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
+.project-link b { float: none; color: var(--accent-dark); font-size: 19px; line-height: 1; }
+
+.archive { padding-top: 110px; }
+.archive-head { margin-bottom: 30px; }
+.archive-list { overflow: hidden; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.archive-row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 1.15fr 25px; align-items: center; gap: 24px; width: 100%; padding: 26px 32px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; transition: background .2s ease; }
+.archive-row:last-child { border-bottom: 0; }
+.archive-row:hover { background: var(--panel-alt); }
+.archive-year { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; }
+.archive-name { font-size: 19px; font-weight: 700; letter-spacing: -.045em; }
+.archive-detail { color: var(--muted); font-size: 13px; }
+.archive-arrow { color: var(--accent-dark); font-size: 21px; }
+.domestic-projects { margin-top: 18px; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.domestic-projects summary { padding: 23px 32px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; cursor: pointer; list-style: none; }
+.domestic-projects summary::-webkit-details-marker { display: none; }
+.domestic-projects summary::after { content: '+'; float: right; color: var(--accent-dark); font-size: 19px; line-height: 11px; }
+.domestic-projects[open] summary::after { content: '−'; }
+.domestic-projects summary:hover { color: var(--ink); }
+.domestic-projects[open] summary { border-bottom: 1px solid var(--line); }
+.domestic-projects .archive-list { border: 0; border-radius: 0; }
+
+.method { padding: 110px 0; border-top: 5px solid var(--accent); background: #171b1e; color: #f2f3ef; }
+.method .eyebrow { color: #ffb542; }
+.method .section-head p:last-child { color: #aeb7b8; }
+.method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #454f51; }
+.method-step { min-height: 245px; padding: 38px; border: 0; border-right: 1px solid #454f51; border-radius: 0; background: transparent; }
+.method-step:last-child { border-right: 0; }
+.method-step span { color: #ffb542; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
+.method-step h3 { margin: 50px 0 13px; font-size: 26px; font-weight: 700; letter-spacing: -.05em; }
+.method-step p { margin: 0; color: #aeb7b8; font-size: 14px; line-height: 1.8; }
+
+.timeline { border-top: 1px solid var(--line); }
+.career-row { display: grid; grid-template-columns: 160px 280px minmax(0, 1fr); gap: 35px; padding: 30px 0; border-bottom: 1px solid var(--line); }
+.career-year { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; }
+.career-role h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+.career-role span { color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
+.career-row p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+
+.contact { padding: 100px 0 32px; border-top: 5px solid var(--accent); background: #171b1e; color: #f2f3ef; }
+.contact-main { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 120px; }
+.contact .eyebrow { color: #ffb542; }
+.contact h2 { max-width: 950px; margin: 0 0 20px; font-size: clamp(46px, 6.2vw, 90px); font-weight: 700; letter-spacing: -.075em; line-height: 1.05; }
+.contact p { margin: 0; color: #aeb7b8; font-size: 14px; line-height: 1.8; }
+.contact-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding-top: 24px; border-top: 1px solid #454f51; color: #8e9c9e; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.contact-bottom a { margin-right: 20px; color: #dde3df; text-decoration: none; }
+.contact-bottom a:hover { color: #ffb542; }
+
+.project-dialog { width: min(100%, 1300px); height: min(100%, 96vh); max-width: none; max-height: none; padding: 0; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); box-shadow: 0 30px 90px rgba(0, 0, 0, .30); }
+.project-dialog::backdrop { background: rgba(5, 9, 11, .87); backdrop-filter: blur(3px); }
+.dialog-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 26px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.dialog-header h2 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -.04em; }
+.dialog-close { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; }
+.dialog-close:hover { background: var(--accent); color: #171b1e; }
+.dialog-gallery { padding: 20px 28px 70px; }
+.dialog-section { max-width: 1020px; margin: 50px auto 0; }
+.dialog-section h3 { margin: 0 0 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.dialog-section img { display: block; width: 100%; height: auto; margin: 0 0 10px; border-radius: 0; background: var(--panel); }
+
+@media (max-width: 1120px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 55px; padding-block: 85px; }
+  .hero h1 { max-width: 900px; }
+  .hero-visual { width: 100%; max-width: 800px; height: 500px; }
+  .project-card:first-child .project-cover { height: 480px; }
+}
+@media (max-width: 800px) {
+  .container { width: min(100% - 36px, 1440px); }
+  .site-header .container { min-height: 65px; }
+  .nav-links { display: none; }
+  .section { padding: 80px 0; }
+  .section-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 34px; }
+  .section-head h2 { font-size: clamp(38px, 8vw, 62px); }
+  .proof { grid-template-columns: 1fr; }
+  .proof-item, .proof-item:first-child { min-height: 92px; padding: 18px 24px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .proof-item:last-child { border-bottom: 0; }
+  .expertise-grid, .work-grid, .method-grid { grid-template-columns: 1fr; }
+  .project-card:first-child { grid-column: auto; }
+  .project-card:first-child button { display: block; }
+  .project-card:first-child .project-cover { height: auto; aspect-ratio: 1.43; border-right: 0; }
+  .project-card:first-child .project-body { padding: 35px 38px; }
+  .project-card:first-child .project-title { font-size: 31px; }
+  .archive-row { grid-template-columns: 100px 1fr 22px; gap: 12px; padding: 23px; }
+  .archive-detail { grid-column: 2; grid-row: 2; }
+  .archive-arrow { grid-column: 3; grid-row: 1 / 3; }
+  .method-step { min-height: 0; border-right: 0; border-bottom: 1px solid #454f51; }
+  .method-step:last-child { border-bottom: 0; }
+  .method-step h3 { margin-top: 22px; }
+  .career-row { grid-template-columns: 145px 1fr; gap: 12px; }
+  .career-row p { grid-column: 2; }
+  .contact-main { display: block; padding-bottom: 80px; }
+  .contact-main .button { margin-top: 30px; }
+}
+@media (max-width: 480px) {
+  .container { width: min(100% - 28px, 1440px); }
+  .brand { font-size: 16px; }
+  .brand span:last-child { display: none; }
+  .header-actions .button { min-height: 36px; padding: 0 10px; font-size: 10px; }
+  .theme-toggle { width: 36px; height: 36px; }
+  .hero-grid { gap: 45px; padding-block: 69px; }
+  .hero h1 { font-size: clamp(47px, 11vw, 62px); }
+  .hero-copy { font-size: 14px; }
+  .hero-visual { height: 310px; }
+  .hero-visual::after { font-size: 8px; }
+  .section-head h2 { font-size: 39px; }
+  .expertise-card { min-height: 0; padding: 30px; }
+  .expertise-number { margin-bottom: 24px; }
+  .project-body, .project-card:first-child .project-body { padding: 28px; }
+  .archive-row { grid-template-columns: 1fr 21px; }
+  .archive-year { grid-column: 1; grid-row: 1; }
+  .archive-name { grid-column: 1; grid-row: 2; }
+  .archive-detail { grid-column: 1; grid-row: 3; }
+  .archive-arrow { grid-column: 2; grid-row: 1 / 4; }
+  .career-row { grid-template-columns: 1fr; }
+  .career-row p { grid-column: auto; }
+  .contact h2 { font-size: 47px; }
+  .project-dialog { width: 100%; height: 100%; border: 0; }
+  .dialog-gallery { padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#intro">KUANG®<small>AI 商业视觉作品集</small></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#about">About</a>
-      <a href="#system">System</a>
-      <a href="#works">Works</a>
-      <a href="#aigc">AIGC</a>
-    </nav>
-    <a class="contact-link" href="mailto:dyk162@163.com">Let's Talk ↗</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="KUANG STUDIO，返回顶部"><span class="brand-mark" aria-hidden="true"></span>KUANG <span>STUDIO</span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#expertise">专长</a>
+        <a href="#works">精选作品</a>
+        <a href="#experience">经历</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换深色模式" aria-pressed="false">☾</button>
+        <a class="button button-primary" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section id="intro" class="hero">
-      <div class="hero-grid">
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
         <div>
-          <div class="kicker">VISUAL ARCHITECT / DESIGN MANAGER</div>
-          <h1>VISUAL SYSTEMS FOR <span>COMMERCE GROWTH.</span></h1>
-          <p class="hero-copy">以电商转化为核心，建立品牌视觉系统、C4D 产品渲染、Amazon A+ 内容与 AIGC 生产工作流。</p>
+          <p class="eyebrow">AMAZON VISUAL SYSTEMS / GLOBAL E-COMMERCE</p>
+          <h1 id="hero-title">让海外用户，<br><em>一眼读懂产品价值。</em></h1>
+          <p class="hero-copy">我是邝先生，聚焦 Amazon 欧美站的 Listing、A+ 与品牌视觉。围绕海外用户的购物语境，将产品功能转化为清晰的图像与信息层级，统筹从卖点梳理、场景制作到团队交付。</p>
           <div class="hero-actions">
-            <a class="primary" href="#works">View Works</a>
-            <a class="secondary" href="#aigc">AIGC Lab</a>
+            <a class="button button-primary" href="#works">查看作品 <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#experience">了解经历</a>
           </div>
         </div>
-        <div class="gallery-stage" aria-label="Dynamic portfolio gallery">
-          <div id="hero-gallery" class="orbit-gallery"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="section-inner about-layout">
-        <div>
-          <div class="kicker">ABOUT / POSITIONING</div>
-          <h2 class="big-title">I build visual systems for commerce.</h2>
-        </div>
-        <div>
-          <p class="lead">不仅是单张视觉执行，而是围绕产品卖点、平台规则、用户决策路径和团队生产效率，构建可复制、可增长、可转化的商业视觉系统。</p>
-          <div class="chips">
-            <span class="chip">Design Manager</span>
-            <span class="chip">E-commerce Visual Strategy</span>
-            <span class="chip">AIGC Workflow</span>
-            <span class="chip">3D Product Rendering</span>
-          </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="" loading="eager">
+          <img src="https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg" alt="" loading="eager">
+          <img src="https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png" alt="" loading="eager">
         </div>
       </div>
     </section>
 
-    <section id="system" class="section">
-      <div class="section-inner">
-        <div class="kicker">COMMERCE VISUAL SYSTEM</div>
-        <div class="panel-grid">
-          <article class="panel-cell">
-            <div class="num">01</div>
-            <h3>Insight</h3>
-            <p>用户画像、竞品结构、平台规则、卖点优先级，先定义用户为什么停留与购买。</p>
-          </article>
-          <article class="panel-cell">
-            <div class="num">02</div>
-            <h3>Direction</h3>
-            <p>品牌调性、构图体系、视觉标准、页面节奏，把复杂信息变成清晰决策路径。</p>
-          </article>
-          <article class="panel-cell">
-            <div class="num">03</div>
-            <h3>Production</h3>
-            <p>C4D、Keyshot、摄影、精修、视频剪辑与 AI 生成，覆盖电商视觉全链路产出。</p>
-          </article>
-          <article class="panel-cell">
-            <div class="num">04</div>
-            <h3>Conversion</h3>
-            <p>主图点击、A+ 阅读、Listing 一致性、数据复盘，让视觉从审美资产进入业务结果。</p>
-          </article>
+    <div class="container proof" aria-label="工作经历与成果摘要">
+      <div class="proof-item"><strong>Listing + A+</strong><span>Amazon 内容设计重点方向</span></div>
+      <div class="proof-item"><strong>6 组</strong><span>海外电商项目系列</span></div>
+      <div class="proof-item"><strong>10%–30%</strong><span>核心产品转化率提升</span></div>
+    </div>
+
+    <section class="section" id="expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">GLOBAL E-COMMERCE EXPERTISE</p><h2 id="expertise-title">为海外购物场景，<br>设计清晰的产品表达。</h2></div>
+          <p>从 Amazon 搜索结果到详情页，围绕海外用户的决策问题组织信息，让每张图承担明确任务。</p>
+        </div>
+        <div class="expertise-grid">
+          <article class="expertise-card"><span class="expertise-number">01</span><h3>Amazon Listing 与 A+</h3><p>统筹主图、辅图和 A+ 模块，让功能、尺寸、使用场景与差异点按用户决策顺序清晰呈现。</p></article>
+          <article class="expertise-card"><span class="expertise-number">02</span><h3>海外品牌视觉系统</h3><p>围绕欧美市场的视觉语境建立统一的图像、排版与信息规范，使不同产品系列保持品牌识别。</p></article>
+          <article class="expertise-card"><span class="expertise-number">03</span><h3>AIGC 场景与内容流程</h3><p>将生成式工具用于概念探索、场景制作与素材迭代，在提升效率的同时把控产品准确性和品牌一致性。</p></article>
+          <article class="expertise-card"><span class="expertise-number">04</span><h3>海外设计团队协作</h3><p>建立视觉标准、评估与交付流程，连接产品、设计和运营，让内容更新更有依据。</p></article>
         </div>
       </div>
     </section>
 
-    <section id="works" class="section">
-      <div class="section-inner">
-        <div class="kicker">SELECTED WORKS</div>
-        <div class="works-layout">
-          <article class="project" data-project="robot">
-            <img src="https://i.postimg.cc/Bvr9J7rr/sao-2.jpg" alt="VIOMI robot vacuum project">
-            <div class="project-text">
-              <span class="kicker">P-01 / DOMESTIC</span>
-              <h3>VIOMI ROBOT VAC</h3>
-              <p>云米智能扫拖机器人全矩阵视觉标准重塑，通过结构拆解实现核心性能可视化。</p>
-            </div>
-          </article>
-          <div class="stack">
-          <article class="project small" data-project="kettle">
-              <img src="https://i.postimg.cc/0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg" alt="Mijia kettle project">
-              <div class="project-text">
-                <span class="kicker">P-02 / DOMESTIC</span>
-                <h3>MIJIA KETTLE 1S</h3>
-              </div>
-            </article>
-          <article class="project small" data-project="branding">
-              <img src="https://i.postimg.cc/FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg" alt="Overseas branding project">
-              <div class="project-text">
-                <span class="kicker">P-03 / GLOBAL</span>
-                <h3>OVERSEAS BRANDING</h3>
-              </div>
-            </article>
-          </div>
+    <section class="section works" id="works" aria-labelledby="works-title">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">SELECTED GLOBAL WORKS</p><h2 id="works-title">海外电商作品精选。</h2></div>
+          <p>以海外家居与消费电子产品为主，展示 Amazon Listing、A+ 和跨产品线的视觉系统。点击作品可查看完整图片集。</p>
         </div>
-        <div class="archive">
-          <div class="archive-row"><span>GLOBAL / 2023</span><strong>CABINET LIGHT 2.0</strong><span>Listing 全案及 A+ 系统 ↗</span></div>
-          <div class="archive-row"><span>GLOBAL / 2024</span><strong>ULTRA-THIN SENSOR</strong><span>海外旗舰新品全链路视觉 ↗</span></div>
-          <div class="archive-row"><span>DOMESTIC / 2019</span><strong>AIR PURIFIER</strong><span>科技感调性与杀菌逻辑 ↗</span></div>
-        </div>
-        <div class="visual-index" aria-label="Project image index">
-          <div class="visual-group">
-            <h3>VIOMI Robot Vac / 13 Images</h3>
-            <div class="thumb-grid">
-              <img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="Robot project thumbnail 1">
-              <img src="https://i.postimg.cc/DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg" alt="Robot project thumbnail 2">
-              <img src="https://i.postimg.cc/4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg" alt="Robot project thumbnail 3">
-              <img src="https://i.postimg.cc/J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg" alt="Robot project thumbnail 4">
-              <img src="https://i.postimg.cc/rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png" alt="Robot project thumbnail 5">
-              <img src="https://i.postimg.cc/7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png" alt="Robot project thumbnail 6">
-              <img src="https://i.postimg.cc/MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg" alt="Robot project thumbnail 7">
-              <img src="https://i.postimg.cc/c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg" alt="Robot project thumbnail 8">
-            </div>
-          </div>
-          <div class="visual-group">
-            <h3>Mijia Kettle 1S / Long Page</h3>
-            <div class="thumb-grid">
-              <img src="https://i.postimg.cc/0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg" alt="Mijia kettle project thumbnail">
-              <img src="https://i.postimg.cc/02vqF3vL/shui.jpg" alt="Mijia kettle cover thumbnail">
-            </div>
-          </div>
-          <div class="visual-group">
-            <h3>Overseas Branding / 4 Images</h3>
-            <div class="thumb-grid">
-              <img src="https://i.postimg.cc/FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg" alt="Overseas branding thumbnail 1">
-              <img src="https://i.postimg.cc/fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg" alt="Overseas branding thumbnail 2">
-              <img src="https://i.postimg.cc/bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg" alt="Overseas branding thumbnail 3">
-              <img src="https://i.postimg.cc/bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg" alt="Overseas branding thumbnail 4">
-            </div>
-          </div>
+        <div class="work-grid">
+          <article class="project-card"><button type="button" data-project="p6" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌视觉项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外品牌 · Amazon / A+</span><span class="project-title">海外品牌视觉精选</span><span class="project-summary">整合主图与 A+ 视觉模块，为不同产品建立连贯的卖点表达与品牌识别。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+          <article class="project-card"><button type="button" data-project="p9" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg" alt="智能橱柜灯 2.0 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外家居 · Listing / A+</span><span class="project-title">智能橱柜灯 2.0</span><span class="project-summary">以主图系列说明产品功能，再用 A+ 场景承接使用情境与细节信息。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+          <article class="project-card"><button type="button" data-project="p10" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png" alt="超薄智能感应灯项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外家居 · Listing / A+</span><span class="project-title">超薄智能感应灯</span><span class="project-summary">围绕产品形态和使用方式，组织 Listing 内容与多模块 A+ 视觉叙事。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
         </div>
       </div>
     </section>
 
-    <section id="aigc" class="section">
-      <div class="section-inner lab-layout">
-        <div class="lab-panel">
-          <div class="kicker">AIGC PRODUCTION LAB</div>
-          <h3>From Product Image to Commerce Assets.</h3>
-          <p class="lead">把产品拍摄、场景生成、卖点拆解和平台规格整合成可复用的视觉生产流程，让单张素材延展成主图、场景图、信息图和 A+ 页面资产。</p>
-          <div class="chips">
-            <span class="chip">Gemini API</span>
-            <span class="chip">Prompt System</span>
-            <span class="chip">Vision Analyzer</span>
-            <span class="chip">Video Workflow</span>
-          </div>
+    <section class="section archive" aria-labelledby="archive-title">
+      <div class="container">
+        <div class="section-head archive-head"><div><p class="eyebrow">GLOBAL PROJECT ARCHIVE</p><h2 id="archive-title">更多海外项目</h2></div><p>延展到智能家居产品系列、旗舰新品和 A+ 场景设计。</p></div>
+        <div class="archive-list">
+          <button class="archive-row" type="button" data-project="p8" aria-haspopup="dialog"><span class="archive-year">2022 · 海外</span><span class="archive-name">Flagship Rebuild</span><span class="archive-detail">旗舰新品 A+ 场景重构</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          <button class="archive-row" type="button" data-project="p7" aria-haspopup="dialog"><span class="archive-year">2021 · 海外</span><span class="archive-name">Smart Home Set</span><span class="archive-detail">海外智能家电 Listing 系列</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          <button class="archive-row" type="button" data-project="p11" aria-haspopup="dialog"><span class="archive-year">2023 · 海外</span><span class="archive-name">Cabinet Light Pro</span><span class="archive-detail">智能橱柜灯 A+ 视觉进阶</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
         </div>
-        <div class="lab-system">
-          <div class="engine-head">
-            <div>
-              <span>COMMERCE VISUAL PIPELINE</span>
-              <strong>AIGC Asset Engine</strong>
-            </div>
-            <em>Single SKU input becomes a reusable Amazon visual system.</em>
+        <details class="domestic-projects">
+          <summary>查看早期国内项目（5 项）</summary>
+          <div class="archive-list">
+            <button class="archive-row" type="button" data-project="p2" aria-haspopup="dialog"><span class="archive-year">国内项目</span><span class="archive-name">Viomi Robot Vacuum</span><span class="archive-detail">扫拖机器人全矩阵视觉重塑</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p5" aria-haspopup="dialog"><span class="archive-year">国内项目</span><span class="archive-name">Mijia Kettle 1S</span><span class="archive-detail">电水壶家居场景与材质表现</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p1" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p3" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p4" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
           </div>
-          <div class="pipeline-grid">
-            <div class="pipeline-node">
-              <span>01 / INPUT</span>
-              <strong>Asset Library</strong>
-              <p>产品角度、白底图、尺寸、材质和平台规范先结构化。</p>
-            </div>
-            <div class="pipeline-node">
-              <span>02 / THINK</span>
-              <strong>Prompt Matrix</strong>
-              <p>拆解场景、镜头、光影、卖点和目标用户画像。</p>
-            </div>
-            <div class="pipeline-node">
-              <span>03 / MAKE</span>
-              <strong>Scene Iteration</strong>
-              <p>批量测试构图方向，快速筛选最适合转化的画面。</p>
-            </div>
-            <div class="pipeline-node">
-              <span>04 / SHIP</span>
-              <strong>Commerce Pack</strong>
-              <p>输出主图、副图、A+ 模块、详情页和视频分发资产。</p>
-            </div>
-          </div>
-          <div class="asset-board">
-            <div class="asset-chip">
-              <span>OUTPUT TYPES</span>
-              <strong>Main Image / Infographic / Scene / A+</strong>
-              <p>展示重点从“某一张图好不好看”转成“是否能稳定产出一整套平台资产”。</p>
-            </div>
-            <div class="proof-strip">
-              <span>RECENT SOURCE MATERIAL</span>
-              <div class="proof-thumbs">
-                <img src="assets/cat-edge-decor/cat-main-12-piece-set.jpg" alt="Cat decor input source">
-                <img src="assets/cat-edge-decor/cat-monitor-edge-scene-de.jpg" alt="Cat decor scene source">
-                <img src="assets/forest-squishy/main-pop-eyes-interaction-de.jpg" alt="Forest squishy infographic source">
-                <img src="assets/farm-squishy/aplus-brand-story-banner.jpg" alt="Farm squishy A+ source">
-              </div>
-            </div>
-          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="method" aria-labelledby="method-title">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">HOW I WORK</p><h2 id="method-title">先理解海外用户，<br>再决定画面怎么说。</h2></div><p>将用户关心的问题、产品差异点和 Amazon 内容结构放到同一条设计路径中。</p></div>
+        <div class="method-grid">
+          <article class="method-step"><span>01 / 用户问题</span><h3>明确购买疑问</h3><p>梳理海外用户可能关注的功能、尺寸、安装与使用场景，确定信息优先级。</p></article>
+          <article class="method-step"><span>02 / 内容结构</span><h3>组织 Listing 与 A+</h3><p>让主图建立第一印象，辅图解释卖点，A+ 承接场景、细节和品牌信息。</p></article>
+          <article class="method-step"><span>03 / 视觉迭代</span><h3>统一并持续优化</h3><p>通过设计规范、团队协作与转化反馈，持续调整后续内容。</p></article>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section">
-      <div class="section-inner">
-        <div class="kicker">PROFESSIONAL EXPERIENCE</div>
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">从视觉执行到海外设计管理</h2></div><p>近年的工作重点是海外产品视觉、Amazon 内容与设计团队流程建设；早期经历提供消费电子设计基础。</p></div>
         <div class="timeline">
-          <div class="time-row">
-            <span>2024 - Present</span>
-            <div><h3>广州奕至家居</h3><p>Design Manager</p></div>
-            <p>重构海外设计团队工作流，根据 Amazon 欧美用户画像落地品牌视觉风格，引入 AIGC 提效，核心产品转化率提升 10%-30%。</p>
-          </div>
-          <div class="time-row">
-            <span>2023 - 2024</span>
-            <div><h3>广东久量科技</h3><p>Design Supervisor</p></div>
-            <p>负责洗护系列产品品牌视觉建设，覆盖新品视觉、外拍对接、精修渲染和平台活动视觉更新。</p>
-          </div>
-          <div class="time-row">
-            <span>2020 - 2023</span>
-            <div><h3>广州奕至家居</h3><p>Design Lead</p></div>
-            <p>负责国内新品与大促视觉，后期转向海外 Listing、A+ 内容和智能家居视觉体系建设。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-      <div class="section-inner contact-grid">
-        <h2 class="contact-title">LET'S<br><span>TALK</span></h2>
-        <div class="contact-card">
-          <div class="kicker">OPEN FOR NEW OPPORTUNITIES</div>
-          <div class="contact-row"><span>Email</span><strong>dyk162@163.com</strong></div>
-          <div class="contact-row"><span>Phone</span><strong>+86 137 5186 8717</strong></div>
-          <div class="contact-row"><span>Base</span><strong>Guangzhou, CN</strong></div>
-          <div class="contact-row"><span>Focus</span><strong>Commerce Visual / AIGC Workflow</strong></div>
+          <article class="career-row"><span class="career-year">2024 — 至今</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Manager · 返聘</span></div><p>重构海外设计团队与可视化流程，建立以转化率为核心的视觉评估体系，并引入 AIGC 工作流。核心产品转化率提升 10%–30%。</p></article>
+          <article class="career-row"><span class="career-year">2023 — 2024</span><div class="career-role"><h3>广东久量科技</h3><span>Design Supervisor</span></div><p>负责洗护系列品牌视觉建设与新品内容设计，统筹外拍、精修渲染及平台活动视觉更新。</p></article>
+          <article class="career-row"><span class="career-year">2020 — 2023</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Lead</span></div><p>从国内新品与大促视觉转向海外产品设计管理，主导品牌建设及产品站视觉设计。</p></article>
+          <article class="career-row"><span class="career-year">2018 — 2020</span><div class="career-role"><h3>佛山市云米电器</h3><span>Graphic Designer</span></div><p>负责天猫、京东大促主视觉，统筹 50 余款小家电详情页设计，并参与发布会视觉物料制作。</p></article>
         </div>
       </div>
     </section>
   </main>
 
-  <aside id="modal" class="modal" aria-hidden="true">
-    <div class="modal-head">
-      <h2 id="modal-title">Project View</h2>
-      <button class="close" type="button" aria-label="Close project">×</button>
+  <footer class="contact" id="contact">
+    <div class="container">
+      <div class="contact-main"><div><p class="eyebrow">LET'S CONNECT</p><h2>让海外产品，<br>拥有更清晰的视觉表达。</h2><p>欢迎交流 Amazon Listing、A+、品牌系统与海外设计团队协作。</p></div><a class="button button-primary" href="mailto:dyk162@163.com">发送邮件 <span aria-hidden="true">↗</span></a></div>
+      <div class="contact-bottom"><div><a href="mailto:dyk162@163.com">dyk162@163.com</a><a href="tel:13751868717">+86 137 5186 8717</a></div><span>© 2026 KUANG STUDIO</span></div>
     </div>
-    <div class="case-hero">
-      <div class="case-summary">
-        <div class="kicker" id="modal-meta">CASE STUDY</div>
-        <h3 id="modal-name">VIOMI ROBOT VAC</h3>
-        <p id="modal-copy">通过结构拆解、场景化渲染和功能可视化，把复杂技术参数转译成可感知的购买理由。</p>
-      </div>
-      <div class="case-image"><img id="modal-main" src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="Project hero image"></div>
-    </div>
-    <div id="modal-strip" class="case-strip"></div>
-  </aside>
+  </footer>
+
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-header"><h2 id="dialog-title">项目作品</h2><button class="dialog-close" type="button" id="dialog-close" aria-label="关闭项目作品">×</button></div>
+    <div class="dialog-gallery" id="dialog-gallery"></div>
+  </dialog>
 
   <script>
-    const cases = {
-      robot: {
-        title: "VIOMI ROBOT VAC",
-        meta: "P-01 / DOMESTIC / VISUAL STRATEGY",
-        copy: "扫地机器人卖点复杂，用户很难快速理解导航、吸力和路径规划等优势。通过结构拆解、场景化渲染和功能可视化，把技术参数转译成购买理由。",
-        images: [
-          "https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg",
-          "https://i.postimg.cc/DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg",
-          "https://i.postimg.cc/4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg",
-          "https://i.postimg.cc/J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg",
-          "https://i.postimg.cc/rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png",
-          "https://i.postimg.cc/7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png",
-          "https://i.postimg.cc/MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg",
-          "https://i.postimg.cc/c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg",
-          "https://i.postimg.cc/5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg",
-          "https://i.postimg.cc/4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg",
-          "https://i.postimg.cc/Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg",
-          "https://i.postimg.cc/BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg",
-          "https://i.postimg.cc/gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"
-        ]
-      },
-      kettle: {
-        title: "MIJIA KETTLE 1S",
-        meta: "P-02 / DOMESTIC / 3D RENDERING",
-        copy: "在极简产品语境下重构高质感家居渲染场景，以材质、光影和生活方式画面强化产品感知。",
-        images: [
-          "https://i.postimg.cc/0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg",
-          "https://i.postimg.cc/02vqF3vL/shui.jpg"
-        ]
-      },
-      branding: {
-        title: "OVERSEAS BRANDING",
-        meta: "P-03 / GLOBAL / E-COMMERCE",
-        copy: "基于欧美审美语境建立高转化主图、A+ 页面与场景视觉矩阵，让品牌资产适配 Amazon 与海外独立站表达。",
-        images: [
-          "https://i.postimg.cc/FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg",
-          "https://i.postimg.cc/fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg",
-          "https://i.postimg.cc/bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg",
-          "https://i.postimg.cc/bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"
-        ]
+    const B = 'https://i.postimg.cc/';
+    const pd = {
+            p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
+            p2:{t:"云米扫拖机器人 (精选版)",s:[{t:"多型号视觉重构",i:["4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg","DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg","4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg","J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg","rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png","7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png","MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg","c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg","5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg","4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg","Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg","BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg","gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"]}]},
+            p3:{t:"云米手持无线吸尘器",s:[{t:"结构拆解分析",i:["mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg","xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg","RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg","d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg","Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg","bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg","DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg","76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg","JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg","SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg","26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg","wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg","wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg","zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg","6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"]}]},
+            p4:{t:"云米空气消毒净化器",s:[{t:"科技调性重构",i:["L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg","XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg","GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg","K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg","jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg","bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg","fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg","dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg","kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg","T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg","13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg","6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg","MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg","wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg","VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"]}]},
+            p5:{t:"米家电水壶 1S 全案",s:[{t:"全景视觉呈现",i:["KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg","G2zRwdKk/2018-2020-zuo-pin-ji-jing-xuan-17-02.jpg","0QZvRPnS/2018-2020-zuo-pin-ji-jing-xuan-17-03.jpg","3R9h5Y1v/2018-2020-zuo-pin-ji-jing-xuan-17-04.jpg","J0nLRvYK/2018-2020-zuo-pin-ji-jing-xuan-18.jpg","PJxjd9V6/2018-2020-zuo-pin-ji-jing-xuan-19.jpg","Wz3vsCY5/2018-2020-zuo-pin-ji-jing-xuan-20-01.jpg","0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg","L5bM5DGb/2018-2020-zuo-pin-ji-jing-xuan-20-03.jpg","2yKfyGgX/2018-2020-zuo-pin-ji-jing-xuan-20-04.jpg","7h6kqdQv/2018-2020-zuo-pin-ji-jing-xuan-20-05.jpg","yxbzxj22/2018-2020-zuo-pin-ji-jing-xuan-20-06.jpg","KjHyjfdx/2018-2020-zuo-pin-ji-jing-xuan-20-07.jpg","tJMHJkLG/2018-2020-zuo-pin-ji-jing-xuan-20-08.jpg","BbVGbpds/2018-2020-zuo-pin-ji-jing-xuan-20-09.jpg","HnhCnzfT/2018-2020-zuo-pin-ji-jing-xuan-20-10.jpg","0jBqjnLk/2018-2020-zuo-pin-ji-jing-xuan-20-11.jpg","tJMHJkLT/2018-2020-zuo-pin-ji-jing-xuan-20-12.jpg","90nj0bvf/2018-2020-zuo-pin-ji-jing-xuan-20-13.jpg","Y0sw0RJv/2018-2020-zuo-pin-ji-jing-xuan-20-14.jpg","gjTPjsfn/2018-2020-zuo-pin-ji-jing-xuan-20-15.jpg","dQHF5QDn/2018-2020-zuo-pin-ji-jing-xuan-20-16.jpg","mZX4mZhw/2018-2020-zuo-pin-ji-jing-xuan-20-17.jpg"]}]},
+            p6:{t:"海外品牌视觉精选全案",s:[{t:"主图与 A+ 系统",i:["mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg","CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg","k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg","FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg","fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg","0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg","g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg","tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg","cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg","W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg","N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg","CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg","3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg","bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg","Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg","bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"]}]},
+            p7:{t:"海外智能家电系列",s:[{t:"Listing 视觉设计",i:["Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg","DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg","yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg","mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg","Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg","br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg","L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg","gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg","XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg","59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg","VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg","mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg","CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg","qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg","DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg","05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg","yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg","zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"]}]},
+            p8:{t:"旗舰新品视觉重构",s:[{t:"A+ 场景",i:["gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg","Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg","ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg","c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg","GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg","WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg","Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg","hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg","FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg","Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg","VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg","0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg","7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg","SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg","Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg","rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg","L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"]}]},
+            p9:{t:"智能橱柜灯 2.0",s:[{t:"Listing Main",i:["5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg","fycwbpxT/UCL01-2-0-wu-yao-kong-20-zhu-tu-2.jpg","PJWtq9mx/UCL01-2-0-wu-yao-kong-20-zhu-tu-3.jpg","j2Hsjmzj/UCL01-2-0-wu-yao-kong-20-zhu-tu-4.jpg","VvqYNpjd/UCL01-2-0-wu-yao-kong-20-zhu-tu-5.png","yxmVNtFR/UCL01-2-0-wu-yao-kong-20-zhu-tu-6.jpg","7h3xLdgS/UCL01-2-0-wu-yao-kong-20-zhu-tu-7.jpg","j2Hsjmzz/UCL01-2-0-wu-yao-kong-20-zhu-tu-8.jpg","vTrQmkW3/UCL01-2-0-fei-IR-ban-zhu-tu-6.png"]},{t:"A+ Enhanced",i:["dV1YMLSC/UCL01-2-0-wu-yao-kong-20-A-PC-1.png","Qdt3LHn1/UCL01-2-0-wu-yao-kong-20-A-PC-2.png","kg4mrBh8/UCL01-2-0-wu-yao-kong-20-A-PC-3.png","htjBFf3V/UCL01-2-0-wu-yao-kong-20-A-PC-4.png","BnVGJ4d2/UCL01-2-0-wu-yao-kong-20-A-PC-5.png","RZDzv4jc/UCL01-2-0-wu-yao-kong-20-A-PC-6-1.png","9QMh3rNJ/UCL01-2-0-wu-yao-kong-20-A-PC-6-2.jpg","DwMK7ntP/UCL01-2-0-wu-yao-kong-20-A-PC-6-3.png","4xSTXsr8/UCL01-2-0-wu-yao-kong-20-A-PC-8-1.png","y8bz7swv/UCL01-2-0-wu-yao-kong-20-A-PC-8-2.png","QdyrjhRy/UCL01-2-0-wu-yao-kong-20-A-PC-8-3.png","T34XTfZN/UCL01-2-0-wu-yao-kong-20-A-PC-8-3-kao-bei.png","4xSTXsrr/UCL01-2-0-wu-yao-kong-20-A-PC-9-1.png","Jz2WRM9f/UCL01-2-0-wu-yao-kong-20-A-PC-9-2.png"]}]},
+            p10:{t:"超薄智能感应灯全案",s:[{t:"Listing Content",i:["fymL155B/UCL06-20-zhu-tu-1-2.png","6qn3Fzz0/UCL06-20-zhu-tu-2.png","d3r1gnn5/UCL06-20-zhu-tu-3.png","Wzg3xSSw/UCL06-20-zhu-tu-4.png","PJYx0KKg/UCL06-20-zhu-tu-5.png","cCwHPTXq/UCL06-20-zhu-tu-6.png","66vy75wQ/UCL06-20-zhu-tu-7.png","tJWT8DD8/UCL06-20-zhu-tu-8.jpg","05wb62xw/UCL06-20-zhu-tu-9.png"]},{t:"A+ Sections",i:["3rvdyJ7p/UCL06-20cm-A-PC-1.png","NGH5yfYm/UCL06-20cm-A-PC-2.png","mZHtc2RQ/UCL06-20cm-A-PC-3-1.png","59C6HN1n/UCL06-20cm-A-PC-3-2.png","kMbBVX9w/UCL06-20cm-A-PC-3-3.png","RCHN3V9s/UCL06-20cm-A-PC-3-4.png","sDC15dDY/UCL06-20cm-A-PC-4-1.png","zXY3TZX6/UCL06-20cm-A-PC-4-2.png","m2Wh7f2q/UCL06-20cm-A-PC-4-3.png","kXPDW3X0/UCL06-20cm-A-PC-4-4.png","ZKz06t5J/UCL06-20cm-A-PC-5-1.png","BQ5bgYXd/UCL06-20cm-A-PC-5-2.png","ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png","wT5MVf1p/UCL06-20cm-A-PC-5-4.png","8PdcHK7D/UCL06-20cm-A-PC-6-1.png","gkyjDSx2/UCL06-20cm-A-PC-6-2.png","tCdJ5SsY/UCL06-20cm-A-PC-6-3.png","VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"]}]},
+            p11:{t:"智能橱柜灯 A+ 进阶",s:[{t:"A+ Enhanced",i:["nzYFCmJs/UCL01-2-0-A-1.jpg","D0v2szv8/UCL01-2-0-A-2.jpg","GtLcYpLT/UCL01-2-0-A-3.jpg","gjzYR0z3/UCL01-2-0-A-4.jpg","x8f0Hdfm/UCL01-2-0-A-4-2.png","MH6WRG6R/UCL01-2-0-A-4-3.png","1Xm96zm0/UCL01-2-0-A-5-1.png","WzN2r4NW/UCL01-2-0-A-5-2.png","PJXtZqXF/UCL01-2-0-A-5-3.png","QC8X5M8Y/UCL01-2-0-A-6-1.png","wMw9kdMF/UCL01-2-0-A-6-2-1.png","4yWX1TyB/UCL01-2-0-A-7-1.jpg","J0pRQW06/UCL01-2-0-A-7-2.png"]}]}
+        };
+    const dialog = document.getElementById('project-dialog');
+    const dialogTitle = document.getElementById('dialog-title');
+    const gallery = document.getElementById('dialog-gallery');
+    let lastTrigger = null;
+
+    function openProject(id, trigger) {
+      const project = pd[id];
+      if (!project) return;
+      lastTrigger = trigger;
+      dialogTitle.textContent = project.t;
+      gallery.replaceChildren();
+      for (const section of project.s) {
+        const wrapper = document.createElement('section');
+        wrapper.className = 'dialog-section';
+        const heading = document.createElement('h3');
+        heading.textContent = section.t;
+        wrapper.append(heading);
+        section.i.forEach((path, index) => {
+          const img = document.createElement('img');
+          img.src = B + path;
+          img.alt = `${project.t} — ${section.t} ${index + 1}`;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          wrapper.append(img);
+        });
+        gallery.append(wrapper);
       }
-    };
-
-    const modal = document.getElementById("modal");
-    const modalTitle = document.getElementById("modal-title");
-    const modalName = document.getElementById("modal-name");
-    const modalMeta = document.getElementById("modal-meta");
-    const modalCopy = document.getElementById("modal-copy");
-    const modalMain = document.getElementById("modal-main");
-    const modalStrip = document.getElementById("modal-strip");
-
-    document.querySelectorAll("[data-project]").forEach((project) => {
-      project.addEventListener("click", () => {
-        const data = cases[project.dataset.project];
-        if (!data) return;
-        modalTitle.textContent = data.title;
-        modalName.textContent = data.title;
-        modalMeta.textContent = data.meta;
-        modalCopy.textContent = data.copy;
-        modalMain.src = data.images[0];
-        modalMain.alt = data.title;
-        modalStrip.innerHTML = data.images.slice(1).map((src) => `<img src="${src}" alt="${data.title} detail">`).join("");
-        modal.classList.add("open");
-        modal.setAttribute("aria-hidden", "false");
-        modal.scrollTo(0, 0);
-      });
-    });
-
-    document.querySelector(".close").addEventListener("click", () => {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-    });
-
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-      }
-    });
-  </script>
-  <script type="application/json" id="portfolio-manifest-data">
-{
-  "source": "https://kuangyuande162-prog.github.io/my-portfolio/",
-  "extractedAt": "2026-08-05T11:03:13.979Z",
-  "method": "Rebuilt from complete extracted asset inventory, normalized project names, and appended local squishy toy sets",
-  "base": "https://i.postimg.cc/",
-  "projectCount": 14,
-  "totalImages": 230,
-  "projects": [
-    {
-      "key": "p1",
-      "title": "云米互联网扫拖机器人 1",
-      "sections": [
-        {
-          "title": "视觉呈现",
-          "images": [
-            "https://i.postimg.cc/FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg",
-            "https://i.postimg.cc/JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg",
-            "https://i.postimg.cc/mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg",
-            "https://i.postimg.cc/KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg",
-            "https://i.postimg.cc/6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg",
-            "https://i.postimg.cc/rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png",
-            "https://i.postimg.cc/W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png",
-            "https://i.postimg.cc/MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg",
-            "https://i.postimg.cc/ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg",
-            "https://i.postimg.cc/fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg",
-            "https://i.postimg.cc/Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg",
-            "https://i.postimg.cc/xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg",
-            "https://i.postimg.cc/4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg",
-            "https://i.postimg.cc/3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg",
-            "https://i.postimg.cc/PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"
-          ],
-          "count": 15
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 15,
-      "firstImage": "https://i.postimg.cc/FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg"
-    },
-    {
-      "key": "p2",
-      "title": "云米扫拖机器人 精选版",
-      "sections": [
-        {
-          "title": "多型号视觉重构",
-          "images": [
-            "https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg",
-            "https://i.postimg.cc/DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg",
-            "https://i.postimg.cc/4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg",
-            "https://i.postimg.cc/J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg",
-            "https://i.postimg.cc/rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png",
-            "https://i.postimg.cc/7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png",
-            "https://i.postimg.cc/MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg",
-            "https://i.postimg.cc/c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg",
-            "https://i.postimg.cc/5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg",
-            "https://i.postimg.cc/4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg",
-            "https://i.postimg.cc/Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg",
-            "https://i.postimg.cc/BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg",
-            "https://i.postimg.cc/gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"
-          ],
-          "count": 13
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 13,
-      "firstImage": "https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg"
-    },
-    {
-      "key": "p3",
-      "title": "云米手持无线吸尘器",
-      "sections": [
-        {
-          "title": "结构拆解分析",
-          "images": [
-            "https://i.postimg.cc/mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg",
-            "https://i.postimg.cc/xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg",
-            "https://i.postimg.cc/RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg",
-            "https://i.postimg.cc/d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg",
-            "https://i.postimg.cc/Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg",
-            "https://i.postimg.cc/bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg",
-            "https://i.postimg.cc/DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg",
-            "https://i.postimg.cc/76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg",
-            "https://i.postimg.cc/JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg",
-            "https://i.postimg.cc/SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg",
-            "https://i.postimg.cc/26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg",
-            "https://i.postimg.cc/wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg",
-            "https://i.postimg.cc/wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg",
-            "https://i.postimg.cc/zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg",
-            "https://i.postimg.cc/6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"
-          ],
-          "count": 15
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 15,
-      "firstImage": "https://i.postimg.cc/mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg"
-    },
-    {
-      "key": "p4",
-      "title": "云米空气消毒净化器",
-      "sections": [
-        {
-          "title": "科技调性重构",
-          "images": [
-            "https://i.postimg.cc/L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg",
-            "https://i.postimg.cc/XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg",
-            "https://i.postimg.cc/GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg",
-            "https://i.postimg.cc/K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg",
-            "https://i.postimg.cc/jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg",
-            "https://i.postimg.cc/bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg",
-            "https://i.postimg.cc/fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg",
-            "https://i.postimg.cc/dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg",
-            "https://i.postimg.cc/kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg",
-            "https://i.postimg.cc/T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg",
-            "https://i.postimg.cc/13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg",
-            "https://i.postimg.cc/6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg",
-            "https://i.postimg.cc/MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg",
-            "https://i.postimg.cc/wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg",
-            "https://i.postimg.cc/VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"
-          ],
-          "count": 15
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 15,
-      "firstImage": "https://i.postimg.cc/L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg"
-    },
-    {
-      "key": "p5",
-      "title": "米家电水壶 1S 全案",
-      "sections": [
-        {
-          "title": "全景视觉呈现",
-          "images": [
-            "https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg",
-            "https://i.postimg.cc/G2zRwdKk/2018-2020-zuo-pin-ji-jing-xuan-17-02.jpg",
-            "https://i.postimg.cc/0QZvRPnS/2018-2020-zuo-pin-ji-jing-xuan-17-03.jpg",
-            "https://i.postimg.cc/3R9h5Y1v/2018-2020-zuo-pin-ji-jing-xuan-17-04.jpg",
-            "https://i.postimg.cc/J0nLRvYK/2018-2020-zuo-pin-ji-jing-xuan-18.jpg",
-            "https://i.postimg.cc/PJxjd9V6/2018-2020-zuo-pin-ji-jing-xuan-19.jpg",
-            "https://i.postimg.cc/Wz3vsCY5/2018-2020-zuo-pin-ji-jing-xuan-20-01.jpg",
-            "https://i.postimg.cc/0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg",
-            "https://i.postimg.cc/L5bM5DGb/2018-2020-zuo-pin-ji-jing-xuan-20-03.jpg",
-            "https://i.postimg.cc/2yKfyGgX/2018-2020-zuo-pin-ji-jing-xuan-20-04.jpg",
-            "https://i.postimg.cc/7h6kqdQv/2018-2020-zuo-pin-ji-jing-xuan-20-05.jpg",
-            "https://i.postimg.cc/yxbzxj22/2018-2020-zuo-pin-ji-jing-xuan-20-06.jpg",
-            "https://i.postimg.cc/KjHyjfdx/2018-2020-zuo-pin-ji-jing-xuan-20-07.jpg",
-            "https://i.postimg.cc/tJMHJkLG/2018-2020-zuo-pin-ji-jing-xuan-20-08.jpg",
-            "https://i.postimg.cc/BbVGbpds/2018-2020-zuo-pin-ji-jing-xuan-20-09.jpg",
-            "https://i.postimg.cc/HnhCnzfT/2018-2020-zuo-pin-ji-jing-xuan-20-10.jpg",
-            "https://i.postimg.cc/0jBqjnLk/2018-2020-zuo-pin-ji-jing-xuan-20-11.jpg",
-            "https://i.postimg.cc/tJMHJkLT/2018-2020-zuo-pin-ji-jing-xuan-20-12.jpg",
-            "https://i.postimg.cc/90nj0bvf/2018-2020-zuo-pin-ji-jing-xuan-20-13.jpg",
-            "https://i.postimg.cc/Y0sw0RJv/2018-2020-zuo-pin-ji-jing-xuan-20-14.jpg",
-            "https://i.postimg.cc/gjTPjsfn/2018-2020-zuo-pin-ji-jing-xuan-20-15.jpg",
-            "https://i.postimg.cc/dQHF5QDn/2018-2020-zuo-pin-ji-jing-xuan-20-16.jpg",
-            "https://i.postimg.cc/mZX4mZhw/2018-2020-zuo-pin-ji-jing-xuan-20-17.jpg"
-          ],
-          "count": 23
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 23,
-      "firstImage": "https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg"
-    },
-    {
-      "key": "p6",
-      "title": "海外品牌视觉精选全案",
-      "sections": [
-        {
-          "title": "主图与 A+ 系统",
-          "images": [
-            "https://i.postimg.cc/mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg",
-            "https://i.postimg.cc/CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg",
-            "https://i.postimg.cc/k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg",
-            "https://i.postimg.cc/FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg",
-            "https://i.postimg.cc/fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg",
-            "https://i.postimg.cc/0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg",
-            "https://i.postimg.cc/g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg",
-            "https://i.postimg.cc/tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg",
-            "https://i.postimg.cc/cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg",
-            "https://i.postimg.cc/W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg",
-            "https://i.postimg.cc/N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg",
-            "https://i.postimg.cc/CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg",
-            "https://i.postimg.cc/3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg",
-            "https://i.postimg.cc/bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg",
-            "https://i.postimg.cc/Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg",
-            "https://i.postimg.cc/bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"
-          ],
-          "count": 16
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 16,
-      "firstImage": "https://i.postimg.cc/mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg"
-    },
-    {
-      "key": "p7",
-      "title": "海外智能家电系列",
-      "sections": [
-        {
-          "title": "Listing 视觉设计",
-          "images": [
-            "https://i.postimg.cc/Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg",
-            "https://i.postimg.cc/DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg",
-            "https://i.postimg.cc/yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg",
-            "https://i.postimg.cc/mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg",
-            "https://i.postimg.cc/Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg",
-            "https://i.postimg.cc/br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg",
-            "https://i.postimg.cc/L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg",
-            "https://i.postimg.cc/gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg",
-            "https://i.postimg.cc/XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg",
-            "https://i.postimg.cc/59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg",
-            "https://i.postimg.cc/VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg",
-            "https://i.postimg.cc/mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg",
-            "https://i.postimg.cc/CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg",
-            "https://i.postimg.cc/qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg",
-            "https://i.postimg.cc/DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg",
-            "https://i.postimg.cc/05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg",
-            "https://i.postimg.cc/yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg",
-            "https://i.postimg.cc/zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"
-          ],
-          "count": 18
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 18,
-      "firstImage": "https://i.postimg.cc/Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg"
-    },
-    {
-      "key": "p8",
-      "title": "旗舰新品视觉重构",
-      "sections": [
-        {
-          "title": "A+ 场景",
-          "images": [
-            "https://i.postimg.cc/gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg",
-            "https://i.postimg.cc/Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg",
-            "https://i.postimg.cc/ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg",
-            "https://i.postimg.cc/c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg",
-            "https://i.postimg.cc/GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg",
-            "https://i.postimg.cc/WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg",
-            "https://i.postimg.cc/Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg",
-            "https://i.postimg.cc/hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg",
-            "https://i.postimg.cc/FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg",
-            "https://i.postimg.cc/Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg",
-            "https://i.postimg.cc/VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg",
-            "https://i.postimg.cc/0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg",
-            "https://i.postimg.cc/7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg",
-            "https://i.postimg.cc/SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg",
-            "https://i.postimg.cc/Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg",
-            "https://i.postimg.cc/rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg",
-            "https://i.postimg.cc/L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"
-          ],
-          "count": 17
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 17,
-      "firstImage": "https://i.postimg.cc/gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg"
-    },
-    {
-      "key": "p9",
-      "title": "智能橱柜灯 2.0",
-      "sections": [
-        {
-          "title": "Listing Main",
-          "images": [
-            "https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg",
-            "https://i.postimg.cc/fycwbpxT/UCL01-2-0-wu-yao-kong-20-zhu-tu-2.jpg",
-            "https://i.postimg.cc/PJWtq9mx/UCL01-2-0-wu-yao-kong-20-zhu-tu-3.jpg",
-            "https://i.postimg.cc/j2Hsjmzj/UCL01-2-0-wu-yao-kong-20-zhu-tu-4.jpg",
-            "https://i.postimg.cc/VvqYNpjd/UCL01-2-0-wu-yao-kong-20-zhu-tu-5.png",
-            "https://i.postimg.cc/yxmVNtFR/UCL01-2-0-wu-yao-kong-20-zhu-tu-6.jpg",
-            "https://i.postimg.cc/7h3xLdgS/UCL01-2-0-wu-yao-kong-20-zhu-tu-7.jpg",
-            "https://i.postimg.cc/j2Hsjmzz/UCL01-2-0-wu-yao-kong-20-zhu-tu-8.jpg",
-            "https://i.postimg.cc/vTrQmkW3/UCL01-2-0-fei-IR-ban-zhu-tu-6.png"
-          ],
-          "count": 9
-        },
-        {
-          "title": "A+ Enhanced",
-          "images": [
-            "https://i.postimg.cc/dV1YMLSC/UCL01-2-0-wu-yao-kong-20-A-PC-1.png",
-            "https://i.postimg.cc/Qdt3LHn1/UCL01-2-0-wu-yao-kong-20-A-PC-2.png",
-            "https://i.postimg.cc/kg4mrBh8/UCL01-2-0-wu-yao-kong-20-A-PC-3.png",
-            "https://i.postimg.cc/htjBFf3V/UCL01-2-0-wu-yao-kong-20-A-PC-4.png",
-            "https://i.postimg.cc/BnVGJ4d2/UCL01-2-0-wu-yao-kong-20-A-PC-5.png",
-            "https://i.postimg.cc/RZDzv4jc/UCL01-2-0-wu-yao-kong-20-A-PC-6-1.png",
-            "https://i.postimg.cc/9QMh3rNJ/UCL01-2-0-wu-yao-kong-20-A-PC-6-2.jpg",
-            "https://i.postimg.cc/DwMK7ntP/UCL01-2-0-wu-yao-kong-20-A-PC-6-3.png",
-            "https://i.postimg.cc/4xSTXsr8/UCL01-2-0-wu-yao-kong-20-A-PC-8-1.png",
-            "https://i.postimg.cc/y8bz7swv/UCL01-2-0-wu-yao-kong-20-A-PC-8-2.png",
-            "https://i.postimg.cc/QdyrjhRy/UCL01-2-0-wu-yao-kong-20-A-PC-8-3.png",
-            "https://i.postimg.cc/T34XTfZN/UCL01-2-0-wu-yao-kong-20-A-PC-8-3-kao-bei.png",
-            "https://i.postimg.cc/4xSTXsrr/UCL01-2-0-wu-yao-kong-20-A-PC-9-1.png",
-            "https://i.postimg.cc/Jz2WRM9f/UCL01-2-0-wu-yao-kong-20-A-PC-9-2.png"
-          ],
-          "count": 14
-        }
-      ],
-      "sectionCount": 2,
-      "imageCount": 23,
-      "firstImage": "https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg"
-    },
-    {
-      "key": "p10",
-      "title": "超薄智能感应灯全案",
-      "sections": [
-        {
-          "title": "Listing Content",
-          "images": [
-            "https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png",
-            "https://i.postimg.cc/6qn3Fzz0/UCL06-20-zhu-tu-2.png",
-            "https://i.postimg.cc/d3r1gnn5/UCL06-20-zhu-tu-3.png",
-            "https://i.postimg.cc/Wzg3xSSw/UCL06-20-zhu-tu-4.png",
-            "https://i.postimg.cc/PJYx0KKg/UCL06-20-zhu-tu-5.png",
-            "https://i.postimg.cc/cCwHPTXq/UCL06-20-zhu-tu-6.png",
-            "https://i.postimg.cc/66vy75wQ/UCL06-20-zhu-tu-7.png",
-            "https://i.postimg.cc/tJWT8DD8/UCL06-20-zhu-tu-8.jpg",
-            "https://i.postimg.cc/05wb62xw/UCL06-20-zhu-tu-9.png"
-          ],
-          "count": 9
-        },
-        {
-          "title": "A+ Sections",
-          "images": [
-            "https://i.postimg.cc/3rvdyJ7p/UCL06-20cm-A-PC-1.png",
-            "https://i.postimg.cc/NGH5yfYm/UCL06-20cm-A-PC-2.png",
-            "https://i.postimg.cc/mZHtc2RQ/UCL06-20cm-A-PC-3-1.png",
-            "https://i.postimg.cc/59C6HN1n/UCL06-20cm-A-PC-3-2.png",
-            "https://i.postimg.cc/kMbBVX9w/UCL06-20cm-A-PC-3-3.png",
-            "https://i.postimg.cc/RCHN3V9s/UCL06-20cm-A-PC-3-4.png",
-            "https://i.postimg.cc/sDC15dDY/UCL06-20cm-A-PC-4-1.png",
-            "https://i.postimg.cc/zXY3TZX6/UCL06-20cm-A-PC-4-2.png",
-            "https://i.postimg.cc/m2Wh7f2q/UCL06-20cm-A-PC-4-3.png",
-            "https://i.postimg.cc/kXPDW3X0/UCL06-20cm-A-PC-4-4.png",
-            "https://i.postimg.cc/ZKz06t5J/UCL06-20cm-A-PC-5-1.png",
-            "https://i.postimg.cc/BQ5bgYXd/UCL06-20cm-A-PC-5-2.png",
-            "https://i.postimg.cc/ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png",
-            "https://i.postimg.cc/wT5MVf1p/UCL06-20cm-A-PC-5-4.png",
-            "https://i.postimg.cc/8PdcHK7D/UCL06-20cm-A-PC-6-1.png",
-            "https://i.postimg.cc/gkyjDSx2/UCL06-20cm-A-PC-6-2.png",
-            "https://i.postimg.cc/tCdJ5SsY/UCL06-20cm-A-PC-6-3.png",
-            "https://i.postimg.cc/VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"
-          ],
-          "count": 18
-        }
-      ],
-      "sectionCount": 2,
-      "imageCount": 27,
-      "firstImage": "https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png"
-    },
-    {
-      "key": "p11",
-      "title": "智能橱柜灯 A+ 进阶",
-      "sections": [
-        {
-          "title": "A+ Enhanced",
-          "images": [
-            "https://i.postimg.cc/nzYFCmJs/UCL01-2-0-A-1.jpg",
-            "https://i.postimg.cc/D0v2szv8/UCL01-2-0-A-2.jpg",
-            "https://i.postimg.cc/GtLcYpLT/UCL01-2-0-A-3.jpg",
-            "https://i.postimg.cc/gjzYR0z3/UCL01-2-0-A-4.jpg",
-            "https://i.postimg.cc/x8f0Hdfm/UCL01-2-0-A-4-2.png",
-            "https://i.postimg.cc/MH6WRG6R/UCL01-2-0-A-4-3.png",
-            "https://i.postimg.cc/1Xm96zm0/UCL01-2-0-A-5-1.png",
-            "https://i.postimg.cc/WzN2r4NW/UCL01-2-0-A-5-2.png",
-            "https://i.postimg.cc/PJXtZqXF/UCL01-2-0-A-5-3.png",
-            "https://i.postimg.cc/QC8X5M8Y/UCL01-2-0-A-6-1.png",
-            "https://i.postimg.cc/wMw9kdMF/UCL01-2-0-A-6-2-1.png",
-            "https://i.postimg.cc/4yWX1TyB/UCL01-2-0-A-7-1.jpg",
-            "https://i.postimg.cc/J0pRQW06/UCL01-2-0-A-7-2.png"
-          ],
-          "count": 13
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 13,
-      "firstImage": "https://i.postimg.cc/nzYFCmJs/UCL01-2-0-A-1.jpg"
-    },
-    {
-      "key": "p12",
-      "title": "农场动物捏捏玩具 Amazon 德国站视觉全案",
-      "sections": [
-        {
-          "title": "Main Images / German Infographics",
-          "images": [
-            "assets/farm-squishy/farm-main.jpg",
-            "assets/farm-squishy/main-care-safety-de.jpg",
-            "assets/farm-squishy/main-gift-scene-de.jpg",
-            "assets/farm-squishy/main-lifestyle-collage.jpg",
-            "assets/farm-squishy/main-rebound-repeat-de.jpg",
-            "assets/farm-squishy/main-premium-infographic-de.jpg",
-            "assets/farm-squishy/main-size-infographic-de.jpg"
-          ],
-          "count": 7
-        },
-        {
-          "title": "Amazon A+ Modules",
-          "images": [
-            "assets/farm-squishy/aplus-brand-story-banner.jpg",
-            "assets/farm-squishy/aplus-easy-play-module.jpg",
-            "assets/farm-squishy/aplus-feature-mechanism.jpg",
-            "assets/farm-squishy/aplus-gifting-module.jpg",
-            "assets/farm-squishy/aplus-lifestyle-module.jpg",
-            "assets/farm-squishy/aplus-set-overview.jpg",
-            "assets/farm-squishy/aplus-sharing-module.jpg"
-          ],
-          "count": 7
-        }
-      ],
-      "sectionCount": 2,
-      "imageCount": 14,
-      "firstImage": "assets/farm-squishy/farm-main.jpg"
-    },
-    {
-      "key": "p13",
-      "title": "森林动物凸眼捏捏玩具 Amazon 德国站视觉全案",
-      "sections": [
-        {
-          "title": "Main Images / German Infographics",
-          "images": [
-            "assets/forest-squishy/forest-main.jpg",
-            "assets/forest-squishy/main-quality-safe-de.jpg",
-            "assets/forest-squishy/main-pop-eyes-interaction-de.jpg",
-            "assets/forest-squishy/main-four-animals-de.jpg",
-            "assets/forest-squishy/main-stress-relief-scenes-de.jpg",
-            "assets/forest-squishy/main-size-info-de.jpg",
-            "assets/forest-squishy/main-audience-scenes-de.jpg"
-          ],
-          "count": 7
-        },
-        {
-          "title": "Amazon A+ PC Modules",
-          "images": [
-            "assets/forest-squishy/aplus-hero-banner.jpg",
-            "assets/forest-squishy/aplus-feature-grid.jpg",
-            "assets/forest-squishy/aplus-pop-eyes-mechanism.jpg",
-            "assets/forest-squishy/aplus-quality-safety.jpg",
-            "assets/forest-squishy/aplus-use-audience.jpg",
-            "assets/forest-squishy/aplus-size-overview.jpg",
-            "assets/forest-squishy/aplus-quality-promise.jpg"
-          ],
-          "count": 7
-        }
-      ],
-      "sectionCount": 2,
-      "imageCount": 14,
-      "firstImage": "assets/forest-squishy/forest-main.jpg"
-    },
-    {
-      "key": "p14",
-      "title": "猫咪边缘装饰摆件 Amazon 德国站主图全案",
-      "sections": [
-        {
-          "title": "Listing Main / German Infographics",
-          "images": [
-            "assets/cat-edge-decor/cat-main-12-piece-set.jpg",
-            "assets/cat-edge-decor/cat-material-edge-detail-de.jpg",
-            "assets/cat-edge-decor/cat-size-infographic-de.jpg",
-            "assets/cat-edge-decor/cat-monitor-edge-scene-de.jpg",
-            "assets/cat-edge-decor/cat-multi-scene-edge-decor-de.jpg",
-            "assets/cat-edge-decor/cat-car-display-edge-decor-de.jpg",
-            "assets/cat-edge-decor/cat-home-frame-shelf-decor-de.jpg"
-          ],
-          "count": 7
-        }
-      ],
-      "sectionCount": 1,
-      "imageCount": 7,
-      "firstImage": "assets/cat-edge-decor/cat-main-12-piece-set.jpg"
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+      dialog.scrollTop = 0;
+      document.getElementById('dialog-close').focus();
     }
-  ]
-}
 
-  </script>
-  <script>
-    (async function initCompletePortfolioAssets() {
-      function readEmbeddedManifest() {
-        const node = document.getElementById("portfolio-manifest-data");
-        if (!node || !node.textContent.trim()) return null;
-        return JSON.parse(node.textContent);
-      }
+    document.querySelectorAll('[data-project]').forEach(button => {
+      button.addEventListener('click', () => openProject(button.dataset.project, button));
+    });
+    document.getElementById('dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+      gallery.replaceChildren();
+      if (lastTrigger?.isConnected) lastTrigger.focus();
+    });
 
-      async function loadPortfolioManifest() {
-        const embedded = readEmbeddedManifest();
-        if (embedded) return embedded;
-        return fetch("kuang-image-assets.json", { cache: "no-store" }).then((res) => res.json());
-      }
-
-      const manifest = await loadPortfolioManifest();
-      const projects = manifest.projects || [];
-      const byKey = Object.fromEntries(projects.map((project) => [project.key, project]));
-      const heroKeys = ["p14", "p13", "p12", "p2", "p5", "p6", "p9", "p10", "p1", "p7", "p8", "p3", "p4"];
-      const projectMeta = {
-        p1: { tag: "DOMESTIC / 2020", label: "ROBOT VAC V1", desc: "LDS 激光导航卖点可视化，围绕清扫路径、结构细节和场景化利益点建立购买理解。" },
-        p2: { tag: "DOMESTIC / FEATURED", label: "VIOMI ROBOT VAC", desc: "多型号视觉重构与核心性能可视化，把扫拖技术语言转译成清晰的消费理由。" },
-        p3: { tag: "DOMESTIC / 2020", label: "VIOMI VACUUM", desc: "手持无线吸尘器结构拆解、功能模块和使用场景展示。" },
-        p4: { tag: "DOMESTIC / 2019", label: "AIR PURIFIER", desc: "科技调性、空气净化路径和杀菌逻辑的视觉表达。" },
-        p5: { tag: "DOMESTIC / 2020", label: "MIJIA KETTLE 1S", desc: "极简家居产品语境下的材质、光影和生活方式渲染。" },
-        p6: { tag: "GLOBAL / BRANDING", label: "OVERSEAS BRANDING", desc: "海外品牌主图、Amazon A+ 页面和平台化视觉资产系统。" },
-        p7: { tag: "GLOBAL / 2021", label: "SMART HOME SET", desc: "海外智能家电系列 Listing 视觉设计，统一产品卖点与平台表达。" },
-        p8: { tag: "GLOBAL / 2022", label: "FLAGSHIP REBUILD", desc: "旗舰新品 A+ 场景视觉重构，强化品牌质感和场景说服力。" },
-        p9: { tag: "GLOBAL / 2023", label: "CABINET LIGHT 2.0", desc: "智能橱柜灯 Listing 主图、信息图和 A+ 页面系统。" },
-        p10: { tag: "GLOBAL / 2024", label: "ULTRA-THIN SENSOR", desc: "超薄智能感应灯全案视觉，覆盖主图、卖点图和 A+ 模块。" },
-        p11: { tag: "GLOBAL / 2023", label: "CABINET LIGHT PRO", desc: "智能橱柜灯 A+ 进阶版，强化模块化卖点叙事和长图节奏。" },
-        p12: { tag: "GLOBAL / AMAZON.DE", label: "FARM SQUISHY TOYS", desc: "农场动物捏捏玩具德国站主图、信息图与 A+ 模块全案，围绕可爱造型、按压回弹、礼赠场景和儿童安全信息构建高转化视觉。" },
-        p13: { tag: "GLOBAL / AMAZON.DE", label: "FOREST SQUISHY TOYS", desc: "森林动物凸眼捏捏玩具德国站视觉全案，围绕 4 款动物造型、凸眼互动玩法、减压场景、尺寸信息和品质承诺构建完整 Listing 与 A+ 转化链路。" },
-        p14: { tag: "GLOBAL / AMAZON.DE", label: "CAT EDGE DECOR SET", desc: "猫咪边缘装饰摆件德国站主图全案，围绕 12 件组合、树脂材质细节、迷你尺寸和显示器、车机、相框、书架等边缘装饰场景建立清晰购买理由。" }
-      };
-
-      function imagesOf(project) {
-        return (project.sections || []).flatMap((section) => section.images || []);
-      }
-
-      function imageAt(project, index) {
-        const images = imagesOf(project);
-        return images[index] || images[0] || "";
-      }
-
-      function thumbSrc(src) {
-        if (!src || !src.startsWith("assets/")) return src;
-        return src.replace(/^assets\//, "assets-thumbs/").replace(/\.(png|jpg|jpeg)$/i, ".jpg");
-      }
-
-      function previewImages(project, limit = 4) {
-        const images = imagesOf(project);
-        if (images.length <= limit) return images;
-        const picks = [0, 1, Math.floor(images.length / 2), images.length - 1];
-        return [...new Set(picks.map((index) => images[index]).filter(Boolean))].slice(0, limit);
-      }
-
-      const heroGallery = document.getElementById("hero-gallery");
-      if (heroGallery) {
-        const heroItems = [
-          { key: "p1", slot: "s1", label: "ROBOT SYSTEM", image: "https://i.postimg.cc/FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg" },
-          { key: "p6", slot: "s2", label: "BRAND ASSETS", image: "https://i.postimg.cc/mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg" },
-          { key: "p8", slot: "s3", label: "A+ REBUILD", image: "https://i.postimg.cc/gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg" },
-          { key: "p14", slot: "s4", label: "CAT DECOR", image: "assets/cat-edge-decor/cat-monitor-edge-scene-de.jpg" },
-          { key: "p10", slot: "s5", label: "SENSOR LIGHT", image: "https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png" },
-          { key: "p2", slot: "s6", label: "ROBOT VAC", image: "https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg", core: true },
-          { key: "p5", slot: "s7", label: "KETTLE 1S", image: "https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" },
-          { key: "p12", slot: "s8", label: "FARM TOYS", image: "assets/farm-squishy/farm-main.jpg" },
-          { key: "p13", slot: "s9", label: "FOREST TOYS", image: "assets/forest-squishy/forest-main.jpg" },
-          { key: "p9", slot: "s10", label: "CABINET LIGHT", image: "https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg" }
-        ];
-        heroGallery.innerHTML = heroItems
-          .filter((item) => byKey[item.key])
-          .map((item) => {
-            const project = byKey[item.key];
-            const meta = projectMeta[item.key] || { label: project.title };
-            const label = item.label || meta.label;
-            const image = item.image || imageAt(project, 0);
-            const coreClass = item.core ? " is-core" : "";
-            return `<button class="orbit-card${coreClass}" type="button" data-slot="${item.slot}" data-label="${label}" data-complete-project="${item.key}" aria-label="Open ${meta.label}">
-              <img src="${thumbSrc(image)}" alt="${label}">
-            </button>`;
-          })
-          .join("") + `
-          <div class="gallery-status">10 / 10 CURATED CASES</div>
-          <div class="gallery-caption">PORTFOLIO STACK</div>
-        `;
-      }
-
-      const worksInner = document.querySelector("#works .section-inner");
-      if (worksInner) {
-        const cards = projects.map((project, index) => {
-          const meta = projectMeta[project.key] || { tag: project.key, label: project.title, desc: "" };
-          const featured = ["p14", "p13", "p12", "p2", "p5", "p6", "p10"].includes(project.key) ? " featured" : "";
-          return `<article class="project${featured}" data-complete-project="${project.key}">
-            <img loading="lazy" decoding="async" src="${thumbSrc(project.firstImage)}" alt="${meta.label}">
-            <div class="project-text">
-              <span class="kicker">${meta.tag}</span>
-              <h3>${meta.label}</h3>
-              <p>${meta.desc} ${project.imageCount} images.</p>
-            </div>
-          </article>`;
-        }).join("");
-
-        const indexGroups = projects.map((project) => {
-          const meta = projectMeta[project.key] || { label: project.title };
-          const thumbs = previewImages(project).map((src, idx) => `<img loading="lazy" decoding="async" fetchpriority="low" src="${thumbSrc(src)}" alt="${meta.label} preview ${idx + 1}">`).join("");
-          return `<button class="visual-group" type="button" data-complete-project="${project.key}">
-            <div>
-              <h3>${meta.label}</h3>
-              <p>${meta.tag || project.key} / ${project.imageCount} images</p>
-              <span>View full case</span>
-            </div>
-            <div class="thumb-grid">${thumbs}</div>
-          </button>`;
-        }).join("");
-
-        worksInner.innerHTML = `
-          <div class="kicker">SELECTED WORKS</div>
-          <div class="asset-summary">
-            <span>Complete asset pool: ${manifest.projectCount} projects</span>
-            <span>${manifest.totalImages} images in portfolio manifest</span>
-          </div>
-          <div class="portfolio-grid">${cards}</div>
-          <div class="visual-index" aria-label="Complete project image index">${indexGroups}</div>
-        `;
-      }
-
-      function openCompleteProject(key) {
-        const project = byKey[key];
-        if (!project) return;
-        const meta = projectMeta[key] || { tag: key, label: project.title, desc: "" };
-        const allImages = imagesOf(project);
-        modalTitle.textContent = meta.label;
-        modalName.textContent = meta.label;
-        modalMeta.textContent = `${meta.tag} / ${project.imageCount} IMAGES`;
-        modalCopy.textContent = meta.desc || project.title;
-        modalMain.src = allImages[0] || "";
-        modalMain.alt = meta.label;
-        modalStrip.innerHTML = (project.sections || []).map((section, sectionIndex) => {
-          const offset = sectionIndex === 0 ? 1 : 0;
-          const images = (section.images || []).slice(offset).map((src, idx) => `<img loading="lazy" src="${src}" alt="${meta.label} ${section.title} ${idx + 1}">`).join("");
-          return `<div class="case-section-title">${section.title} / ${section.count} Images</div>${images}`;
-        }).join("");
-        modal.classList.add("open");
-        modal.setAttribute("aria-hidden", "false");
-        modal.scrollTo(0, 0);
-      }
-
-      document.querySelectorAll("[data-complete-project]").forEach((card) => {
-        card.addEventListener("click", () => openCompleteProject(card.dataset.completeProject));
-      });
-    })();
+    const themeToggle = document.getElementById('theme-toggle');
+    function applyTheme(theme) {
+      const dark = theme === 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.setAttribute('aria-label', dark ? '切换浅色模式' : '切换深色模式');
+      themeToggle.textContent = dark ? '☀' : '☾';
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('kuang-theme'); } catch (_) {}
+    applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('kuang-theme', next); } catch (_) {}
+    });
   </script>
 </body>
 </html>
