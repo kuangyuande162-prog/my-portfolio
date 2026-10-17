@@ -43,8 +43,7 @@
     .hero-card:first-child { grid-row: span 2; }
     .hero-card img { width: 100%; height: 100%; object-fit: contain; }
     .hero-card:first-child img { aspect-ratio: 4 / 5; }
-    .hero-card:not(:first-child) img { aspect-ratio: 16 / 10; object-fit: cover; object-position: center 38%; }
-    .hero-card:last-child img { object-position: center 42%; }
+    .hero-card:not(:first-child) img { aspect-ratio: 16 / 10; object-fit: contain; object-position: center; }
     .hero-card span { position: absolute; left: 14px; bottom: 14px; padding: 8px 10px; background: rgba(255,253,248,.9); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .05em; }
     .index-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin: 18px auto 0; border: 1px solid var(--line); background: var(--paper); }
     .index-strip a { min-height: 96px; padding: 22px; border-right: 1px solid var(--line); text-decoration: none; }
@@ -68,6 +67,7 @@
     .gallery-title h3 { margin: 0; font-size: 22px; font-weight: 500; }
     .gallery-title span { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .07em; }
     .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .detail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
     .artwork { margin: 0; min-width: 0; border: 1px solid var(--line); background: var(--paper); }
     .artwork img { width: 100%; height: auto; object-fit: contain; }
     .artwork figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 13px 15px; border-top: 1px solid var(--line); color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 9px; line-height: 1.5; }
@@ -79,6 +79,7 @@
     @media (max-width: 900px) {
       .hero-copy, .chapter-head { grid-template-columns: 1fr; gap: 20px; }
       .hero-gallery, .feature { grid-template-columns: 1fr; }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-card:first-child { grid-row: auto; }
       .hero-card:not(:first-child) img { aspect-ratio: 4 / 3; }
       .chapter-head .chapter-no { margin-bottom: 4px; }
@@ -93,6 +94,7 @@
       .index-strip a:last-child { border-bottom: 0; }
       .chapter { padding: 82px 0; }
       .gallery { grid-template-columns: 1fr; }
+      .detail-grid { grid-template-columns: 1fr; }
       .closing .shell { display: block; }
       .closing a { display: inline-block; margin-top: 34px; }
     }
@@ -117,8 +119,8 @@
           <p class="intro">一组围绕贴身洗护、家庭清洁与烘干香氛展开的视觉作品。通过更克制的构图、材质光感与信息层级，让功能型产品拥有更鲜明的品牌感受。</p>
         </div>
         <div class="hero-gallery" aria-label="洗护与香氛项目精选画面">
-          <figure class="hero-card"><img src="assets/500ml-cover.jpg" alt="500ml 洗衣液视觉更新主画面"><span>500ML · VISUAL REFRESH</span></figure>
-          <figure class="hero-card"><img src="assets/100ml-cover.jpg" alt="100ml 洗衣液视觉更新主画面"><span>100ML · VISUAL REFRESH</span></figure>
+          <figure class="hero-card"><img src="assets/optimized/500ml-web/500ml-01.jpg" alt="500ml 洗衣液整套视觉更新首图"><span>500ML · FULL SERIES</span></figure>
+          <figure class="hero-card"><img src="assets/optimized/100ml-web/100ml-01.jpg" alt="100ml 洗衣液整套视觉更新首图"><span>100ML · FULL SERIES</span></figure>
           <figure class="hero-card"><img src="assets/fragrance/fragrance-03.jpg" alt="香薰片初晨岛屿香型视觉"><span>FRAGRANCE · 2024</span></figure>
         </div>
         <nav class="index-strip" aria-label="项目章节">
@@ -150,15 +152,25 @@
           <p class="chapter-desc">围绕便携容量与贴身衣物洗护场景，将原有功能信息保留为完整详情序列，并以更轻盈的色彩、材质和留白重塑项目的第一视觉印象。</p>
         </header>
         <div class="feature">
-          <div class="feature-visual"><img src="assets/100ml-cover.jpg" alt="100ml 洗衣液精致化视觉更新"></div>
+          <div class="feature-visual"><img src="assets/optimized/100ml-web/100ml-01.jpg" alt="100ml 洗衣液完整视觉系列首图"></div>
           <div class="feature-note">
-            <div><span class="label">Visual Refresh · 2026</span><h3>让功能型洗护，更接近当代生活方式品牌。</h3><p>去除首屏中过量的促销信息，以柔和织物、通透亚克力与自然光建立亲肤、洁净的感受；产品保持完整露出，文字由网页承载，画面本身更耐看。</p></div>
-            <footer>ART DIRECTION / AI-ASSISTED IMAGE REFINEMENT</footer>
+            <div><span class="label">Full Series Refresh · 11 Frames</span><h3>从第一视觉到参数页，建立完整的贴身洗护叙事。</h3><p>不只更新封面，也重新梳理痛点、功效、检测、酶配方、成分安全与产品信息。全套以柔和织物、通透材质和自然光统一视觉节奏，同时保留原有卖点与数据含义。</p></div>
+            <footer>ART DIRECTION / COMPLETE ECOMMERCE DETAIL SERIES</footer>
           </div>
         </div>
-        <div class="gallery-title"><h3>原详情页设计</h3><span>ECOMMERCE DETAIL · 11 FRAMES</span></div>
-        <div class="gallery">
-          <figure class="artwork"><img src="assets/100ml-detail.jpg" alt="100ml 洗衣液完整详情页设计" loading="lazy"><figcaption><span>完整详情页设计</span><span>11 FRAMES</span></figcaption></figure>
+        <div class="gallery-title"><h3>优化后完整详情页</h3><span>ECOMMERCE DETAIL · 11 FRAMES</span></div>
+        <div class="detail-grid">
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-01.jpg" alt="100ml 洗衣液详情页第1张，系列首图" loading="lazy"><figcaption><span>系列首图</span><span>01 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-02.jpg" alt="100ml 洗衣液详情页第2张，用户痛点" loading="lazy"><figcaption><span>用户痛点</span><span>02 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-03.jpg" alt="100ml 洗衣液详情页第3张，洗涤搭档" loading="lazy"><figcaption><span>洗涤搭档</span><span>03 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-04.jpg" alt="100ml 洗衣液详情页第4张，多效合一" loading="lazy"><figcaption><span>多效合一</span><span>04 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-05.jpg" alt="100ml 洗衣液详情页第5张，检测认证" loading="lazy"><figcaption><span>检测认证</span><span>05 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-06.jpg" alt="100ml 洗衣液详情页第6张，双重进口酶" loading="lazy"><figcaption><span>双重进口酶</span><span>06 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-07.jpg" alt="100ml 洗衣液详情页第7张，低泡易漂" loading="lazy"><figcaption><span>低泡易漂</span><span>07 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-08.jpg" alt="100ml 洗衣液详情页第8张，活性物含量" loading="lazy"><figcaption><span>活性物含量</span><span>08 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-09.jpg" alt="100ml 洗衣液详情页第9张，成分安心" loading="lazy"><figcaption><span>成分安心</span><span>09 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-10.jpg" alt="100ml 洗衣液详情页第10张，品牌故事" loading="lazy"><figcaption><span>品牌故事</span><span>10 / 11</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/100ml-web/100ml-11.jpg" alt="100ml 洗衣液详情页第11张，产品信息" loading="lazy"><figcaption><span>产品信息</span><span>11 / 11</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -171,15 +183,24 @@
           <p class="chapter-desc">500ml 规格以透明瓶身与浅金色液体作为识别核心。更新后的主画面减少装饰与文案干扰，用光线、织物与玻璃质感强化洁净和专业感。</p>
         </header>
         <div class="feature">
-          <div class="feature-visual"><img src="assets/500ml-cover.jpg" alt="500ml 洗衣液精致化视觉更新"></div>
+          <div class="feature-visual"><img src="assets/optimized/500ml-web/500ml-01.jpg" alt="500ml 洗衣液完整视觉系列首图"></div>
           <div class="feature-note">
-            <div><span class="label">Visual Refresh · 2026</span><h3>以香氛般的光感，提升洗护产品的品牌质感。</h3><p>保留原包装的瓶型、浅金液体与盒装结构，以天然石材、洁白织物和克制的香槟色光线建立新的视觉语境，让产品更精致，也更适合成为合集封面。</p></div>
-            <footer>ART DIRECTION / AI-ASSISTED IMAGE REFINEMENT</footer>
+            <div><span class="label">Full Series Refresh · 10 Frames</span><h3>以香氛般的光感，完成一套有层次的商品叙事。</h3><p>保留瓶型、浅金液体与盒装识别，从首图一路延展至痛点、功效、检测、酶配方、浓缩度、低泡环保与产品参数，让每一页都属于同一个品牌世界。</p></div>
+            <footer>ART DIRECTION / COMPLETE ECOMMERCE DETAIL SERIES</footer>
           </div>
         </div>
-        <div class="gallery-title"><h3>原详情页设计</h3><span>ECOMMERCE DETAIL · 10 FRAMES</span></div>
-        <div class="gallery">
-          <figure class="artwork"><img src="assets/500ml-detail.jpg" alt="500ml 洗衣液完整详情页设计" loading="lazy"><figcaption><span>完整详情页设计</span><span>10 FRAMES</span></figcaption></figure>
+        <div class="gallery-title"><h3>优化后完整详情页</h3><span>ECOMMERCE DETAIL · 10 FRAMES</span></div>
+        <div class="detail-grid">
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-01.jpg" alt="500ml 洗衣液详情页第1张，系列首图" loading="lazy"><figcaption><span>系列首图</span><span>01 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-02.jpg" alt="500ml 洗衣液详情页第2张，用户痛点" loading="lazy"><figcaption><span>用户痛点</span><span>02 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-03.jpg" alt="500ml 洗衣液详情页第3张，多效合一" loading="lazy"><figcaption><span>多效合一</span><span>03 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-04.jpg" alt="500ml 洗衣液详情页第4张，检测认证" loading="lazy"><figcaption><span>检测认证</span><span>04 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-05.jpg" alt="500ml 洗衣液详情页第5张，双重进口酶" loading="lazy"><figcaption><span>双重进口酶</span><span>05 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-06.jpg" alt="500ml 洗衣液详情页第6张，产品质感" loading="lazy"><figcaption><span>产品质感</span><span>06 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-07.jpg" alt="500ml 洗衣液详情页第7张，活性物含量" loading="lazy"><figcaption><span>活性物含量</span><span>07 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-08.jpg" alt="500ml 洗衣液详情页第8张，低泡环保" loading="lazy"><figcaption><span>低泡环保</span><span>08 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-09.jpg" alt="500ml 洗衣液详情页第9张，液体质感" loading="lazy"><figcaption><span>液体质感</span><span>09 / 10</span></figcaption></figure>
+          <figure class="artwork"><img src="assets/optimized/500ml-web/500ml-10.jpg" alt="500ml 洗衣液详情页第10张，产品信息" loading="lazy"><figcaption><span>产品信息</span><span>10 / 10</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -193,3 +214,4 @@
   </footer>
 </body>
 </html>
+
