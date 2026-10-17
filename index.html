@@ -84,11 +84,19 @@ img { display: block; max-width: 100%; }
 .hero h1 em::after { content: ''; display: block; width: 78px; height: 7px; margin-top: 27px; background: var(--accent); }
 .hero-copy { max-width: 555px; margin: 35px 0 31px; color: var(--muted); font-size: 15px; line-height: 1.9; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-visual { position: relative; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 1px; height: clamp(425px, 41vw, 580px); border: 1px solid var(--line); background: var(--line); }
-.hero-visual::after { content: 'VISUAL SYSTEM / 001'; position: absolute; right: 0; bottom: 0; z-index: 1; padding: 10px 13px; background: var(--ink); color: var(--inverse); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .04em; }
-.hero-visual img { position: static; min-width: 0; min-height: 0; width: 100%; height: 100%; object-fit: contain; background: var(--panel); border: 0; border-radius: 0; box-shadow: none; transform: none; }
-.hero-visual img:first-child { grid-row: 1 / 3; }
-.hero-visual img:nth-child(2), .hero-visual img:nth-child(3) { width: 100%; height: 100%; transform: none; }
+.hero-visual { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(12, minmax(0, 1fr)); gap: 8px; height: clamp(440px, 42vw, 600px); padding: 8px; border: 1px solid var(--line); background: rgba(255, 255, 255, .28); }
+.hero-visual::after { content: 'SELECTED WORK / 2018—2024'; position: absolute; right: 8px; bottom: 8px; z-index: 3; padding: 10px 13px; background: var(--ink); color: var(--inverse); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .06em; }
+.hero-tile { position: relative; min-width: 0; min-height: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+.hero-tile img { width: 100%; height: 100%; object-fit: cover; background: var(--panel); transition: transform .55s ease; }
+.hero-tile figcaption { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: linear-gradient(180deg, transparent, rgba(12, 15, 16, .84)); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .03em; }
+.hero-tile figcaption span { color: #ffb33d; font-weight: 700; }
+.hero-tile--lifestyle { grid-column: 1 / 8; grid-row: 1 / 9; }
+.hero-tile--celebrity { grid-column: 8 / 13; grid-row: 1 / 7; }
+.hero-tile--kettle { grid-column: 1 / 6; grid-row: 9 / 13; }
+.hero-tile--robot { grid-column: 6 / 13; grid-row: 7 / 13; }
+.hero-tile--lifestyle img { object-position: center 55%; }
+.hero-tile--celebrity img { object-position: center 48%; }
+.hero-tile--kettle img, .hero-tile--robot img { object-fit: cover; }
 .proof { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; border: 1px solid var(--line); border-top: 0; }
 .proof-item { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 13px; min-height: 130px; padding: 24px 32px; border-right: 1px solid var(--line); }
 .proof-item:first-child { padding-left: 32px; }
@@ -227,7 +235,9 @@ img { display: block; max-width: 100%; }
   .hero-grid { gap: 45px; padding-block: 69px; }
   .hero h1 { font-size: clamp(47px, 11vw, 62px); }
   .hero-copy { font-size: 14px; }
-  .hero-visual { height: 310px; }
+  .hero-visual { height: 390px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 6px; }
+  .hero-tile--lifestyle, .hero-tile--celebrity, .hero-tile--kettle, .hero-tile--robot { grid-column: auto; grid-row: auto; }
+  .hero-tile figcaption { padding: 8px; font-size: 7px; }
   .hero-visual::after { font-size: 8px; }
   .section-head h2 { font-size: clamp(34px, 9.6vw, 39px); }
   .expertise-card { min-height: 0; padding: 30px; }
@@ -281,10 +291,11 @@ img { display: block; max-width: 100%; }
             <a class="button button-outline" href="#experience">了解经历</a>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <img src="projects/celebrity-commerce-portfolio/assets/hero.webp" alt="" loading="eager">
-          <img src="projects/celebrity-commerce-portfolio/assets/campaign-wide.webp" alt="" loading="eager">
-          <img src="projects/celebrity-commerce-portfolio/assets/campaign-banner.webp" alt="" loading="eager">
+        <div class="hero-visual" aria-label="跨项目精选作品预览">
+          <figure class="hero-tile hero-tile--lifestyle"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌生活方式视觉" loading="eager"><figcaption><span>01</span><b>品牌生活方式</b></figcaption></figure>
+          <figure class="hero-tile hero-tile--celebrity"><img src="projects/celebrity-commerce-portfolio/assets/campaign-wide.webp" alt="几光与刘雨昕双十一明星整合营销视觉" loading="eager"><figcaption><span>02</span><b>明星整合营销</b></figcaption></figure>
+          <figure class="hero-tile hero-tile--kettle"><img src="https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" alt="米家电水壶产品场景视觉" loading="eager"><figcaption><span>03</span><b>产品场景设计</b></figcaption></figure>
+          <figure class="hero-tile hero-tile--robot"><img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="云米扫拖机器人详情页视觉" loading="eager"><figcaption><span>04</span><b>消费电子详情</b></figcaption></figure>
         </div>
       </div>
     </section>
