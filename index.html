@@ -17,15 +17,17 @@
 
 :root {
   color-scheme: light;
-  --paper: #f1f2ef;
-  --panel: #fafaf7;
-  --panel-alt: #e7eae7;
-  --ink: #171b1e;
-  --muted: #596267;
-  --faint: #7c8588;
-  --line: #cbd0ce;
-  --accent: #ff9800;
-  --accent-dark: #9c5200;
+  --paper: #f6f2e9;
+  --panel: #fffdf7;
+  --panel-alt: #ece7db;
+  --ink: #121212;
+  --muted: #57534d;
+  --faint: #7f786e;
+  --line: #1b1b1b;
+  --accent: #ff5a19;
+  --accent-dark: #d33a00;
+  --electric: #2d63ff;
+  --lemon: #e8ff4f;
   --inverse: #f2f3ef;
 }
 :root[data-theme="dark"] {
@@ -43,7 +45,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-image: radial-gradient(rgba(18,18,18,.055) .75px, transparent .75px); background-size: 9px 9px; }
 h1, h2, h3 { text-wrap: balance; }
 button { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -52,18 +54,18 @@ img { display: block; max-width: 100%; }
 ::selection { background: var(--accent); color: #171b1e; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .container { width: min(100% - 56px, 1440px); margin-inline: auto; }
-.eyebrow { margin: 0 0 20px; color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.eyebrow { width: fit-content; margin: 0 0 20px; padding: 7px 10px; border: 1px solid currentColor; background: var(--lemon); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; box-shadow: 3px 3px 0 var(--ink); }
 .section { padding: 118px 0; }
 .section-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .5fr); align-items: end; gap: 50px; margin-bottom: 54px; }
 .section-head h2 { max-width: 850px; margin: 0; font-size: clamp(42px, 5.4vw, 76px); line-height: 1.13; font-weight: 700; letter-spacing: -.035em; }
 .section-head p:last-child { max-width: 410px; margin: 0 0 6px; color: var(--muted); font-size: 14px; line-height: 1.9; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 48px; padding: 0 22px; border: 1px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
-.button:hover { background: var(--ink); color: var(--inverse); }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 48px; padding: 0 22px; border: 2px solid var(--ink); border-radius: 8px; background: transparent; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
+.button:hover { transform: translate(-2px,-2px); background: var(--ink); color: var(--inverse); box-shadow: 7px 7px 0 var(--accent); }
 .button-primary { background: var(--accent); border-color: var(--accent); color: #171b1e; }
 .button-primary:hover { background: #ffad2e; border-color: #ffad2e; color: #171b1e; }
 .button-outline { border-color: currentColor; color: var(--ink); }
 
-.site-header { position: sticky; top: 0; z-index: 30; background: var(--panel); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,253,247,.94); border-bottom: 2px solid var(--line); backdrop-filter: blur(16px); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
 .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); font-size: 19px; font-weight: 700; letter-spacing: -.08em; text-decoration: none; white-space: nowrap; }
 .brand-mark { display: inline-block; width: 11px; height: 11px; background: var(--accent); }
@@ -76,41 +78,60 @@ img { display: block; max-width: 100%; }
 .theme-toggle { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
 .theme-toggle:hover { background: var(--panel-alt); }
 
-.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); }
-.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, transparent calc(100% - 1px), var(--line) 100%) 0 0 / 9.1% 100%; opacity: .30; }
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(45px, 5vw, 95px); min-height: 720px; padding-block: 94px; }
-.hero h1 { max-width: 720px; margin: 0; font-size: clamp(56px, 6vw, 90px); line-height: 1.12; font-weight: 700; letter-spacing: -.035em; }
+.commerce-strip { overflow: hidden; border-bottom: 2px solid var(--ink); background: var(--ink); color: #fff; }
+.commerce-strip-track { width: max-content; display: flex; align-items: center; gap: 18px; padding: 10px 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .08em; white-space: nowrap; animation: commerce-marquee 24s linear infinite; }
+.commerce-strip-track span { display: inline-flex; align-items: center; gap: 18px; }
+.commerce-strip-track span::after { content: '✦'; color: var(--lemon); }
+@keyframes commerce-marquee { to { transform: translateX(-50%); } }
+.hero { position: relative; overflow: hidden; border-bottom: 2px solid var(--line); background: linear-gradient(135deg,#fff9e8 0 56%,#ffede3 56%); }
+.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, transparent calc(100% - 1px), rgba(18,18,18,.2) 100%) 0 0 / 8.33% 100%; opacity: .24; }
+.hero::after { content: 'DOMESTIC E-COMMERCE'; position: absolute; left: 2vw; bottom: -1.8vw; color: rgba(255,90,25,.075); font-family: 'IBM Plex Mono', monospace; font-size: clamp(46px,8vw,128px); font-weight: 800; letter-spacing: -.08em; white-space: nowrap; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .82fr) minmax(560px, 1.18fr); align-items: center; gap: clamp(38px, 4vw, 70px); min-height: 760px; padding-block: 70px; }
+.hero h1 { max-width: 720px; margin: 0; font-size: clamp(56px, 5.7vw, 88px); line-height: 1.06; font-weight: 800; letter-spacing: -.055em; }
 .hero h1 em { color: var(--ink); font-style: normal; }
-.hero h1 em::after { content: ''; display: block; width: 78px; height: 7px; margin-top: 27px; background: var(--accent); }
+.hero h1 em { position: relative; display: inline; background: linear-gradient(transparent 68%, var(--lemon) 68%); }
+.hero h1 em::after { content: ''; display: block; width: 92px; height: 9px; margin-top: 27px; background: var(--accent); box-shadow: 18px 0 0 var(--electric); }
 .hero-copy { max-width: 555px; margin: 35px 0 31px; color: var(--muted); font-size: 15px; line-height: 1.9; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-visual { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; height: auto; padding: 8px; border: 1px solid var(--line); background: rgba(255, 255, 255, .28); }
-.hero-visual::after { content: 'SELECTED WORK / 2018—2024'; position: absolute; right: 8px; bottom: 8px; z-index: 3; padding: 10px 13px; background: var(--ink); color: var(--inverse); font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .06em; }
-.hero-tile { position: relative; min-width: 0; min-height: 0; margin: 0; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
-.hero-tile img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; background: var(--panel); transition: transform .55s ease; }
+.hero-visual { position: relative; height: 660px; isolation: isolate; }
+.hero-visual::before { content: ''; position: absolute; inset: 36px 8px 8px 38px; z-index: -2; border: 2px solid var(--ink); border-radius: 28px; background: var(--accent); transform: rotate(-1.2deg); box-shadow: 12px 12px 0 var(--ink); }
+.hero-visual::after { content: '国内电商精选 / SELECTED WORK'; position: absolute; right: 18px; top: 4px; z-index: 8; padding: 9px 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--lemon); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .05em; transform: rotate(2deg); }
+.hero-tile { position: absolute; min-width: 0; min-height: 0; margin: 0; overflow: hidden; border: 2px solid var(--ink); border-radius: 16px; background: var(--panel); box-shadow: 7px 7px 0 rgba(18,18,18,.92); transition: transform .35s ease, box-shadow .35s ease; }
+.hero-tile:hover { z-index: 9; transform: translateY(-7px) rotate(0deg); box-shadow: 11px 13px 0 rgba(18,18,18,.95); }
+.hero-tile img { width: 100%; height: 100%; object-fit: cover; background: var(--panel); transition: transform .55s ease; }
 .hero-tile figcaption { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: linear-gradient(180deg, transparent, rgba(12, 15, 16, .84)); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .03em; }
 .hero-tile figcaption span { color: #ffb33d; font-weight: 700; }
-.hero-tile--wash-100 img, .hero-tile--wash-500 img, .hero-tile--fragrance img, .hero-tile--celebrity img { object-position: center; }
-.proof { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; border: 1px solid var(--line); border-top: 0; }
-.proof-item { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 13px; min-height: 130px; padding: 24px 32px; border-right: 1px solid var(--line); }
+.hero-tile--wash-100 { left: 0; top: 58px; width: 49%; height: 255px; transform: rotate(-2.2deg); }
+.hero-tile--wash-500 { left: 8%; bottom: 36px; width: 42%; height: 285px; transform: rotate(1.4deg); }
+.hero-tile--fragrance { right: 2%; top: 34px; width: 39%; height: 242px; transform: rotate(2.1deg); }
+.hero-tile--celebrity { right: 4%; bottom: 12px; width: 46%; height: 372px; transform: rotate(-1.1deg); }
+.hero-tile--wash-100 img { object-position: center 43%; }
+.hero-tile--wash-500 img { object-position: center 48%; }
+.hero-tile--fragrance img { object-position: center 58%; }
+.hero-tile--celebrity img { object-position: center 35%; }
+.proof { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); margin-top: -22px; padding: 10px; border: 2px solid var(--line); background: var(--panel); box-shadow: 8px 8px 0 var(--ink); }
+.proof-item { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 13px; min-height: 126px; padding: 24px 32px; border-right: 2px solid var(--line); }
 .proof-item:first-child { padding-left: 32px; }
 .proof-item:last-child { border-right: 0; }
 .proof strong { color: var(--ink); font-size: clamp(28px, 3.2vw, 44px); font-weight: 700; letter-spacing: -.065em; line-height: 1; }
 .proof span { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .02em; }
 
-.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
-.expertise-card { min-height: 290px; padding: 38px 42px; border: 0; border-radius: 0; background: var(--panel); box-shadow: none; transition: background .2s ease; }
-.expertise-card:hover { background: var(--panel-alt); transform: none; }
+.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; border: 0; background: transparent; }
+.expertise-card { min-height: 290px; padding: 38px 42px; border: 2px solid var(--ink); border-radius: 14px; background: var(--panel); box-shadow: 6px 6px 0 var(--ink); transition: transform .2s ease, box-shadow .2s ease; }
+.expertise-card:nth-child(2) { background: #eef2ff; }
+.expertise-card:nth-child(3) { background: #fff0e7; }
+.expertise-card:nth-child(4) { background: #f5ffd0; }
+.expertise-card:hover { transform: translate(-3px,-3px); background: var(--panel); box-shadow: 10px 10px 0 var(--accent); }
 .expertise-number { display: inline-block; width: auto; height: auto; margin: 0 0 38px; padding: 0 0 9px; border-bottom: 3px solid var(--accent); border-radius: 0; background: none; color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700; }
 .expertise-card h3 { margin: 0 0 15px; font-size: 28px; line-height: 1.28; font-weight: 700; letter-spacing: -.025em; }
 .expertise-card p { max-width: 570px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
 
-.works { background: var(--panel-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.works { background: linear-gradient(180deg,#ff5a19 0 24px,var(--panel-alt) 24px); border-top: 2px solid var(--line); border-bottom: 2px solid var(--line); }
+.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; border: 0; background: transparent; }
 .project-card { min-width: 0; }
 .project-card--featured { grid-column: 1 / -1; }
-.project-card > :is(button, a) { display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: var(--panel); color: var(--ink); box-shadow: none; text-align: left; text-decoration: none; cursor: pointer; transition: background .2s ease; }
-.project-card > :is(button, a):hover { transform: none; border-color: transparent; box-shadow: none; background: var(--paper); }
+.project-card > :is(button, a) { display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 2px solid var(--ink); border-radius: 16px; background: var(--panel); color: var(--ink); box-shadow: 7px 7px 0 var(--ink); text-align: left; text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+.project-card > :is(button, a):hover { transform: translate(-3px,-3px); border-color: var(--ink); box-shadow: 11px 11px 0 var(--accent); background: var(--paper); }
 .project-card--featured > :is(button, a) { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
 .project-cover { position: relative; display: block; aspect-ratio: 1.43; overflow: hidden; background: var(--panel); }
 .image-fallback { display: flex; align-items: center; justify-content: center; min-height: 110px; padding: 24px; color: var(--muted); font-size: 13px; text-align: center; }
@@ -133,7 +154,7 @@ img { display: block; max-width: 100%; }
 
 .archive { padding-top: 110px; }
 .archive-head { margin-bottom: 30px; }
-.archive-list { overflow: hidden; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.archive-list { overflow: hidden; border: 2px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 6px 6px 0 var(--ink); }
 .archive-row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 1.15fr 25px; align-items: center; gap: 24px; width: 100%; padding: 26px 32px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; transition: background .2s ease; }
 .archive-row:last-child { border-bottom: 0; }
 .archive-row:hover { background: var(--panel-alt); }
@@ -150,11 +171,11 @@ img { display: block; max-width: 100%; }
 .domestic-projects[open] summary { border-bottom: 1px solid var(--line); }
 .domestic-projects .archive-list { border: 0; border-radius: 0; }
 
-.method { padding: 110px 0; border-top: 5px solid var(--accent); background: #171b1e; color: #f2f3ef; }
+.method { padding: 110px 0; border-top: 10px solid var(--accent); background: #171b1e; color: #f2f3ef; }
 .method .eyebrow { color: #ffb542; }
 .method .section-head p:last-child { color: #aeb7b8; }
-.method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #454f51; }
-.method-step { min-height: 245px; padding: 38px; border: 0; border-right: 1px solid #454f51; border-radius: 0; background: transparent; }
+.method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; border: 0; }
+.method-step { min-height: 245px; padding: 38px; border: 1px solid #596568; border-right: 1px solid #596568; border-radius: 12px; background: #20282b; }
 .method-step:last-child { border-right: 0; }
 .method-step span { color: #ffb542; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
 .method-step h3 { margin: 50px 0 13px; font-size: 26px; font-weight: 700; letter-spacing: -.025em; }
@@ -231,7 +252,14 @@ img { display: block; max-width: 100%; }
   .hero-grid { gap: 45px; padding-block: 69px; }
   .hero h1 { font-size: clamp(47px, 11vw, 62px); }
   .hero-copy { font-size: 14px; }
-  .hero-visual { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 6px; }
+  .hero-visual { width: calc(100% + 4px); height: 520px; }
+  .hero-visual::before { inset: 34px 4px 4px 20px; border-radius: 20px; box-shadow: 8px 8px 0 var(--ink); }
+  .hero-visual::after { right: 4px; top: 0; }
+  .hero-tile { border-radius: 10px; box-shadow: 5px 5px 0 var(--ink); }
+  .hero-tile--wash-100 { left: 0; top: 52px; width: 58%; height: 188px; }
+  .hero-tile--fragrance { right: 0; top: 28px; width: 42%; height: 166px; }
+  .hero-tile--wash-500 { left: 3%; bottom: 26px; width: 48%; height: 230px; }
+  .hero-tile--celebrity { right: 0; bottom: 4px; width: 51%; height: 300px; }
   .hero-tile figcaption { padding: 8px; font-size: 7px; }
   .hero-visual::after { font-size: 8px; }
   .section-head h2 { font-size: clamp(34px, 9.6vw, 39px); }
@@ -274,13 +302,20 @@ img { display: block; max-width: 100%; }
     </div>
   </header>
 
+  <div class="commerce-strip" aria-label="国内电商能力标签">
+    <div class="commerce-strip-track" aria-hidden="true">
+      <span>天猫大促</span><span>京东整合营销</span><span>明星传播</span><span>洗护香氛</span><span>消费电子</span><span>商品详情页</span><span>视觉转化</span>
+      <span>天猫大促</span><span>京东整合营销</span><span>明星传播</span><span>洗护香氛</span><span>消费电子</span><span>商品详情页</span><span>视觉转化</span>
+    </div>
+  </div>
+
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">DOMESTIC E-COMMERCE / BRAND CAMPAIGN / GLOBAL CONTENT</p>
-          <h1 id="hero-title">以视觉建立品牌认知，<br><em>回应真实的商业场景。</em></h1>
-          <p class="hero-copy">我是邝先生，专注于品牌视觉与电商内容设计。经验覆盖国内整合营销、洗护与香氛、消费电子详情，并延伸至海外 Listing 与 A+；擅长把复杂信息整理为清晰、有审美秩序且可延展的视觉系统。</p>
+          <p class="eyebrow">国内电商视觉 / 品牌整合营销 / 商品内容设计</p>
+          <h1 id="hero-title">让好产品被看见，<br><em>也让卖点被记住。</em></h1>
+          <p class="hero-copy">我是邝先生，长期服务国内电商与品牌项目。从天猫、京东大促，到明星整合营销、洗护香氛与消费电子详情页，把品牌表达、商品卖点和转化路径组织成一套真正能落地的视觉系统。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#works">查看作品 <span aria-hidden="true">↗</span></a>
             <a class="button button-outline" href="#experience">了解经历</a>
@@ -290,7 +325,7 @@ img { display: block; max-width: 100%; }
           <figure class="hero-tile hero-tile--wash-100"><img src="projects/laundry-care-collection/assets/100ml-cover.jpg" alt="100ml 洗衣液视觉更新主画面" loading="eager"><figcaption><span>01</span><b>贴身洗护</b></figcaption></figure>
           <figure class="hero-tile hero-tile--wash-500"><img src="projects/laundry-care-collection/assets/500ml-cover.jpg" alt="500ml 洗衣液视觉更新主画面" loading="eager"><figcaption><span>02</span><b>家庭洗护</b></figcaption></figure>
           <figure class="hero-tile hero-tile--fragrance"><img src="projects/laundry-care-collection/assets/fragrance/fragrance-03.jpg" alt="品牌特调香薰片视觉" loading="eager"><figcaption><span>03</span><b>香氛视觉</b></figcaption></figure>
-          <figure class="hero-tile hero-tile--celebrity"><img src="projects/celebrity-commerce-portfolio/assets/hero.webp" alt="几光与刘雨昕双十一明星整合营销视觉" loading="eager"><figcaption><span>04</span><b>明星整合营销</b></figcaption></figure>
+          <figure class="hero-tile hero-tile--celebrity"><img src="projects/celebrity-commerce-portfolio/assets/optimized-v2/web/hero-v2.webp" alt="几光与刘雨昕双十一明星整合营销新版视觉" loading="eager"><figcaption><span>04</span><b>明星整合营销</b></figcaption></figure>
         </div>
       </div>
     </section>
@@ -323,7 +358,7 @@ img { display: block; max-width: 100%; }
           <p>从明星整合营销、洗护品牌内容到消费电子详情，呈现不同商业语境下的视觉策略与执行。</p>
         </div>
         <div class="work-grid">
-          <article class="project-card project-card--domestic project-card--featured"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="projects/celebrity-commerce-portfolio/assets/campaign-wide.webp" alt="几光与刘雨昕双十一整合营销视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
+          <article class="project-card project-card--domestic project-card--featured"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="projects/celebrity-commerce-portfolio/assets/optimized-v2/web/campaign-wide-v2.webp" alt="几光与刘雨昕双十一整合营销新版视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
           <article class="project-card project-card--domestic project-card--featured"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo"><img src="projects/laundry-care-collection/assets/100ml-cover.jpg" alt="100ml 洗衣液视觉更新" loading="lazy"><img src="projects/laundry-care-collection/assets/500ml-cover.jpg" alt="500ml 洗衣液视觉更新" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛 / 电商内容</span><span class="project-title">洗护与香氛<br>视觉合集</span><span class="project-summary">涵盖香薰片、100ml 与 500ml 洗衣液，从香气氛围、产品质感到详情页信息结构，呈现洗护品类的视觉探索。</span><span class="project-link">进入合集 <b aria-hidden="true">↗</b></span></span></a></article>
           <article class="project-card"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" alt="米家电水壶 1S 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 家居产品 / 详情页</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">围绕家居场景、材质细节和产品功能，建立完整的消费电子详情页视觉叙事。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
           <article class="project-card"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="云米扫拖机器人项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 消费电子 / 产品矩阵</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">以功能场景、结构拆解和产品矩阵，完成扫拖机器人系列的视觉重塑。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
@@ -490,4 +525,5 @@ img { display: block; max-width: 100%; }
   </script>
 </body>
 </html>
+
 
