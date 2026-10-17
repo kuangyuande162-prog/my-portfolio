@@ -3,527 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="邝先生的电商视觉作品集，重点展示国内大促、明星整合营销、消费电子详情页与海外 Amazon 内容设计。">
-  <title>邝先生｜国内电商与品牌视觉设计</title>
-  <script>
-    try {
-      if (localStorage.getItem('kuang-theme') === 'dark') {
-        document.documentElement.dataset.theme = 'dark';
-      }
-    } catch (_) {}
-  </script>
+  <meta name="description" content="邝先生的海外电商视觉作品集，聚焦 Amazon Listing、A+ 内容、多语言适配与消费电子品牌视觉。">
+  <title>邝先生｜海外电商与 Amazon 视觉设计</title>
   <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-:root {
-  color-scheme: light;
-  --paper: #f6f2e9;
-  --panel: #fffdf7;
-  --panel-alt: #ece7db;
-  --ink: #121212;
-  --muted: #57534d;
-  --faint: #7f786e;
-  --line: #1b1b1b;
-  --accent: #ff5a19;
-  --accent-dark: #d33a00;
-  --electric: #2d63ff;
-  --lemon: #e8ff4f;
-  --inverse: #f2f3ef;
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper: #151a1d;
-  --panel: #1d2428;
-  --panel-alt: #273135;
-  --ink: #f1f3f0;
-  --muted: #bac3c3;
-  --faint: #89969a;
-  --line: #3b474b;
-  --accent: #ffad29;
-  --accent-dark: #ffc168;
-  --inverse: #171b1e;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Space Grotesk', 'Noto Sans SC', 'Microsoft YaHei', sans-serif; -webkit-font-smoothing: antialiased; background-image: radial-gradient(rgba(18,18,18,.055) .75px, transparent .75px); background-size: 9px 9px; }
-h1, h2, h3 { text-wrap: balance; }
-button { font: inherit; }
-button, a { -webkit-tap-highlight-color: transparent; }
-a { color: inherit; }
-img { display: block; max-width: 100%; }
-::selection { background: var(--accent); color: #171b1e; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.container { width: min(100% - 56px, 1440px); margin-inline: auto; }
-.eyebrow { width: fit-content; margin: 0 0 20px; padding: 7px 10px; border: 1px solid currentColor; background: var(--lemon); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; box-shadow: 3px 3px 0 var(--ink); }
-.section { padding: 118px 0; }
-.section-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .5fr); align-items: end; gap: 50px; margin-bottom: 54px; }
-.section-head h2 { max-width: 850px; margin: 0; font-size: clamp(42px, 5.4vw, 76px); line-height: 1.13; font-weight: 700; letter-spacing: -.035em; }
-.section-head p:last-child { max-width: 410px; margin: 0 0 6px; color: var(--muted); font-size: 14px; line-height: 1.9; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 48px; padding: 0 22px; border: 2px solid var(--ink); border-radius: 8px; background: transparent; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
-.button:hover { transform: translate(-2px,-2px); background: var(--ink); color: var(--inverse); box-shadow: 7px 7px 0 var(--accent); }
-.button-primary { background: var(--accent); border-color: var(--accent); color: #171b1e; }
-.button-primary:hover { background: #ffad2e; border-color: #ffad2e; color: #171b1e; }
-.button-outline { border-color: currentColor; color: var(--ink); }
-
-.site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,253,247,.94); border-bottom: 2px solid var(--line); backdrop-filter: blur(16px); }
-.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; }
-.brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); font-size: 19px; font-weight: 700; letter-spacing: -.08em; text-decoration: none; white-space: nowrap; }
-.brand-mark { display: inline-block; width: 11px; height: 11px; background: var(--accent); }
-.brand span:last-child { margin-left: 4px; color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .03em; }
-.nav-links { display: flex; align-items: center; gap: 33px; }
-.nav-links a { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; text-decoration: none; }
-.nav-links a:hover { color: var(--accent-dark); }
-.header-actions { display: flex; align-items: center; gap: 10px; }
-.header-actions .button { min-height: 44px; padding: 0 15px; }
-.theme-toggle { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
-.theme-toggle:hover { background: var(--panel-alt); }
-
-.commerce-strip { overflow: hidden; border-bottom: 2px solid var(--ink); background: var(--ink); color: #fff; }
-.commerce-strip-track { width: max-content; display: flex; align-items: center; gap: 18px; padding: 10px 0; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .08em; white-space: nowrap; animation: commerce-marquee 24s linear infinite; }
-.commerce-strip-track span { display: inline-flex; align-items: center; gap: 18px; }
-.commerce-strip-track span::after { content: '✦'; color: var(--lemon); }
-@keyframes commerce-marquee { to { transform: translateX(-50%); } }
-.hero { position: relative; overflow: hidden; border-bottom: 2px solid var(--line); background: linear-gradient(135deg,#fff9e8 0 56%,#ffede3 56%); }
-.hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to right, transparent calc(100% - 1px), rgba(18,18,18,.2) 100%) 0 0 / 8.33% 100%; opacity: .24; }
-.hero::after { content: 'DOMESTIC E-COMMERCE'; position: absolute; left: 2vw; bottom: -1.8vw; color: rgba(255,90,25,.075); font-family: 'IBM Plex Mono', monospace; font-size: clamp(46px,8vw,128px); font-weight: 800; letter-spacing: -.08em; white-space: nowrap; }
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .82fr) minmax(560px, 1.18fr); align-items: center; gap: clamp(38px, 4vw, 70px); min-height: 760px; padding-block: 70px; }
-.hero h1 { max-width: 720px; margin: 0; font-size: clamp(56px, 5.7vw, 88px); line-height: 1.06; font-weight: 800; letter-spacing: -.055em; }
-.hero h1 em { color: var(--ink); font-style: normal; }
-.hero h1 em { position: relative; display: inline; background: linear-gradient(transparent 68%, var(--lemon) 68%); }
-.hero h1 em::after { content: ''; display: block; width: 92px; height: 9px; margin-top: 27px; background: var(--accent); box-shadow: 18px 0 0 var(--electric); }
-.hero-copy { max-width: 555px; margin: 35px 0 31px; color: var(--muted); font-size: 15px; line-height: 1.9; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-visual { position: relative; height: 660px; isolation: isolate; }
-.hero-visual::before { content: ''; position: absolute; inset: 36px 8px 8px 38px; z-index: -2; border: 2px solid var(--ink); border-radius: 28px; background: var(--accent); transform: rotate(-1.2deg); box-shadow: 12px 12px 0 var(--ink); }
-.hero-visual::after { content: '国内电商精选 / SELECTED WORK'; position: absolute; right: 18px; top: 4px; z-index: 8; padding: 9px 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--lemon); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .05em; transform: rotate(2deg); }
-.hero-tile { position: absolute; min-width: 0; min-height: 0; margin: 0; overflow: hidden; border: 2px solid var(--ink); border-radius: 16px; background: var(--panel); box-shadow: 7px 7px 0 rgba(18,18,18,.92); transition: transform .35s ease, box-shadow .35s ease; }
-.hero-tile:hover { z-index: 9; transform: translateY(-7px) rotate(0deg); box-shadow: 11px 13px 0 rgba(18,18,18,.95); }
-.hero-tile img { width: 100%; height: 100%; object-fit: cover; background: var(--panel); transition: transform .55s ease; }
-.hero-tile figcaption { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: linear-gradient(180deg, transparent, rgba(12, 15, 16, .84)); color: #fff; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .03em; }
-.hero-tile figcaption span { color: #ffb33d; font-weight: 700; }
-.hero-tile--wash-100 { left: 0; top: 58px; width: 49%; height: 255px; transform: rotate(-2.2deg); }
-.hero-tile--wash-500 { left: 8%; bottom: 36px; width: 42%; height: 285px; transform: rotate(1.4deg); }
-.hero-tile--fragrance { right: 2%; top: 34px; width: 39%; height: 242px; transform: rotate(2.1deg); }
-.hero-tile--celebrity { right: 4%; bottom: 12px; width: 46%; height: 372px; transform: rotate(-1.1deg); }
-.hero-tile--wash-100 img { object-position: center 43%; }
-.hero-tile--wash-500 img { object-position: center 48%; }
-.hero-tile--fragrance img { object-position: center 58%; }
-.hero-tile--celebrity img { object-position: center 35%; }
-.proof { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); margin-top: -22px; padding: 10px; border: 2px solid var(--line); background: var(--panel); box-shadow: 8px 8px 0 var(--ink); }
-.proof-item { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 13px; min-height: 126px; padding: 24px 32px; border-right: 2px solid var(--line); }
-.proof-item:first-child { padding-left: 32px; }
-.proof-item:last-child { border-right: 0; }
-.proof strong { color: var(--ink); font-size: clamp(28px, 3.2vw, 44px); font-weight: 700; letter-spacing: -.065em; line-height: 1; }
-.proof span { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .02em; }
-
-.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; border: 0; background: transparent; }
-.expertise-card { min-height: 290px; padding: 38px 42px; border: 2px solid var(--ink); border-radius: 14px; background: var(--panel); box-shadow: 6px 6px 0 var(--ink); transition: transform .2s ease, box-shadow .2s ease; }
-.expertise-card:nth-child(2) { background: #eef2ff; }
-.expertise-card:nth-child(3) { background: #fff0e7; }
-.expertise-card:nth-child(4) { background: #f5ffd0; }
-.expertise-card:hover { transform: translate(-3px,-3px); background: var(--panel); box-shadow: 10px 10px 0 var(--accent); }
-.expertise-number { display: inline-block; width: auto; height: auto; margin: 0 0 38px; padding: 0 0 9px; border-bottom: 3px solid var(--accent); border-radius: 0; background: none; color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700; }
-.expertise-card h3 { margin: 0 0 15px; font-size: 28px; line-height: 1.28; font-weight: 700; letter-spacing: -.025em; }
-.expertise-card p { max-width: 570px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
-
-.works { background: linear-gradient(180deg,#ff5a19 0 24px,var(--panel-alt) 24px); border-top: 2px solid var(--line); border-bottom: 2px solid var(--line); }
-.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; border: 0; background: transparent; }
-.project-card { min-width: 0; }
-.project-card--featured { grid-column: 1 / -1; }
-.project-card > :is(button, a) { display: block; width: 100%; height: 100%; padding: 0; overflow: hidden; border: 2px solid var(--ink); border-radius: 16px; background: var(--panel); color: var(--ink); box-shadow: 7px 7px 0 var(--ink); text-align: left; text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
-.project-card > :is(button, a):hover { transform: translate(-3px,-3px); border-color: var(--ink); box-shadow: 11px 11px 0 var(--accent); background: var(--paper); }
-.project-card--featured > :is(button, a) { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
-.project-cover { position: relative; display: block; aspect-ratio: 1.43; overflow: hidden; background: var(--panel); }
-.image-fallback { display: flex; align-items: center; justify-content: center; min-height: 110px; padding: 24px; color: var(--muted); font-size: 13px; text-align: center; }
-.project-cover .image-fallback { position: absolute; inset: 0; }
-.project-card--featured .project-cover { height: 560px; aspect-ratio: auto; border-right: 1px solid var(--line); }
-.project-cover--duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); }
-.project-cover--duo img { min-width: 0; background: #f4eee5; }
-.project-cover img { width: 100%; height: 100%; object-fit: contain; transition: none; }
-.project-card > :is(button, a):hover img { transform: none; }
-.project-card--domestic { position: relative; }
-.project-card--domestic::before { content: '国内重点案例'; position: absolute; z-index: 2; top: 18px; left: 18px; padding: 9px 12px; background: var(--accent); color: #171b1e; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .05em; }
-.project-body { display: flex; flex-direction: column; justify-content: flex-end; min-height: 245px; padding: 35px 38px; }
-.project-card--featured .project-body { padding: clamp(32px, 4vw, 50px); }
-.project-meta { display: block; margin-bottom: auto; padding-bottom: 46px; color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-.project-title { display: block; margin-bottom: 13px; font-size: 31px; font-weight: 700; letter-spacing: -.025em; line-height: 1.25; }
-.project-card--featured .project-title { font-size: clamp(38px, 4vw, 62px); }
-.project-summary { display: block; min-height: 0; max-width: 390px; color: var(--muted); font-size: 14px; line-height: 1.85; }
-.project-link { display: flex; align-items: center; justify-content: space-between; margin-top: 35px; padding-top: 19px; border-top: 1px solid var(--line); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
-.project-link b { float: none; color: var(--accent-dark); font-size: 19px; line-height: 1; }
-
-.archive { padding-top: 110px; }
-.archive-head { margin-bottom: 30px; }
-.archive-list { overflow: hidden; border: 2px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 6px 6px 0 var(--ink); }
-.archive-row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 1.15fr 25px; align-items: center; gap: 24px; width: 100%; padding: 26px 32px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; transition: background .2s ease; }
-.archive-row:last-child { border-bottom: 0; }
-.archive-row:hover { background: var(--panel-alt); }
-.archive-year { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; }
-.archive-name { font-size: 19px; font-weight: 700; letter-spacing: -.02em; line-height: 1.35; }
-.archive-detail { color: var(--muted); font-size: 13px; line-height: 1.5; }
-.archive-arrow { color: var(--accent-dark); font-size: 21px; }
-.domestic-projects { margin-top: 18px; border: 1px solid var(--line); border-radius: 0; background: var(--panel); }
-.domestic-projects summary { padding: 23px 32px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; cursor: pointer; list-style: none; }
-.domestic-projects summary::-webkit-details-marker { display: none; }
-.domestic-projects summary::after { content: '+'; float: right; color: var(--accent-dark); font-size: 19px; line-height: 11px; }
-.domestic-projects[open] summary::after { content: '−'; }
-.domestic-projects summary:hover { color: var(--ink); }
-.domestic-projects[open] summary { border-bottom: 1px solid var(--line); }
-.domestic-projects .archive-list { border: 0; border-radius: 0; }
-
-.method { padding: 110px 0; border-top: 10px solid var(--accent); background: #171b1e; color: #f2f3ef; }
-.method .eyebrow { color: #ffb542; }
-.method .section-head p:last-child { color: #aeb7b8; }
-.method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; border: 0; }
-.method-step { min-height: 245px; padding: 38px; border: 1px solid #596568; border-right: 1px solid #596568; border-radius: 12px; background: #20282b; }
-.method-step:last-child { border-right: 0; }
-.method-step span { color: #ffb542; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
-.method-step h3 { margin: 50px 0 13px; font-size: 26px; font-weight: 700; letter-spacing: -.025em; }
-.method-step p { margin: 0; color: #aeb7b8; font-size: 14px; line-height: 1.8; }
-
-.timeline { border-top: 1px solid var(--line); }
-.career-row { display: grid; grid-template-columns: 160px 280px minmax(0, 1fr); gap: 35px; padding: 30px 0; border-bottom: 1px solid var(--line); }
-.career-year { color: var(--faint); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; }
-.career-role h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
-.career-role span { color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; }
-.career-row p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
-
-.contact { padding: 100px 0 32px; border-top: 5px solid var(--accent); background: #171b1e; color: #f2f3ef; }
-.contact-main { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 120px; }
-.contact .eyebrow { color: #ffb542; }
-.contact h2 { max-width: 950px; margin: 0 0 20px; font-size: clamp(46px, 6.2vw, 90px); font-weight: 700; letter-spacing: -.035em; line-height: 1.13; }
-.contact p { margin: 0; color: #aeb7b8; font-size: 14px; line-height: 1.8; }
-.contact-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding-top: 24px; border-top: 1px solid #454f51; color: #8e9c9e; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
-.contact-bottom div { display: flex; flex-wrap: wrap; gap: 10px 20px; }
-.contact-bottom a { color: #dde3df; text-decoration: none; }
-.contact-bottom a:hover { color: #ffb542; }
-
-.project-dialog { width: min(100%, 1300px); height: min(100%, 96vh); max-width: none; max-height: none; padding: 0; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); box-shadow: 0 30px 90px rgba(0, 0, 0, .30); overscroll-behavior: contain; }
-.project-dialog::backdrop { background: rgba(5, 9, 11, .87); backdrop-filter: blur(3px); }
-.dialog-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 26px; border-bottom: 1px solid var(--line); background: var(--panel); }
-.dialog-header h2 { min-width: 0; margin: 0; font-size: 19px; line-height: 1.35; font-weight: 700; letter-spacing: -.02em; overflow-wrap: anywhere; }
-.dialog-close { flex: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; }
-.dialog-close:hover { background: var(--accent); color: #171b1e; }
-.dialog-gallery { padding: 20px 28px 70px; }
-.dialog-section { max-width: 1020px; margin: 42px auto 0; }
-.dialog-section:first-child { margin-top: 20px; }
-.dialog-section h3 { margin: 0 0 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-.dialog-section img { display: block; width: 100%; height: auto; margin: 0 0 10px; border-radius: 0; background: var(--panel); }
-
-@media (max-width: 1120px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 55px; padding-block: 85px; }
-  .hero h1 { max-width: 900px; }
-  .hero-visual { width: 100%; max-width: 800px; }
-  .project-card--featured .project-cover { height: 480px; }
-}
-@media (max-width: 800px) {
-  .container { width: min(100% - 36px, 1440px); }
-  .site-header .container { min-height: 65px; }
-  .nav-links { display: none; }
-  .section { padding: 80px 0; }
-  .section-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 34px; }
-  .section-head h2 { font-size: clamp(38px, 8vw, 62px); }
-  .proof { grid-template-columns: 1fr; }
-  .proof-item, .proof-item:first-child { min-height: 92px; padding: 18px 24px; border-right: 0; border-bottom: 1px solid var(--line); }
-  .proof-item:last-child { border-bottom: 0; }
-  .expertise-grid, .work-grid, .method-grid { grid-template-columns: 1fr; }
-  .project-card--featured { grid-column: auto; }
-  .project-card--featured > :is(button, a) { display: block; }
-  .project-card--featured .project-cover { height: auto; aspect-ratio: 1.2; border-right: 0; }
-  .project-card--featured .project-body { padding: 35px 38px; }
-  .project-card--featured .project-title { font-size: 31px; }
-  .archive-row { grid-template-columns: 100px 1fr 22px; gap: 12px; padding: 23px; }
-  .archive-detail { grid-column: 2; grid-row: 2; }
-  .archive-arrow { grid-column: 3; grid-row: 1 / 3; }
-  .method-step { min-height: 0; border-right: 0; border-bottom: 1px solid #454f51; }
-  .method-step:last-child { border-bottom: 0; }
-  .method-step h3 { margin-top: 22px; }
-  .career-row { grid-template-columns: 145px 1fr; gap: 12px; }
-  .career-row p { grid-column: 2; }
-  .contact-main { display: block; padding-bottom: 80px; }
-  .contact-main .button { margin-top: 30px; }
-}
-@media (max-width: 480px) {
-  .container { width: min(100% - 28px, 1440px); }
-  .brand { font-size: 16px; }
-  .brand span:last-child { display: none; }
-  .header-actions .button { min-height: 44px; padding: 0 10px; font-size: 10px; }
-  .theme-toggle { width: 44px; height: 44px; }
-  .hero-grid { gap: 45px; padding-block: 69px; }
-  .hero h1 { font-size: clamp(47px, 11vw, 62px); }
-  .hero-copy { font-size: 14px; }
-  .hero-visual { width: calc(100% + 4px); height: 520px; }
-  .hero-visual::before { inset: 34px 4px 4px 20px; border-radius: 20px; box-shadow: 8px 8px 0 var(--ink); }
-  .hero-visual::after { right: 4px; top: 0; }
-  .hero-tile { border-radius: 10px; box-shadow: 5px 5px 0 var(--ink); }
-  .hero-tile--wash-100 { left: 0; top: 52px; width: 58%; height: 188px; }
-  .hero-tile--fragrance { right: 0; top: 28px; width: 42%; height: 166px; }
-  .hero-tile--wash-500 { left: 3%; bottom: 26px; width: 48%; height: 230px; }
-  .hero-tile--celebrity { right: 0; bottom: 4px; width: 51%; height: 300px; }
-  .hero-tile figcaption { padding: 8px; font-size: 7px; }
-  .hero-visual::after { font-size: 8px; }
-  .section-head h2 { font-size: clamp(34px, 9.6vw, 39px); }
-  .expertise-card { min-height: 0; padding: 30px; }
-  .expertise-number { margin-bottom: 24px; }
-  .project-body, .project-card--featured .project-body { padding: 28px; }
-  .archive-row { grid-template-columns: 1fr 21px; }
-  .archive-year { grid-column: 1; grid-row: 1; }
-  .archive-name { grid-column: 1; grid-row: 2; }
-  .archive-detail { grid-column: 1; grid-row: 3; }
-  .archive-arrow { grid-column: 2; grid-row: 1 / 4; }
-  .career-row { grid-template-columns: 1fr; }
-  .career-row p { grid-column: auto; }
-  .contact h2 { font-size: 47px; }
-  .project-dialog { width: 100%; height: 100%; border: 0; }
-  .dialog-header { padding: 14px 16px; }
-  .dialog-header h2 { font-size: 17px; }
-  .dialog-gallery { padding-inline: 12px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-}
-
-</style>
+    :root{--paper:#f4f2ec;--white:#fff;--ink:#101820;--muted:#58636d;--line:#c9ced1;--blue:#1557ff;--mint:#bbff3d;--night:#0c1723;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;--sans:Inter,"Avenir Next","Noto Sans SC","Microsoft YaHei",Arial,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}img{display:block;max-width:100%}button{font:inherit}::selection{background:var(--mint);color:var(--ink)}:focus-visible{outline:3px solid var(--blue);outline-offset:4px}.container{width:min(calc(100% - 48px),1440px);margin:auto}
+    .site-header{position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);background:rgba(244,242,236,.94);backdrop-filter:blur(18px)}.site-header .container{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.06em;text-decoration:none}.brand-mark{width:12px;height:12px;background:var(--blue);box-shadow:6px 6px 0 var(--mint)}.brand small{margin-left:6px;color:var(--muted);font:600 10px var(--mono);letter-spacing:.08em}.nav{display:flex;align-items:center;gap:34px}.nav a{color:var(--muted);font:600 11px var(--mono);text-decoration:none}.nav a:hover{color:var(--blue)}.actions{display:flex;align-items:center;gap:9px}.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:0 18px;border:1px solid var(--ink);background:transparent;font:700 11px var(--mono);text-decoration:none;cursor:pointer;transition:.2s ease}.button:hover{transform:translateY(-2px);box-shadow:5px 5px 0 var(--ink)}.button-primary{border-color:var(--blue);background:var(--blue);color:#fff}.button-primary:hover{box-shadow:5px 5px 0 var(--mint)}.edition{background:var(--white)}.edition strong{color:var(--blue)}
+    .ticker{overflow:hidden;border-bottom:1px solid var(--line);background:var(--night);color:#fff}.ticker-track{width:max-content;display:flex;gap:22px;padding:10px 0;font:700 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;animation:move 28s linear infinite}.ticker-track span::after{content:"●";margin-left:22px;color:var(--mint)}@keyframes move{to{transform:translateX(-50%)}}
+    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(120deg,#f4f2ec 0 53%,#e7ebf7 53%)}.hero::before{content:"GLOBAL COMMERCE";position:absolute;left:-10px;bottom:-.08em;color:rgba(21,87,255,.065);font:900 clamp(70px,13vw,190px)/.78 var(--sans);letter-spacing:-.09em;white-space:nowrap}.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,.83fr) minmax(560px,1.17fr);align-items:center;gap:clamp(36px,5vw,84px);min-height:790px;padding:68px 0}.kicker{display:inline-flex;margin:0 0 28px;padding:7px 10px;border:1px solid var(--ink);background:var(--mint);font:700 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;box-shadow:4px 4px 0 var(--ink)}h1{max-width:690px;margin:0;font-size:clamp(54px,5.6vw,88px);line-height:1.04;letter-spacing:-.06em}h1 em{color:var(--blue);font-style:normal}.hero-copy{max-width:590px;margin:30px 0;color:var(--muted);font-size:15px;line-height:1.9}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.hero-note{display:flex;gap:16px;margin-top:34px;color:var(--muted);font:600 10px/1.6 var(--mono)}.hero-note b{color:var(--ink)}
+    .hero-canvas{position:relative;height:650px}.hero-canvas::before{content:"";position:absolute;inset:26px 0 0 38px;border:1px solid var(--ink);background:var(--blue);transform:rotate(1.5deg);box-shadow:12px 12px 0 var(--ink)}.shot{position:absolute;overflow:hidden;margin:0;border:1px solid var(--ink);background:#fff;box-shadow:8px 9px 0 rgba(16,24,32,.95);transition:transform .25s ease}.shot:hover{z-index:8;transform:translateY(-8px) rotate(0)}.shot img{width:100%;height:100%;object-fit:cover}.shot figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;padding:9px 11px;background:linear-gradient(transparent,rgba(8,15,22,.88));color:#fff;font:700 9px var(--mono)}.shot-a{left:0;top:30px;width:45%;height:320px;transform:rotate(-2deg)}.shot-b{right:1%;top:2px;width:47%;height:275px;transform:rotate(2deg)}.shot-c{left:8%;bottom:4px;width:43%;height:284px;transform:rotate(1.3deg)}.shot-d{right:3%;bottom:22px;width:45%;height:333px;transform:rotate(-1.2deg)}
+    .proof{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);margin-top:-28px;border:1px solid var(--ink);background:#fff;box-shadow:9px 9px 0 var(--ink)}.proof div{min-height:128px;padding:26px 28px;border-right:1px solid var(--line)}.proof div:last-child{border:0}.proof strong{display:block;margin-bottom:13px;font-size:26px;letter-spacing:-.05em}.proof span{color:var(--muted);font:600 10px/1.55 var(--mono)}
+    .section{padding:118px 0}.section-head{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);align-items:end;gap:50px;margin-bottom:52px}.eyebrow{margin:0 0 20px;color:var(--blue);font:700 10px var(--mono);letter-spacing:.1em;text-transform:uppercase}.section-head h2{max-width:900px;margin:0;font-size:clamp(42px,5.2vw,76px);line-height:1.08;letter-spacing:-.055em}.section-head>p{margin:0 0 5px;color:var(--muted);font-size:14px;line-height:1.85}.capability-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink);background:var(--ink);gap:1px}.capability{min-height:310px;padding:32px;background:#fff}.capability:nth-child(2){background:#eef2ff}.capability:nth-child(3){background:#f2eadf}.capability:nth-child(4){background:#eaffbd}.capability span{color:var(--blue);font:700 10px var(--mono)}.capability h3{margin:60px 0 16px;font-size:25px;line-height:1.2;letter-spacing:-.03em}.capability p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+    .works{border-top:12px solid var(--blue);background:#e7ebf0}.project-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.project-card{grid-column:span 6}.project-card.featured{grid-column:1/-1}.project-card button{display:grid;width:100%;height:100%;padding:0;border:1px solid var(--ink);background:#fff;color:var(--ink);text-align:left;cursor:pointer;box-shadow:7px 7px 0 var(--ink);transition:.2s ease}.project-card button:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--blue)}.featured button{grid-template-columns:minmax(0,1.25fr) minmax(380px,.75fr)}.project-cover{position:relative;display:block;min-height:390px;overflow:hidden;background:#e9e9e6}.featured .project-cover{min-height:590px;border-right:1px solid var(--ink)}.project-cover img{width:100%;height:100%;object-fit:cover}.project-card:not(.featured) .project-cover img{aspect-ratio:4/3}.project-index{position:absolute;top:16px;left:16px;padding:8px 10px;background:var(--mint);font:700 10px var(--mono);box-shadow:4px 4px 0 var(--ink)}.project-body{display:flex;flex-direction:column;min-height:290px;padding:34px}.featured .project-body{padding:48px}.project-meta{margin-bottom:auto;color:var(--blue);font:700 10px var(--mono);letter-spacing:.05em;text-transform:uppercase}.project-title{display:block;margin:54px 0 14px;font-size:clamp(31px,3.4vw,54px);font-weight:800;line-height:1.08;letter-spacing:-.05em}.project-card:not(.featured) .project-title{font-size:34px}.project-summary{display:block;color:var(--muted);font-size:14px;line-height:1.8}.project-link{display:flex;justify-content:space-between;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font:700 10px var(--mono)}.project-link b{color:var(--blue);font-size:19px}
+    .system{background:var(--night);color:#fff}.system .eyebrow{color:var(--mint)}.system .section-head>p{color:#9aabb8}.system-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #41505d}.system-step{min-height:290px;padding:34px;border-right:1px solid #41505d}.system-step:last-child{border:0}.system-step span{color:var(--mint);font:700 10px var(--mono)}.system-step h3{margin:64px 0 14px;font-size:25px}.system-step p{margin:0;color:#9aabb8;font-size:13px;line-height:1.8}.timeline{border-top:1px solid var(--ink)}.career{display:grid;grid-template-columns:170px 300px 1fr;gap:32px;padding:30px 0;border-bottom:1px solid var(--line)}.career time{color:var(--muted);font:600 10px var(--mono)}.career h3{margin:0 0 8px;font-size:20px}.career b{color:var(--blue);font:700 10px var(--mono)}.career p{margin:0;color:var(--muted);font-size:14px;line-height:1.8}
+    .contact{padding:100px 0 30px;background:var(--blue);color:#fff}.contact-main{display:flex;align-items:end;justify-content:space-between;gap:40px;padding-bottom:110px}.contact h2{max-width:870px;margin:0;font-size:clamp(46px,6vw,88px);line-height:1.05;letter-spacing:-.06em}.contact p{max-width:560px;color:#dce5ff;line-height:1.8}.contact .button{border-color:#fff;color:#fff}.contact-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:24px;border-top:1px solid rgba(255,255,255,.35);font:600 10px var(--mono)}
+    dialog{width:min(100%,1320px);height:min(96vh,100%);max-width:none;max-height:none;padding:0;border:1px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:0 30px 90px rgba(0,0,0,.4)}dialog::backdrop{background:rgba(3,9,16,.88);backdrop-filter:blur(5px)}.dialog-head{position:sticky;top:0;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;border-bottom:1px solid var(--ink);background:rgba(244,242,236,.96);backdrop-filter:blur(12px)}.dialog-head h2{margin:0;font-size:20px}.dialog-close{width:44px;height:44px;border:1px solid var(--ink);background:var(--mint);font-size:25px;cursor:pointer}.dialog-intro{display:grid;grid-template-columns:1fr 1fr;gap:34px;max-width:1060px;margin:40px auto 18px;padding:0 24px}.dialog-intro p{margin:0;color:var(--muted);line-height:1.8}.dialog-stats{display:flex;gap:8px;flex-wrap:wrap}.dialog-stats span{padding:8px 10px;border:1px solid var(--line);background:#fff;font:600 10px var(--mono)}.gallery{padding:10px 24px 70px}.gallery-section{max-width:1060px;margin:44px auto}.gallery-section h3{margin:0 0 20px;padding-bottom:13px;border-bottom:1px solid var(--ink);color:var(--blue);font:700 10px var(--mono);letter-spacing:.09em;text-transform:uppercase}.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}.gallery-grid img{width:100%;height:auto;border:1px solid var(--line);background:#fff}.gallery-grid .wide{grid-column:1/-1}
+    @media(max-width:1120px){.hero-grid{grid-template-columns:1fr;padding-top:90px}.hero-canvas{max-width:820px;width:100%;margin:auto}.capability-grid,.system-grid{grid-template-columns:repeat(2,1fr)}.featured button{grid-template-columns:1fr}.featured .project-cover{min-height:520px;border:0;border-bottom:1px solid var(--ink)}.proof{grid-template-columns:repeat(2,1fr)}.proof div:nth-child(2){border-right:0}.proof div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+    @media(max-width:760px){.container{width:min(calc(100% - 30px),1440px)}.nav{display:none}.actions .contact-button{display:none}.hero{background:linear-gradient(160deg,#f4f2ec 0 58%,#e7ebf7 58%)}.hero-grid{min-height:0;padding:70px 0 56px}.hero-canvas{height:520px}h1{font-size:clamp(47px,12vw,68px)}.shot-a{width:55%;height:242px}.shot-b{width:48%;height:216px}.shot-c{width:50%;height:226px}.shot-d{width:48%;height:260px}.section{padding:82px 0}.section-head{grid-template-columns:1fr;gap:18px}.capability-grid,.system-grid,.proof{grid-template-columns:1fr}.proof div{border-right:0;border-bottom:1px solid var(--line)!important}.proof div:last-child{border-bottom:0!important}.project-card,.project-card.featured{grid-column:1/-1}.featured .project-cover{min-height:420px}.project-cover{min-height:300px}.featured .project-body{padding:34px}.system-step{border-right:0;border-bottom:1px solid #41505d}.career{grid-template-columns:110px 1fr;gap:16px}.career p{grid-column:2}.contact-main{display:block;padding-bottom:80px}.contact-main .button{margin-top:26px}.dialog-intro{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr}.gallery-grid .wide{grid-column:auto}}
+    @media(max-width:480px){.site-header .container{min-height:66px}.brand small{display:none}.edition{padding:0 10px}.hero-canvas{height:450px}.hero-canvas::before{inset:24px 2px 0 18px}.shot-a{top:40px;height:204px}.shot-b{height:185px}.shot-c{height:192px}.shot-d{height:222px}.hero-note{display:block}.project-cover,.featured .project-cover{min-height:330px}.project-card:not(.featured) .project-title{font-size:30px}.dialog-head{padding:12px 14px}.gallery{padding-inline:12px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.shot,.button,.project-card button{transition:none}}
+    .legacy{border-top:1px solid var(--ink);background:var(--white)}.legacy-list{border-top:1px solid var(--ink)}.legacy-row{display:grid;grid-template-columns:150px minmax(230px,.8fr) 1fr 30px;align-items:center;gap:25px;padding:25px 0;border-bottom:1px solid var(--line);text-decoration:none}.legacy-row:hover{color:var(--blue)}.legacy-row span:first-child{color:var(--muted);font:600 10px var(--mono)}.legacy-row strong{font-size:19px}.legacy-row span:nth-child(3){color:var(--muted);font-size:13px}.legacy-row b{color:var(--blue);font-size:20px}@media(max-width:760px){.legacy-row{grid-template-columns:92px 1fr 24px;gap:12px}.legacy-row span:nth-child(3){grid-column:2}.legacy-row b{grid-column:3;grid-row:1/3}}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="#top" aria-label="KUANG STUDIO，返回顶部"><span class="brand-mark" aria-hidden="true"></span>KUANG <span>STUDIO</span></a>
-      <nav class="nav-links" aria-label="主导航">
-        <a href="#expertise">专长</a>
-        <a href="#works">精选作品</a>
-        <a href="#experience">经历</a>
-      </nav>
-      <div class="header-actions">
-        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换深色模式" aria-pressed="false">☾</button>
-        <a class="button button-primary" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </header>
-
-  <div class="commerce-strip" aria-label="国内电商能力标签">
-    <div class="commerce-strip-track" aria-hidden="true">
-      <span>天猫大促</span><span>京东整合营销</span><span>明星传播</span><span>洗护香氛</span><span>消费电子</span><span>商品详情页</span><span>视觉转化</span>
-      <span>天猫大促</span><span>京东整合营销</span><span>明星传播</span><span>洗护香氛</span><span>消费电子</span><span>商品详情页</span><span>视觉转化</span>
-    </div>
-  </div>
-
+  <header class="site-header"><div class="container"><a class="brand" href="#top"><span class="brand-mark"></span>KUANG <small>GLOBAL COMMERCE DESIGN</small></a><nav class="nav" aria-label="主导航"><a href="#capabilities">能力</a><a href="#works">海外作品</a><a href="#system">方法</a><a href="#experience">经历</a></nav><div class="actions"><a class="button edition" href="domestic.html"><strong>国内版</strong> ↗</a><a class="button button-primary contact-button" href="mailto:dyk162@163.com">联系我 ↗</a></div></div></header>
+  <div class="ticker" aria-label="海外电商能力标签"><div class="ticker-track" aria-hidden="true"><span>Amazon Listing</span><span>A+ Content</span><span>Global Brand Visual</span><span>EN / DE / FR / IT / ES</span><span>Product Rendering</span><span>Conversion-led Design</span><span>Amazon Listing</span><span>A+ Content</span><span>Global Brand Visual</span><span>EN / DE / FR / IT / ES</span><span>Product Rendering</span><span>Conversion-led Design</span></div></div>
   <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">国内电商视觉 / 品牌整合营销 / 商品内容设计</p>
-          <h1 id="hero-title">让好产品被看见，<br><em>也让卖点被记住。</em></h1>
-          <p class="hero-copy">我是邝先生，长期服务国内电商与品牌项目。从天猫、京东大促，到明星整合营销、洗护香氛与消费电子详情页，把品牌表达、商品卖点和转化路径组织成一套真正能落地的视觉系统。</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#works">查看作品 <span aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="#experience">了解经历</a>
-          </div>
-        </div>
-        <div class="hero-visual" aria-label="跨项目精选作品预览">
-          <figure class="hero-tile hero-tile--wash-100"><img src="projects/laundry-care-collection/assets/100ml-cover.jpg" alt="100ml 洗衣液视觉更新主画面" loading="eager"><figcaption><span>01</span><b>贴身洗护</b></figcaption></figure>
-          <figure class="hero-tile hero-tile--wash-500"><img src="projects/laundry-care-collection/assets/500ml-cover.jpg" alt="500ml 洗衣液视觉更新主画面" loading="eager"><figcaption><span>02</span><b>家庭洗护</b></figcaption></figure>
-          <figure class="hero-tile hero-tile--fragrance"><img src="projects/laundry-care-collection/assets/fragrance/fragrance-03.jpg" alt="品牌特调香薰片视觉" loading="eager"><figcaption><span>03</span><b>香氛视觉</b></figcaption></figure>
-          <figure class="hero-tile hero-tile--celebrity"><img src="projects/celebrity-commerce-portfolio/assets/optimized-v2/web/hero-v2.webp" alt="几光与刘雨昕双十一明星整合营销新版视觉" loading="eager"><figcaption><span>04</span><b>明星整合营销</b></figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <div class="container proof" aria-label="工作经历与成果摘要">
-      <div class="proof-item"><strong>国内电商</strong><span>天猫 / 京东 / 大促与详情页</span></div>
-      <div class="proof-item"><strong>整合营销</strong><span>明星视觉 / 粉丝互动 / 商品承接</span></div>
-      <div class="proof-item"><strong>跨市场</strong><span>国内经验延展至 Listing 与 A+</span></div>
-    </div>
-
-    <section class="section" id="expertise" aria-labelledby="expertise-title">
-      <div class="container">
-        <div class="section-head">
-          <div><p class="eyebrow">E-COMMERCE & BRAND EXPERTISE</p><h2 id="expertise-title">扎根国内电商，<br>也理解跨市场表达。</h2></div>
-          <p>从国内大促主视觉、明星传播到商品详情页，再到海外 Listing 与 A+，围绕不同商业触点组织内容和视觉。</p>
-        </div>
-        <div class="expertise-grid">
-          <article class="expertise-card"><span class="expertise-number">01</span><h3>国内大促与明星营销</h3><p>处理代言人、品牌、促销机制与粉丝互动的优先级，让传播热度能够进入商品和权益承接。</p></article>
-          <article class="expertise-card"><span class="expertise-number">02</span><h3>电商详情与产品视觉</h3><p>围绕消费电子和家居产品，梳理卖点、结构、场景与材质，完成从首屏到长图详情的视觉表达。</p></article>
-          <article class="expertise-card"><span class="expertise-number">03</span><h3>品牌系统与内容流程</h3><p>建立跨渠道视觉规范，并将 AIGC 用于概念探索、场景制作和素材迭代，兼顾效率与一致性。</p></article>
-          <article class="expertise-card"><span class="expertise-number">04</span><h3>Amazon Listing 与 A+</h3><p>把国内电商积累转译到海外购物语境，统筹主图、辅图和 A+ 模块的信息层级与品牌表达。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section works" id="works" aria-labelledby="works-title">
-      <div class="container">
-        <div class="section-head">
-          <div><p class="eyebrow">SELECTED WORKS</p><h2 id="works-title">在不同品类中，<br>建立清晰的视觉表达。</h2></div>
-          <p>从明星整合营销、洗护品牌内容到消费电子详情，呈现不同商业语境下的视觉策略与执行。</p>
-        </div>
-        <div class="work-grid">
-          <article class="project-card project-card--domestic project-card--featured"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="projects/celebrity-commerce-portfolio/assets/optimized-v2/web/campaign-wide-v2.webp" alt="几光与刘雨昕双十一整合营销新版视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
-          <article class="project-card project-card--domestic project-card--featured"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo"><img src="projects/laundry-care-collection/assets/100ml-cover.jpg" alt="100ml 洗衣液视觉更新" loading="lazy"><img src="projects/laundry-care-collection/assets/500ml-cover.jpg" alt="500ml 洗衣液视觉更新" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛 / 电商内容</span><span class="project-title">洗护与香氛<br>视觉合集</span><span class="project-summary">涵盖香薰片、100ml 与 500ml 洗衣液，从香气氛围、产品质感到详情页信息结构，呈现洗护品类的视觉探索。</span><span class="project-link">进入合集 <b aria-hidden="true">↗</b></span></span></a></article>
-          <article class="project-card"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" alt="米家电水壶 1S 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 家居产品 / 详情页</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">围绕家居场景、材质细节和产品功能，建立完整的消费电子详情页视觉叙事。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
-          <article class="project-card"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="云米扫拖机器人项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 消费电子 / 产品矩阵</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">以功能场景、结构拆解和产品矩阵，完成扫拖机器人系列的视觉重塑。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section archive" aria-labelledby="archive-title">
-      <div class="container">
-        <div class="section-head archive-head"><div><p class="eyebrow">DOMESTIC PROJECT ARCHIVE</p><h2 id="archive-title">更多国内项目</h2></div><p>覆盖小家电详情页、功能可视化、结构拆解与科技产品视觉表达。</p></div>
-        <div class="archive-list">
-          <button class="archive-row" type="button" data-project="p1" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p3" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p4" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-        </div>
-        <details class="domestic-projects">
-          <summary>查看海外电商项目（6 项）</summary>
-          <div class="archive-list">
-            <button class="archive-row" type="button" data-project="p6" aria-haspopup="dialog"><span class="archive-year">海外品牌</span><span class="archive-name">Brand Visual Collection</span><span class="archive-detail">Amazon 主图与 A+ 视觉系统</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p9" aria-haspopup="dialog"><span class="archive-year">海外家居</span><span class="archive-name">Cabinet Light 2.0</span><span class="archive-detail">智能橱柜灯 Listing 与 A+</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p10" aria-haspopup="dialog"><span class="archive-year">海外家居</span><span class="archive-name">Ultra-thin Sensor Light</span><span class="archive-detail">感应灯 Listing 与多模块 A+</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p8" aria-haspopup="dialog"><span class="archive-year">2022 · 海外</span><span class="archive-name">Flagship Rebuild</span><span class="archive-detail">旗舰新品 A+ 场景重构</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p7" aria-haspopup="dialog"><span class="archive-year">2021 · 海外</span><span class="archive-name">Smart Home Set</span><span class="archive-detail">海外智能家电 Listing 系列</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p11" aria-haspopup="dialog"><span class="archive-year">2023 · 海外</span><span class="archive-name">Cabinet Light Pro</span><span class="archive-detail">智能橱柜灯 A+ 视觉进阶</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section class="method" aria-labelledby="method-title">
-      <div class="container">
-        <div class="section-head"><div><p class="eyebrow">HOW I WORK</p><h2 id="method-title">先理解业务目标，<br>再决定画面怎么说。</h2></div><p>把传播任务、商品卖点与渠道节奏放到同一条设计路径中，兼顾品牌表达与生意结果。</p></div>
-        <div class="method-grid">
-          <article class="method-step"><span>01 / 传播目标</span><h3>明确注意力入口</h3><p>先确认人群、渠道和活动任务，判断明星、产品、利益点与品牌信息的视觉优先级。</p></article>
-          <article class="method-step"><span>02 / 转化路径</span><h3>组织内容承接</h3><p>让主视觉建立第一印象，互动和详情解释价值，商品、权益与行动按钮完成转化。</p></article>
-          <article class="method-step"><span>03 / 系统延展</span><h3>统一跨渠道体验</h3><p>在天猫、京东、社媒、直播和海外平台之间建立可复用的视觉规范与交付流程。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="experience" aria-labelledby="experience-title">
-      <div class="container">
-        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">从国内电商一线，<br>到跨市场设计管理。</h2></div><p>国内大促、消费电子与洗护品牌项目构成经验底座，随后延伸至海外产品视觉、Amazon 内容和团队流程建设。</p></div>
-        <div class="timeline">
-          <article class="career-row"><span class="career-year">2024 — 至今</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Manager · 返聘</span></div><p>重构海外设计团队与可视化流程，建立以转化率为核心的视觉评估体系，并引入 AIGC 工作流。核心产品转化率提升 10%–30%。</p></article>
-          <article class="career-row"><span class="career-year">2023 — 2024</span><div class="career-role"><h3>广东久量科技</h3><span>Design Supervisor</span></div><p>负责洗护系列品牌视觉建设与新品内容设计，统筹外拍、精修渲染及平台活动视觉更新。</p></article>
-          <article class="career-row"><span class="career-year">2020 — 2023</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Lead</span></div><p>从国内新品与大促视觉转向海外产品设计管理，主导品牌建设及产品站视觉设计。</p></article>
-          <article class="career-row"><span class="career-year">2018 — 2020</span><div class="career-role"><h3>佛山市云米电器</h3><span>Graphic Designer</span></div><p>负责天猫、京东大促主视觉，统筹 50 余款小家电详情页设计，并参与发布会视觉物料制作。</p></article>
-        </div>
-      </div>
-    </section>
+    <section class="hero"><div class="container hero-grid"><div><p class="kicker">OVERSEAS E-COMMERCE · AMAZON · GLOBAL CONTENT</p><h1>为海外商品，建立<em>清晰、可信、可转化</em>的视觉系统。</h1><p class="hero-copy">我是邝先生，专注消费电子与家居产品的海外电商视觉。从 Amazon 主图、辅图到 A+ 内容与多语言延展，将复杂功能整理成更符合海外购物语境的内容结构。</p><div class="hero-actions"><a class="button button-primary" href="#works">查看海外作品 ↘</a><a class="button" href="#system">了解工作方法</a></div><div class="hero-note"><span><b>FOCUS</b><br>Amazon Listing / A+</span><span><b>MARKETS</b><br>欧美多站点内容适配</span></div></div><div class="hero-canvas" aria-label="海外项目精选拼贴"><figure class="shot shot-a"><img src="assets/overseas/echo-cost/main/main-05.webp" alt="ECHO 智能台灯海外主图"><figcaption><span>01</span><b>ECHO</b></figcaption></figure><figure class="shot shot-b"><img src="assets/overseas/small-appliance/main/main-04.webp" alt="多功能智能礼品套装海外场景图"><figcaption><span>02</span><b>HOME HUB</b></figcaption></figure><figure class="shot shot-c"><img src="assets/overseas/cassini/main/main-02.webp" alt="CASSINI 智能时钟音箱海外主图"><figcaption><span>03</span><b>CASSINI</b></figcaption></figure><figure class="shot shot-d"><img src="assets/overseas/echo-2021/main/main-03.webp" alt="ECHO 智能台灯语音控制主图"><figcaption><span>04</span><b>SMART LIGHT</b></figcaption></figure></div></div></section>
+    <div class="container proof" aria-label="经验概览"><div><strong>2021–2024</strong><span>OVERSEAS CONTENT EXPERIENCE</span></div><div><strong>主图 + A+</strong><span>FULL LISTING VISUAL SYSTEM</span></div><div><strong>5 语种</strong><span>EN / DE / FR / IT / ES</span></div><div><strong>10%–30%</strong><span>CORE PRODUCT CVR UPLIFT</span></div></div>
+    <section class="section" id="capabilities"><div class="container"><div class="section-head"><div><p class="eyebrow">01 / CAPABILITIES</p><h2>不止把图做漂亮，更把购买信息组织清楚。</h2></div><p>围绕海外消费者的阅读顺序，将产品功能、场景、材质与品牌信息组合成可延展的内容资产。</p></div><div class="capability-grid"><article class="capability"><span>01</span><h3>Amazon<br>内容架构</h3><p>规划主图、功能辅图、场景图和 A+ 模块的信息层级，保持卖点节奏完整。</p></article><article class="capability"><span>02</span><h3>多站点<br>语言适配</h3><p>建立可复用版式，适配英语及欧洲多语种，在文案长度变化中保持视觉稳定。</p></article><article class="capability"><span>03</span><h3>产品渲染<br>与场景表达</h3><p>结合建模、渲染、精修和真实场景，让结构功能与使用情境被快速理解。</p></article><article class="capability"><span>04</span><h3>数据反馈<br>与持续迭代</h3><p>结合点击率、转化率与用户反馈优化图片，并通过 A/B 测试验证表达方向。</p></article></div></div></section>
+    <section class="section works" id="works"><div class="container"><div class="section-head"><div><p class="eyebrow">02 / SELECTED OVERSEAS WORK</p><h2>海外项目优先展示。</h2></div><p>新增四组完整案例，覆盖智能台灯、多功能家居小电和智能时钟音箱，均包含 Amazon 主图或 A+ 内容。</p></div><div class="project-grid">
+      <article class="project-card featured"><button type="button" data-project="echo-cost"><span class="project-cover"><img src="assets/overseas/echo-cost/main/main-05.webp" alt="ECHO 智能台灯海外 Listing"></span><span class="project-index">01 / FEATURED</span><span class="project-body"><span class="project-meta">2023 · Amazon Listing / A+</span><span class="project-title">ECHO<br>智能台灯视觉升级</span><span class="project-summary">以深色质感场景、功能拆解与智能控制为核心，完成一套覆盖主图与 A+ 的海外商品内容。</span><span class="project-link">查看完整案例 <b>↗</b></span></span></button></article>
+      <article class="project-card"><button type="button" data-project="small-appliance"><span class="project-cover"><img src="assets/overseas/small-appliance/main/main-04.webp" alt="多功能智能礼品套装海外视觉"></span><span class="project-index">02</span><span class="project-body"><span class="project-meta">2023 · GLOBAL GIFT SET / A+</span><span class="project-title">智能家居小电套装</span><span class="project-summary">将无线充电、夜灯与便携音箱整合为统一的暖调生活方式视觉。</span><span class="project-link">查看完整案例 <b>↗</b></span></span></button></article>
+      <article class="project-card"><button type="button" data-project="cassini"><span class="project-cover"><img src="assets/overseas/cassini/main/main-02.webp" alt="CASSINI 智能时钟音箱视觉"></span><span class="project-index">03</span><span class="project-body"><span class="project-meta">2022 · AMAZON US / EU</span><span class="project-title">CASSINI 智能时钟音箱</span><span class="project-summary">围绕睡眠、无线充电、音箱与时钟功能，建立柔和统一的海外 Listing 视觉。</span><span class="project-link">查看完整案例 <b>↗</b></span></span></button></article>
+      <article class="project-card"><button type="button" data-project="echo-2021"><span class="project-cover"><img src="assets/overseas/echo-2021/main/main-03.webp" alt="ECHO 智能台灯 2021 海外视觉"></span><span class="project-index">04</span><span class="project-body"><span class="project-meta">2021 · AMAZON LISTING / A+</span><span class="project-title">ECHO 智能台灯</span><span class="project-summary">整合语音控制、APP 操作、护眼与智能调光，形成主图与 A+ 的一致表达。</span><span class="project-link">查看完整案例 <b>↗</b></span></span></button></article>
+    </div></div></section>
+    <section class="section legacy" id="previous-work"><div class="container"><div class="section-head"><div><p class="eyebrow">03 / PREVIOUS OVERSEAS ARCHIVE</p><h2>之前的作品，完整保留。</h2></div><p>原作品集中的海外案例没有删除，仍保留完整图片内容。这里保留项目索引，可进入国内版原始归档继续查看。</p></div><div class="legacy-list">
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>2021–2024</span><strong>海外品牌视觉精选全案</strong><span>Amazon 主图与 A+ 视觉系统</span><b>↗</b></a>
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>2021–2024</span><strong>海外智能家电系列</strong><span>Smart Home Listing 视觉设计</span><b>↗</b></a>
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>2022</span><strong>旗舰新品视觉重构</strong><span>旗舰新品 A+ 场景重构</span><b>↗</b></a>
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>海外家居</span><strong>Cabinet Light 2.0</strong><span>智能橱柜灯 Listing 与 A+</span><b>↗</b></a>
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>海外家居</span><strong>Ultra-thin Sensor Light</strong><span>感应灯 Listing 与多模块 A+</span><b>↗</b></a>
+      <a class="legacy-row" href="domestic.html#legacy-overseas"><span>2023</span><strong>Cabinet Light Pro</strong><span>智能橱柜灯 A+ 视觉进阶</span><b>↗</b></a>
+    </div></div></section>
+    <section class="section system" id="system"><div class="container"><div class="section-head"><div><p class="eyebrow">03 / WORKING SYSTEM</p><h2>从卖点清单到可复用的全球内容系统。</h2></div><p>设计过程服务于真实上架：先厘清用户与市场，再建立内容结构，最后完成多语言和多渠道延展。</p></div><div class="system-grid"><article class="system-step"><span>01 / AUDIT</span><h3>拆解商品与用户</h3><p>梳理竞品、评论、功能差异和使用场景，确定第一屏必须传达的价值。</p></article><article class="system-step"><span>02 / STRUCTURE</span><h3>建立阅读顺序</h3><p>把主图、功能图、场景图和 A+ 模块编排为连续、易扫读的信息路径。</p></article><article class="system-step"><span>03 / PRODUCE</span><h3>统一视觉生产</h3><p>协同建模、渲染、拍摄与精修，用同一套光影、材质和版式建立品牌感。</p></article><article class="system-step"><span>04 / ITERATE</span><h3>依据反馈优化</h3><p>结合平台表现和用户反馈持续迭代，保留可验证、可复用的有效表达。</p></article></div></div></section>
+    <section class="section" id="experience"><div class="container"><div class="section-head"><div><p class="eyebrow">04 / EXPERIENCE</p><h2>国内电商基础，海外业务实践。</h2></div><p>从天猫、京东大促和产品详情页出发，延展到 Amazon 欧美站品牌视觉、A+ 内容和海外设计团队管理。</p></div><div class="timeline"><article class="career"><time>2024 — 至今</time><div><h3>广州奕至家居</h3><b>DESIGN MANAGER · 返聘</b></div><p>重构海外设计团队和工作流程，负责 Amazon 欧美市场品牌视觉；以点击率、转化率、A/B 测试和用户反馈驱动图片优化，核心产品转化率提升 10%–30%。</p></article><article class="career"><time>2021 — 2023</time><div><h3>广州奕至家居</h3><b>OVERSEAS DESIGN LEAD</b></div><p>负责海外产品视觉输出与品牌建设，带领团队完成产品站、Amazon Listing 与 A+ 内容，推动公司从国内项目转向海外品牌布局。</p></article><article class="career"><time>2020 — 2021</time><div><h3>广州奕至家居</h3><b>DOMESTIC DESIGN LEAD</b></div><p>带领 4 人团队完成新品视觉、天猫与京东店铺活动，为后续海外产品内容建立产品表达和团队协作基础。</p></article><article class="career"><time>2018 — 2020</time><div><h3>佛山市云米电器</h3><b>GRAPHIC DESIGNER</b></div><p>参与天猫、京东 S 级大促及 50 余款小家电详情页设计，积累消费电子产品视觉和电商转化内容经验。</p></article></div></div></section>
   </main>
-
-  <footer class="contact" id="contact">
-    <div class="container">
-      <div class="contact-main"><div><p class="eyebrow">LET'S CONNECT</p><h2>让品牌在每个电商触点，<br>说清楚，也卖得动。</h2><p>欢迎交流国内大促、明星整合营销、产品详情、品牌系统与跨市场电商视觉。</p></div><a class="button button-primary" href="mailto:dyk162@163.com">发送邮件 <span aria-hidden="true">↗</span></a></div>
-      <div class="contact-bottom"><div><a href="mailto:dyk162@163.com">dyk162@163.com</a><a href="tel:13751868717">+86 137 5186 8717</a></div><span>© 2026 KUANG STUDIO</span></div>
-    </div>
-  </footer>
-
-  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-header"><h2 id="dialog-title">项目作品</h2><button class="dialog-close" type="button" id="dialog-close" aria-label="关闭项目作品">×</button></div>
-    <div class="dialog-gallery" id="dialog-gallery"></div>
-  </dialog>
-
+  <footer class="contact" id="contact"><div class="container"><div class="contact-main"><div><p class="eyebrow">AVAILABLE FOR OPPORTUNITIES</p><h2>让海外商品内容，形成清晰一致的品牌体验。</h2><p>海外电商视觉 / Amazon Listing / A+ Content / 品牌视觉系统</p></div><a class="button" href="mailto:dyk162@163.com">dyk162@163.com ↗</a></div><div class="contact-bottom"><span>KUANG STUDIO · 2026</span><span>OVERSEAS EDITION · <a href="domestic.html">查看国内版 ↗</a></span></div></div></footer>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title">项目详情</h2><button class="dialog-close" id="dialog-close" type="button" aria-label="关闭">×</button></div><div id="dialog-body"></div></dialog>
   <script>
-    const B = 'https://i.postimg.cc/';
-    const pd = {
-            p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
-            p2:{t:"云米扫拖机器人 (精选版)",s:[{t:"多型号视觉重构",i:["4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg","DyHCzHYV/2018-2020-zuo-pin-ji-jing-xuan-5-02.jpg","4NmLssw4/2018-2020-zuo-pin-ji-jing-xuan-5-03.jpg","J4vThvY9/2018-2020-zuo-pin-ji-jing-xuan-5-04.jpg","rF3hp3Yy/2018-2020-zuo-pin-ji-jing-xuan-6.png","7YdBLdQD/2018-2020-zuo-pin-ji-jing-xuan-7.png","MKNsGNrq/2018-2020-zuo-pin-ji-jing-xuan-8-01.jpg","c42DJ25d/2018-2020-zuo-pin-ji-jing-xuan-8-02.jpg","5NTPtTk0/2018-2020-zuo-pin-ji-jing-xuan-8-03.jpg","4Nq83qFm/2018-2020-zuo-pin-ji-jing-xuan-8-04.jpg","Qxw6MwnC/2018-2020-zuo-pin-ji-jing-xuan-8-05.jpg","BQkhvkwH/2018-2020-zuo-pin-ji-jing-xuan-8-06.jpg","gkQM0QBV/2018-2020-zuo-pin-ji-jing-xuan-8-07.jpg"]}]},
-            p3:{t:"云米手持无线吸尘器",s:[{t:"结构拆解分析",i:["mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg","xC8HMTXC/2018-2020-zuo-pin-ji-jing-xuan-9-02.jpg","RFhfKVWh/2018-2020-zuo-pin-ji-jing-xuan-9-03.jpg","d13drths/2018-2020-zuo-pin-ji-jing-xuan-9-04.jpg","Qtz7bG7N/2018-2020-zuo-pin-ji-jing-xuan-10.jpg","bJ5nTcnN/2018-2020-zuo-pin-ji-jing-xuan-11.jpg","DZNGgkGw/2018-2020-zuo-pin-ji-jing-xuan-12-01.jpg","76RzV8z6/2018-2020-zuo-pin-ji-jing-xuan-12-02.jpg","JnFXqVXX/2018-2020-zuo-pin-ji-jing-xuan-12-03.jpg","SsP9rF9z/2018-2020-zuo-pin-ji-jing-xuan-12-04.jpg","26tWwRWw/2018-2020-zuo-pin-ji-jing-xuan-12-05.jpg","wvrNV8Nk/2018-2020-zuo-pin-ji-jing-xuan-12-06.jpg","wMsm4f5L/2018-2020-zuo-pin-ji-jing-xuan-12-07.jpg","zvRg2twT/2018-2020-zuo-pin-ji-jing-xuan-12-08.jpg","6qGvbjVV/2018-2020-zuo-pin-ji-jing-xuan-12-09.jpg"]}]},
-            p4:{t:"云米空气消毒净化器",s:[{t:"科技调性重构",i:["L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg","XYvyTYgZ/2018-2020-zuo-pin-ji-jing-xuan-13-02.jpg","GmpsZmj4/2018-2020-zuo-pin-ji-jing-xuan-13-03.jpg","K8Ygd85z/2018-2020-zuo-pin-ji-jing-xuan-13-04.jpg","jSjJGShf/2018-2020-zuo-pin-ji-jing-xuan-14.jpg","bwv2KwR0/2018-2020-zuo-pin-ji-jing-xuan-15.jpg","fRb06Rvf/2018-2020-zuo-pin-ji-jing-xuan-16-01.jpg","dV0TzV99/2018-2020-zuo-pin-ji-jing-xuan-16-02.jpg","kght9PjS/2018-2020-zuo-pin-ji-jing-xuan-16-03.jpg","T3HWGvkg/2018-2020-zuo-pin-ji-jing-xuan-16-04.jpg","13YNP1WD/2018-2020-zuo-pin-ji-jing-xuan-16-05.jpg","6p1GwxHV/2018-2020-zuo-pin-ji-jing-xuan-16-06.jpg","MprjxJs5/2018-2020-zuo-pin-ji-jing-xuan-16-07.jpg","wjbsHYW0/2018-2020-zuo-pin-ji-jing-xuan-16-08.jpg","VkHb1P77/2018-2020-zuo-pin-ji-jing-xuan-16-09.jpg"]}]},
-            p5:{t:"米家电水壶 1S 全案",s:[{t:"全景视觉呈现",i:["KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg","G2zRwdKk/2018-2020-zuo-pin-ji-jing-xuan-17-02.jpg","0QZvRPnS/2018-2020-zuo-pin-ji-jing-xuan-17-03.jpg","3R9h5Y1v/2018-2020-zuo-pin-ji-jing-xuan-17-04.jpg","J0nLRvYK/2018-2020-zuo-pin-ji-jing-xuan-18.jpg","PJxjd9V6/2018-2020-zuo-pin-ji-jing-xuan-19.jpg","Wz3vsCY5/2018-2020-zuo-pin-ji-jing-xuan-20-01.jpg","0jQs9FXC/2018-2020-zuo-pin-ji-jing-xuan-20-02.jpg","L5bM5DGb/2018-2020-zuo-pin-ji-jing-xuan-20-03.jpg","2yKfyGgX/2018-2020-zuo-pin-ji-jing-xuan-20-04.jpg","7h6kqdQv/2018-2020-zuo-pin-ji-jing-xuan-20-05.jpg","yxbzxj22/2018-2020-zuo-pin-ji-jing-xuan-20-06.jpg","KjHyjfdx/2018-2020-zuo-pin-ji-jing-xuan-20-07.jpg","tJMHJkLG/2018-2020-zuo-pin-ji-jing-xuan-20-08.jpg","BbVGbpds/2018-2020-zuo-pin-ji-jing-xuan-20-09.jpg","HnhCnzfT/2018-2020-zuo-pin-ji-jing-xuan-20-10.jpg","0jBqjnLk/2018-2020-zuo-pin-ji-jing-xuan-20-11.jpg","tJMHJkLT/2018-2020-zuo-pin-ji-jing-xuan-20-12.jpg","90nj0bvf/2018-2020-zuo-pin-ji-jing-xuan-20-13.jpg","Y0sw0RJv/2018-2020-zuo-pin-ji-jing-xuan-20-14.jpg","gjTPjsfn/2018-2020-zuo-pin-ji-jing-xuan-20-15.jpg","dQHF5QDn/2018-2020-zuo-pin-ji-jing-xuan-20-16.jpg","mZX4mZhw/2018-2020-zuo-pin-ji-jing-xuan-20-17.jpg"]}]},
-            p6:{t:"海外品牌视觉精选全案",s:[{t:"主图与 A+ 系统",i:["mrDJzCyW/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-01.jpg","CK1XBksy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-02.jpg","k54z6KF0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-03.jpg","FHGwHD3N/2021-2024zuo-pin-ji-hai-wai-jing-xuan-1-04.jpg","fbLptmfs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-2.jpg","0NQFMD0P/2021-2024zuo-pin-ji-hai-wai-jing-xuan-3.jpg","g0JQX8Hd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-01.jpg","tgMfhJBY/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-08.jpg","cJbjQCF8/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-09.jpg","W4HKMz5r/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-10.jpg","N0zV1Fdm/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-11.jpg","CKQtj5cG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-12.jpg","3wc6gNtj/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-13.jpg","bvBMQrm9/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-14.jpg","Lsb7z5xB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-15.jpg","bvBMQrmL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-4-16.jpg"]}]},
-            p7:{t:"海外智能家电系列",s:[{t:"Listing 视觉设计",i:["Hxq78qFy/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-01.jpg","DZ9b49RG/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-02.jpg","yx03mfzN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-03.jpg","mk71YdGD/2021-2024zuo-pin-ji-hai-wai-jing-xuan-5-04.jpg","Zn6v8fhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-6.jpg","br1Sx6jR/2021-2024zuo-pin-ji-hai-wai-jing-xuan-7.jpg","L5jgtyMT/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-01.jpg","gj3LVMPN/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-02.jpg","XN556vy6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-03.jpg","59zzWtFf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-04.jpg","VsttPNbf/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-05.jpg","mZ99WrF2/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-06.jpg","CM88pKf1/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-07.jpg","qBKKH7Cn/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-08.jpg","DfGG3zbL/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-09.jpg","05SS1NJ0/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-10.jpg","yYzZ1zFS/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-11.jpg","zX1gz1nC/2021-2024zuo-pin-ji-hai-wai-jing-xuan-8-12.jpg"]}]},
-            p8:{t:"旗舰新品视觉重构",s:[{t:"A+ 场景",i:["gk6N5dGw/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-01.jpg","Hs7BKHT7/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-02.jpg","ZKyVgZJB/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-03.jpg","c48XjZdv/2021-2024zuo-pin-ji-hai-wai-jing-xuan-9-04.jpg","GhsqNrbF/2021-2024zuo-pin-ji-hai-wai-jing-xuan-10.jpg","WbJXKjs6/2021-2024zuo-pin-ji-hai-wai-jing-xuan-11.jpg","Hs7BKHTz/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-01.jpg","hP7pwgKM/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-02.jpg","FsJDqmhP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-03.jpg","Mp2dJ4Gd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-04.jpg","VLbDT1zx/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-05.jpg","0yRc13Nt/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-06.jpg","7Z8mrcLs/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-07.jpg","SxFDb5KP/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-08.jpg","Bn9MfyvV/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-09.jpg","rwXQ2bmX/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-10.jpg","L8KNF7Xd/2021-2024zuo-pin-ji-hai-wai-jing-xuan-12-11.jpg"]}]},
-            p9:{t:"智能橱柜灯 2.0",s:[{t:"Listing Main",i:["5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg","fycwbpxT/UCL01-2-0-wu-yao-kong-20-zhu-tu-2.jpg","PJWtq9mx/UCL01-2-0-wu-yao-kong-20-zhu-tu-3.jpg","j2Hsjmzj/UCL01-2-0-wu-yao-kong-20-zhu-tu-4.jpg","VvqYNpjd/UCL01-2-0-wu-yao-kong-20-zhu-tu-5.png","yxmVNtFR/UCL01-2-0-wu-yao-kong-20-zhu-tu-6.jpg","7h3xLdgS/UCL01-2-0-wu-yao-kong-20-zhu-tu-7.jpg","j2Hsjmzz/UCL01-2-0-wu-yao-kong-20-zhu-tu-8.jpg","vTrQmkW3/UCL01-2-0-fei-IR-ban-zhu-tu-6.png"]},{t:"A+ Enhanced",i:["dV1YMLSC/UCL01-2-0-wu-yao-kong-20-A-PC-1.png","Qdt3LHn1/UCL01-2-0-wu-yao-kong-20-A-PC-2.png","kg4mrBh8/UCL01-2-0-wu-yao-kong-20-A-PC-3.png","htjBFf3V/UCL01-2-0-wu-yao-kong-20-A-PC-4.png","BnVGJ4d2/UCL01-2-0-wu-yao-kong-20-A-PC-5.png","RZDzv4jc/UCL01-2-0-wu-yao-kong-20-A-PC-6-1.png","9QMh3rNJ/UCL01-2-0-wu-yao-kong-20-A-PC-6-2.jpg","DwMK7ntP/UCL01-2-0-wu-yao-kong-20-A-PC-6-3.png","4xSTXsr8/UCL01-2-0-wu-yao-kong-20-A-PC-8-1.png","y8bz7swv/UCL01-2-0-wu-yao-kong-20-A-PC-8-2.png","QdyrjhRy/UCL01-2-0-wu-yao-kong-20-A-PC-8-3.png","T34XTfZN/UCL01-2-0-wu-yao-kong-20-A-PC-8-3-kao-bei.png","4xSTXsrr/UCL01-2-0-wu-yao-kong-20-A-PC-9-1.png","Jz2WRM9f/UCL01-2-0-wu-yao-kong-20-A-PC-9-2.png"]}]},
-            p10:{t:"超薄智能感应灯全案",s:[{t:"Listing Content",i:["fymL155B/UCL06-20-zhu-tu-1-2.png","6qn3Fzz0/UCL06-20-zhu-tu-2.png","d3r1gnn5/UCL06-20-zhu-tu-3.png","Wzg3xSSw/UCL06-20-zhu-tu-4.png","PJYx0KKg/UCL06-20-zhu-tu-5.png","cCwHPTXq/UCL06-20-zhu-tu-6.png","66vy75wQ/UCL06-20-zhu-tu-7.png","tJWT8DD8/UCL06-20-zhu-tu-8.jpg","05wb62xw/UCL06-20-zhu-tu-9.png"]},{t:"A+ Sections",i:["3rvdyJ7p/UCL06-20cm-A-PC-1.png","NGH5yfYm/UCL06-20cm-A-PC-2.png","mZHtc2RQ/UCL06-20cm-A-PC-3-1.png","59C6HN1n/UCL06-20cm-A-PC-3-2.png","kMbBVX9w/UCL06-20cm-A-PC-3-3.png","RCHN3V9s/UCL06-20cm-A-PC-3-4.png","sDC15dDY/UCL06-20cm-A-PC-4-1.png","zXY3TZX6/UCL06-20cm-A-PC-4-2.png","m2Wh7f2q/UCL06-20cm-A-PC-4-3.png","kXPDW3X0/UCL06-20cm-A-PC-4-4.png","ZKz06t5J/UCL06-20cm-A-PC-5-1.png","BQ5bgYXd/UCL06-20cm-A-PC-5-2.png","ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png","wT5MVf1p/UCL06-20cm-A-PC-5-4.png","8PdcHK7D/UCL06-20cm-A-PC-6-1.png","gkyjDSx2/UCL06-20cm-A-PC-6-2.png","tCdJ5SsY/UCL06-20cm-A-PC-6-3.png","VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"]}]},
-            p11:{t:"智能橱柜灯 A+ 进阶",s:[{t:"A+ Enhanced",i:["nzYFCmJs/UCL01-2-0-A-1.jpg","D0v2szv8/UCL01-2-0-A-2.jpg","GtLcYpLT/UCL01-2-0-A-3.jpg","gjzYR0z3/UCL01-2-0-A-4.jpg","x8f0Hdfm/UCL01-2-0-A-4-2.png","MH6WRG6R/UCL01-2-0-A-4-3.png","1Xm96zm0/UCL01-2-0-A-5-1.png","WzN2r4NW/UCL01-2-0-A-5-2.png","PJXtZqXF/UCL01-2-0-A-5-3.png","QC8X5M8Y/UCL01-2-0-A-6-1.png","wMw9kdMF/UCL01-2-0-A-6-2-1.png","4yWX1TyB/UCL01-2-0-A-7-1.jpg","J0pRQW06/UCL01-2-0-A-7-2.png"]}]}
-        };
-    const dialog = document.getElementById('project-dialog');
-    const dialogTitle = document.getElementById('dialog-title');
-    const gallery = document.getElementById('dialog-gallery');
-    let lastTrigger = null;
-
-    function openProject(id, trigger) {
-      const project = pd[id];
-      if (!project) return;
-      lastTrigger = trigger;
-      dialogTitle.textContent = project.t;
-      gallery.replaceChildren();
-      for (const section of project.s) {
-        const wrapper = document.createElement('section');
-        wrapper.className = 'dialog-section';
-        const heading = document.createElement('h3');
-        heading.textContent = section.t;
-        wrapper.append(heading);
-        section.i.forEach((path, index) => {
-          const img = document.createElement('img');
-          img.alt = `${project.t} — ${section.t} ${index + 1}`;
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.addEventListener('error', () => {
-            const fallback = document.createElement('p');
-            fallback.className = 'image-fallback';
-            fallback.textContent = `第 ${index + 1} 张图片暂时无法加载`;
-            img.replaceWith(fallback);
-          }, { once: true });
-          img.src = B + path;
-          wrapper.append(img);
-        });
-        gallery.append(wrapper);
-      }
-      dialog.showModal();
-      document.body.style.overflow = 'hidden';
-      dialog.scrollTop = 0;
-      document.getElementById('dialog-close').focus();
-    }
-
-    document.querySelectorAll('[data-project]').forEach(button => {
-      button.addEventListener('click', () => openProject(button.dataset.project, button));
-    });
-    document.getElementById('dialog-close').addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', event => {
-      if (event.target === dialog) dialog.close();
-    });
-    dialog.addEventListener('close', () => {
-      document.body.style.overflow = '';
-      gallery.replaceChildren();
-      if (lastTrigger?.isConnected) lastTrigger.focus();
-    });
-
-    document.querySelectorAll('.hero-visual img, .project-cover img').forEach(img => {
-      let failed = false;
-      const handleError = () => {
-        if (failed) return;
-        failed = true;
-        if (img.closest('.project-cover')) {
-          const fallback = document.createElement('span');
-          fallback.className = 'image-fallback';
-          fallback.textContent = '项目封面暂时无法加载';
-          img.parentElement.append(fallback);
-        }
-        img.style.visibility = 'hidden';
-      };
-      img.addEventListener('error', handleError, { once: true });
-      if (img.complete && img.naturalWidth === 0) handleError();
-    });
-
-    const themeToggle = document.getElementById('theme-toggle');
-    function applyTheme(theme) {
-      const dark = theme === 'dark';
-      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      themeToggle.setAttribute('aria-pressed', String(dark));
-      themeToggle.setAttribute('aria-label', dark ? '切换浅色模式' : '切换深色模式');
-      themeToggle.textContent = dark ? '☀' : '☾';
-    }
-    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
-    themeToggle.addEventListener('click', () => {
-      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('kuang-theme', next); } catch (_) {}
-    });
+    const makePaths=(project,group,count)=>Array.from({length:count},(_,i)=>`assets/overseas/${project}/${group}/${group}-${String(i+1).padStart(2,'0')}.webp`);
+    const projects={'echo-cost':{title:'ECHO 智能台灯视觉升级',description:'以深色智能家居场景为主线，整合 APP、语音控制、调光与显色表现，完成 Amazon 主图和 A+ 内容。',tags:['2023','Amazon Listing','A+ Content'],main:makePaths('echo-cost','main',6),aplus:makePaths('echo-cost','aplus',8)},'small-appliance':{title:'智能家居小电套装',description:'将无线充电、夜灯、便携音箱和礼赠属性组织为统一内容，让多产品组合仍保持清晰的功能层级。',tags:['2023','Gift Set','Listing + A+'],main:makePaths('small-appliance','main',7),aplus:makePaths('small-appliance','aplus',10)},'cassini':{title:'CASSINI 智能时钟音箱',description:'围绕卧室生活方式，整合无线充电、音箱、时钟、夜灯等功能；项目源文件同时覆盖美国及欧洲多语种版本。',tags:['2022','Amazon US / EU','5 Languages'],main:makePaths('cassini','main',8),aplus:makePaths('cassini','aplus',10)},'echo-2021':{title:'ECHO 智能台灯',description:'以智能控制和护眼照明为核心，将主图与 A+ 合并为一个完整案例，呈现从白底产品到使用场景的内容递进。',tags:['2021','Amazon Listing','English A+'],main:makePaths('echo-2021','main',8),aplus:makePaths('echo-2021','aplus',2)}};
+    const dialog=document.getElementById('project-dialog'),body=document.getElementById('dialog-body'),title=document.getElementById('dialog-title');let opener;
+    const imageGrid=(label,images)=>`<section class="gallery-section"><h3>${label}</h3><div class="gallery-grid">${images.map((src,i)=>`<img class="${i===0?'wide':''}" src="${src}" alt="${title.textContent} ${label} ${i+1}" loading="lazy">`).join('')}</div></section>`;
+    document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{opener=button;const p=projects[button.dataset.project];title.textContent=p.title;body.innerHTML=`<div class="dialog-intro"><p>${p.description}</p><div class="dialog-stats">${p.tags.map(tag=>`<span>${tag}</span>`).join('')}</div></div><div class="gallery">${imageGrid('01 / AMAZON MAIN & SECONDARY IMAGES',p.main)}${imageGrid('02 / A+ CONTENT MODULES',p.aplus)}</div>`;dialog.showModal();dialog.scrollTop=0;document.getElementById('dialog-close').focus()}));document.getElementById('dialog-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});dialog.addEventListener('close',()=>opener?.focus());
   </script>
 </body>
 </html>
-
 
