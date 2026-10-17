@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="邝先生的海外电商视觉作品集，重点展示 Amazon Listing、A+ 内容、家居产品与海外品牌视觉设计。">
-  <title>邝先生｜Amazon 与海外电商视觉设计</title>
+  <meta name="description" content="邝先生的电商视觉作品集，重点展示国内大促、明星整合营销、消费电子详情页与海外 Amazon 内容设计。">
+  <title>邝先生｜国内电商与品牌视觉设计</title>
   <script>
     try {
       if (localStorage.getItem('kuang-theme') === 'dark') {
@@ -107,15 +107,17 @@ img { display: block; max-width: 100%; }
 .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
 .project-card { min-width: 0; }
 .project-card:first-child { grid-column: 1 / -1; }
-.project-card button { display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: var(--panel); color: var(--ink); box-shadow: none; text-align: left; cursor: pointer; transition: background .2s ease; }
-.project-card button:hover { transform: none; border-color: transparent; box-shadow: none; background: var(--paper); }
-.project-card:first-child button { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+.project-card > :is(button, a) { display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 0; background: var(--panel); color: var(--ink); box-shadow: none; text-align: left; text-decoration: none; cursor: pointer; transition: background .2s ease; }
+.project-card > :is(button, a):hover { transform: none; border-color: transparent; box-shadow: none; background: var(--paper); }
+.project-card:first-child > :is(button, a) { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
 .project-cover { position: relative; display: block; aspect-ratio: 1.43; overflow: hidden; background: var(--panel); }
 .image-fallback { display: flex; align-items: center; justify-content: center; min-height: 110px; padding: 24px; color: var(--muted); font-size: 13px; text-align: center; }
 .project-cover .image-fallback { position: absolute; inset: 0; }
 .project-card:first-child .project-cover { height: 560px; aspect-ratio: auto; border-right: 1px solid var(--line); }
 .project-cover img { width: 100%; height: 100%; object-fit: contain; transition: none; }
-.project-card button:hover img { transform: none; }
+.project-card > :is(button, a):hover img { transform: none; }
+.project-card--domestic { position: relative; }
+.project-card--domestic::before { content: '国内重点案例'; position: absolute; z-index: 2; top: 18px; left: 18px; padding: 9px 12px; background: var(--accent); color: #171b1e; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .05em; }
 .project-body { display: flex; flex-direction: column; justify-content: flex-end; min-height: 245px; padding: 35px 38px; }
 .project-card:first-child .project-body { padding: clamp(32px, 4vw, 50px); }
 .project-meta { display: block; margin-bottom: auto; padding-bottom: 46px; color: var(--accent-dark); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
@@ -201,7 +203,7 @@ img { display: block; max-width: 100%; }
   .proof-item:last-child { border-bottom: 0; }
   .expertise-grid, .work-grid, .method-grid { grid-template-columns: 1fr; }
   .project-card:first-child { grid-column: auto; }
-  .project-card:first-child button { display: block; }
+  .project-card:first-child > :is(button, a) { display: block; }
   .project-card:first-child .project-cover { height: auto; aspect-ratio: 1.43; border-right: 0; }
   .project-card:first-child .project-body { padding: 35px 38px; }
   .project-card:first-child .project-title { font-size: 31px; }
@@ -271,39 +273,39 @@ img { display: block; max-width: 100%; }
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">AMAZON VISUAL SYSTEMS / GLOBAL E-COMMERCE</p>
-          <h1 id="hero-title">让海外用户，<br><em>一眼读懂产品价值。</em></h1>
-          <p class="hero-copy">我是邝先生，聚焦 Amazon 欧美站的 Listing、A+ 与品牌视觉。围绕海外用户的购物语境，将产品功能转化为清晰的图像与信息层级，统筹从卖点梳理、场景制作到团队交付。</p>
+          <p class="eyebrow">DOMESTIC E-COMMERCE / BRAND CAMPAIGN / GLOBAL CONTENT</p>
+          <h1 id="hero-title">让品牌被看见，<br><em>也让生意被推动。</em></h1>
+          <p class="hero-copy">我是邝先生，长期参与国内电商大促、明星整合营销、消费电子详情页与品牌视觉项目，并将这套商业表达经验延伸到 Amazon Listing 与 A+。从传播声量、产品卖点到购买承接，让每一处视觉都服务于真实业务目标。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#works">查看作品 <span aria-hidden="true">↗</span></a>
             <a class="button button-outline" href="#experience">了解经历</a>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
-          <img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="" loading="eager">
-          <img src="https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg" alt="" loading="eager">
-          <img src="https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png" alt="" loading="eager">
+          <img src="projects/celebrity-commerce-portfolio/assets/hero.webp" alt="" loading="eager">
+          <img src="projects/celebrity-commerce-portfolio/assets/campaign-wide.webp" alt="" loading="eager">
+          <img src="projects/celebrity-commerce-portfolio/assets/campaign-banner.webp" alt="" loading="eager">
         </div>
       </div>
     </section>
 
     <div class="container proof" aria-label="工作经历与成果摘要">
-      <div class="proof-item"><strong>Listing + A+</strong><span>Amazon 内容设计重点方向</span></div>
-      <div class="proof-item"><strong>6 组</strong><span>海外电商项目系列</span></div>
-      <div class="proof-item"><strong>10%–30%</strong><span>核心产品转化率提升</span></div>
+      <div class="proof-item"><strong>国内电商</strong><span>天猫 / 京东 / 大促与详情页</span></div>
+      <div class="proof-item"><strong>整合营销</strong><span>明星视觉 / 粉丝互动 / 商品承接</span></div>
+      <div class="proof-item"><strong>跨市场</strong><span>国内经验延展至 Listing 与 A+</span></div>
     </div>
 
     <section class="section" id="expertise" aria-labelledby="expertise-title">
       <div class="container">
         <div class="section-head">
-          <div><p class="eyebrow">GLOBAL E-COMMERCE EXPERTISE</p><h2 id="expertise-title">为海外购物场景，<br>设计清晰的产品表达。</h2></div>
-          <p>从 Amazon 搜索结果到详情页，围绕海外用户的决策问题组织信息，让每张图承担明确任务。</p>
+          <div><p class="eyebrow">E-COMMERCE & BRAND EXPERTISE</p><h2 id="expertise-title">扎根国内电商，<br>也理解跨市场表达。</h2></div>
+          <p>从国内大促主视觉、明星传播到商品详情页，再到海外 Listing 与 A+，围绕不同商业触点组织内容和视觉。</p>
         </div>
         <div class="expertise-grid">
-          <article class="expertise-card"><span class="expertise-number">01</span><h3>Amazon Listing 与 A+</h3><p>统筹主图、辅图和 A+ 模块，让功能、尺寸、使用场景与差异点按用户决策顺序清晰呈现。</p></article>
-          <article class="expertise-card"><span class="expertise-number">02</span><h3>海外品牌视觉系统</h3><p>围绕欧美市场的视觉语境建立统一的图像、排版与信息规范，使不同产品系列保持品牌识别。</p></article>
-          <article class="expertise-card"><span class="expertise-number">03</span><h3>AIGC 场景与内容流程</h3><p>将生成式工具用于概念探索、场景制作与素材迭代，在提升效率的同时把控产品准确性和品牌一致性。</p></article>
-          <article class="expertise-card"><span class="expertise-number">04</span><h3>海外设计团队协作</h3><p>建立视觉标准、评估与交付流程，连接产品、设计和运营，让内容更新更有依据。</p></article>
+          <article class="expertise-card"><span class="expertise-number">01</span><h3>国内大促与明星营销</h3><p>处理代言人、品牌、促销机制与粉丝互动的优先级，让传播热度能够进入商品和权益承接。</p></article>
+          <article class="expertise-card"><span class="expertise-number">02</span><h3>电商详情与产品视觉</h3><p>围绕消费电子和家居产品，梳理卖点、结构、场景与材质，完成从首屏到长图详情的视觉表达。</p></article>
+          <article class="expertise-card"><span class="expertise-number">03</span><h3>品牌系统与内容流程</h3><p>建立跨渠道视觉规范，并将 AIGC 用于概念探索、场景制作和素材迭代，兼顾效率与一致性。</p></article>
+          <article class="expertise-card"><span class="expertise-number">04</span><h3>Amazon Listing 与 A+</h3><p>把国内电商积累转译到海外购物语境，统筹主图、辅图和 A+ 模块的信息层级与品牌表达。</p></article>
         </div>
       </div>
     </section>
@@ -311,33 +313,34 @@ img { display: block; max-width: 100%; }
     <section class="section works" id="works" aria-labelledby="works-title">
       <div class="container">
         <div class="section-head">
-          <div><p class="eyebrow">SELECTED GLOBAL WORKS</p><h2 id="works-title">海外电商作品精选。</h2></div>
-          <p>以海外家居与消费电子产品为主，展示 Amazon Listing、A+ 和跨产品线的视觉系统。点击作品可查看完整图片集。</p>
+          <div><p class="eyebrow">SELECTED DOMESTIC WORKS</p><h2 id="works-title">国内项目优先展示。</h2></div>
+          <p>从明星整合营销到消费电子详情页，优先呈现国内电商环境中的传播、内容与转化经验。</p>
         </div>
         <div class="work-grid">
-          <article class="project-card"><button type="button" data-project="p6" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/ZYdT1pdy/lydia.jpg" alt="海外品牌视觉项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外品牌 · Amazon / A+</span><span class="project-title">海外品牌视觉精选</span><span class="project-summary">整合主图与 A+ 视觉模块，为不同产品建立连贯的卖点表达与品牌识别。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
-          <article class="project-card"><button type="button" data-project="p9" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/5yBxtTwp/UCL01-2-0-wu-yao-kong-20-6zhi.jpg" alt="智能橱柜灯 2.0 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外家居 · Listing / A+</span><span class="project-title">智能橱柜灯 2.0</span><span class="project-summary">以主图系列说明产品功能，再用 A+ 场景承接使用情境与细节信息。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
-          <article class="project-card"><button type="button" data-project="p10" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/fymL155B/UCL06-20-zhu-tu-1-2.png" alt="超薄智能感应灯项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">海外家居 · Listing / A+</span><span class="project-title">超薄智能感应灯</span><span class="project-summary">围绕产品形态和使用方式，组织 Listing 内容与多模块 A+ 视觉叙事。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+          <article class="project-card project-card--domestic"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="projects/celebrity-commerce-portfolio/assets/campaign-wide.webp" alt="几光与刘雨昕双十一整合营销视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
+          <article class="project-card"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" alt="米家电水壶 1S 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 家居产品 / 详情页</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">围绕家居场景、材质细节和产品功能，建立完整的消费电子详情页视觉叙事。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+          <article class="project-card"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="云米扫拖机器人项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 消费电子 / 产品矩阵</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">以功能场景、结构拆解和产品矩阵，完成扫拖机器人系列的视觉重塑。</span><span class="project-link">查看完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
         </div>
       </div>
     </section>
 
     <section class="section archive" aria-labelledby="archive-title">
       <div class="container">
-        <div class="section-head archive-head"><div><p class="eyebrow">GLOBAL PROJECT ARCHIVE</p><h2 id="archive-title">更多海外项目</h2></div><p>延展到智能家居产品系列、旗舰新品和 A+ 场景设计。</p></div>
+        <div class="section-head archive-head"><div><p class="eyebrow">DOMESTIC PROJECT ARCHIVE</p><h2 id="archive-title">更多国内项目</h2></div><p>覆盖小家电详情页、功能可视化、结构拆解与科技产品视觉表达。</p></div>
         <div class="archive-list">
-          <button class="archive-row" type="button" data-project="p8" aria-haspopup="dialog"><span class="archive-year">2022 · 海外</span><span class="archive-name">Flagship Rebuild</span><span class="archive-detail">旗舰新品 A+ 场景重构</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p7" aria-haspopup="dialog"><span class="archive-year">2021 · 海外</span><span class="archive-name">Smart Home Set</span><span class="archive-detail">海外智能家电 Listing 系列</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p11" aria-haspopup="dialog"><span class="archive-year">2023 · 海外</span><span class="archive-name">Cabinet Light Pro</span><span class="archive-detail">智能橱柜灯 A+ 视觉进阶</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          <button class="archive-row" type="button" data-project="p1" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          <button class="archive-row" type="button" data-project="p3" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          <button class="archive-row" type="button" data-project="p4" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
         </div>
         <details class="domestic-projects">
-          <summary>查看早期国内项目（5 项）</summary>
+          <summary>查看海外电商项目（6 项）</summary>
           <div class="archive-list">
-            <button class="archive-row" type="button" data-project="p2" aria-haspopup="dialog"><span class="archive-year">国内项目</span><span class="archive-name">Viomi Robot Vacuum</span><span class="archive-detail">扫拖机器人全矩阵视觉重塑</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p5" aria-haspopup="dialog"><span class="archive-year">国内项目</span><span class="archive-name">Mijia Kettle 1S</span><span class="archive-detail">电水壶家居场景与材质表现</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p1" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p3" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-            <button class="archive-row" type="button" data-project="p4" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p6" aria-haspopup="dialog"><span class="archive-year">海外品牌</span><span class="archive-name">Brand Visual Collection</span><span class="archive-detail">Amazon 主图与 A+ 视觉系统</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p9" aria-haspopup="dialog"><span class="archive-year">海外家居</span><span class="archive-name">Cabinet Light 2.0</span><span class="archive-detail">智能橱柜灯 Listing 与 A+</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p10" aria-haspopup="dialog"><span class="archive-year">海外家居</span><span class="archive-name">Ultra-thin Sensor Light</span><span class="archive-detail">感应灯 Listing 与多模块 A+</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p8" aria-haspopup="dialog"><span class="archive-year">2022 · 海外</span><span class="archive-name">Flagship Rebuild</span><span class="archive-detail">旗舰新品 A+ 场景重构</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p7" aria-haspopup="dialog"><span class="archive-year">2021 · 海外</span><span class="archive-name">Smart Home Set</span><span class="archive-detail">海外智能家电 Listing 系列</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p11" aria-haspopup="dialog"><span class="archive-year">2023 · 海外</span><span class="archive-name">Cabinet Light Pro</span><span class="archive-detail">智能橱柜灯 A+ 视觉进阶</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
           </div>
         </details>
       </div>
@@ -345,18 +348,18 @@ img { display: block; max-width: 100%; }
 
     <section class="method" aria-labelledby="method-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">HOW I WORK</p><h2 id="method-title">先理解海外用户，<br>再决定画面怎么说。</h2></div><p>将用户关心的问题、产品差异点和 Amazon 内容结构放到同一条设计路径中。</p></div>
+        <div class="section-head"><div><p class="eyebrow">HOW I WORK</p><h2 id="method-title">先理解业务目标，<br>再决定画面怎么说。</h2></div><p>把传播任务、商品卖点与渠道节奏放到同一条设计路径中，兼顾品牌表达与生意结果。</p></div>
         <div class="method-grid">
-          <article class="method-step"><span>01 / 用户问题</span><h3>明确购买疑问</h3><p>梳理海外用户可能关注的功能、尺寸、安装与使用场景，确定信息优先级。</p></article>
-          <article class="method-step"><span>02 / 内容结构</span><h3>组织 Listing 与 A+</h3><p>让主图建立第一印象，辅图解释卖点，A+ 承接场景、细节和品牌信息。</p></article>
-          <article class="method-step"><span>03 / 视觉迭代</span><h3>统一并持续优化</h3><p>通过设计规范、团队协作与转化反馈，持续调整后续内容。</p></article>
+          <article class="method-step"><span>01 / 传播目标</span><h3>明确注意力入口</h3><p>先确认人群、渠道和活动任务，判断明星、产品、利益点与品牌信息的视觉优先级。</p></article>
+          <article class="method-step"><span>02 / 转化路径</span><h3>组织内容承接</h3><p>让主视觉建立第一印象，互动和详情解释价值，商品、权益与行动按钮完成转化。</p></article>
+          <article class="method-step"><span>03 / 系统延展</span><h3>统一跨渠道体验</h3><p>在天猫、京东、社媒、直播和海外平台之间建立可复用的视觉规范与交付流程。</p></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">从视觉执行到海外设计管理</h2></div><p>近年的工作重点是海外产品视觉、Amazon 内容与设计团队流程建设；早期经历提供消费电子设计基础。</p></div>
+        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">从国内电商一线，<br>到跨市场设计管理。</h2></div><p>国内大促、消费电子与洗护品牌项目构成经验底座，随后延伸至海外产品视觉、Amazon 内容和团队流程建设。</p></div>
         <div class="timeline">
           <article class="career-row"><span class="career-year">2024 — 至今</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Manager · 返聘</span></div><p>重构海外设计团队与可视化流程，建立以转化率为核心的视觉评估体系，并引入 AIGC 工作流。核心产品转化率提升 10%–30%。</p></article>
           <article class="career-row"><span class="career-year">2023 — 2024</span><div class="career-role"><h3>广东久量科技</h3><span>Design Supervisor</span></div><p>负责洗护系列品牌视觉建设与新品内容设计，统筹外拍、精修渲染及平台活动视觉更新。</p></article>
@@ -369,7 +372,7 @@ img { display: block; max-width: 100%; }
 
   <footer class="contact" id="contact">
     <div class="container">
-      <div class="contact-main"><div><p class="eyebrow">LET'S CONNECT</p><h2>让海外产品，<br>拥有更清晰的视觉表达。</h2><p>欢迎交流 Amazon Listing、A+、品牌系统与海外设计团队协作。</p></div><a class="button button-primary" href="mailto:dyk162@163.com">发送邮件 <span aria-hidden="true">↗</span></a></div>
+      <div class="contact-main"><div><p class="eyebrow">LET'S CONNECT</p><h2>让品牌在每个电商触点，<br>说清楚，也卖得动。</h2><p>欢迎交流国内大促、明星整合营销、产品详情、品牌系统与跨市场电商视觉。</p></div><a class="button button-primary" href="mailto:dyk162@163.com">发送邮件 <span aria-hidden="true">↗</span></a></div>
       <div class="contact-bottom"><div><a href="mailto:dyk162@163.com">dyk162@163.com</a><a href="tel:13751868717">+86 137 5186 8717</a></div><span>© 2026 KUANG STUDIO</span></div>
     </div>
   </footer>
@@ -480,3 +483,4 @@ img { display: block; max-width: 100%; }
   </script>
 </body>
 </html>
+
