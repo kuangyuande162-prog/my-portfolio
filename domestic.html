@@ -285,6 +285,24 @@ img { display: block; max-width: 100%; }
 }
 
 </style>
+<style>
+body.edition-appliance {
+  --accent: #2d63ff;
+  --accent-dark: #1649c8;
+  --electric: #ff5a19;
+  --lemon: #e8ff4f;
+}
+body.edition-appliance .hero { background: linear-gradient(135deg,#f6f8ff 0 55%,#e9efff 55%); }
+body.edition-appliance .hero::after { content: 'SMART APPLIANCE'; color: rgba(45,99,255,.075); }
+body.edition-appliance .hero-tile img { object-fit: contain; background: #fff; }
+body.edition-appliance .works { background: linear-gradient(180deg,#2d63ff 0 24px,var(--panel-alt) 24px); }
+body.edition-appliance .project-card--domestic::before { content: '小家电重点案例'; background: var(--lemon); }
+body.edition-appliance .commerce-strip-track span::after { color: #7da0ff; }
+body.edition-appliance .appliance-edition-link { background: var(--lemon); color: #171b1e; }
+@media (max-width: 1120px) {
+  .header-actions .edition-label { display: none; }
+}
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -296,6 +314,7 @@ img { display: block; max-width: 100%; }
         <a href="#experience">经历</a>
       </nav>
       <div class="header-actions">
+        <a class="button button-outline appliance-edition-link" href="domestic.html?edition=appliance" aria-label="切换到国内小家电作品集"><span class="edition-label">国内</span>小家电版 ↗</a>
         <a class="button button-outline" href="index.html" aria-label="切换到海外项目优先版">海外版 ↗</a>
         <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换深色模式" aria-pressed="false">☾</button>
         <a class="button button-primary" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a>
@@ -441,6 +460,72 @@ img { display: block; max-width: 100%; }
             p10:{t:"超薄智能感应灯全案",s:[{t:"Listing Content",i:["fymL155B/UCL06-20-zhu-tu-1-2.png","6qn3Fzz0/UCL06-20-zhu-tu-2.png","d3r1gnn5/UCL06-20-zhu-tu-3.png","Wzg3xSSw/UCL06-20-zhu-tu-4.png","PJYx0KKg/UCL06-20-zhu-tu-5.png","cCwHPTXq/UCL06-20-zhu-tu-6.png","66vy75wQ/UCL06-20-zhu-tu-7.png","tJWT8DD8/UCL06-20-zhu-tu-8.jpg","05wb62xw/UCL06-20-zhu-tu-9.png"]},{t:"A+ Sections",i:["3rvdyJ7p/UCL06-20cm-A-PC-1.png","NGH5yfYm/UCL06-20cm-A-PC-2.png","mZHtc2RQ/UCL06-20cm-A-PC-3-1.png","59C6HN1n/UCL06-20cm-A-PC-3-2.png","kMbBVX9w/UCL06-20cm-A-PC-3-3.png","RCHN3V9s/UCL06-20cm-A-PC-3-4.png","sDC15dDY/UCL06-20cm-A-PC-4-1.png","zXY3TZX6/UCL06-20cm-A-PC-4-2.png","m2Wh7f2q/UCL06-20cm-A-PC-4-3.png","kXPDW3X0/UCL06-20cm-A-PC-4-4.png","ZKz06t5J/UCL06-20cm-A-PC-5-1.png","BQ5bgYXd/UCL06-20cm-A-PC-5-2.png","ZKPnc7Wz/UCL06-20cm-A-PC-5-3.png","wT5MVf1p/UCL06-20cm-A-PC-5-4.png","8PdcHK7D/UCL06-20cm-A-PC-6-1.png","gkyjDSx2/UCL06-20cm-A-PC-6-2.png","tCdJ5SsY/UCL06-20cm-A-PC-6-3.png","VL9vRGJ5/UCL06-20cm-A-PC-6-4.png"]}]},
             p11:{t:"智能橱柜灯 A+ 进阶",s:[{t:"A+ Enhanced",i:["nzYFCmJs/UCL01-2-0-A-1.jpg","D0v2szv8/UCL01-2-0-A-2.jpg","GtLcYpLT/UCL01-2-0-A-3.jpg","gjzYR0z3/UCL01-2-0-A-4.jpg","x8f0Hdfm/UCL01-2-0-A-4-2.png","MH6WRG6R/UCL01-2-0-A-4-3.png","1Xm96zm0/UCL01-2-0-A-5-1.png","WzN2r4NW/UCL01-2-0-A-5-2.png","PJXtZqXF/UCL01-2-0-A-5-3.png","QC8X5M8Y/UCL01-2-0-A-6-1.png","wMw9kdMF/UCL01-2-0-A-6-2-1.png","4yWX1TyB/UCL01-2-0-A-7-1.jpg","J0pRQW06/UCL01-2-0-A-7-2.png"]}]}
         };
+    const isApplianceEdition = new URLSearchParams(location.search).get('edition') === 'appliance';
+    if (isApplianceEdition) {
+      document.body.classList.add('edition-appliance');
+      document.title = '邝先生｜国内小家电与消费电子视觉设计';
+      document.querySelector('meta[name="description"]')?.setAttribute('content', '邝先生的国内小家电视觉作品集，重点展示米家电水壶、扫拖机器人、手持吸尘器、空气净化器及完整电商详情设计。');
+      const editionLink = document.querySelector('.appliance-edition-link');
+      if (editionLink) {
+        editionLink.href = 'domestic.html';
+        editionLink.innerHTML = '<span class="edition-label">国内</span>综合版 ↗';
+        editionLink.setAttribute('aria-label', '返回国内综合作品集');
+      }
+
+      const strip = document.querySelector('.commerce-strip-track');
+      if (strip) strip.innerHTML = '<span>小家电详情页</span><span>消费电子</span><span>功能可视化</span><span>结构拆解</span><span>产品渲染</span><span>天猫京东</span><span>品牌视觉</span><span>小家电详情页</span><span>消费电子</span><span>功能可视化</span><span>结构拆解</span><span>产品渲染</span><span>天猫京东</span><span>品牌视觉</span>';
+
+      document.querySelector('.hero .eyebrow').textContent = '国内小家电视觉 / 消费电子详情 / 产品内容系统';
+      document.getElementById('hero-title').innerHTML = '把复杂功能讲清楚，<br><em>也把产品价值做出来。</em>';
+      document.querySelector('.hero-copy').textContent = '我是邝先生，长期参与国内小家电与消费电子项目。从米家电水壶、扫拖机器人、手持吸尘器到空气净化器，以场景、结构、材质和功能信息建立完整的商品详情视觉。';
+      const heroData = [
+        ['https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg','米家电水壶 1S 产品详情','01','电水壶全案'],
+        ['https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg','云米扫拖机器人产品矩阵','02','扫拖机器人'],
+        ['https://i.postimg.cc/mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg','云米手持无线吸尘器','03','手持吸尘器'],
+        ['https://i.postimg.cc/L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg','云米空气消毒净化器','04','空气净化器']
+      ];
+      document.querySelectorAll('.hero-tile').forEach((tile, index) => {
+        const [src, alt, num, label] = heroData[index];
+        const img = tile.querySelector('img');
+        img.src = src;
+        img.alt = alt;
+        tile.querySelector('figcaption').innerHTML = `<span>${num}</span><b>${label}</b>`;
+      });
+
+      const proof = document.querySelectorAll('.proof-item');
+      proof[0].innerHTML = '<strong>50+ 项目</strong><span>小家电详情页与产品视觉</span>';
+      proof[1].innerHTML = '<strong>全链路</strong><span>场景 / 结构 / 功能 / 长图详情</span>';
+      proof[2].innerHTML = '<strong>多品类</strong><span>清洁电器 / 厨房小电 / 环境电器</span>';
+
+      document.getElementById('expertise-title').innerHTML = '聚焦小家电，<br>建立从卖点到购买的视觉路径。';
+      document.querySelector('#expertise .section-head > p').textContent = '以产品理解为起点，结合电商阅读顺序，把功能、结构、材质与生活场景转化为清晰可信的内容。';
+      const expertise = [
+        ['产品卖点与信息架构','从参数和功能中筛选核心价值，规划首屏、功能说明、结构拆解与场景内容的阅读顺序。'],
+        ['详情页与产品视觉','覆盖厨房小电、清洁电器与环境电器，以完整长图详情建立产品认知和购买理由。'],
+        ['渲染精修与场景表达','结合产品渲染、材质精修与生活方式场景，让技术功能转化为消费者容易理解的视觉语言。'],
+        ['大促与品牌延展','将单品视觉延展到天猫、京东大促和品牌活动，在不同触点保持一致的产品与品牌表达。']
+      ];
+      document.querySelectorAll('.expertise-card').forEach((card, index) => {
+        card.querySelector('h3').textContent = expertise[index][0];
+        card.querySelector('p').textContent = expertise[index][1];
+      });
+
+      document.getElementById('works-title').innerHTML = '国内小家电与消费电子，<br>优先展示。';
+      document.querySelector('#works .section-head > p').textContent = '以完整详情页项目为核心，优先呈现厨房小电、清洁电器与环境电器的视觉设计经验。';
+      document.querySelector('.work-grid').innerHTML = `
+        <article class="project-card project-card--domestic project-card--featured"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/KzQbSxfP/2018-2020-zuo-pin-ji-jing-xuan-17-01.jpg" alt="米家电水壶 1S 完整详情页" loading="lazy"></span><span class="project-body"><span class="project-meta">厨房小电 · 产品详情 / 全案视觉</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">从生活方式场景、材质细节到功能解释，完整呈现产品价值与电商阅读节奏。</span><span class="project-link">查看 23 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+        <article class="project-card project-card--domestic project-card--featured"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/4Nq83q2D/2018-2020-zuo-pin-ji-jing-xuan-5-01.jpg" alt="云米扫拖机器人产品矩阵" loading="lazy"></span><span class="project-body"><span class="project-meta">清洁电器 · 产品矩阵 / 功能可视化</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">围绕导航、清洁路径、结构与生活场景，完成多型号产品的统一视觉重构。</span><span class="project-link">查看 13 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+        <article class="project-card"><button type="button" data-project="p3" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/mDkMC2Ph/2018-2020-zuo-pin-ji-jing-xuan-9-01.jpg" alt="云米手持无线吸尘器详情设计" loading="lazy"></span><span class="project-body"><span class="project-meta">清洁电器 · 结构拆解 / 产品详情</span><span class="project-title">云米手持无线吸尘器</span><span class="project-summary">以结构拆解、吸力性能与使用场景建立完整的产品说明体系。</span><span class="project-link">查看 15 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+        <article class="project-card"><button type="button" data-project="p4" aria-haspopup="dialog"><span class="project-cover"><img src="https://i.postimg.cc/L8sZr8Vn/2018-2020-zuo-pin-ji-jing-xuan-13-01.jpg" alt="云米空气消毒净化器视觉设计" loading="lazy"></span><span class="project-body"><span class="project-meta">环境电器 · 科技表达 / 场景视觉</span><span class="project-title">云米空气消毒净化器</span><span class="project-summary">将净化技术、空气路径与健康场景转化为直观、可信的科技视觉。</span><span class="project-link">查看 15 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
+        <article class="project-card"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕完整项目"><span class="project-cover"><img src="projects/celebrity-commerce-portfolio/assets/optimized-v2/web/campaign-wide-v2.webp" alt="几光与刘雨昕明星整合营销" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">完整保留国内明星营销与电商承接经验。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
+        <article class="project-card"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo"><img src="projects/laundry-care-collection/assets/100ml-cover.jpg" alt="100ml 洗衣液视觉"><img src="projects/laundry-care-collection/assets/500ml-cover.jpg" alt="500ml 洗衣液视觉"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛</span><span class="project-title">洗护与香氛视觉合集</span><span class="project-summary">作为补充品类，完整保留洗护详情与品牌视觉作品。</span><span class="project-link">进入完整合集 <b aria-hidden="true">↗</b></span></span></a></article>`;
+
+      document.querySelector('.archive .eyebrow').textContent = 'COMPLETE DOMESTIC PROJECT ARCHIVE';
+      document.getElementById('archive-title').textContent = '小家电完整项目与延展经验';
+      document.querySelector('.archive .section-head > p').textContent = '继续查看机器人完整项目，以及保留的国内品牌和海外电商案例。';
+      document.getElementById('method-title').innerHTML = '先理解产品原理，<br>再组织购买信息。';
+      document.querySelector('.method .section-head > p').textContent = '从产品资料、用户场景和竞品表达中提炼价值，再建立可阅读、可验证、可复用的视觉内容。';
+    }
     const dialog = document.getElementById('project-dialog');
     const dialogTitle = document.getElementById('dialog-title');
     const gallery = document.getElementById('dialog-gallery');
