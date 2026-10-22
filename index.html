@@ -3,57 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="邝先生视觉设计作品集总入口：按海外电商、国内小家电、国内综合与品牌内容方向浏览。">
-  <title>KUANG｜选择作品集方向</title>
+  <meta name="description" content="邝先生电商视觉设计作品集：海外电商、国内小家电、国内综合与品牌内容四个方向。">
+  <title>KUANG｜电商视觉设计作品集</title>
   <style>
-    :root{--black:#050506;--panel:#0d0d10;--white:#f5f5f7;--muted:#93939b;--line:rgba(255,255,255,.13);--blue:#2997ff;--accent:#2997ff;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Microsoft YaHei",Arial,sans-serif}
-    *{box-sizing:border-box}html{background:var(--black);scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased}button{font:inherit}a{color:inherit}img{display:block;width:100%}::selection{background:var(--blue);color:#fff}.wrap{width:min(calc(100% - 64px),1420px);margin:auto}
-    .header{position:fixed;inset:0 0 auto;z-index:60;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(5,5,6,.76);backdrop-filter:blur(22px) saturate(160%)}.header-inner{height:64px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:18px;font-weight:780;letter-spacing:-.04em}.brand i{width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 16px var(--blue)}.header-right{display:flex;align-items:center;gap:25px}.header-right span{color:#777780;font-size:10px;font-weight:700;letter-spacing:.13em}.contact{padding:10px 17px;border-radius:999px;background:#fff;color:#050506;text-decoration:none;font-size:12px;font-weight:750}
-    .hero{position:relative;overflow:hidden;padding:135px 0 72px}.hero::before{content:"";position:absolute;inset:-80% -10%;background:radial-gradient(circle at 62% 56%,rgba(41,151,255,.16),transparent 23%);pointer-events:none}.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);align-items:end;gap:60px}.eyebrow{margin:0 0 23px;color:var(--blue);font-size:10px;font-weight:760;letter-spacing:.17em;text-transform:uppercase}.hero h1{max-width:920px;margin:0;font-size:clamp(60px,7.5vw,112px);line-height:.92;letter-spacing:-.078em}.hero h1 span{display:block;color:#74747c}.hero-copy{max-width:470px;padding-bottom:7px}.hero-copy p{margin:0;color:#a0a0a8;font-size:15px;line-height:1.75}.hero-copy strong{display:block;margin-top:24px;color:#fff;font-size:11px;letter-spacing:.05em}
-    .selector{padding:28px 0 115px}.selector-shell{display:grid;grid-template-columns:minmax(330px,.66fr) minmax(0,1.34fr);min-height:720px;overflow:hidden;border:1px solid var(--line);border-radius:30px;background:#0a0a0c}.options{display:flex;flex-direction:column;border-right:1px solid var(--line);background:#08080a}.options-head{display:flex;align-items:center;justify-content:space-between;padding:26px 28px;border-bottom:1px solid var(--line);color:#777780;font-size:9px;font-weight:720;letter-spacing:.13em}.option{position:relative;display:grid;min-height:146px;grid-template-columns:42px 1fr auto;align-items:center;gap:17px;padding:24px 27px;border:0;border-bottom:1px solid var(--line);background:transparent;color:#777780;text-align:left;cursor:pointer;transition:background .28s,color .28s}.option:last-child{border-bottom:0}.option:hover{background:#101014;color:#c8c8ce}.option.active{background:#121216;color:#fff}.option::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--option-accent);transform:scaleY(0);transition:transform .3s}.option.active::before{transform:scaleY(1)}.option-no{font-size:10px;font-weight:760;color:var(--option-accent)}.option strong{display:block;font-size:24px;line-height:1.12;letter-spacing:-.035em}.option small{display:block;margin-top:8px;color:#6f6f78;font-size:11px;line-height:1.45}.option.active small{color:#9c9ca5}.option-arrow{font-size:18px;color:var(--option-accent);transform:translateX(-7px);opacity:0;transition:.25s}.option.active .option-arrow{transform:none;opacity:1}
-    .stage{--rx:0deg;--ry:0deg;position:relative;overflow:hidden;background:#0b0b0e;isolation:isolate}.stage::before{content:"";position:absolute;inset:-20%;z-index:-2;background:radial-gradient(circle at 68% 30%,color-mix(in srgb,var(--accent) 32%,transparent),transparent 30%),#0b0b0e;transition:background .5s}.stage-media{position:absolute;inset:0;transition:opacity .18s,transform .65s cubic-bezier(.2,.75,.25,1);transform:perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.015)}.stage-media img{height:100%;object-fit:cover;filter:brightness(.7) saturate(.9)}.stage-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,6,.72),rgba(5,5,6,.04) 60%),linear-gradient(0deg,rgba(5,5,6,.92),transparent 50%)}.stage-media.changing{opacity:.15;transform:perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.06)}.stage-secondary{position:absolute;right:28px;top:28px;width:31%;height:28%;z-index:2;overflow:hidden;border:5px solid rgba(5,5,6,.88);border-radius:18px;box-shadow:0 25px 60px rgba(0,0,0,.45);transform:rotate(3deg);transition:opacity .18s,transform .55s}.stage-secondary img{height:100%;object-fit:cover}.stage-secondary.changing{opacity:0;transform:translate(20px,-12px) rotate(7deg)}.stage-info{position:absolute;inset:auto 36px 34px;z-index:3;transition:opacity .18s,transform .25s}.stage-info.changing{opacity:0;transform:translateY(18px)}.stage-kicker{color:var(--accent);font-size:10px;font-weight:760;letter-spacing:.14em}.stage-title{max-width:660px;margin:20px 0 13px;font-size:clamp(44px,5.2vw,76px);line-height:.96;letter-spacing:-.062em}.stage-description{max-width:580px;margin:0;color:#b0b0b8;font-size:14px;line-height:1.7}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.tag{padding:7px 10px;border:1px solid rgba(255,255,255,.23);border-radius:999px;color:#d4d4d8;font-size:9px}.stage-actions{display:flex;align-items:center;gap:18px;margin-top:27px}.stage-link{display:inline-flex;align-items:center;gap:14px;padding:13px 18px;border-radius:999px;background:var(--accent);color:#fff;font-size:13px;font-weight:760;text-decoration:none;transition:transform .25s}.stage-link:hover{transform:translateY(-3px)}.stage-link b{font-size:17px}.hint{color:#777780;font-size:9px;letter-spacing:.08em}.counter{position:absolute;right:34px;bottom:34px;z-index:3;color:#fff;font-size:12px;font-weight:720;letter-spacing:.12em}.counter span{color:#777780}
-    .footer{padding:78px 0 28px;border-top:1px solid var(--line)}.footer-main{display:flex;align-items:end;justify-content:space-between;gap:40px;padding-bottom:65px}.footer h2{max-width:760px;margin:0;font-size:clamp(47px,5.8vw,82px);line-height:.96;letter-spacing:-.067em}.mail{padding:13px 19px;border-radius:999px;background:#fff;color:#050506;font-size:13px;font-weight:750;text-decoration:none;white-space:nowrap}.footer-bottom{display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--line);color:#66666f;font-size:10px;letter-spacing:.08em}.transition{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#050506;opacity:0;visibility:hidden;transition:.36s}.transition.active{opacity:1;visibility:visible}.transition span{font-size:11px;font-weight:750;letter-spacing:.18em}
-    @media(max-width:1000px){.wrap{width:min(calc(100% - 40px),1420px)}.hero-grid{grid-template-columns:1fr}.hero-copy{max-width:650px}.selector-shell{grid-template-columns:1fr;min-height:0}.options{display:grid;grid-template-columns:repeat(2,1fr);border-right:0;border-bottom:1px solid var(--line)}.options-head{grid-column:1/-1}.option{min-height:130px;border-right:1px solid var(--line)}.option:nth-child(3),.option:nth-child(5){border-right:0}.stage{min-height:650px}}
-    @media(max-width:650px){.wrap{width:min(calc(100% - 28px),1420px)}.header-inner{height:60px}.header-right span{display:none}.hero{padding:112px 0 52px}.hero-grid{gap:26px}.hero h1{font-size:clamp(53px,15vw,72px)}.hero-copy p{font-size:14px}.selector{padding-top:12px;padding-bottom:80px}.selector-shell{border-radius:23px}.options{grid-template-columns:repeat(2,1fr)}.options-head{padding:18px 20px}.option{min-height:116px;grid-template-columns:24px 1fr;gap:8px;padding:16px 14px}.option strong{font-size:18px}.option small{margin-top:5px;font-size:9px}.option-arrow{display:none}.stage{min-height:590px}.stage-secondary{right:15px;top:15px;width:42%;height:24%;border-width:4px}.stage-info{inset:auto 22px 25px}.stage-title{font-size:46px}.stage-description{font-size:13px}.hint,.counter{display:none}.footer-main{display:block;padding-bottom:56px}.mail{display:inline-flex;margin-top:28px}.footer-bottom{display:block;line-height:2}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stage-media,.stage-secondary,.stage-info,.stage-link,.transition{transition:none!important;transform:none!important}.transition{display:none}}
+    :root{
+      --black:#050506;--panel:#0b0b0d;--white:#f5f5f7;--muted:#9a9aa2;
+      --line:rgba(255,255,255,.13);--blue:#2997ff;
+      --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Microsoft YaHei",Arial,sans-serif
+    }
+    *{box-sizing:border-box}
+    html{background:var(--black);scroll-behavior:smooth}
+    body{margin:0;background:var(--black);color:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+    a{color:inherit}img{display:block;width:100%}::selection{background:var(--blue);color:#fff}
+    .wrap{width:min(calc(100% - 56px),1460px);margin:auto}
+
+    .header{position:fixed;inset:0 0 auto;z-index:60;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(5,5,6,.78);backdrop-filter:blur(22px) saturate(160%)}
+    .header-inner{height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .identity{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}
+    .identity-mark{width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 18px rgba(41,151,255,.8)}
+    .identity strong{font-size:17px;letter-spacing:-.04em}.identity span{color:#777780;font-size:10px;letter-spacing:.08em}
+    .header-right{display:flex;align-items:center;gap:22px}.header-note{color:#777780;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .contact{padding:9px 16px;border-radius:999px;background:#fff;color:#050506;text-decoration:none;font-size:12px;font-weight:760;transition:transform .2s,background .2s}
+    .contact:hover{transform:translateY(-2px);background:#dfefff}
+
+    .hero{position:relative;padding:104px 0 34px;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:-120% -20% -80%;background:radial-gradient(circle at 72% 50%,rgba(41,151,255,.13),transparent 24%);pointer-events:none}
+    .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);align-items:end;gap:64px}
+    .eyebrow{margin:0 0 13px;color:var(--blue);font-size:9px;font-weight:780;letter-spacing:.16em;text-transform:uppercase}
+    h1{max-width:880px;margin:0;font-size:clamp(46px,5.9vw,84px);line-height:.94;letter-spacing:-.07em}
+    .hero-copy{max-width:560px;padding-bottom:3px}.hero-copy p{margin:0;color:#a4a4ac;font-size:14px;line-height:1.72}
+    .capabilities{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}.capabilities span{padding:6px 9px;border:1px solid var(--line);border-radius:999px;color:#c2c2c8;font-size:9px;letter-spacing:.03em}
+
+    .portfolio{padding:12px 0 76px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;color:#75757d;font-size:9px;font-weight:730;letter-spacing:.13em;text-transform:uppercase}
+    .section-head b{color:#d4d4d8;font-weight:730}.section-head span:last-child{display:flex;align-items:center;gap:8px}.section-head i{width:24px;height:1px;background:#55555d}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .portfolio-card{--accent:#2997ff;--mx:50%;--my:50%;position:relative;min-height:475px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);text-decoration:none;isolation:isolate;transition:transform .38s cubic-bezier(.2,.75,.25,1),border-color .25s,opacity .3s,filter .3s}
+    .portfolio-card::before{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(5,5,6,.1) 20%,rgba(5,5,6,.88) 78%,#050506 100%);pointer-events:none}
+    .portfolio-card::after{content:"";position:absolute;inset:0;z-index:4;background:radial-gradient(circle 220px at var(--mx) var(--my),color-mix(in srgb,var(--accent) 20%,transparent),transparent 72%);opacity:0;transition:opacity .3s;pointer-events:none}
+    .portfolio-card:hover,.portfolio-card:focus-visible{z-index:4;transform:translateY(-7px);border-color:color-mix(in srgb,var(--accent) 70%,white 10%);outline:none}
+    .portfolio-card:hover::after,.portfolio-card:focus-visible::after{opacity:1}
+    .portfolio-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover){opacity:.68;filter:saturate(.72)}
+    .card-media{position:absolute;inset:0;z-index:0}.card-media img{height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .4s;filter:saturate(.92) brightness(.88)}
+    .portfolio-card:hover .card-media img,.portfolio-card:focus-visible .card-media img{transform:scale(1.045);filter:saturate(1.05) brightness(.95)}
+    .card-top{position:absolute;inset:20px 20px auto;z-index:6;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:9px;font-weight:760;letter-spacing:.1em}
+    .card-no{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:rgba(5,5,6,.7);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px)}
+    .card-kind{padding:7px 9px;border-radius:999px;background:rgba(5,5,6,.64);backdrop-filter:blur(12px);color:#dedee3}
+    .card-secondary{position:absolute;right:17px;top:63px;z-index:2;width:38%;aspect-ratio:1/1.03;overflow:hidden;border:4px solid rgba(5,5,6,.82);border-radius:14px;box-shadow:0 22px 45px rgba(0,0,0,.42);transform:rotate(2.5deg);transition:transform .45s cubic-bezier(.2,.75,.25,1)}
+    .card-secondary img{height:100%;object-fit:cover}
+    .portfolio-card:hover .card-secondary,.portfolio-card:focus-visible .card-secondary{transform:translate(-4px,-6px) rotate(-1deg)}
+    .card-content{position:absolute;inset:auto 22px 22px;z-index:7}
+    .card-kicker{margin:0 0 10px;color:var(--accent);font-size:9px;font-weight:790;letter-spacing:.14em}
+    .card-title{margin:0;font-size:clamp(27px,2.45vw,38px);line-height:1;letter-spacing:-.055em}
+    .card-desc{min-height:42px;margin:13px 0 0;color:#c4c4ca;font-size:11px;line-height:1.6}
+    .card-projects{margin:10px 0 0;color:#86868f;font-size:9px;line-height:1.55}
+    .card-action{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.24);font-size:11px;font-weight:760}
+    .card-action i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-style:normal;font-size:15px;transition:transform .28s}
+    .portfolio-card:hover .card-action i,.portfolio-card:focus-visible .card-action i{transform:translate(3px,-3px)}
+    .reveal{opacity:0;transform:translateY(18px);animation:reveal .7s cubic-bezier(.2,.75,.25,1) forwards}.portfolio-card:nth-child(2){animation-delay:.07s}.portfolio-card:nth-child(3){animation-delay:.14s}.portfolio-card:nth-child(4){animation-delay:.21s}
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+    .footer{padding:26px 0 30px;border-top:1px solid var(--line)}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .footer p{margin:0;color:#85858d;font-size:11px;line-height:1.7}.footer p strong{color:#fff;font-weight:720}
+    .mail{font-size:12px;font-weight:740;text-decoration:none}.mail:hover{text-decoration:underline}
+    .transition{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#050506;opacity:0;visibility:hidden;transition:opacity .18s}.transition.active{opacity:1;visibility:visible}.transition span{color:#fff;font-size:10px;font-weight:760;letter-spacing:.16em}
+
+    @media(max-width:1100px){
+      .wrap{width:min(calc(100% - 40px),1460px)}.hero-grid{grid-template-columns:1fr;gap:20px}.hero-copy{max-width:720px}
+      .portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-card{min-height:420px}.card-title{font-size:36px}
+    }
+    @media(max-width:650px){
+      .wrap{width:min(calc(100% - 28px),1460px)}.header-inner{height:58px}.identity span,.header-note{display:none}.contact{padding:8px 13px}
+      .hero{padding:91px 0 25px}.hero-grid{gap:16px}.eyebrow{margin-bottom:10px}h1{font-size:clamp(42px,12.5vw,58px);line-height:.97}.hero-copy p{font-size:13px}.capabilities{margin-top:14px}
+      .portfolio{padding-top:7px;padding-bottom:54px}.section-head span:last-child{display:none}.portfolio-grid{grid-template-columns:1fr;gap:10px}.portfolio-card{min-height:325px;border-radius:20px}.portfolio-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover){opacity:1;filter:none}
+      .card-secondary{width:31%;top:58px}.card-title{font-size:34px}.card-desc{min-height:0}.card-content{inset:auto 19px 18px}.card-projects{display:none}.card-action{margin-top:13px;padding-top:12px}
+      .footer-inner{display:block}.mail{display:inline-block;margin-top:15px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;animation:none}.portfolio-card,.card-media img,.card-secondary,.card-action i,.transition{transition:none!important}.portfolio-card:hover,.portfolio-card:focus-visible{transform:none}.transition{display:none}}
   </style>
 </head>
 <body>
-  <header class="header"><div class="wrap header-inner"><a class="brand" href="#top"><i></i>KUANG</a><div class="header-right"><span>PORTFOLIO SELECTOR</span><a class="contact" href="mailto:dyk162@163.com">联系我 ↗</a></div></div></header>
-  <main>
-    <section class="hero" id="top"><div class="wrap hero-grid"><div><p class="eyebrow">4 Portfolio Editions · 2026</p><h1>选一个方向，<span>直接看作品。</span></h1></div><div class="hero-copy"><p>四个版本来自同一套真实项目经验，只调整案例顺序与展示重点。选择与你的岗位最接近的方向即可。</p><strong>悬停或点击下方选项，预览对应内容。</strong></div></div></section>
-    <section class="selector" aria-label="作品集版本选择"><div class="wrap"><div class="selector-shell">
-      <div class="options" role="tablist" aria-label="作品集版本">
-        <div class="options-head"><span>选择方向</span><span>01—04</span></div>
-        <button class="option active" style="--option-accent:#2997ff" type="button" role="tab" aria-selected="true" data-key="global"><span class="option-no">01</span><span><strong>海外电商</strong><small>Amazon / Listing / A+</small></span><span class="option-arrow">↗</span></button>
-        <button class="option" style="--option-accent:#78bfff" type="button" role="tab" aria-selected="false" data-key="appliance"><span class="option-no">02</span><span><strong>国内小家电</strong><small>产品详情 / 功能表达</small></span><span class="option-arrow">↗</span></button>
-        <button class="option" style="--option-accent:#ff673f" type="button" role="tab" aria-selected="false" data-key="domestic"><span class="option-no">03</span><span><strong>国内综合</strong><small>营销活动 / 电商内容</small></span><span class="option-arrow">↗</span></button>
-        <button class="option" style="--option-accent:#d6c1a5" type="button" role="tab" aria-selected="false" data-key="brand"><span class="option-no">04</span><span><strong>品牌内容</strong><small>品牌系统 / 整合视觉</small></span><span class="option-arrow">↗</span></button>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="identity" href="#top" aria-label="返回顶部"><i class="identity-mark"></i><strong>KUANG</strong><span>电商视觉设计主管</span></a>
+      <div class="header-right"><span class="header-note">Selected portfolio · 2026</span><a class="contact" href="mailto:dyk162@163.com">联系我 ↗</a></div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div><p class="eyebrow">KUANG / E-COMMERCE VISUAL DESIGN</p><h1>按岗位方向，<br>查看完整项目。</h1></div>
+        <div class="hero-copy">
+          <p>海外电商、国内小家电、国内综合与品牌内容。主图、副图、详情页及 A+ 均按项目成套展示。</p>
+          <div class="capabilities" aria-label="专业能力"><span>Amazon Listing</span><span>A+</span><span>产品详情</span><span>明星营销</span><span>品牌内容</span><span>AI 工作流</span></div>
+        </div>
       </div>
-      <div class="stage" id="stage">
-        <figure class="stage-media" id="stage-media"><img id="stage-main" src="assets/covers-v2/echo-desk-lamp.webp" alt="ECHO 智能台灯海外电商视觉"></figure>
-        <figure class="stage-secondary" id="stage-secondary"><img id="stage-alt" src="assets/covers-v2/cassini-speaker.webp" alt="CASSINI 智能时钟音箱视觉"></figure>
-        <div class="stage-info" id="stage-info"><div class="stage-kicker" id="stage-kicker">OVERSEAS E-COMMERCE</div><h2 class="stage-title" id="stage-title">海外电商与 Amazon 视觉</h2><p class="stage-description" id="stage-description">适合海外电商与 Amazon 视觉岗位，重点展示 Listing、A+、多语言内容和智能家居产品视觉。</p><div class="tags" id="stage-tags"><span class="tag">ECHO</span><span class="tag">CABINET LIGHT</span><span class="tag">CASSINI</span></div><div class="stage-actions"><a class="stage-link route-link" id="stage-link" href="overseas.html">进入海外版 <b>↗</b></a><span class="hint">支持鼠标悬停与键盘方向键切换</span></div></div>
-        <div class="counter"><b id="counter-current">01</b> <span>/ 04</span></div>
+    </section>
+
+    <section class="portfolio" aria-labelledby="portfolio-title">
+      <div class="wrap">
+        <div class="section-head"><span id="portfolio-title"><b>选择作品方向</b> · 点击卡片直接进入</span><span><i></i> 01—04</span></div>
+        <div class="portfolio-grid">
+          <a class="portfolio-card reveal route-link" style="--accent:#2997ff" href="overseas.html" data-label="海外电商">
+            <figure class="card-media"><img src="assets/covers-v2/echo-desk-lamp.webp" alt="ECHO 智能台灯海外电商视觉" fetchpriority="high"></figure>
+            <figure class="card-secondary"><img src="assets/covers-v2/cassini-speaker.webp" alt="CASSINI 智能时钟音箱视觉"></figure>
+            <div class="card-top"><span class="card-no">01</span><span class="card-kind">OVERSEAS</span></div>
+            <div class="card-content"><p class="card-kicker">AMAZON / LISTING / A+</p><h2 class="card-title">海外电商</h2><p class="card-desc">主副图、A+、多语言内容与智能家居产品视觉。</p><p class="card-projects">ECHO · CASSINI · 海外照明</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
+          </a>
+
+          <a class="portfolio-card reveal route-link" style="--accent:#7ec6ff" href="domestic.html?edition=appliance" data-label="国内小家电">
+            <figure class="card-media"><img src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器产品视觉"></figure>
+            <figure class="card-secondary"><img src="assets/covers-v2/robot-1x.webp" alt="云米扫拖机器人产品视觉"></figure>
+            <div class="card-top"><span class="card-no">02</span><span class="card-kind">APPLIANCE</span></div>
+            <div class="card-content"><p class="card-kicker">PRODUCT / DETAIL / FUNCTION</p><h2 class="card-title">国内小家电</h2><p class="card-desc">产品主视觉、功能表达、场景渲染与完整详情页。</p><p class="card-projects">吸尘器 · 扫地机器人 · 厨房小电</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
+          </a>
+
+          <a class="portfolio-card reveal route-link" style="--accent:#ff673f" href="domestic.html" data-label="国内综合">
+            <figure class="card-media"><img src="assets/covers-v2/celebrity-campaign.webp" alt="几光与刘雨昕明星整合营销视觉"></figure>
+            <figure class="card-secondary"><img src="assets/covers-v2/laundry-100ml.webp" alt="RUFFY LIFE 洗护产品视觉"></figure>
+            <div class="card-top"><span class="card-no">03</span><span class="card-kind">DOMESTIC</span></div>
+            <div class="card-content"><p class="card-kicker">CAMPAIGN / COMMERCE / CONTENT</p><h2 class="card-title">国内综合</h2><p class="card-desc">明星整合营销、洗护香氛、消费电子与平台活动。</p><p class="card-projects">几光 × 刘雨昕 · RUFFY LIFE · 国内大促</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
+          </a>
+
+          <a class="portfolio-card reveal route-link" style="--accent:#d6c1a5" href="brand.html" data-label="品牌内容">
+            <figure class="card-media"><img src="assets/covers-v2/fragrance-cards.webp" alt="香氛品牌内容视觉"></figure>
+            <figure class="card-secondary"><img src="assets/covers-v2/laundry-500ml.webp" alt="RUFFY LIFE 家庭洗护视觉"></figure>
+            <div class="card-top"><span class="card-no">04</span><span class="card-kind">BRAND</span></div>
+            <div class="card-content"><p class="card-kicker">BRAND / IMAGE / SYSTEM</p><h2 class="card-title">品牌内容</h2><p class="card-desc">品牌视觉、产品内容与跨渠道视觉延展。</p><p class="card-projects">RUFFY LIFE · 香氛内容 · 整合视觉</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
+          </a>
+        </div>
       </div>
-    </div></div></section>
+    </section>
   </main>
-  <footer class="footer"><div class="wrap"><div class="footer-main"><h2>作品已经分类，<br>直接进入即可。</h2><a class="mail" href="mailto:dyk162@163.com">dyk162@163.com ↗</a></div><div class="footer-bottom"><span>© 2026 KUANG STUDIO</span><span>GLOBAL · APPLIANCE · COMMERCE · BRAND</span></div></div></footer>
-  <div class="transition" aria-hidden="true"><span>OPENING PORTFOLIO</span></div>
+
+  <footer class="footer"><div class="wrap footer-inner"><p><strong>邝先生 · 电商视觉设计主管</strong><br>可根据岗位方向直接查看对应版本。</p><a class="mail" href="mailto:dyk162@163.com">dyk162@163.com ↗</a></div></footer>
+  <div class="transition" aria-hidden="true"><span id="transition-label">OPENING PORTFOLIO</span></div>
+
   <script>
-    (() => {
-      const data={
-        global:{accent:'#2997ff',kicker:'OVERSEAS E-COMMERCE',title:'海外电商与 Amazon 视觉',description:'适合海外电商与 Amazon 视觉岗位，重点展示 Listing、A+、多语言内容和智能家居产品视觉。',tags:['ECHO','CABINET LIGHT','CASSINI'],main:'assets/covers-v2/echo-desk-lamp.webp',alt:'assets/covers-v2/cassini-speaker.webp',mainAlt:'ECHO 智能台灯海外电商视觉',altAlt:'CASSINI 智能时钟音箱视觉',href:'overseas.html',label:'进入海外版',number:'01'},
-        appliance:{accent:'#78bfff',kicker:'HOME APPLIANCE',title:'国内小家电产品视觉',description:'适合小家电与消费电子岗位，重点展示吸尘器、扫地机、厨房小电和完整产品详情。',tags:['手持吸尘器','扫地机器人','厨房小电'],main:'assets/covers-v2/handheld-vacuum.webp',alt:'assets/covers-v2/robot-1x.webp',mainAlt:'云米手持无线吸尘器产品视觉',altAlt:'云米扫拖机器人产品视觉',href:'domestic.html?edition=appliance',label:'进入小家电版',number:'02'},
-        domestic:{accent:'#ff673f',kicker:'DOMESTIC COMMERCE',title:'国内综合电商项目',description:'适合国内电商与整合营销岗位，重点展示明星合作、洗护香氛、消费电子和平台活动。',tags:['几光 × 刘雨昕','洗护香氛','国内大促'],main:'assets/covers-v2/celebrity-campaign.webp',alt:'assets/covers-v2/laundry-100ml.webp',mainAlt:'几光与刘雨昕明星整合营销视觉',altAlt:'RUFFY LIFE 洗护视觉',href:'domestic.html',label:'进入国内综合版',number:'03'},
-        brand:{accent:'#d6c1a5',kicker:'BRAND CONTENT',title:'品牌内容与整合视觉',description:'适合品牌与内容设计岗位，重点展示品牌调性、产品影像、内容体系与跨渠道视觉延展。',tags:['RUFFY LIFE','香氛内容','整合视觉'],main:'assets/covers-v2/fragrance-cards.webp',alt:'assets/covers-v2/laundry-500ml.webp',mainAlt:'香氛品牌内容视觉',altAlt:'RUFFY LIFE 家庭洗护视觉',href:'brand.html',label:'进入品牌内容版',number:'04'}
-      };
-      const options=[...document.querySelectorAll('.option')],stage=document.getElementById('stage'),media=document.getElementById('stage-media'),secondary=document.getElementById('stage-secondary'),info=document.getElementById('stage-info'),main=document.getElementById('stage-main'),alt=document.getElementById('stage-alt'),kicker=document.getElementById('stage-kicker'),title=document.getElementById('stage-title'),description=document.getElementById('stage-description'),tags=document.getElementById('stage-tags'),link=document.getElementById('stage-link'),counter=document.getElementById('counter-current'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let active='global',timer;
-      const select=(key,focus=false)=>{if(key===active&&!focus)return;const item=data[key];active=key;clearTimeout(timer);media.classList.add('changing');secondary.classList.add('changing');info.classList.add('changing');options.forEach(o=>{const on=o.dataset.key===key;o.classList.toggle('active',on);o.setAttribute('aria-selected',String(on));if(on&&focus)o.focus()});timer=setTimeout(()=>{stage.style.setProperty('--accent',item.accent);main.src=item.main;main.alt=item.mainAlt;alt.src=item.alt;alt.alt=item.altAlt;kicker.textContent=item.kicker;title.textContent=item.title;description.textContent=item.description;tags.replaceChildren(...item.tags.map(t=>{const s=document.createElement('span');s.className='tag';s.textContent=t;return s}));link.href=item.href;link.firstChild.textContent=item.label+' ';counter.textContent=item.number;requestAnimationFrame(()=>{media.classList.remove('changing');secondary.classList.remove('changing');info.classList.remove('changing')})},reduce?0:170)};
-      options.forEach((o,i)=>{o.addEventListener('mouseenter',()=>select(o.dataset.key));o.addEventListener('click',()=>select(o.dataset.key,true));o.addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();const next=(i+(e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1)+options.length)%options.length;select(options[next].dataset.key,true)})});
-      if(!reduce){stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;stage.style.setProperty('--ry',(x*3.2)+'deg');stage.style.setProperty('--rx',(-y*2.4)+'deg')});stage.addEventListener('pointerleave',()=>{stage.style.setProperty('--ry','0deg');stage.style.setProperty('--rx','0deg')})}
-      const curtain=document.querySelector('.transition');link.addEventListener('click',e=>{if(reduce||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();curtain.classList.add('active');setTimeout(()=>location.href=link.href,360)});addEventListener('pageshow',()=>curtain.classList.remove('active'));
+    (()=>{
+      const cards=[...document.querySelectorAll('.portfolio-card')],reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,curtain=document.querySelector('.transition'),transitionLabel=document.getElementById('transition-label');
+      if(!reduce){cards.forEach(card=>card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')}))}
+      cards.forEach(card=>card.addEventListener('click',e=>{if(reduce||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();transitionLabel.textContent='OPENING · '+card.dataset.label;curtain.classList.add('active');setTimeout(()=>location.href=card.href,180)}));
+      addEventListener('pageshow',()=>curtain.classList.remove('active'));
     })();
   </script>
 </body>
