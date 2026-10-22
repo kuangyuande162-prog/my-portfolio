@@ -40,19 +40,16 @@
     .section-head b{color:#d4d4d8;font-weight:730}.section-head span:last-child{display:flex;align-items:center;gap:8px}.section-head i{width:24px;height:1px;background:#55555d}
     .portfolio-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
     .portfolio-card{--accent:#2997ff;--mx:50%;--my:50%;position:relative;min-height:475px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);text-decoration:none;isolation:isolate;transition:transform .38s cubic-bezier(.2,.75,.25,1),border-color .25s,opacity .3s,filter .3s}
-    .portfolio-card::before{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(5,5,6,.1) 20%,rgba(5,5,6,.88) 78%,#050506 100%);pointer-events:none}
+    .portfolio-card::before{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(5,5,6,.04) 24%,rgba(5,5,6,.15) 43%,rgba(5,5,6,.82) 78%,#050506 100%);pointer-events:none}
     .portfolio-card::after{content:"";position:absolute;inset:0;z-index:4;background:radial-gradient(circle 220px at var(--mx) var(--my),color-mix(in srgb,var(--accent) 20%,transparent),transparent 72%);opacity:0;transition:opacity .3s;pointer-events:none}
     .portfolio-card:hover,.portfolio-card:focus-visible{z-index:4;transform:translateY(-7px);border-color:color-mix(in srgb,var(--accent) 70%,white 10%);outline:none}
     .portfolio-card:hover::after,.portfolio-card:focus-visible::after{opacity:1}
     .portfolio-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover){opacity:.68;filter:saturate(.72)}
-    .card-media{position:absolute;inset:0;z-index:0}.card-media img{height:100%;object-fit:cover;transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .4s;filter:saturate(.92) brightness(.88)}
-    .portfolio-card:hover .card-media img,.portfolio-card:focus-visible .card-media img{transform:scale(1.045);filter:saturate(1.05) brightness(.95)}
+    .card-media{position:absolute;inset:0;z-index:0}.card-media img{height:100%;object-fit:cover;object-position:var(--position,center);transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .4s;filter:saturate(.96) brightness(.94)}
+    .portfolio-card:hover .card-media img,.portfolio-card:focus-visible .card-media img{transform:scale(1.035);filter:saturate(1.04) brightness(1)}
     .card-top{position:absolute;inset:20px 20px auto;z-index:6;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:9px;font-weight:760;letter-spacing:.1em}
     .card-no{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:rgba(5,5,6,.7);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px)}
     .card-kind{padding:7px 9px;border-radius:999px;background:rgba(5,5,6,.64);backdrop-filter:blur(12px);color:#dedee3}
-    .card-secondary{position:absolute;right:17px;top:63px;z-index:2;width:38%;aspect-ratio:1/1.03;overflow:hidden;border:4px solid rgba(5,5,6,.82);border-radius:14px;box-shadow:0 22px 45px rgba(0,0,0,.42);transform:rotate(2.5deg);transition:transform .45s cubic-bezier(.2,.75,.25,1)}
-    .card-secondary img{height:100%;object-fit:cover}
-    .portfolio-card:hover .card-secondary,.portfolio-card:focus-visible .card-secondary{transform:translate(-4px,-6px) rotate(-1deg)}
     .card-content{position:absolute;inset:auto 22px 22px;z-index:7}
     .card-kicker{margin:0 0 10px;color:var(--accent);font-size:9px;font-weight:790;letter-spacing:.14em}
     .card-title{margin:0;font-size:clamp(27px,2.45vw,38px);line-height:1;letter-spacing:-.055em}
@@ -77,10 +74,10 @@
       .wrap{width:min(calc(100% - 28px),1460px)}.header-inner{height:58px}.identity span,.header-note{display:none}.contact{padding:8px 13px}
       .hero{padding:91px 0 25px}.hero-grid{gap:16px}.eyebrow{margin-bottom:10px}h1{font-size:clamp(42px,12.5vw,58px);line-height:.97}.hero-copy p{font-size:13px}.capabilities{margin-top:14px}
       .portfolio{padding-top:7px;padding-bottom:54px}.section-head span:last-child{display:none}.portfolio-grid{grid-template-columns:1fr;gap:10px}.portfolio-card{min-height:325px;border-radius:20px}.portfolio-grid:has(.portfolio-card:hover) .portfolio-card:not(:hover){opacity:1;filter:none}
-      .card-secondary{width:31%;top:58px}.card-title{font-size:34px}.card-desc{min-height:0}.card-content{inset:auto 19px 18px}.card-projects{display:none}.card-action{margin-top:13px;padding-top:12px}
+      .card-title{font-size:34px}.card-desc{min-height:0}.card-content{inset:auto 19px 18px}.card-projects{display:none}.card-action{margin-top:13px;padding-top:12px}
       .footer-inner{display:block}.mail{display:inline-block;margin-top:15px}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;animation:none}.portfolio-card,.card-media img,.card-secondary,.card-action i,.transition{transition:none!important}.portfolio-card:hover,.portfolio-card:focus-visible{transform:none}.transition{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;animation:none}.portfolio-card,.card-media img,.card-action i,.transition{transition:none!important}.portfolio-card:hover,.portfolio-card:focus-visible{transform:none}.transition{display:none}}
   </style>
 </head>
 <body>
@@ -108,28 +105,24 @@
         <div class="portfolio-grid">
           <a class="portfolio-card reveal route-link" style="--accent:#2997ff" href="overseas.html" data-label="海外电商">
             <figure class="card-media"><img src="assets/covers-v2/echo-desk-lamp.webp" alt="ECHO 智能台灯海外电商视觉" fetchpriority="high"></figure>
-            <figure class="card-secondary"><img src="assets/covers-v2/cassini-speaker.webp" alt="CASSINI 智能时钟音箱视觉"></figure>
             <div class="card-top"><span class="card-no">01</span><span class="card-kind">OVERSEAS</span></div>
             <div class="card-content"><p class="card-kicker">AMAZON / LISTING / A+</p><h2 class="card-title">海外电商</h2><p class="card-desc">主副图、A+、多语言内容与智能家居产品视觉。</p><p class="card-projects">ECHO · CASSINI · 海外照明</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
           </a>
 
           <a class="portfolio-card reveal route-link" style="--accent:#7ec6ff" href="domestic.html?edition=appliance" data-label="国内小家电">
             <figure class="card-media"><img src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器产品视觉"></figure>
-            <figure class="card-secondary"><img src="assets/covers-v2/robot-1x.webp" alt="云米扫拖机器人产品视觉"></figure>
             <div class="card-top"><span class="card-no">02</span><span class="card-kind">APPLIANCE</span></div>
             <div class="card-content"><p class="card-kicker">PRODUCT / DETAIL / FUNCTION</p><h2 class="card-title">国内小家电</h2><p class="card-desc">产品主视觉、功能表达、场景渲染与完整详情页。</p><p class="card-projects">吸尘器 · 扫地机器人 · 厨房小电</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
           </a>
 
           <a class="portfolio-card reveal route-link" style="--accent:#ff673f" href="domestic.html" data-label="国内综合">
             <figure class="card-media"><img src="assets/covers-v2/celebrity-campaign.webp" alt="几光与刘雨昕明星整合营销视觉"></figure>
-            <figure class="card-secondary"><img src="assets/covers-v2/laundry-100ml.webp" alt="RUFFY LIFE 洗护产品视觉"></figure>
             <div class="card-top"><span class="card-no">03</span><span class="card-kind">DOMESTIC</span></div>
             <div class="card-content"><p class="card-kicker">CAMPAIGN / COMMERCE / CONTENT</p><h2 class="card-title">国内综合</h2><p class="card-desc">明星整合营销、洗护香氛、消费电子与平台活动。</p><p class="card-projects">几光 × 刘雨昕 · RUFFY LIFE · 国内大促</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
           </a>
 
           <a class="portfolio-card reveal route-link" style="--accent:#d6c1a5" href="brand.html" data-label="品牌内容">
             <figure class="card-media"><img src="assets/covers-v2/fragrance-cards.webp" alt="香氛品牌内容视觉"></figure>
-            <figure class="card-secondary"><img src="assets/covers-v2/laundry-500ml.webp" alt="RUFFY LIFE 家庭洗护视觉"></figure>
             <div class="card-top"><span class="card-no">04</span><span class="card-kind">BRAND</span></div>
             <div class="card-content"><p class="card-kicker">BRAND / IMAGE / SYSTEM</p><h2 class="card-title">品牌内容</h2><p class="card-desc">品牌视觉、产品内容与跨渠道视觉延展。</p><p class="card-projects">RUFFY LIFE · 香氛内容 · 整合视觉</p><div class="card-action"><span>查看完整项目</span><i>↗</i></div></div>
           </a>
