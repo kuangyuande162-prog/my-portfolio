@@ -34,11 +34,18 @@ html.view-appliance .hero-tile--wash-100 img{width:100%;height:100%;object-fit:c
 html.view-appliance .hero-tile--wash-100 figcaption{padding:90px 28px 24px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:11px}
 html.view-appliance #works{padding-top:90px}
 html.view-appliance #expertise{padding:96px 0;background:#fff}
-html.view-appliance .expertise-grid{grid-template-columns:repeat(4,1fr);gap:14px}
-html.view-appliance .expertise-card{min-height:250px;padding:32px;border:1px solid #e5e5e7;border-radius:22px}
-html.view-appliance .expertise-number{margin-bottom:45px}
-html.view-appliance .expertise-card h3{font-size:25px}
+html.view-appliance #expertise .section-head{margin-bottom:54px}
+html.view-appliance .expertise-grid{grid-template-columns:repeat(4,1fr);gap:0;border-block:1px solid #d9d9dd}
+html.view-appliance .expertise-card{min-height:230px;padding:34px 30px;border:0;border-right:1px solid #d9d9dd;border-radius:0;background:transparent}
+html.view-appliance .expertise-card:last-child{border-right:0}
+html.view-appliance .expertise-number{margin-bottom:44px;color:var(--accent)}
+html.view-appliance .expertise-card h3{font-size:24px}
 html.view-appliance .expertise-card p{font-size:13px}
+html.view-appliance .method{display:none}
+html.view-appliance .contact{padding:72px 0 24px}
+html.view-appliance .contact-main{align-items:center;padding-bottom:54px}
+html.view-appliance .contact h2{max-width:760px;font-size:clamp(48px,5.2vw,72px);line-height:1.02}
+html.view-appliance .contact p{margin:18px 0 0;color:#a9a9ae;font-size:13px}
 
 /* Brand edition: a single campaign image, not a collage. */
 body.brand-page .hero-grid{grid-template-columns:minmax(0,.78fr) minmax(580px,1.22fr);min-height:735px;padding-block:70px}
@@ -69,5 +76,10 @@ body.brand-page .capability p{font-size:12px}
   html.view-domestic #works,html.view-appliance #works,body.brand-page #campaign{padding-top:72px}
   html.view-domestic .expertise-grid,html.view-appliance .expertise-grid,body.brand-page .capabilities{grid-template-columns:1fr}
   html.view-domestic .expertise-card,html.view-appliance .expertise-card,body.brand-page .capability{min-height:0}
+  html.view-appliance .expertise-grid{border-bottom:0}
+  html.view-appliance .expertise-card{padding:26px 4px;border-right:0;border-bottom:1px solid #d9d9dd}
+  html.view-appliance .expertise-number{margin-bottom:22px}
+  html.view-appliance .contact{padding-top:58px}
+  html.view-appliance .contact-main{padding-bottom:42px}
 }
 
