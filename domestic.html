@@ -763,6 +763,7 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
   html.view-appliance .project-title, html.view-appliance .project-card--featured .project-title { font-size: 36px; }
 }
 </style>
+<link rel="stylesheet" href="cross-page-refinement.css">
 </head>
 <body>
   <header class="site-header">
@@ -907,6 +908,9 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
 
   <script>
     if (location.hash === '#legacy-overseas') document.getElementById('legacy-overseas')?.setAttribute('open', '');
+    const expertiseSection = document.getElementById('expertise');
+    const archiveSection = document.querySelector('.archive');
+    if (expertiseSection && archiveSection) archiveSection.after(expertiseSection);
     const B = 'https://i.postimg.cc/';
     const pd = {
             p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
