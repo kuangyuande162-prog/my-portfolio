@@ -1,0 +1,73 @@
+/* Shared refinement layer: project-first structure, one primary hero image, calmer interactions. */
+
+/* Portfolio gateway */
+body.entry-page .hero{padding-top:116px;padding-bottom:42px}
+body.entry-page .hero-grid{align-items:center}
+body.entry-page .portfolio-card{min-height:500px;border-radius:20px}
+body.entry-page .portfolio-card::before{background:linear-gradient(180deg,rgba(5,5,6,.02) 34%,rgba(5,5,6,.18) 57%,#050506 100%)}
+body.entry-page .card-media img{transform:none!important}
+body.entry-page .portfolio-card:hover .card-media img{transform:scale(1.018)!important}
+body.entry-page .card-content{inset:auto 24px 24px}
+
+/* Domestic general: one campaign image, then work. */
+html.view-domestic .hero-grid{grid-template-columns:minmax(0,.78fr) minmax(560px,1.22fr);min-height:720px;padding-block:70px}
+html.view-domestic .hero-visual{display:block;height:610px;padding:0;overflow:hidden;border-radius:24px;background:#16181b}
+html.view-domestic .hero-tile{display:none}
+html.view-domestic .hero-tile--celebrity{display:block;width:100%;height:100%;border-radius:0}
+html.view-domestic .hero-tile--celebrity img{width:100%;height:100%;object-fit:cover;object-position:center}
+html.view-domestic .hero-tile--celebrity figcaption{padding:80px 24px 22px;font-size:9px}
+html.view-domestic .hero-visual::after{right:22px;bottom:22px}
+html.view-domestic #works{padding-top:108px}
+html.view-domestic #expertise{padding-top:96px;padding-bottom:96px;background:color-mix(in srgb,var(--paper) 86%,var(--accent) 14%)}
+html.view-domestic #expertise .section-head{margin-bottom:34px}
+html.view-domestic .expertise-grid{grid-template-columns:repeat(4,1fr)}
+html.view-domestic .expertise-card{min-height:235px;padding:30px}
+html.view-domestic .expertise-card h3{margin-top:34px;font-size:23px}
+html.view-domestic .expertise-card p{font-size:12px;line-height:1.75}
+
+/* Appliance edition: clean product-launch hero, one product, work immediately after. */
+html.view-appliance .hero-grid{padding:104px 0 72px}
+html.view-appliance .hero-visual{display:block;max-width:1180px;height:650px;margin-top:56px;padding:0;overflow:hidden;border-radius:30px;background:#f5f5f7}
+html.view-appliance .hero-tile{display:none}
+html.view-appliance .hero-tile--wash-100{display:block;width:100%;height:100%;border-radius:0}
+html.view-appliance .hero-tile--wash-100 img{width:100%;height:100%;object-fit:cover;object-position:center}
+html.view-appliance .hero-tile--wash-100 figcaption{padding:90px 28px 24px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:11px}
+html.view-appliance #works{padding-top:90px}
+html.view-appliance #expertise{padding:96px 0;background:#fff}
+html.view-appliance .expertise-grid{grid-template-columns:repeat(4,1fr);gap:14px}
+html.view-appliance .expertise-card{min-height:250px;padding:32px;border:1px solid #e5e5e7;border-radius:22px}
+html.view-appliance .expertise-number{margin-bottom:45px}
+html.view-appliance .expertise-card h3{font-size:25px}
+html.view-appliance .expertise-card p{font-size:13px}
+
+/* Brand edition: a single campaign image, not a collage. */
+body.brand-page .hero-grid{grid-template-columns:minmax(0,.78fr) minmax(580px,1.22fr);min-height:735px;padding-block:70px}
+body.brand-page .hero-art{display:block;height:610px;padding:0;overflow:hidden;border:0;border-radius:24px;background:#17191d;box-shadow:0 24px 70px rgba(66,48,39,.12)}
+body.brand-page .hero-art .art-card{display:none}
+body.brand-page .hero-art .art-a{display:block;width:100%;height:100%;border-radius:0}
+body.brand-page .hero-art .art-a img{width:100%;height:100%;object-fit:cover;object-position:center}
+body.brand-page .hero-art .art-a figcaption{padding:76px 20px 20px;font-size:9px}
+body.brand-page #campaign{padding-top:108px}
+body.brand-page #capabilities{padding-top:96px;padding-bottom:96px;background:#e6ded4}
+body.brand-page #capabilities .section-head{margin-bottom:34px}
+body.brand-page .capabilities{grid-template-columns:repeat(4,1fr);gap:12px}
+body.brand-page .capability{min-height:235px;padding:30px}
+body.brand-page .capability h3{margin:38px 0 13px;font-size:23px}
+body.brand-page .capability p{font-size:12px}
+
+@media(max-width:1120px){
+  html.view-domestic .hero-grid,body.brand-page .hero-grid{grid-template-columns:1fr;min-height:0}
+  html.view-domestic .hero-visual,body.brand-page .hero-art{height:570px}
+  html.view-domestic .expertise-grid,html.view-appliance .expertise-grid,body.brand-page .capabilities{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  body.entry-page .hero{padding-top:92px;padding-bottom:25px}
+  body.entry-page .portfolio-card{min-height:350px}
+  html.view-domestic .hero-grid,html.view-appliance .hero-grid,body.brand-page .hero-grid{padding-top:62px;padding-bottom:52px}
+  html.view-domestic .hero-visual,html.view-appliance .hero-visual,body.brand-page .hero-art{height:430px;margin-top:38px;border-radius:18px}
+  html.view-domestic .hero-tile--celebrity figcaption,html.view-appliance .hero-tile--wash-100 figcaption,body.brand-page .hero-art .art-a figcaption{padding:64px 16px 16px}
+  html.view-domestic #works,html.view-appliance #works,body.brand-page #campaign{padding-top:72px}
+  html.view-domestic .expertise-grid,html.view-appliance .expertise-grid,body.brand-page .capabilities{grid-template-columns:1fr}
+  html.view-domestic .expertise-card,html.view-appliance .expertise-card,body.brand-page .capability{min-height:0}
+}
+
