@@ -83,3 +83,107 @@ body.brand-page .capability p{font-size:12px}
   html.view-appliance .contact-main{padding-bottom:42px}
 }
 
+/* Domestic general v2: faster judgement, project-first hierarchy, compact supporting content. */
+html.view-domestic body{overflow-x:hidden}
+html.view-domestic .hero-grid{grid-template-columns:minmax(0,.82fr) minmax(540px,1.18fr);min-height:690px;padding-block:62px}
+html.view-domestic .hero h1{font-size:clamp(56px,5.25vw,82px);line-height:1.03}
+html.view-domestic .hero-copy{max-width:610px;margin:28px 0 24px;font-size:15px;line-height:1.8}
+html.view-domestic .hero-visual{height:570px}
+html.view-domestic .hero-visual::before{inset:20px 12px 10px 22px;transform:rotate(-.45deg);box-shadow:8px 8px 0 var(--ink)}
+html.view-domestic .hero-tile--celebrity{border-radius:18px;transform:none;box-shadow:none}
+html.view-domestic .hero-tile--celebrity:hover{transform:none;box-shadow:none}
+html.view-domestic .hero-scope{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;max-width:650px;margin-top:34px;border-block:1px solid color-mix(in srgb,var(--ink) 34%,transparent)}
+html.view-domestic .hero-scope a{display:flex;flex-direction:column;gap:14px;min-width:0;padding:17px 16px 16px 0;border-right:1px solid color-mix(in srgb,var(--ink) 22%,transparent);color:var(--ink);font-size:13px;font-weight:700;line-height:1.25;text-decoration:none}
+html.view-domestic .hero-scope a:not(:first-child){padding-left:16px}
+html.view-domestic .hero-scope a:last-child{border-right:0}
+html.view-domestic .hero-scope span{order:-1;color:var(--accent-dark);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em}
+html.view-domestic .hero-scope a:hover{background:color-mix(in srgb,var(--lemon) 35%,transparent)}
+html.view-domestic .proof{display:none}
+html.view-domestic #works{padding-top:92px;padding-bottom:96px}
+html.view-domestic #works .section-head{margin-bottom:42px}
+html.view-domestic .work-grid{gap:22px}
+html.view-domestic .project-card--featured .project-cover{height:510px}
+html.view-domestic .project-card--featured .project-body{padding:42px}
+html.view-domestic .project-body{min-height:220px;padding:30px 32px}
+html.view-domestic .project-meta{padding-bottom:32px}
+html.view-domestic .project-link{margin-top:26px}
+html.view-domestic .archive{padding-top:88px;padding-bottom:88px}
+html.view-domestic .archive-list{box-shadow:none;border-radius:0;border-inline:0}
+html.view-domestic .archive-row{padding:22px 12px}
+html.view-domestic .cross-edition-card{display:flex;align-items:center;justify-content:space-between;gap:40px;margin-top:26px;padding:30px 32px;border:1px solid var(--line);background:var(--panel)}
+html.view-domestic .cross-edition-card div{max-width:730px}
+html.view-domestic .cross-edition-card span{color:var(--accent-dark);font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em}
+html.view-domestic .cross-edition-card h3{margin:10px 0 8px;font-size:22px;letter-spacing:-.02em}
+html.view-domestic .cross-edition-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+html.view-domestic #expertise{padding:86px 0;background:#171b1e;color:#f2f3ef}
+html.view-domestic #expertise .section-head{align-items:end;margin-bottom:34px}
+html.view-domestic #expertise .section-head p:last-child{color:#aeb7b8}
+html.view-domestic #expertise .eyebrow{border:0;background:transparent;color:#ffb542;box-shadow:none;padding:0}
+html.view-domestic .expertise-grid{gap:0;border-block:1px solid #465053}
+html.view-domestic .expertise-card,html.view-domestic .expertise-card:nth-child(n){min-height:210px;padding:30px 28px;border:0;border-right:1px solid #465053;border-radius:0;background:transparent;color:#f2f3ef;box-shadow:none}
+html.view-domestic .expertise-card:last-child{border-right:0}
+html.view-domestic .expertise-card:hover{transform:none;background:#20282b;box-shadow:none}
+html.view-domestic .expertise-number{margin-bottom:36px;border:0;color:#ffb542}
+html.view-domestic .expertise-card h3{margin:0 0 12px;color:#fff;font-size:22px}
+html.view-domestic .expertise-card p{color:#aeb7b8;font-size:12px;line-height:1.75}
+html.view-domestic .method{display:none}
+html.view-domestic #experience{padding:86px 0}
+html.view-domestic #experience .section-head{margin-bottom:32px}
+html.view-domestic .career-row{grid-template-columns:145px 235px minmax(0,1fr);padding:23px 0}
+html.view-domestic .contact{padding:66px 0 26px}
+html.view-domestic .contact-main{align-items:center;padding-bottom:54px}
+html.view-domestic .contact h2{font-size:clamp(46px,5vw,70px);line-height:1.02}
+html.view-domestic .dialog-header{overflow:hidden}
+html.view-domestic .dialog-header::after{content:'';position:absolute;left:0;bottom:0;width:var(--dialog-progress,0%);height:3px;background:var(--accent);transition:width .08s linear}
+html.view-domestic .dialog-kicker{display:block;margin-bottom:4px;color:var(--accent-dark);font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+html.view-domestic .dialog-section img{cursor:zoom-in;transition:opacity .2s ease}
+html.view-domestic .dialog-section img:hover{opacity:.92}
+.image-viewer{width:100vw;height:100vh;max-width:none;max-height:none;margin:0;padding:58px 24px 24px;border:0;background:rgba(5,7,9,.96);overflow:auto}
+.image-viewer::backdrop{background:#050709}
+.image-viewer img{width:auto;max-width:min(1500px,100%);height:auto;max-height:none;margin:0 auto;background:#fff}
+.image-viewer button{position:fixed;z-index:2;right:22px;top:18px;width:44px;height:44px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:26px;cursor:pointer}
+
+@media(max-width:1120px){
+  html.view-domestic .hero-grid{grid-template-columns:1fr;padding-top:74px}
+  html.view-domestic .hero-visual{height:560px;margin-top:22px}
+  html.view-domestic .project-card--featured .project-cover{height:460px}
+  html.view-domestic .expertise-grid{grid-template-columns:repeat(2,1fr)}
+  html.view-domestic .expertise-card:nth-child(2){border-right:0}
+  html.view-domestic .expertise-card:nth-child(-n+2){border-bottom:1px solid #465053}
+}
+@media(max-width:760px){
+  html.view-domestic .site-header .container{min-height:58px;gap:10px}
+  html.view-domestic .site-header .brand{flex:1}
+  html.view-domestic .header-actions{gap:6px}
+  html.view-domestic .header-actions>a.button{display:none}
+  html.view-domestic .header-actions>a.button.button-primary{display:inline-flex;min-height:38px;padding:0 12px;box-shadow:none}
+  html.view-domestic .theme-toggle{width:38px;height:38px}
+  html.view-domestic .commerce-strip{display:none}
+  html.view-domestic .hero-grid{padding:56px 0 46px}
+  html.view-domestic .hero h1{font-size:clamp(44px,12vw,58px)}
+  html.view-domestic .hero-copy{font-size:14px;line-height:1.72}
+  html.view-domestic .hero-actions .button{min-height:44px;padding:0 15px;box-shadow:3px 3px 0 var(--ink)}
+  html.view-domestic .hero-scope{margin-top:28px;overflow-x:auto;scrollbar-width:none}
+  html.view-domestic .hero-scope::-webkit-scrollbar{display:none}
+  html.view-domestic .hero-scope a{min-width:132px;font-size:12px}
+  html.view-domestic .hero-visual{height:410px;margin-top:10px;border-radius:14px}
+  html.view-domestic .hero-visual::before{display:none}
+  html.view-domestic .hero-tile--celebrity{border:0;border-radius:14px}
+  html.view-domestic #works,html.view-domestic .archive,html.view-domestic #expertise,html.view-domestic #experience{padding:68px 0}
+  html.view-domestic .section-head h2{font-size:clamp(34px,9.4vw,44px);line-height:1.1}
+  html.view-domestic .project-card--featured .project-cover{height:auto;aspect-ratio:1.22}
+  html.view-domestic .project-body,html.view-domestic .project-card--featured .project-body{padding:26px}
+  html.view-domestic .project-meta{padding-bottom:24px}
+  html.view-domestic .cross-edition-card{display:block;padding:26px 22px}
+  html.view-domestic .cross-edition-card .button{margin-top:22px;box-shadow:none}
+  html.view-domestic .expertise-grid{grid-template-columns:1fr}
+  html.view-domestic .expertise-card,html.view-domestic .expertise-card:nth-child(n){min-height:0;padding:26px 4px;border-right:0;border-bottom:1px solid #465053}
+  html.view-domestic .expertise-card:last-child{border-bottom:0}
+  html.view-domestic .expertise-number{margin-bottom:18px}
+  html.view-domestic .career-row{grid-template-columns:1fr;gap:8px;padding:20px 0}
+  html.view-domestic .career-row p{grid-column:auto}
+  html.view-domestic .contact{padding-top:56px}
+  html.view-domestic .contact-main{padding-bottom:44px}
+  html.view-domestic .contact h2{font-size:44px}
+}
+
