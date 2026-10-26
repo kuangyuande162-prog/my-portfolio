@@ -10,7 +10,7 @@ const cases = [
     label: 'PRIORITY PROJECT',
     title: 'UCL01 2.0 · 橱柜感应灯',
     shortTitle: '橱柜感应灯',
-    description: '围绕运动感应、三色温、续航、磁吸安装与多空间应用组织完整 Listing。主图负责快速识别，功能辅图解释购买信息，A+ 继续展开结构、安装与场景。',
+    description: '感应、色温、续航、磁吸安装与多场景应用。',
     cover: 'assets/ucl01/main/01.webp',
     facts: ['主图与功能辅图 09', 'A+ 内容 14', '感应 / 色温 / 续航 / 安装'],
     sections: [
@@ -24,7 +24,7 @@ const cases = [
     label: 'MOTION STUDY',
     title: 'NL01 · 楼梯感应灯',
     shortTitle: '楼梯感应灯',
-    description: '从动态素材提取完整使用路径：人物进入感应区、灯光逐级亮起、人物经过并离开。连续帧用于解释静态图片难以呈现的动态功能。',
+    description: '以连续关键帧呈现感应路径与灯光变化。',
     cover: 'assets/nl01/03.webp',
     facts: ['动态关键帧 05', '感应路径', '夜间场景'],
     sections: [
@@ -37,7 +37,7 @@ const cases = [
     label: 'LIFESTYLE LIGHTING',
     title: 'TL01 · 无线台灯',
     shortTitle: '无线台灯',
-    description: '以温暖家居氛围建立生活方式视觉，并完整保留触控调光、便携、续航、充电、尺寸与使用场景等购买信息。',
+    description: '触控调光、便携续航与家居场景表达。',
     cover: 'assets/tl01/main/03.webp',
     facts: ['主图与功能辅图 11', 'A+ 内容 14', '生活方式 / 触控 / 续航'],
     sections: [
@@ -51,7 +51,7 @@ const cases = [
     label: 'INTERIOR APPLICATION',
     title: 'PL02 · 画灯场景系统',
     shortTitle: '画灯',
-    description: '通过不同家居风格、画作比例与空间光线，展示画灯在楼梯、书桌、浴室、客厅与卧室中的适配性。',
+    description: '不同空间、画作比例与灯光氛围的场景系统。',
     cover: 'assets/pl02/main/02.webp',
     facts: ['主图与场景辅图 07', 'A+ 内容 08', '空间 / 比例 / 安装'],
     sections: [
@@ -65,7 +65,7 @@ const cases = [
     label: 'WALL LIGHTING',
     title: 'WL05 · 无线壁灯',
     shortTitle: '无线壁灯',
-    description: '以暖金材质与深色家居场景建立统一调性，呈现免布线安装、磁吸拆卸、定时、调光、三色温与 RGB 氛围功能。',
+    description: '免布线、磁吸、定时、调光与 RGB 氛围功能。',
     cover: 'assets/wl05/main/01.webp',
     facts: ['主图与功能辅图 09', 'A+ 内容 12', '磁吸 / 定时 / RGB'],
     sections: [
