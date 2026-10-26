@@ -46,9 +46,10 @@
     @media(max-width:760px){.container{width:calc(100% - 30px)}.site-header{position:sticky}.header-inner{min-height:64px;grid-template-columns:1fr auto}.brand small,.nav,.contact-link{display:none}.header-actions{grid-column:2}.hero{padding-top:56px}.hero h1{font-size:clamp(50px,15vw,68px)}.hero-top{margin-bottom:34px}.hero-media{grid-template-columns:1fr 1fr;grid-template-rows:1.3fr .7fr}.hero-main{grid-column:1/-1;grid-row:1;min-height:390px}.hero-small{min-height:185px}.hero-index{grid-template-columns:1fr 1fr}.hero-index div{padding:18px 0;border-bottom:1px solid var(--line)}.hero-index div:nth-child(even){padding-left:18px;border-right:0}.section{padding:82px 0}.section-head{margin-bottom:44px}.section-head h2{font-size:42px}.feature{padding:66px 0}.project-no{margin-bottom:24px}.feature h3{font-size:40px}.feature-strip{grid-template-columns:1fr 1fr}.feature-primary img{aspect-ratio:4/3}.portrait-media{grid-template-columns:1fr;grid-template-rows:auto auto auto}.portrait-media .feature-primary{grid-column:1;grid-row:1}.portrait-media .feature-primary img{aspect-ratio:4/5}.portrait-media .feature-strip{grid-column:1;grid-row:2;grid-template-columns:1fr 1fr;grid-template-rows:auto}.portrait-media .asset-label{grid-column:1;grid-row:3}.archive{padding:78px 0}.archive-row{grid-template-columns:38px 1fr 20px;padding:22px 6px}.archive-row strong{font-size:17px}.archive-row span{display:none}.process{padding:82px 0}.process-line{grid-template-columns:1fr}.process-line::before,.process-progress{top:0;bottom:0;left:4px;width:1px;height:auto}.process.is-visible .process-progress{width:1px;height:100%}.process-step{padding:0 0 36px 34px}.process-step::before{position:absolute;left:0;margin:3px 0}.career summary{grid-template-columns:92px 1fr 24px;gap:14px}.career summary>span{grid-column:2}.career summary>i{grid-column:3;grid-row:1/3}.career-detail{margin:0 0 24px 106px}.contact{padding-top:80px}.contact h2{font-size:48px}.contact-grid{gap:42px;padding-bottom:65px}.contact-bottom{flex-direction:column;gap:12px}.dialog-head{grid-template-columns:1fr auto;padding:0 14px}.dialog-head small{display:none}.dialog-head h2{text-align:left}.case-intro{grid-template-columns:1fr;padding:46px 16px 28px}.case-intro h3{font-size:46px}.case-nav{top:64px;justify-content:flex-start;overflow-x:auto;padding-inline:12px}.case-nav button{flex:0 0 auto}.gallery{padding:38px 12px 80px}.gallery-section{grid-template-columns:1fr;gap:18px;margin-bottom:76px;scroll-margin-top:132px}.gallery-section h4{position:static}.gallery-grid{grid-template-columns:1fr}.gallery-grid .wide{grid-column:auto}.image-viewer{padding:14px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.hero-media figure,.feature-primary,.hero-media img,.feature-strip img,.process-progress{transition:none!important}.reveal{opacity:1;transform:none}.hero-media figure,.feature-primary{clip-path:none}.process-progress{width:100%}}
     @media(max-width:760px){.hero-media{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;padding:10px 10px 20px}.hero-media .hero-main{grid-column:1/-1;grid-row:1;height:360px;min-height:0}.hero-main img{width:92%;padding:0}.hero-media .hero-small{grid-row:2!important;height:220px;min-height:0}.hero-media .hero-small:nth-child(2){grid-column:1;transform:none}.hero-media .hero-small:nth-child(3){grid-column:2}.hero-small img{padding:0}}
-  </style>
+</style>
+  <link rel="stylesheet" href="portfolio-compact.css">
 </head>
-<body>
+<body class="overseas-page">
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html"><span class="brand-dot"></span>KUANG <small>OVERSEAS E-COMMERCE</small></a>
@@ -60,15 +61,11 @@
     </div>
   </header>
 
-  <aside class="scroll-index" aria-label="页面章节">
-    <a href="#top" data-section="top"><span>TOP</span></a><a href="#work" data-section="work"><span>WORK</span></a><a href="#archive" data-section="archive"><span>INDEX</span></a><a href="#process" data-section="process"><span>PROCESS</span></a><a href="#experience" data-section="experience"><span>EXPERIENCE</span></a>
-  </aside>
-
   <main id="top">
     <section class="hero container">
       <div class="hero-top">
         <div><p class="kicker">KUANG / OVERSEAS E-COMMERCE DESIGN</p><h1>让产品价值，<em>被快速看懂。</em></h1></div>
-        <div class="hero-side"><p>面向 Amazon 与海外品牌，完成消费电子、智能照明及家居产品的主图、功能辅图、A+ 内容与多语言视觉延展。</p><div class="hero-tags"><span>AMAZON LISTING</span><span>A+ CONTENT</span><span>MULTI-LANGUAGE</span><span>SMART HOME</span></div></div>
+        <div class="hero-side"><p>Amazon Listing、A+ 与多语言商品视觉。</p><div class="hero-tags"><span>AMAZON LISTING</span><span>A+ CONTENT</span><span>MULTI-LANGUAGE</span><span>SMART HOME</span></div></div>
       </div>
       <div class="hero-media reveal" aria-label="海外核心项目视觉预览">
         <figure class="hero-main"><img src="projects/product-site-portfolio/assets/ucl01/aplus/01.webp" alt="智能橱柜灯厨房照明场景"><figcaption class="media-caption"><span>01.01 / CABINET LIGHT</span><b>LIGHTING SYSTEM</b></figcaption></figure>
@@ -105,12 +102,12 @@
     </section>
 
     <section class="process reveal" id="process">
-      <div class="container section-head"><div><p class="eyebrow">03 / CAPABILITIES &amp; PROCESS</p><h2>从卖点梳理，到完整上架。</h2></div><p>将内容规划、视觉生产与多语言延展合并为一套可执行流程。</p></div>
-      <div class="container process-line"><span class="process-progress"></span><article class="process-step"><small>01 / AUDIT</small><h3>梳理商品与卖点</h3><p>结合产品、竞品与使用场景，明确第一屏需要传达的核心价值。</p></article><article class="process-step"><small>02 / STRUCTURE</small><h3>规划 Listing 与 A+</h3><p>编排主图、功能辅图、场景图与A+模块，建立连续阅读顺序。</p></article><article class="process-step"><small>03 / PRODUCE</small><h3>完成视觉生产</h3><p>结合渲染、精修与场景表达，准确呈现产品形态与使用方式。</p></article><article class="process-step"><small>04 / ADAPT</small><h3>多站点适配与迭代</h3><p>延展不同语言与渠道版本，并依据实际反馈调整内容表达。</p></article></div>
+      <div class="container section-head"><div><p class="eyebrow">03 / WORKFLOW</p><h2>一套上架流程。</h2></div><p>卖点、结构、视觉与多语言版本一次组织完成。</p></div>
+      <div class="container process-line"><span class="process-progress"></span><article class="process-step"><small>01 / AUDIT</small><h3>提炼卖点</h3><p>确认产品价值与第一阅读重点。</p></article><article class="process-step"><small>02 / STRUCTURE</small><h3>组织内容</h3><p>编排主图、辅图与 A+ 阅读顺序。</p></article><article class="process-step"><small>03 / PRODUCE</small><h3>完成视觉</h3><p>统一产品、场景与功能表达。</p></article><article class="process-step"><small>04 / ADAPT</small><h3>适配站点</h3><p>延展语言版本并持续迭代。</p></article></div>
     </section>
 
     <section class="experience" id="experience">
-      <div class="container section-head reveal"><div><p class="eyebrow">04 / EXPERIENCE</p><h2>从国内电商，到海外品牌内容。</h2></div><p>点击展开职责说明；移动端保持完整可读。</p></div>
+      <div class="container section-head reveal"><div><p class="eyebrow">04 / EXPERIENCE</p><h2>相关经历。</h2></div><p>国内产品经验延伸至海外 Listing 与品牌内容。</p></div>
       <div class="container experience-list reveal"><details class="career" open><summary><time>2024 — 至今</time><div><h3>广州奕至家居</h3><b>DESIGN LEAD · 设计主管</b></div><span>Amazon / Listing / A+</span><i>＋</i></summary><p class="career-detail">负责 Amazon 欧美市场的品牌视觉、Listing 与 A+ 内容，并推动海外设计流程、项目协作和图片迭代。</p></details><details class="career"><summary><time>2021 — 2023</time><div><h3>广州奕至家居</h3><b>OVERSEAS DESIGN LEAD</b></div><span>Overseas Visual / Brand</span><i>＋</i></summary><p class="career-detail">负责海外产品视觉输出与品牌建设，推进产品站、Amazon Listing、A+ 内容及多语言视觉延展。</p></details><details class="career"><summary><time>2020 — 2021</time><div><h3>广州奕至家居</h3><b>DOMESTIC DESIGN LEAD</b></div><span>Tmall / JD / Product</span><i>＋</i></summary><p class="career-detail">负责新品视觉、天猫与京东店铺活动，并建立产品内容与团队协作流程。</p></details><details class="career"><summary><time>2018 — 2020</time><div><h3>佛山市云米电器</h3><b>GRAPHIC DESIGNER</b></div><span>Consumer Electronics</span><i>＋</i></summary><p class="career-detail">参与天猫、京东重点活动及小家电详情页设计，积累消费电子产品视觉与电商内容经验。</p></details></div>
     </section>
   </main>
@@ -120,6 +117,7 @@
   <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title"><header class="dialog-head"><small id="dialog-index">PROJECT / 01</small><h2 id="dialog-title">项目详情</h2><button class="dialog-close" id="dialog-close" type="button" aria-label="关闭">×</button></header><div id="dialog-body"></div><div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="图片查看"><button class="viewer-close" type="button" aria-label="关闭图片">×</button><img id="viewer-image" alt=""><span class="viewer-caption" id="viewer-caption"></span></div></dialog>
 
   <script src="archive-projects.js"></script>
+  <script src="portfolio-compact.js" defer></script>
   <script>
     const makePaths=(project,group,count)=>Array.from({length:count},(_,i)=>`assets/overseas/${project}/${group}/${group}-${String(i+1).padStart(2,'0')}.webp`);
     const localSection=(label,project,group,count)=>({label,images:makePaths(project,group,count)});
