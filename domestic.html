@@ -775,9 +775,15 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
         <a href="#experience">经历</a>
       </nav>
       <div class="header-actions">
-        <a class="button button-outline" href="brand.html" aria-label="切换到品牌内容作品集">品牌内容版 ↗</a>
-        <a class="button button-outline appliance-edition-link" href="domestic.html?edition=appliance" aria-label="切换到国内小家电作品集"><span class="edition-label">国内</span>小家电版 ↗</a>
-        <a class="button button-outline" href="overseas.html" aria-label="切换到海外项目优先版">海外版 ↗</a>
+        <details class="version-menu">
+          <summary>作品版本 <span aria-hidden="true">＋</span></summary>
+          <div class="version-panel">
+            <a class="is-current" href="domestic.html"><small>01</small><b>国内综合</b><span>明星营销 / 洗护 / 消费电子</span></a>
+            <a class="appliance-edition-link" href="domestic.html?edition=appliance" aria-label="切换到国内小家电作品集"><small>02</small><b>国内小家电</b><span>产品视觉 / 功能 / 详情页</span></a>
+            <a href="overseas.html"><small>03</small><b>海外电商</b><span>Amazon Listing / A+</span></a>
+            <a href="brand.html"><small>04</small><b>品牌内容</b><span>品牌系统 / 香氛 / 内容视觉</span></a>
+          </div>
+        </details>
         <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换深色模式" aria-pressed="false">☾</button>
         <a class="button button-primary" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a>
       </div>
@@ -846,7 +852,7 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
         </div>
         <div class="work-grid">
           <article class="project-card project-card--domestic project-card--featured" id="campaign-project"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="assets/covers-v2/celebrity-campaign.webp" alt="几光与刘雨昕双十一整合营销新版视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
-          <article class="project-card project-card--domestic project-card--featured" id="care-project"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo"><img src="assets/covers-v2/laundry-100ml.webp" alt="100ml 洗衣液视觉更新" loading="lazy"><img src="assets/covers-v2/laundry-500ml.webp" alt="500ml 洗衣液视觉更新" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛 / 电商内容</span><span class="project-title">洗护与香氛<br>视觉合集</span><span class="project-summary">涵盖香薰片、100ml 与 500ml 洗衣液，从香气氛围、产品质感到详情页信息结构，呈现洗护品类的视觉探索。</span><span class="project-link">进入完整合集 <b aria-hidden="true">↗</b></span></span></a></article>
+          <article class="project-card project-card--domestic project-card--featured" id="care-project"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo project-cover--triptych"><img src="assets/covers-v2/fragrance-cards.webp" alt="香薰片品牌视觉" loading="lazy"><img src="assets/covers-v2/laundry-100ml.webp" alt="100ml 洗衣液视觉更新" loading="lazy"><img src="assets/covers-v2/laundry-500ml.webp" alt="500ml 洗衣液视觉更新" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛 / 电商内容</span><span class="project-title">洗护与香氛视觉合集</span><span class="project-summary">香薰片、100ml 与 500ml 洗衣液，分别呈现品牌氛围、便携洗护与家庭洗护的完整视觉内容。</span><span class="project-link">进入完整合集 <b aria-hidden="true">↗</b></span></span></a></article>
           <article class="project-card" id="product-project"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/kettle-1s.webp" alt="米家电水壶 1S 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 家居产品 / 详情页</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">围绕家居场景、材质细节和产品功能，建立完整的消费电子详情页视觉叙事。</span><span class="project-link">快速查看整套作品 <b aria-hidden="true">↗</b></span></span></button></article>
           <article class="project-card"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/robot-series.webp" alt="云米扫拖机器人项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 消费电子 / 产品矩阵</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">以功能场景、结构拆解和产品矩阵，完成扫拖机器人系列的视觉重塑。</span><span class="project-link">快速查看整套作品 <b aria-hidden="true">↗</b></span></span></button></article>
         </div>
@@ -856,10 +862,13 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
     <section class="section archive" aria-labelledby="archive-title">
       <div class="container">
         <div class="section-head archive-head"><div><p class="eyebrow">DOMESTIC PROJECT ARCHIVE</p><h2 id="archive-title">更多国内项目</h2></div><p>覆盖小家电详情页、功能可视化、结构拆解与科技产品视觉表达。</p></div>
-        <div class="archive-list">
-          <button class="archive-row" type="button" data-project="p1" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p3" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
-          <button class="archive-row" type="button" data-project="p4" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+        <div class="archive-browser">
+          <div class="archive-list">
+            <button class="archive-row is-active" type="button" data-project="p1" data-preview="assets/covers-v2/robot-series.webp" data-preview-label="Robot Vac V1 · LDS 激光导航" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p3" data-preview="assets/covers-v2/handheld-vacuum.webp" data-preview-label="Viomi Vacuum · 结构化拆解" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Viomi Vacuum</span><span class="archive-detail">手持吸尘器结构化拆解</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+            <button class="archive-row" type="button" data-project="p4" data-preview="assets/covers-v2/air-purifier.webp" data-preview-label="Air Purifier · 科技视觉表达" aria-haspopup="dialog"><span class="archive-year">2019 · 国内</span><span class="archive-name">Air Purifier</span><span class="archive-detail">空气净化器视觉表达</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
+          </div>
+          <figure class="archive-preview" aria-live="polite"><div><img src="assets/covers-v2/robot-series.webp" alt="Robot Vac V1 项目预览"></div><figcaption><span>PREVIEW</span><b>Robot Vac V1 · LDS 激光导航</b></figcaption></figure>
         </div>
         <aside class="cross-edition-card" id="legacy-overseas">
           <div><span>OVERSEAS EXPERIENCE</span><h3>Amazon Listing、A+ 与多语言视觉项目</h3><p>海外作品已独立整理，国内与海外案例不再混在同一条浏览路径中。</p></div>
@@ -939,9 +948,17 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
       document.querySelector('meta[name="description"]')?.setAttribute('content', '邝先生的国内小家电视觉作品集，重点展示米家电水壶、扫拖机器人、手持吸尘器、空气净化器及完整电商详情设计。');
       const editionLink = document.querySelector('.appliance-edition-link');
       if (editionLink) {
-        editionLink.href = 'domestic.html';
-        editionLink.innerHTML = '<span class="edition-label">国内</span>综合版 ↗';
-        editionLink.setAttribute('aria-label', '返回国内综合作品集');
+        const editionTitle = editionLink.querySelector('b');
+        const editionDescription = editionLink.querySelector(':scope > span');
+        if (editionTitle && editionDescription) {
+          document.querySelector('.version-panel a.is-current')?.classList.remove('is-current');
+          editionLink.classList.add('is-current');
+          editionLink.setAttribute('aria-current', 'page');
+        } else {
+          editionLink.href = 'domestic.html';
+          editionLink.innerHTML = '<span class="edition-label">国内</span>综合版 ↗';
+        }
+        editionLink.setAttribute('aria-label', '当前为国内小家电作品集');
       }
 
       const strip = document.querySelector('.commerce-strip-track');
@@ -1052,6 +1069,31 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
 
     document.querySelectorAll('[data-project]').forEach(button => {
       button.addEventListener('click', () => openProject(button.dataset.project, button));
+    });
+    const archivePreview = document.querySelector('.archive-preview');
+    const previewImage = archivePreview?.querySelector('img');
+    const previewLabel = archivePreview?.querySelector('figcaption b');
+    document.querySelectorAll('.archive-row[data-preview]').forEach(row => {
+      const updateArchivePreview = () => {
+        if (!archivePreview || !previewImage || row.classList.contains('is-active')) return;
+        document.querySelectorAll('.archive-row[data-preview]').forEach(item => item.classList.toggle('is-active', item === row));
+        archivePreview.classList.add('is-changing');
+        const nextSource = row.dataset.preview;
+        const nextLabel = row.dataset.previewLabel || row.querySelector('.archive-name')?.textContent || '';
+        window.setTimeout(() => {
+          previewImage.src = nextSource;
+          previewImage.alt = `${nextLabel} 项目预览`;
+          if (previewLabel) previewLabel.textContent = nextLabel;
+          archivePreview.classList.remove('is-changing');
+        }, 140);
+      };
+      row.addEventListener('pointerenter', updateArchivePreview);
+      row.addEventListener('focus', updateArchivePreview);
+    });
+    const versionMenu = document.querySelector('.version-menu');
+    versionMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => versionMenu.removeAttribute('open')));
+    document.addEventListener('pointerdown', event => {
+      if (versionMenu?.open && !versionMenu.contains(event.target)) versionMenu.removeAttribute('open');
     });
     document.getElementById('dialog-close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', event => {
