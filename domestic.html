@@ -8,9 +8,6 @@
   <script>
     try {
       document.documentElement.classList.add(new URLSearchParams(location.search).get('edition') === 'appliance' ? 'view-appliance' : 'view-domestic');
-      if (localStorage.getItem('kuang-theme') === 'dark') {
-        document.documentElement.dataset.theme = 'dark';
-      }
     } catch (_) {}
   </script>
   <style>
@@ -763,14 +760,15 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
   html.view-appliance .project-title, html.view-appliance .project-card--featured .project-title { font-size: 36px; }
 }
 </style>
-<link rel="stylesheet" href="cross-page-refinement.css">
+  <link rel="stylesheet" href="cross-page-refinement.css">
+  <link rel="stylesheet" href="portfolio-compact.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="index.html" aria-label="KUANG STUDIO，返回作品集总入口"><span class="brand-mark" aria-hidden="true"></span>KUANG <span>STUDIO</span></a>
       <nav class="nav-links" aria-label="主导航">
-        <a href="#expertise">专长</a>
+        <a href="#works">项目</a>
         <a href="#works">精选作品</a>
         <a href="#experience">经历</a>
       </nav>
@@ -784,7 +782,6 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
             <a href="brand.html"><small>04</small><b>品牌内容</b><span>品牌系统 / 香氛 / 内容视觉</span></a>
           </div>
         </details>
-        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换深色模式" aria-pressed="false">☾</button>
         <a class="button button-primary" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -802,8 +799,8 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">DOMESTIC E-COMMERCE / BRAND CONTENT</p>
-          <h1 id="hero-title">国内电商视觉<br><em>品牌内容设计。</em></h1>
-          <p class="hero-copy">聚焦明星整合营销、洗护香氛与消费电子项目，把品牌主张、商品卖点和平台节奏组织成清晰、完整、可延展的视觉内容。</p>
+          <h1 id="hero-title">国内电商与<br><em>整合营销。</em></h1>
+          <p class="hero-copy">明星营销、洗护香氛与消费电子完整项目。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#works">查看精选项目 <span aria-hidden="true">↓</span></a>
             <a class="button button-outline" href="#experience">查看经历</a>
@@ -823,32 +820,11 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
       </div>
     </section>
 
-    <div class="container proof" aria-label="项目方向摘要">
-      <div class="proof-item"><strong>国内电商</strong><span>天猫 / 京东 / 大促与详情页</span></div>
-      <div class="proof-item"><strong>整合营销</strong><span>明星视觉 / 粉丝互动 / 商品承接</span></div>
-      <div class="proof-item"><strong>跨市场</strong><span>国内经验延展至 Listing 与 A+</span></div>
-    </div>
-
-    <section class="section" id="expertise" aria-labelledby="expertise-title">
-      <div class="container">
-        <div class="section-head">
-          <div><p class="eyebrow">WORKFLOW</p><h2 id="expertise-title">从商业任务，<br>到完整内容交付。</h2></div>
-          <p>一条连续工作路径，覆盖判断、结构、视觉生产与跨渠道延展。</p>
-        </div>
-        <div class="expertise-grid">
-          <article class="expertise-card"><span class="expertise-number">01 / DEFINE</span><h3>明确商业任务</h3><p>确认人群、渠道和项目目标，判断品牌、产品、人物与利益点的视觉优先级。</p></article>
-          <article class="expertise-card"><span class="expertise-number">02 / STRUCTURE</span><h3>建立内容结构</h3><p>组织首屏、卖点、场景、权益与行动路径，让信息顺序服务真实阅读和购买判断。</p></article>
-          <article class="expertise-card"><span class="expertise-number">03 / PRODUCE</span><h3>完成视觉生产</h3><p>统筹拍摄、渲染、精修和版式，把复杂信息转化为清楚、统一的画面。</p></article>
-          <article class="expertise-card"><span class="expertise-number">04 / EXTEND</span><h3>统一渠道延展</h3><p>将核心视觉延展至天猫、京东、社媒、直播与海外平台，保持表达一致。</p></article>
-        </div>
-      </div>
-    </section>
-
     <section class="section works" id="works" aria-labelledby="works-title">
       <div class="container">
         <div class="section-head">
-          <div><p class="eyebrow">SELECTED DOMESTIC WORK</p><h2 id="works-title">三类国内项目，<br>直接看完整作品。</h2></div>
-          <p>明星营销、洗护香氛与消费电子，按完整项目而非单张图片呈现。</p>
+          <div><p class="eyebrow">SELECTED DOMESTIC WORK</p><h2 id="works-title">重点项目。</h2></div>
+          <p>明星营销、洗护香氛与消费电子完整案例。</p>
         </div>
         <div class="work-grid">
           <article class="project-card project-card--domestic project-card--featured" id="campaign-project"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕双十一整合营销完整项目"><span class="project-cover"><img src="assets/covers-v2/celebrity-campaign.webp" alt="几光与刘雨昕双十一整合营销新版视觉" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销 / 双十一</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">从代言人主视觉、粉丝互动到商品承接与销售战报，以一套视觉系统贯穿品牌曝光和电商转化。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
@@ -856,12 +832,13 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
           <article class="project-card" id="product-project"><button type="button" data-project="p5" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/kettle-1s.webp" alt="米家电水壶 1S 项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 家居产品 / 详情页</span><span class="project-title">米家电水壶 1S</span><span class="project-summary">围绕家居场景、材质细节和产品功能，建立完整的消费电子详情页视觉叙事。</span><span class="project-link">快速查看整套作品 <b aria-hidden="true">↗</b></span></span></button></article>
           <article class="project-card"><button type="button" data-project="p2" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/robot-series.webp" alt="云米扫拖机器人项目封面" loading="lazy"></span><span class="project-body"><span class="project-meta">国内电商 · 消费电子 / 产品矩阵</span><span class="project-title">云米扫拖机器人</span><span class="project-summary">以功能场景、结构拆解和产品矩阵，完成扫拖机器人系列的视觉重塑。</span><span class="project-link">快速查看整套作品 <b aria-hidden="true">↗</b></span></span></button></article>
         </div>
+        <div class="workflow-inline" aria-label="项目工作流程"><span>01 明确任务</span><span>02 组织内容</span><span>03 完成视觉</span><span>04 渠道延展</span></div>
       </div>
     </section>
 
     <section class="section archive" aria-labelledby="archive-title">
       <div class="container">
-        <div class="section-head archive-head"><div><p class="eyebrow">DOMESTIC PROJECT ARCHIVE</p><h2 id="archive-title">更多国内项目</h2></div><p>覆盖小家电详情页、功能可视化、结构拆解与科技产品视觉表达。</p></div>
+        <div class="section-head archive-head"><div><p class="eyebrow">PROJECT INDEX</p><h2 id="archive-title">更多项目</h2></div><p>小家电详情、功能表达与产品视觉。</p></div>
         <div class="archive-browser">
           <div class="archive-list">
             <button class="archive-row is-active" type="button" data-project="p1" data-preview="assets/covers-v2/robot-series.webp" data-preview-label="Robot Vac V1 · LDS 激光导航" aria-haspopup="dialog"><span class="archive-year">2020 · 国内</span><span class="archive-name">Robot Vac V1</span><span class="archive-detail">LDS 激光导航卖点可视化</span><span class="archive-arrow" aria-hidden="true">↗</span></button>
@@ -877,20 +854,9 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
       </div>
     </section>
 
-    <section class="method" aria-labelledby="method-title">
-      <div class="container">
-        <div class="section-head"><div><p class="eyebrow">HOW I WORK</p><h2 id="method-title">先理解业务目标，<br>再决定画面怎么说。</h2></div><p>把传播任务、商品卖点与渠道节奏放到同一条设计路径中，兼顾品牌表达与生意结果。</p></div>
-        <div class="method-grid">
-          <article class="method-step"><span>01 / 传播目标</span><h3>明确注意力入口</h3><p>先确认人群、渠道和活动任务，判断明星、产品、利益点与品牌信息的视觉优先级。</p></article>
-          <article class="method-step"><span>02 / 转化路径</span><h3>组织内容承接</h3><p>让主视觉建立第一印象，互动和详情解释价值，商品、权益与行动按钮完成转化。</p></article>
-          <article class="method-step"><span>03 / 系统延展</span><h3>统一跨渠道体验</h3><p>在天猫、京东、社媒、直播和海外平台之间建立可复用的视觉规范与交付流程。</p></article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container">
-        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">从国内电商一线，<br>到跨市场设计管理。</h2></div><p>国内大促、消费电子与洗护品牌项目构成经验底座，随后延伸至海外产品视觉、Amazon 内容和团队流程建设。</p></div>
+        <div class="section-head"><div><p class="eyebrow">EXPERIENCE</p><h2 id="experience-title">相关经历。</h2></div><p>国内电商、消费电子与跨市场设计管理。</p></div>
         <div class="timeline">
           <article class="career-row"><span class="career-year">2024 — 至今</span><div class="career-role"><h3>广州奕至家居</h3><span>Design Manager · 返聘</span></div><p>重构海外设计团队与可视化流程，建立以转化率为核心的视觉评估体系，并引入 AIGC 工作流。核心产品转化率提升 10%–30%。</p></article>
           <article class="career-row"><span class="career-year">2023 — 2024</span><div class="career-role"><h3>广东久量科技</h3><span>Design Supervisor</span></div><p>负责洗护系列品牌视觉建设与新品内容设计，统筹外拍、精修渲染及平台活动视觉更新。</p></article>
@@ -916,9 +882,6 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
 
   <script>
     if (location.hash === '#legacy-overseas') requestAnimationFrame(() => document.getElementById('legacy-overseas')?.scrollIntoView({block:'center'}));
-    const expertiseSection = document.getElementById('expertise');
-    const archiveSection = document.querySelector('.archive');
-    if (expertiseSection && archiveSection) archiveSection.after(expertiseSection);
     const B = 'https://i.postimg.cc/';
     const pd = {
             p1:{t:"云米互联网扫拖机器人 1",s:[{t:"视觉呈现",i:["FKSTMp98/2018-2020-zuo-pin-ji-jing-xuan-1-01.jpg","JhXpfx1S/2018-2020-zuo-pin-ji-jing-xuan-1-02.jpg","mr9mvjLx/2018-2020-zuo-pin-ji-jing-xuan-1-03.jpg","KYT06fZd/2018-2020-zuo-pin-ji-jing-xuan-1-04.jpg","6QZMkcWB/2018-2020-zuo-pin-ji-jing-xuan-1-05.jpg","rwLQ2WHc/2018-2020-zuo-pin-ji-jing-xuan-2.png","W16SN3BB/2018-2020-zuo-pin-ji-jing-xuan-3.png","MT89qBTN/2018-2020-zuo-pin-ji-jing-xuan-4-01.jpg","ZqNwGHbT/2018-2020-zuo-pin-ji-jing-xuan-4-02.jpg","fLh8DdLG/2018-2020-zuo-pin-ji-jing-xuan-4-03.jpg","Sspgk9Ry/2018-2020-zuo-pin-ji-jing-xuan-4-04.jpg","xCS6nm8f/2018-2020-zuo-pin-ji-jing-xuan-4-05.jpg","4dTWscys/2018-2020-zuo-pin-ji-jing-xuan-4-06.jpg","3RHtYGNJ/2018-2020-zuo-pin-ji-jing-xuan-4-07.jpg","PxkSTDJp/2018-2020-zuo-pin-ji-jing-xuan-4-08.jpg"]}]},
@@ -966,7 +929,7 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
 
       document.querySelector('.hero .eyebrow').textContent = '国内小家电视觉 / 消费电子详情 / 产品内容系统';
       document.getElementById('hero-title').innerHTML = '把复杂功能讲清楚，<br><em>也把产品价值做出来。</em>';
-      document.querySelector('.hero-copy').textContent = '我是邝先生，长期参与国内小家电与消费电子项目。从米家电水壶、扫拖机器人、手持吸尘器到空气净化器，以场景、结构、材质和功能信息建立完整的商品详情视觉。';
+      document.querySelector('.hero-copy').textContent = '吸尘器、扫地机器人与厨房小电完整详情项目。';
       const heroData = [
         ['assets/covers-v2/handheld-vacuum.webp','云米手持无线吸尘器完整产品站','01','手持吸尘器'],
         ['assets/covers-v2/robot-1x.webp','云米互联网扫拖机器人 1X 完整产品站','02','激光扫地机'],
@@ -981,27 +944,8 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
         tile.querySelector('figcaption').innerHTML = `<span>${num}</span><b>${label}</b>`;
       });
 
-      const proof = document.querySelectorAll('.proof-item');
-      proof[0].innerHTML = '<strong>50+ 项目</strong><span>小家电详情页与产品视觉</span>';
-      proof[1].innerHTML = '<strong>全链路</strong><span>场景 / 结构 / 功能 / 长图详情</span>';
-      proof[2].innerHTML = '<strong>多品类</strong><span>清洁电器 / 厨房小电 / 环境电器</span>';
-
-      document.querySelector('#expertise .eyebrow').textContent = 'PRODUCT CONTENT WORKFLOW';
-      document.getElementById('expertise-title').innerHTML = '从理解产品，<br>到完成整套内容。';
-      document.querySelector('#expertise .section-head > p').textContent = '把产品分析、信息结构、视觉生产与渠道延展合并为一条完整路径，减少重复说明。';
-      const expertise = [
-        ['理解产品','从参数、结构、用户场景与竞品表达中，筛选真正影响购买判断的核心价值。'],
-        ['建立内容结构','规划主图、功能说明、结构拆解、使用场景与长图详情的连续阅读顺序。'],
-        ['完成视觉生产','通过产品渲染、材质精修、场景表达与版式设计，把技术功能转化为清晰画面。'],
-        ['统一交付延展','将整套产品内容延展到天猫、京东、大促与品牌触点，保持表达一致。']
-      ];
-      document.querySelectorAll('.expertise-card').forEach((card, index) => {
-        card.querySelector('h3').textContent = expertise[index][0];
-        card.querySelector('p').textContent = expertise[index][1];
-      });
-
-      document.getElementById('works-title').innerHTML = '国内小家电与消费电子，<br>优先展示。';
-      document.querySelector('#works .section-head > p').textContent = '以完整详情页项目为核心，优先呈现厨房小电、清洁电器与环境电器的视觉设计经验。';
+      document.getElementById('works-title').textContent = '小家电重点项目。';
+      document.querySelector('#works .section-head > p').textContent = '主图、功能图、场景图与完整详情页。';
       document.querySelector('.work-grid').innerHTML = `
         <article class="project-card project-card--domestic project-card--featured"><button type="button" data-project="p3" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器完整产品站" loading="lazy"></span><span class="project-body"><span class="project-meta">清洁电器 · 产品站 / 结构与性能</span><span class="project-title">云米手持无线吸尘器</span><span class="project-summary">从核心吸力、气旋分离、刷头结构到家庭清洁场景，完整组织产品卖点与阅读节奏。</span><span class="project-link">查看 24 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
         <article class="project-card project-card--domestic project-card--featured"><button type="button" data-project="p12" aria-haspopup="dialog"><span class="project-cover"><img src="assets/covers-v2/robot-1x.webp" alt="云米互联网扫拖机器人 1X 完整产品站" loading="lazy"></span><span class="project-body"><span class="project-meta">清洁电器 · 激光导航 / 完整详情</span><span class="project-title">云米互联网扫拖机器人 1X</span><span class="project-summary">围绕 LDS 导航、扫拖一体、路径规划与全屋互联，建立连贯的智能清洁产品叙事。</span><span class="project-link">查看 25 张完整作品 <b aria-hidden="true">↗</b></span></span></button></article>
@@ -1013,9 +957,6 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
         <article class="project-card"><a href="projects/celebrity-commerce-portfolio/index.html" aria-label="查看几光与刘雨昕完整项目"><span class="project-cover"><img src="assets/covers-v2/celebrity-campaign.webp" alt="几光与刘雨昕明星整合营销" loading="lazy"></span><span class="project-body"><span class="project-meta">国内品牌 · 明星整合营销</span><span class="project-title">几光 × 刘雨昕</span><span class="project-summary">完整保留国内明星营销与电商承接经验。</span><span class="project-link">进入完整项目 <b aria-hidden="true">↗</b></span></span></a></article>
         <article class="project-card"><a href="projects/laundry-care-collection/index.html" aria-label="查看洗护与香氛视觉合集"><span class="project-cover project-cover--duo"><img src="assets/covers-v2/laundry-100ml.webp" alt="100ml 洗衣液视觉"><img src="assets/covers-v2/laundry-500ml.webp" alt="500ml 洗衣液视觉"></span><span class="project-body"><span class="project-meta">国内品牌 · 洗护 / 香氛</span><span class="project-title">洗护与香氛视觉合集</span><span class="project-summary">作为补充品类，完整保留洗护详情与品牌视觉作品。</span><span class="project-link">进入完整合集 <b aria-hidden="true">↗</b></span></span></a></article>`;
 
-      document.querySelector('.archive .eyebrow').textContent = 'COMPLETE DOMESTIC PROJECT ARCHIVE';
-      document.getElementById('archive-title').textContent = '小家电完整项目与延展经验';
-      document.querySelector('.archive .section-head > p').textContent = '继续查看机器人完整项目，以及保留的国内品牌和海外电商案例。';
       document.querySelector('.contact .eyebrow').textContent = 'LET’S WORK TOGETHER';
       document.querySelector('.contact h2').innerHTML = '把产品价值，<br>讲清楚。';
       document.querySelector('.contact-main > div > p:last-child').textContent = '小家电详情 / 产品视觉 / 功能表达 / 品牌延展';
@@ -1133,21 +1074,8 @@ html.view-appliance .dialog-section img { border-radius: 14px; }
       if (img.complete && img.naturalWidth === 0) handleError();
     });
 
-    const themeToggle = document.getElementById('theme-toggle');
-    function applyTheme(theme) {
-      const dark = theme === 'dark';
-      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      themeToggle.setAttribute('aria-pressed', String(dark));
-      themeToggle.setAttribute('aria-label', dark ? '切换浅色模式' : '切换深色模式');
-      themeToggle.textContent = dark ? '☀' : '☾';
-    }
-    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
-    themeToggle.addEventListener('click', () => {
-      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('kuang-theme', next); } catch (_) {}
-    });
   </script>
+  <script src="portfolio-compact.js"></script>
 </body>
 </html>
 
