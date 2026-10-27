@@ -19,6 +19,11 @@
 
   const header=document.querySelector('.site-header');
   if(!header||!items.length)return;
+  const versionMenu=header.querySelector('.unified-version-menu');
+  versionMenu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>versionMenu.removeAttribute('open')));
+  document.addEventListener('pointerdown',event=>{
+    if(versionMenu?.open&&!versionMenu.contains(event.target))versionMenu.removeAttribute('open');
+  });
   const rail=document.createElement('nav');
   rail.className='project-rail';
   rail.setAttribute('aria-label','当前作品项目');
