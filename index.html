@@ -51,6 +51,7 @@
 
     .selector-grid{display:grid;grid-template-columns:minmax(520px,.92fr) minmax(340px,.55fr);gap:clamp(60px,10vw,180px);align-items:end;margin-top:auto;padding-top:44px;padding-bottom:43px}
     .project-list{margin:0;padding:0;border-top:1px solid var(--line);list-style:none}
+    .mobile-card-visual{display:none}
     .project-link{position:relative;display:grid;grid-template-columns:54px minmax(180px,1fr) minmax(180px,.7fr) 38px;align-items:center;gap:16px;min-height:77px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .28s,background .28s}
     .project-link::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 17%,transparent),transparent 72%);opacity:0;transition:opacity .25s}
     .project-link:hover,.project-link:focus-visible,.project-link.is-active{padding-inline:15px;background:rgba(255,255,255,.035);outline:none}
@@ -95,17 +96,25 @@
     @media(max-width:650px){
       .wrap{width:min(calc(100% - 28px),1500px)}
       .header-inner{height:58px}.identity span,.header-center,.contact>span{display:none}.stage{padding-top:58px}
-      .stage-head{padding-top:30px}h1{font-size:clamp(44px,13vw,62px)}
-      .head-meta{gap:22px}.head-meta span:last-child{display:none}
-      .selector-grid{margin-top:36px;padding-top:0;padding-bottom:26px;gap:27px}
-      .project-link{grid-template-columns:34px 1fr 32px;min-height:64px;gap:10px}.project-kind{display:none}.project-title{font-size:27px}
-      .project-link:hover,.project-link:focus-visible,.project-link.is-active{padding-inline:8px}
-      .detail-rule{margin-bottom:17px}.detail h2{margin:12px 0 10px;font-size:43px}.detail-desc{min-height:0;font-size:12px}
-      .detail-tags{margin-top:14px}.detail-action{margin-top:20px;padding:13px 0}
-      .stage-foot{padding:14px 0}.stage-foot span:first-child{display:none}
-      .visual img{object-position:var(--mobile-position,var(--position,center));filter:saturate(.72) brightness(.5)}
-      .visual::after{background:linear-gradient(180deg,rgba(5,6,8,.58),rgba(5,6,8,.82) 44%,#050608 88%)}
-      .grid,.ambient{display:none}
+      .selector{min-height:100svh;overflow-x:hidden;overflow-y:visible;background:linear-gradient(180deg,#080a0d,#050608)}
+      .stage{min-height:100svh}.stage-head{padding-top:24px;gap:14px}h1{max-width:520px;font-size:clamp(43px,12.6vw,58px);line-height:.91}
+      .eyebrow{margin-bottom:9px;font-size:8px}.head-meta{gap:20px;padding:0}.head-meta span{gap:3px}.head-meta span:last-child{display:none}
+      .selector-grid{display:block;margin-top:24px;padding:0 0 18px}
+      .project-list{display:flex;gap:12px;margin-inline:-14px;padding:0 14px 16px;border:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:14px;overscroll-behavior-inline:contain;scrollbar-width:none}
+      .project-list::-webkit-scrollbar{display:none}
+      .project-link{isolation:isolate;flex:0 0 min(82vw,390px);display:flex;flex-direction:column;min-height:clamp(350px,52svh,500px);padding:20px;border:1px solid rgba(255,255,255,.16);border-radius:24px;overflow:hidden;align-items:flex-start;justify-content:flex-end;scroll-snap-align:center;scroll-snap-stop:always;box-shadow:0 22px 60px rgba(0,0,0,.32);transition:transform .3s,opacity .3s,border-color .3s}
+      .project-link::before{z-index:0;background:linear-gradient(180deg,rgba(4,5,7,.08) 24%,rgba(4,5,7,.34) 54%,rgba(4,5,7,.96) 100%);opacity:1}
+      .project-link:not(.is-active){opacity:.62;transform:scale(.965)}
+      .project-link.is-active{padding:20px;border-color:color-mix(in srgb,var(--accent) 76%,white 8%);transform:scale(1)}
+      .mobile-card-visual{position:absolute;inset:0;z-index:-1;display:block}.mobile-card-visual img{width:100%;height:100%;object-fit:cover;object-position:var(--card-position,center);filter:saturate(.88) brightness(.82);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+      .project-link.is-active .mobile-card-visual img{transform:scale(1.035)}
+      .project-no{position:absolute;top:20px;left:20px;padding:7px 9px;border-radius:999px;background:rgba(5,6,8,.62);color:#fff;backdrop-filter:blur(10px)}
+      .project-title{max-width:86%;font-size:36px;line-height:1;letter-spacing:-.06em;text-shadow:0 3px 24px rgba(0,0,0,.5)}
+      .project-kind{position:absolute;left:20px;bottom:70px;display:block;color:color-mix(in srgb,var(--accent) 78%,white);font-size:8px}
+      .project-arrow{position:absolute;top:17px;right:17px;width:38px;height:38px;border-color:rgba(255,255,255,.45);background:rgba(5,6,8,.48);backdrop-filter:blur(10px)}
+      .project-link:hover,.project-link:focus-visible,.project-link.is-active{padding-inline:20px}
+      .detail{display:none}.stage-foot{padding:12px 0 16px}.stage-foot span:first-child{display:block}.stage-foot span:first-child::after{content:"左右滑动 · 点击进入";font-size:8px}.stage-foot span:first-child{font-size:0}.stage-foot span:last-child{display:none}
+      .visuals,.grid,.ambient,.ghost{display:none}
     }
     @media(max-height:760px) and (min-width:651px){
       .stage-head{padding-top:30px}.selector-grid{padding-top:28px;padding-bottom:24px}.project-link{min-height:66px}.detail h2{font-size:54px}.detail-action{margin-top:20px}
@@ -145,15 +154,19 @@
       <section class="selector-grid" aria-label="选择作品方向">
         <nav class="project-list load-in">
           <a class="project-link is-active" href="overseas.html" data-index="0" data-accent="#2997ff" data-kind="AMAZON / LISTING / A+" data-title="海外电商" data-desc="主副图、A+、多语言内容与智能家居产品视觉。" data-tags="ECHO|CASSINI|海外照明">
+            <span class="mobile-card-visual" style="--card-position:58% center"><img src="assets/covers-v2/echo-desk-lamp.webp" alt="" loading="eager"></span>
             <span class="project-no">01</span><span class="project-title">海外电商</span><span class="project-kind">OVERSEAS</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="domestic.html?edition=appliance" data-index="1" data-accent="#7ec6ff" data-kind="PRODUCT / DETAIL / FUNCTION" data-title="国内小家电" data-desc="产品主视觉、功能表达、场景渲染与完整详情页。" data-tags="吸尘器|扫地机器人|厨房小电">
+            <span class="mobile-card-visual" style="--card-position:55% center"><img src="assets/covers-v2/handheld-vacuum.webp" alt="" loading="lazy"></span>
             <span class="project-no">02</span><span class="project-title">国内小家电</span><span class="project-kind">APPLIANCE</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="domestic.html" data-index="2" data-accent="#ff673f" data-kind="CAMPAIGN / COMMERCE / CONTENT" data-title="国内营销" data-desc="明星营销、平台活动与商品内容。" data-tags="几光 × 刘雨昕|洗护香氛|国内大促">
+            <span class="mobile-card-visual" style="--card-position:58% center"><img src="assets/covers-v2/celebrity-campaign.webp" alt="" loading="lazy"></span>
             <span class="project-no">03</span><span class="project-title">国内营销</span><span class="project-kind">DOMESTIC</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="brand.html" data-index="3" data-accent="#d6c1a5" data-kind="BRAND / IMAGE / SYSTEM" data-title="品牌内容" data-desc="品牌视觉、产品内容与跨渠道视觉延展。" data-tags="RUFFY LIFE|香氛内容|整合视觉">
+            <span class="mobile-card-visual" style="--card-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt="" loading="lazy"></span>
             <span class="project-no">04</span><span class="project-title">品牌内容</span><span class="project-kind">BRAND</span><span class="project-arrow">↗</span>
           </a>
         </nav>
@@ -176,7 +189,7 @@
 
   <script>
     (() => {
-      const root=document.documentElement,links=[...document.querySelectorAll('.project-link')],visuals=[...document.querySelectorAll('.visual')],
+      const root=document.documentElement,links=[...document.querySelectorAll('.project-link')],visuals=[...document.querySelectorAll('.visual')],projectList=document.querySelector('.project-list'),mobileQuery=matchMedia('(max-width:650px)'),
         detail={kind:document.getElementById('detail-kind'),count:document.getElementById('detail-count'),title:document.getElementById('detail-title'),desc:document.getElementById('detail-desc'),tags:document.getElementById('detail-tags'),action:document.getElementById('detail-action')},
         ghost=document.getElementById('ghost'),curtain=document.querySelector('.curtain'),curtainLabel=document.getElementById('curtain-label'),
         reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -203,6 +216,10 @@
         link.addEventListener('focus',()=>select(index));
         link.addEventListener('click',event=>transition(event,link));
       });
+      if(mobileQuery.matches&&'IntersectionObserver' in window){
+        const cardObserver=new IntersectionObserver(entries=>{const current=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(current)select(links.indexOf(current.target))},{root:projectList,threshold:[.55,.72,.9]});
+        links.forEach(link=>cardObserver.observe(link));
+      }
       detail.action.addEventListener('click',event=>transition(event,detail.action));
 
       const transition=(event,link)=>{
