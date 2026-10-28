@@ -199,7 +199,7 @@ button { font: inherit; }
   .hero::before { width: 90vw; height: 43%; top: auto; bottom: 9%; right: -16vw; }
   .hero-copy { display: contents; }
   .hero .eyebrow { order: 0; }
-  .hero h1 { order: 1; font-size: clamp(43px,13vw,62px); line-height: 1.03; }
+  .hero h1 { order: 1; max-width:100%; font-size: clamp(42px,11.5vw,52px); line-height: .98; letter-spacing:-.055em; text-wrap:balance; word-break:keep-all; overflow-wrap:normal; }
   .hero-lead { order: 2; margin-top: 0; font-size: 17px; }
   .hero-visual { order: 3; }
   .hero-visual::before { display: none; }

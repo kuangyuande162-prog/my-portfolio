@@ -157,7 +157,7 @@ footer{display:flex;justify-content:space-between;padding:24px clamp(24px,4vw,68
   html{scroll-padding-top:120px}
   .site-header{min-height:62px;padding-inline:17px}.brand small,.back-link{display:none}
   .hero-copy{min-height:auto;padding:72px 20px 54px}.hero-visual{min-height:76vw}
-  h1{font-size:clamp(49px,15vw,68px)}.intro{margin:26px 0 32px;font-size:14px}
+  h1{max-width:100%;font-size:clamp(42px,11.5vw,52px);line-height:.98;letter-spacing:-.055em;text-wrap:balance;word-break:keep-all;overflow-wrap:normal}.intro{margin:22px 0 28px;font-size:14px;line-height:1.65}
   .hero-meta span{grid-template-columns:90px 1fr}
   .hero-visual figcaption{left:18px;right:18px;bottom:16px}.hero-visual figcaption b{font-size:11px}
   .project-rail{top:62px;display:flex;overflow-x:auto}.project-rail a{flex:0 0 145px;min-height:52px}

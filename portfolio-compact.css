@@ -77,10 +77,20 @@ body.overseas-page .contact{padding-top:78px}
 .unified-contact:hover{transform:translateY(-2px)!important;background:var(--accent,var(--blue,#245bea))!important;color:#fff!important}
 
 @media(max-width:760px){
-  .unified-header .unified-header__inner{width:calc(100% - 28px)!important;min-height:58px!important;grid-template-columns:1fr auto!important;gap:12px!important}.unified-brand small,.unified-nav,.unified-contact{display:none!important}.unified-actions{grid-column:2!important}.unified-version-menu summary{min-height:36px!important;padding:0 12px!important}.unified-version-panel{top:calc(100% + 10px)!important;right:0!important}.unified-version-panel a{grid-template-columns:24px 100px 1fr!important;gap:8px!important;padding-inline:10px!important}.unified-version-panel a>span{overflow:hidden!important;text-overflow:ellipsis!important}
+  .unified-header .unified-header__inner{width:calc(100% - 28px)!important;min-height:58px!important;grid-template-columns:1fr auto!important;gap:12px!important}.unified-brand small,.unified-nav,.unified-contact{display:none!important}.unified-actions{grid-column:2!important}.unified-version-menu summary{width:38px!important;min-height:38px!important;justify-content:center!important;gap:0!important;padding:0!important;font-size:0!important}.unified-version-menu summary span{font-size:18px!important}.unified-version-panel{position:fixed!important;top:66px!important;right:14px!important;left:14px!important;width:auto!important;max-height:calc(100svh - 82px)!important;overflow:auto!important}.unified-version-panel a{grid-template-columns:24px 100px minmax(0,1fr)!important;gap:8px!important;padding-inline:10px!important}.unified-version-panel a>span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
   .project-rail{top:58px}.project-rail__inner{width:calc(100% - 28px);min-height:44px}.project-rail a{padding:8px 11px}.project-rail a:first-child{margin-left:-11px}
   .workflow-inline{grid-template-columns:1fr 1fr;margin-top:30px}.workflow-inline span{padding:13px 12px;border-bottom:1px solid rgba(20,24,30,.13)}.workflow-inline span:nth-child(2){border-right:0}.workflow-inline span:nth-child(n+3){border-bottom:0}.workflow-inline span:nth-child(3){padding-left:0}
   .brand-page .hero-grid{min-height:0!important}.brand-page .method{padding:66px 0!important}
+  html.view-domestic .hero h1,html.view-appliance .hero h1,body.overseas-page .hero h1,body.brand-page .hero h1{max-width:100%!important;line-height:.98!important;letter-spacing:-.055em!important;text-wrap:balance!important;word-break:keep-all!important;overflow-wrap:normal!important}
+  html.view-domestic .hero h1,html.view-appliance .hero h1{font-size:clamp(42px,11.2vw,50px)!important}
+  body.overseas-page .hero h1,body.brand-page .hero h1{font-size:clamp(44px,12vw,54px)!important}
+  html.view-appliance .hero-grid{padding:52px 0 42px!important}
+  html.view-appliance .hero-grid>div:first-child{max-width:360px!important}
+  html.view-appliance .hero-copy{max-width:330px!important;margin:22px auto 20px!important;font-size:14px!important;line-height:1.65!important}
+  html.view-appliance .hero-actions{gap:10px!important}
+  html.view-appliance .hero-actions .button{min-height:42px!important;font-size:14px!important}
+  body.overseas-page .hero{padding-top:46px!important}
+  body.brand-page .hero-grid{padding-top:52px!important}
 }
 
 @media(prefers-reduced-motion:reduce){.project-rail a,.unified-version-menu summary span,.unified-contact{transition:none!important}}
