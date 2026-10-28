@@ -76,6 +76,17 @@ body.overseas-page .contact{padding-top:78px}
 .unified-contact{min-height:42px!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;gap:12px!important;padding:0 17px!important;border-radius:999px!important;background:#11151b!important;color:#fff!important;font-size:10px!important;font-weight:780!important;text-decoration:none!important;white-space:nowrap!important;transition:transform .2s var(--compact-ease),background .2s var(--compact-ease)!important}
 .unified-contact:hover{transform:translateY(-2px)!important;background:var(--accent,var(--blue,#245bea))!important;color:#fff!important}
 
+/* Desktop keeps a horizontal editorial composition; mobile owns the centered stack below. */
+@media(min-width:1121px){
+  html.view-appliance .hero-grid{display:grid!important;grid-template-columns:minmax(420px,.78fr) minmax(620px,1.22fr)!important;align-items:center!important;gap:clamp(48px,5vw,88px)!important;min-height:720px!important;padding:72px 0!important;text-align:left!important}
+  html.view-appliance .hero-grid>div:first-child{max-width:560px!important;margin-inline:0!important}
+  html.view-appliance .eyebrow{margin:0 0 22px!important}
+  html.view-appliance .hero h1{max-width:560px!important;margin-inline:0!important;font-size:clamp(64px,5vw,88px)!important;line-height:.98!important;letter-spacing:-.06em!important;text-wrap:balance!important;word-break:keep-all!important;overflow-wrap:normal!important}
+  html.view-appliance .hero-copy{max-width:520px!important;margin:28px 0 24px!important;font-size:17px!important;line-height:1.68!important}
+  html.view-appliance .hero-actions{justify-content:flex-start!important;gap:22px!important}
+  html.view-appliance .hero-visual{width:100%!important;max-width:none!important;height:610px!important;margin:0!important;padding:10px!important;border-radius:28px!important}
+}
+
 @media(max-width:760px){
   .unified-header .unified-header__inner{width:calc(100% - 28px)!important;min-height:58px!important;grid-template-columns:1fr auto!important;gap:12px!important}.unified-brand small,.unified-nav,.unified-contact{display:none!important}.unified-actions{grid-column:2!important}.unified-version-menu summary{width:38px!important;min-height:38px!important;justify-content:center!important;gap:0!important;padding:0!important;font-size:0!important}.unified-version-menu summary span{font-size:18px!important}.unified-version-panel{position:fixed!important;top:66px!important;right:14px!important;left:14px!important;width:auto!important;max-height:calc(100svh - 82px)!important;overflow:auto!important}.unified-version-panel a{grid-template-columns:24px 100px minmax(0,1fr)!important;gap:8px!important;padding-inline:10px!important}.unified-version-panel a>span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
   .project-rail{top:58px}.project-rail__inner{width:calc(100% - 28px);min-height:44px}.project-rail a{padding:8px 11px}.project-rail a:first-child{margin-left:-11px}
