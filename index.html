@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="邝先生电商视觉设计作品集：海外电商、国内小家电、国内综合与品牌内容。">
+  <meta name="description" content="邝先生电商视觉设计作品集：海外电商、国内小家电、国内营销、品牌内容与玩具产品。">
   <title>KUANG｜电商视觉设计作品集</title>
   <style>
     :root{
@@ -140,6 +140,7 @@
       <figure class="visual" style="--position:center 48%;--mobile-position:55% center"><img src="assets/covers-v2/handheld-vacuum.webp" alt=""></figure>
       <figure class="visual" style="--position:center 42%;--mobile-position:58% center"><img src="assets/covers-v2/celebrity-campaign.webp" alt=""></figure>
       <figure class="visual" style="--position:center 50%;--mobile-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt=""></figure>
+      <figure class="visual" style="--position:center 54%;--mobile-position:52% center"><img src="assets/covers-v2/toy-collection.webp" alt=""></figure>
     </div>
     <div class="ambient" aria-hidden="true"></div>
     <div class="grid" aria-hidden="true"></div>
@@ -148,7 +149,7 @@
     <div class="stage wrap">
       <section class="stage-head load-in" aria-labelledby="page-title">
         <div><p class="eyebrow">KUANG / E-COMMERCE VISUAL DESIGN</p><h1 id="page-title">选择方向，<span>进入项目。</span></h1></div>
-        <div class="head-meta"><span><b>04</b>PORTFOLIO EDITIONS</span><span><b>2018—2026</b>SELECTED WORK</span></div>
+        <div class="head-meta"><span><b>05</b>PORTFOLIO EDITIONS</span><span><b>2018—2026</b>SELECTED WORK</span></div>
       </section>
 
       <section class="selector-grid" aria-label="选择作品方向">
@@ -168,6 +169,10 @@
           <a class="project-link" href="brand.html" data-index="3" data-accent="#d6c1a5" data-kind="BRAND / IMAGE / SYSTEM" data-title="品牌内容" data-desc="品牌视觉、产品内容与跨渠道视觉延展。" data-tags="RUFFY LIFE|香氛内容|整合视觉">
             <span class="mobile-card-visual" style="--card-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt="" loading="lazy"></span>
             <span class="project-no">04</span><span class="project-title">品牌内容</span><span class="project-kind">BRAND</span><span class="project-arrow">↗</span>
+          </a>
+          <a class="project-link" href="projects/toy-product-portfolio/index.html" data-index="4" data-accent="#ff5f32" data-kind="TOY / GIFT / AMAZON" data-title="玩具产品" data-desc="玩具与创意礼物的主副图、场景内容和完整 A+。" data-tags="户外粉笔|捏捏玩具|针织礼物">
+            <span class="mobile-card-visual" style="--card-position:52% center"><img src="assets/covers-v2/toy-collection.webp" alt="" loading="lazy"></span>
+            <span class="project-no">05</span><span class="project-title">玩具产品</span><span class="project-kind">TOY</span><span class="project-arrow">↗</span>
           </a>
         </nav>
 
@@ -202,7 +207,7 @@
         links.forEach((item,i)=>{item.classList.toggle('is-active',i===active);item.setAttribute('aria-current',i===active?'page':'false')});
         visuals.forEach((item,i)=>item.classList.toggle('is-active',i===active));
         detail.kind.textContent=link.dataset.kind;
-        detail.count.textContent=String(active+1).padStart(2,'0')+' / 04';
+        detail.count.textContent=String(active+1).padStart(2,'0')+' / '+String(links.length).padStart(2,'0');
         detail.title.textContent=link.dataset.title;
         detail.desc.textContent=link.dataset.desc;
         detail.tags.innerHTML=link.dataset.tags.split('|').map(tag=>'<span>'+tag+'</span>').join('');
