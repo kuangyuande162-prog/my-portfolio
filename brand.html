@@ -54,6 +54,7 @@
   </style>
   <link rel="stylesheet" href="cross-page-refinement.css">
   <link rel="stylesheet" href="portfolio-compact.css">
+  <link rel="stylesheet" href="gallery.css">
 </head>
 <body class="brand-page">
 <header class="site-header unified-header"><div class="container unified-header__inner"><a class="unified-brand" href="index.html" aria-label="KUANG STUDIO，返回作品集总入口"><span class="unified-brand__mark" aria-hidden="true"></span><strong>KUANG</strong><small>STUDIO</small></a><nav class="unified-nav" aria-label="主导航"><a href="#campaign">精选项目</a><a href="#collection">更多作品</a><a href="#method">工作方法</a></nav><div class="unified-actions"><details class="unified-version-menu"><summary>作品版本 <span aria-hidden="true">＋</span></summary><div class="unified-version-panel"><a href="index.html"><small>00</small><b>作品集总入口</b><span>选择方向 / 进入项目</span></a><a href="domestic.html"><small>01</small><b>国内综合</b><span>明星营销 / 洗护 / 消费电子</span></a><a href="domestic.html?edition=appliance"><small>02</small><b>国内小家电</b><span>产品视觉 / 功能 / 详情页</span></a><a href="overseas.html"><small>03</small><b>海外电商</b><span>Amazon Listing / A+</span></a><a class="is-current" href="brand.html"><small>04</small><b>品牌内容</b><span>品牌系统 / 香氛 / 内容视觉</span></a></div></details><a class="unified-contact" href="mailto:dyk162@163.com">联系我 <span aria-hidden="true">↗</span></a></div></div></header>
@@ -74,6 +75,8 @@
     document.querySelectorAll('img:not([loading])').forEach((img,index)=>{ if(index>0) img.loading='lazy'; img.decoding='async'; });
   </script>
   <script src="portfolio-compact.js"></script>
+  <script src="gallery.js" defer></script>
+  <script src="portfolio-editorial.js" defer></script>
 </body>
 </html>
 

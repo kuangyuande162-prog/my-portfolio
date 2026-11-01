@@ -1,0 +1,43 @@
+/* A common reading scale for the three existing case collections. */
+.care-page h1{font-size:clamp(44px,5.5vw,80px);line-height:1.1}
+.care-page .hero{padding-block:50px 36px}.care-page .hero-head{gap:44px;margin-bottom:30px}
+.care-page .hero-gallery{height:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;overflow:visible;background:transparent;border-radius:0;box-shadow:none}
+.care-page .hero-card,.care-page .hero-card:first-child{display:block;grid-column:auto;grid-row:auto;border:0;border-radius:12px;background:transparent;overflow:hidden;box-shadow:none}
+.care-page .hero-card::after{display:none}.care-page .hero-card img,.care-page .hero-card:first-child img,.care-page .hero-card:not(:first-child) img{width:100%;height:auto;aspect-ratio:1.05;object-fit:cover;transform:none}
+.care-page .hero-card:hover img,.care-page .hero-card:focus-visible img{transform:scale(1.015)}
+.care-page .hero-card figcaption{position:relative;inset:auto;padding:17px 0;background:transparent;color:var(--ink)}
+.care-page .hero-card figcaption span:first-child{font-size:22px;line-height:1.2}.care-page .hero-card figcaption span:last-child{color:var(--muted)}
+.care-page .chapter{padding-block:70px}.care-page .chapter h2{font-size:clamp(34px,4vw,56px);line-height:1.15}
+.care-page .chapter-head{margin-bottom:32px}.care-page .case-copy h3,.care-page .fragrance-case__copy h3{font-size:clamp(28px,3vw,40px);line-height:1.2}
+.care-page .case-cover button{min-height:0}.care-page .case-cover img{height:auto;max-height:650px}
+.care-page .fragrance-case__media{min-height:0;aspect-ratio:1.15}.care-page .fragrance-case__media img{object-fit:contain}
+.care-page .fragrance-family{min-height:480px;margin-top:44px}.care-page .usage-block{margin-top:44px}
+.care-page .delivery-expand{margin-top:36px;border-block:1px solid var(--line)}
+.care-page .delivery-expand>summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:23px 0;list-style:none;cursor:pointer;font-size:20px;font-weight:650}
+.care-page .delivery-expand>summary::-webkit-details-marker{display:none}.care-page .delivery-expand summary span:last-child{font-size:12px;color:var(--muted)}
+.care-page .series-view-switch{display:flex;gap:6px;margin:0 0 20px}.care-page .series-view-switch button{min-height:40px;padding:9px 15px;border:1px solid var(--line);border-radius:24px;background:transparent;font-size:12px;cursor:pointer}
+.care-page .series-view-switch button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.care-page .series-block{margin-top:15px;padding-bottom:24px}.care-page .series-track{position:relative}
+.care-page .series-block.is-continuous .series-track{display:block;max-width:900px;margin:0 auto;padding:0;overflow:visible;cursor:auto}
+.care-page .series-block.is-continuous .artwork{display:block;margin:0;opacity:1;transform:none;border:0}
+.care-page .series-block.is-continuous .artwork button{display:block;border-radius:0;box-shadow:none;transform:none}
+.care-page .series-block.is-continuous .artwork img{display:block;min-height:0;height:auto;width:100%;object-fit:contain}
+.care-page .series-block.is-continuous .artwork figcaption,.care-page .series-block.is-continuous .series-controls,.care-page .series-block.is-continuous::after{display:none}
+.care-page .closing{padding-block:50px}.care-page .closing h2{font-size:clamp(32px,4vw,54px);line-height:1.15}
+.celebrity-case .hero h1{font-size:clamp(46px,5vw,76px);line-height:1.1;letter-spacing:-.055em}
+.celebrity-case h2{font-size:clamp(32px,4vw,56px);line-height:1.15}
+.lighting-case .method-strip{display:none}.lighting-case .site-header .back-link{display:block}
+@media(max-width:900px){.care-page .hero-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.care-page .hero-card figcaption span:first-child{font-size:18px}}
+@media(max-width:620px){
+ .care-page .hero{padding-top:34px}.care-page h1{font-size:clamp(36px,10vw,46px);line-height:1.12}
+ .care-page .hero-gallery{display:grid;grid-template-columns:1fr;gap:16px}
+ .care-page .hero-card,.care-page .hero-card:first-child{display:grid;grid-template-columns:40% 1fr;align-items:center;border:1px solid var(--line);border-radius:10px}
+ .care-page .hero-card img,.care-page .hero-card:first-child img,.care-page .hero-card:not(:first-child) img{aspect-ratio:1;object-fit:cover}
+ .care-page .hero-card figcaption{padding:16px}.care-page .hero-card figcaption span:first-child{font-size:19px}.care-page .hero-card figcaption span:last-child{font-size:7px}
+ .care-page .chapter{padding-block:46px}.care-page .chapter h2{font-size:34px;line-height:1.15}.care-page .fragrance-case{gap:24px}
+ .care-page .fragrance-family{min-height:440px}.care-page .scent-story{grid-template-columns:1fr;gap:12px;left:12px;right:12px;bottom:12px;padding:18px}.care-page .scent-tabs{left:12px;top:12px;gap:0}.care-page .scent-tabs button{padding:10px 11px}
+ .care-page .delivery-expand>summary{font-size:18px}.care-page .series-head h3{font-size:20px}.care-page .series-head p{font-size:11px}
+ .celebrity-case .hero h1{font-size:clamp(38px,10vw,48px);line-height:1.12}.celebrity-case h2{font-size:32px;line-height:1.2}
+}
+@media(prefers-reduced-motion:reduce){.care-page .hero-card img{transition:none}}
+

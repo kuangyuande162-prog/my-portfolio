@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="邝先生电商视觉设计作品集：海外电商、国内小家电、国内营销与品牌内容。">
-  <title>KUANG｜电商视觉设计作品集</title>
+  <meta name="description" content="邝先生电商视觉设计作品集：海外电商、国内小家电、国内综合与品牌内容。">
+  <meta property="og:title" content="邝先生｜电商视觉设计作品集">
+  <meta property="og:description" content="产品视觉、整合营销与 Amazon 内容设计。选择方向，进入完整项目。">
+  <meta property="og:image" content="https://kuangyuande162-prog.github.io/my-portfolio/assets/overseas/cabinet-light-project-scene.webp">
+  <meta property="og:type" content="website">
+  <title>邝先生｜电商视觉设计作品集</title>
   <style>
     :root{
       --black:#050608;--white:#f5f6f8;--muted:#9a9da4;--line:rgba(255,255,255,.17);
@@ -34,7 +38,7 @@
     .visuals{z-index:0;overflow:hidden}
     .visual{margin:0;opacity:0;transform:scale(1.045);transition:opacity .55s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
     .visual.is-active{opacity:1;transform:scale(1)}
-    .visual img{height:100%;object-fit:cover;object-position:var(--position,center);transform:translate(calc((var(--x) - 50%) * -.025),calc((var(--y) - 50%) * -.025)) scale(1.035);transition:transform .3s ease-out,filter .45s;filter:saturate(.82) brightness(.67)}
+    .visual img{height:100%;object-fit:cover;object-position:var(--position,center);transform:translate(calc((var(--x) - 50%) * -.025),calc((var(--y) - 50%) * -.025)) scale(1.035);transition:transform .3s ease-out,filter .45s;filter:saturate(.9) brightness(.88)}
     .visual::after{content:"";background:linear-gradient(90deg,rgba(5,6,8,.95) 0%,rgba(5,6,8,.79) 35%,rgba(5,6,8,.28) 67%,rgba(5,6,8,.48) 100%),linear-gradient(0deg,rgba(5,6,8,.9),transparent 42%)}
     .ambient{z-index:1;background:radial-gradient(circle 380px at var(--x) var(--y),color-mix(in srgb,var(--accent) 18%,transparent),transparent 72%);mix-blend-mode:screen;pointer-events:none;transition:background .25s}
     .grid{z-index:1;background:linear-gradient(90deg,transparent calc(100% - 1px),rgba(255,255,255,.055) 100%) 0 0/8.3333% 100%;mask-image:linear-gradient(90deg,#000,transparent 78%);pointer-events:none}
@@ -48,6 +52,7 @@
     .head-meta{display:flex;justify-content:flex-end;gap:36px;padding-bottom:7px}
     .head-meta span{display:flex;flex-direction:column;gap:6px;color:#90949c;font:600 9px var(--mono);letter-spacing:.08em}
     .head-meta b{color:#fff;font-size:12px}
+    .profile-block{max-width:380px;justify-self:end;padding-bottom:6px}.profile-block strong{font-size:18px;letter-spacing:-.025em}.profile-block p{margin:12px 0 0;color:#c2c6cd;font-size:13px;line-height:1.8}.entry-count{display:block;margin-bottom:18px;color:#9ca3ad;font:600 10px var(--mono);letter-spacing:.12em}
 
     .selector-grid{display:grid;grid-template-columns:minmax(520px,.92fr) minmax(340px,.55fr);gap:clamp(60px,10vw,180px);align-items:end;margin-top:auto;padding-top:44px;padding-bottom:43px}
     .project-list{margin:0;padding:0;border-top:1px solid var(--line);list-style:none}
@@ -88,7 +93,7 @@
 
     @media(max-width:1000px){
       .wrap{width:min(calc(100% - 40px),1500px)}
-      .stage-head{grid-template-columns:1fr;gap:22px}.head-meta{justify-content:flex-start}
+      .stage-head{grid-template-columns:1fr;gap:22px}.head-meta{justify-content:flex-start}.profile-block{justify-self:start;max-width:500px}
       .selector-grid{grid-template-columns:1fr;gap:34px;padding-top:38px}.detail{max-width:none}
       .project-link{grid-template-columns:44px 1fr 160px 38px}.detail h2{font-size:52px}
       .visual::after{background:linear-gradient(90deg,rgba(5,6,8,.92),rgba(5,6,8,.48)),linear-gradient(0deg,rgba(5,6,8,.95),transparent 50%)}
@@ -100,20 +105,22 @@
       .stage{min-height:100svh}.stage-head{padding-top:24px;gap:14px}h1{max-width:520px;font-size:clamp(43px,12.6vw,58px);line-height:.91}
       .eyebrow{margin-bottom:9px;font-size:8px}.head-meta{gap:20px;padding:0}.head-meta span{gap:3px}.head-meta span:last-child{display:none}
       .selector-grid{display:block;margin-top:24px;padding:0 0 18px}
-      .project-list{display:flex;gap:12px;margin-inline:-14px;padding:0 14px 16px;border:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:14px;overscroll-behavior-inline:contain;scrollbar-width:none}
+      .project-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;border:0}
       .project-list::-webkit-scrollbar{display:none}
-      .project-link{isolation:isolate;flex:0 0 min(82vw,390px);display:flex;flex-direction:column;min-height:clamp(350px,52svh,500px);padding:20px;border:1px solid rgba(255,255,255,.16);border-radius:24px;overflow:hidden;align-items:flex-start;justify-content:flex-end;scroll-snap-align:center;scroll-snap-stop:always;box-shadow:0 22px 60px rgba(0,0,0,.32);transition:transform .3s,opacity .3s,border-color .3s}
+      .project-link{isolation:isolate;display:flex;flex-direction:column;min-width:0;min-height:clamp(210px,32svh,290px);padding:16px 12px;border:1px solid rgba(255,255,255,.2);border-radius:14px;overflow:hidden;align-items:flex-start;justify-content:flex-end;transition:border-color .3s}
       .project-link::before{z-index:0;background:linear-gradient(180deg,rgba(4,5,7,.08) 24%,rgba(4,5,7,.34) 54%,rgba(4,5,7,.96) 100%);opacity:1}
-      .project-link:not(.is-active){opacity:.62;transform:scale(.965)}
-      .project-link.is-active{padding:20px;border-color:color-mix(in srgb,var(--accent) 76%,white 8%);transform:scale(1)}
+      .project-link:not(.is-active){opacity:1;transform:none}
+      .project-link.is-active{padding:16px 12px;border-color:rgba(255,255,255,.55);transform:none}
       .mobile-card-visual{position:absolute;inset:0;z-index:-1;display:block}.mobile-card-visual img{width:100%;height:100%;object-fit:cover;object-position:var(--card-position,center);filter:saturate(.88) brightness(.82);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
       .project-link.is-active .mobile-card-visual img{transform:scale(1.035)}
-      .project-no{position:absolute;top:20px;left:20px;padding:7px 9px;border-radius:999px;background:rgba(5,6,8,.62);color:#fff;backdrop-filter:blur(10px)}
-      .project-title{max-width:86%;font-size:36px;line-height:1;letter-spacing:-.06em;text-shadow:0 3px 24px rgba(0,0,0,.5)}
-      .project-kind{position:absolute;left:20px;bottom:70px;display:block;color:color-mix(in srgb,var(--accent) 78%,white);font-size:8px}
-      .project-arrow{position:absolute;top:17px;right:17px;width:38px;height:38px;border-color:rgba(255,255,255,.45);background:rgba(5,6,8,.48);backdrop-filter:blur(10px)}
-      .project-link:hover,.project-link:focus-visible,.project-link.is-active{padding-inline:20px}
-      .detail{display:none}.stage-foot{padding:12px 0 16px}.stage-foot span:first-child{display:block}.stage-foot span:first-child::after{content:"左右滑动 · 点击进入";font-size:8px}.stage-foot span:first-child{font-size:0}.stage-foot span:last-child{display:none}
+      .project-no{position:absolute;top:12px;left:12px;padding:6px 8px;border-radius:999px;background:rgba(5,6,8,.62);color:#fff;backdrop-filter:blur(10px)}
+      .project-title{max-width:100%;font-size:clamp(22px,6.1vw,30px);line-height:1.15;letter-spacing:-.05em;text-shadow:0 3px 24px rgba(0,0,0,.5)}
+      .project-link.is-active .project-title{color:#fff}
+      .project-kind{position:absolute;left:12px;bottom:58px;display:block;color:#d4dce7;font-size:8px}
+      .project-arrow{position:absolute;top:10px;right:10px;width:31px;height:31px;border-color:rgba(255,255,255,.45);background:rgba(5,6,8,.48);backdrop-filter:blur(10px)}
+      .project-link:hover,.project-link:focus-visible,.project-link.is-active{padding-inline:12px}
+      .profile-block strong{font-size:14px}.profile-block p{margin-top:7px;font-size:12px}.entry-count{font-size:8px;margin-bottom:12px}.profile-block{padding:0}.stage-head{gap:20px}
+      .detail{display:none}.stage-foot{padding:16px 0}.stage-foot span:first-child{display:none}.stage-foot span:last-child{display:block}
       .visuals,.grid,.ambient,.ghost{display:none}
     }
     @media(max-height:760px) and (min-width:651px){
@@ -148,7 +155,7 @@
     <div class="stage wrap">
       <section class="stage-head load-in" aria-labelledby="page-title">
         <div><p class="eyebrow">KUANG / E-COMMERCE VISUAL DESIGN</p><h1 id="page-title">选择方向，<span>进入项目。</span></h1></div>
-        <div class="head-meta"><span><b>04</b>PORTFOLIO EDITIONS</span><span><b>2018—2026</b>SELECTED WORK</span></div>
+        <div class="profile-block"><span class="entry-count">04 DIRECTIONS / SELECTED WORK</span><strong>邝先生 · 电商视觉设计主管</strong><p>产品视觉、整合营销与 Amazon 内容设计。</p></div>
       </section>
 
       <section class="selector-grid" aria-label="选择作品方向">
@@ -161,9 +168,9 @@
             <span class="mobile-card-visual" style="--card-position:55% center"><img src="assets/covers-v2/handheld-vacuum.webp" alt="" loading="lazy"></span>
             <span class="project-no">02</span><span class="project-title">国内小家电</span><span class="project-kind">APPLIANCE</span><span class="project-arrow">↗</span>
           </a>
-          <a class="project-link" href="domestic.html" data-index="2" data-accent="#ff673f" data-kind="CAMPAIGN / COMMERCE / CONTENT" data-title="国内营销" data-desc="明星营销、平台活动与商品内容。" data-tags="几光 × 刘雨昕|洗护香氛|国内大促">
+          <a class="project-link" href="domestic.html" data-index="2" data-accent="#ff673f" data-kind="CAMPAIGN / COMMERCE / CONTENT" data-title="国内综合" data-desc="明星营销、平台活动与商品内容。" data-tags="几光 × 刘雨昕|洗护香氛|国内大促">
             <span class="mobile-card-visual" style="--card-position:58% center"><img src="assets/covers-v2/celebrity-campaign.webp" alt="" loading="lazy"></span>
-            <span class="project-no">03</span><span class="project-title">国内营销</span><span class="project-kind">DOMESTIC</span><span class="project-arrow">↗</span>
+            <span class="project-no">03</span><span class="project-title">国内综合</span><span class="project-kind">DOMESTIC</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="brand.html" data-index="3" data-accent="#d6c1a5" data-kind="BRAND / IMAGE / SYSTEM" data-title="品牌内容" data-desc="品牌视觉、产品内容与跨渠道视觉延展。" data-tags="RUFFY LIFE|香氛内容|整合视觉">
             <span class="mobile-card-visual" style="--card-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt="" loading="lazy"></span>
@@ -216,10 +223,6 @@
         link.addEventListener('focus',()=>select(index));
         link.addEventListener('click',event=>transition(event,link));
       });
-      if(mobileQuery.matches&&'IntersectionObserver' in window){
-        const cardObserver=new IntersectionObserver(entries=>{const current=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(current)select(links.indexOf(current.target))},{root:projectList,threshold:[.55,.72,.9]});
-        links.forEach(link=>cardObserver.observe(link));
-      }
       detail.action.addEventListener('click',event=>transition(event,detail.action));
 
       const transition=(event,link)=>{
@@ -229,13 +232,14 @@
         curtain.style.setProperty('--cx',point.x+'px');curtain.style.setProperty('--cy',point.y+'px');
         curtainLabel.textContent='OPENING · '+(link.dataset.label||links[active].dataset.title);
         curtain.classList.add('is-active');
-        setTimeout(()=>location.href=link.href,480);
+        setTimeout(()=>location.href=link.href,220);
       };
 
       if(!reduced){
         addEventListener('pointermove',event=>{root.style.setProperty('--x',event.clientX/innerWidth*100+'%');root.style.setProperty('--y',event.clientY/innerHeight*100+'%')},{passive:true});
       }
       addEventListener('keydown',event=>{
+        if(!event.target.closest('.project-list'))return;
         if(event.key==='ArrowDown'||event.key==='ArrowRight'){event.preventDefault();select(active+1);links[active].focus()}
         if(event.key==='ArrowUp'||event.key==='ArrowLeft'){event.preventDefault();select(active-1);links[active].focus()}
         if(/^[1-4]$/.test(event.key)){select(Number(event.key)-1);links[active].focus()}
