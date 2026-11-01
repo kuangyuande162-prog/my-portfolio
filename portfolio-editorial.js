@@ -36,10 +36,12 @@
     text('.cross-edition-card p','智能照明、家居小电与多语言商品内容。');
     document.querySelector('.workflow-inline')?.remove();
     if(!appliance){
+      const more=document.querySelector('.unified-nav a[href="#legacy-overseas"]'),archive=document.querySelector('.archive');if(more&&archive?.id)more.href='#'+archive.id;
       document.querySelector('.hero-scope')?.remove();
       const tiles=[...document.querySelectorAll('.hero-tile')];
       const robot=tiles[1];if(robot){robot.className='hero-tile hero-tile--product';robot.querySelector('img').src='assets/covers-v2/robot-1x.webp';robot.querySelector('img').alt='云米扫拖机器人 1X 产品视觉';robot.querySelector('figcaption b').textContent='消费电子'}
       tiles[2]?.remove();
+      [['.hero-tile--celebrity','01'],['.hero-tile--wash-100','02'],['.hero-tile--product','03']].forEach(([selector,number])=>text(selector+' figcaption span',number));
       text('.hero .hero-copy','明星整合营销、洗护香氛与小家电产品视觉。');
     }else{
       const visual=document.querySelector('.hero-visual');if(visual)visual.innerHTML='<figure class="appliance-feature-image"><img src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器产品与结构视觉" fetchpriority="high"><figcaption>VIOMI / PRODUCT VISUAL</figcaption></figure>';

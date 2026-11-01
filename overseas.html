@@ -47,8 +47,8 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.hero-media figure,.feature-primary,.hero-media img,.feature-strip img,.process-progress{transition:none!important}.reveal{opacity:1;transform:none}.hero-media figure,.feature-primary{clip-path:none}.process-progress{width:100%}}
     @media(max-width:760px){.hero-media{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;padding:10px 10px 20px}.hero-media .hero-main{grid-column:1/-1;grid-row:1;height:360px;min-height:0}.hero-main img{width:92%;padding:0}.hero-media .hero-small{grid-row:2!important;height:220px;min-height:0}.hero-media .hero-small:nth-child(2){grid-column:1;transform:none}.hero-media .hero-small:nth-child(3){grid-column:2}.hero-small img{padding:0}}
 </style>
-  <link rel="stylesheet" href="portfolio-compact.css">
-  <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="portfolio-compact.css?v=20261102">
+  <link rel="stylesheet" href="gallery.css?v=20261102">
 </head>
 <body class="overseas-page">
   <header class="site-header unified-header">
@@ -117,9 +117,9 @@
 
   <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title"><header class="dialog-head"><small id="dialog-index">PROJECT / 01</small><h2 id="dialog-title">项目详情</h2><button class="dialog-close" id="dialog-close" type="button" aria-label="关闭">×</button></header><div id="dialog-body"></div><div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="图片查看"><button class="viewer-close" type="button" aria-label="关闭图片">×</button><img id="viewer-image" alt=""><span class="viewer-caption" id="viewer-caption"></span></div></dialog>
 
-  <script src="archive-projects.js"></script>
-  <script src="assets/archive-local-map.js"></script>
-  <script src="portfolio-compact.js" defer></script>
+  <script src="archive-projects.js?v=20261102"></script>
+  <script src="assets/archive-local-map.js?v=20261102"></script>
+  <script src="portfolio-compact.js?v=20261102" defer></script>
   <script>
     const makePaths=(project,group,count)=>Array.from({length:count},(_,i)=>`assets/overseas/${project}/${group}/${group}-${String(i+1).padStart(2,'0')}.webp`);
     const localSection=(label,project,group,count)=>({label,images:makePaths(project,group,count)});
@@ -157,8 +157,8 @@
     const openViewer=img=>{viewerImage.src=img.src;viewerImage.alt=img.alt;viewerCaption.textContent=img.dataset.caption||img.alt;viewer.classList.add('active')};const closeViewer=()=>viewer.classList.remove('active');viewer.querySelector('.viewer-close').addEventListener('click',closeViewer);viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer()});addEventListener('keydown',e=>{if(e.key==='Escape'){if(viewer.classList.contains('active'))closeViewer();else if(dialog.open)closeProject()}});
     document.addEventListener('click',event=>document.querySelectorAll('.edition-switch[open]').forEach(menu=>{if(!menu.contains(event.target))menu.removeAttribute('open')}));
   </script>
-  <script src="gallery.js" defer></script>
-  <script src="portfolio-editorial.js" defer></script>
+  <script src="gallery.js?v=20261102" defer></script>
+  <script src="portfolio-editorial.js?v=20261102" defer></script>
 </body>
 </html>
 
