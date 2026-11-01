@@ -19,21 +19,8 @@ const cases = [
     ]
   },
   {
-    id: 'nl01',
-    number: '02',
-    label: 'MOTION STUDY',
-    title: 'NL01 · 楼梯感应灯',
-    shortTitle: '楼梯感应灯',
-    description: '以连续关键帧呈现感应路径与灯光变化。',
-    cover: 'assets/nl01/03.webp',
-    facts: ['动态关键帧 05', '感应路径', '夜间场景'],
-    sections: [
-      { eyebrow: 'MOTION CONTENT', title: '动态素材关键帧', note: '01—05', layout: 'motion-grid', images: assetSeries('assets/nl01', 5) }
-    ]
-  },
-  {
     id: 'tl01',
-    number: '03',
+    number: '02',
     label: 'LIFESTYLE LIGHTING',
     title: 'TL01 · 无线台灯',
     shortTitle: '无线台灯',
@@ -47,7 +34,7 @@ const cases = [
   },
   {
     id: 'pl02',
-    number: '04',
+    number: '03',
     label: 'INTERIOR APPLICATION',
     title: 'PL02 · 画灯场景系统',
     shortTitle: '画灯',
@@ -61,7 +48,7 @@ const cases = [
   },
   {
     id: 'wl05',
-    number: '05',
+    number: '04',
     label: 'WALL LIGHTING',
     title: 'WL05 · 无线壁灯',
     shortTitle: '无线壁灯',

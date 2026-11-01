@@ -51,7 +51,7 @@ h1 span{color:var(--blue)}
 .hero-visual figcaption span{font:600 9px var(--mono);letter-spacing:.08em}
 .hero-visual figcaption b{font-size:14px}
 
-.project-rail{position:sticky;top:68px;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--ink);background:rgba(251,250,246,.96);backdrop-filter:blur(16px)}
+.project-rail{position:sticky;top:68px;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink);background:rgba(251,250,246,.96);backdrop-filter:blur(16px)}
 .project-rail a{display:flex;align-items:center;justify-content:center;gap:12px;min-height:58px;border-right:1px solid var(--line);color:var(--muted);font-size:11px;font-weight:600;text-decoration:none;transition:.2s ease}
 .project-rail a:last-child{border:0}
 .project-rail a span{font:600 9px var(--mono)}
