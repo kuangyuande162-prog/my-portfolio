@@ -63,14 +63,12 @@
     if(location.hash.startsWith('#project='))sync();
   }
   if(isOverseas){
-    const lead=document.querySelector('.hero-main img');if(lead){lead.src='assets/overseas/cabinet-light-project-scene.webp';lead.fetchPriority='high'}
+    const lead=document.querySelector('.hero-main img');if(lead)lead.fetchPriority='high';
     convert('echo','echo');convert('cassini','cassini');
     const echo=document.querySelector('.feature.echo'),cassini=document.querySelector('.feature.cassini');if(echo)echo.id='echo';if(cassini)cassini.id='cassini';
     document.getElementById('process')?.remove();document.querySelector('.hero-index')?.remove();
     text('.hero-side>p','邝先生 · 电商视觉设计主管\nAmazon 主副图、A+ 与多语言内容。');
-    text('.feature.lighting .feature-copy>p','围绕感应、安装与空间照明，组织主副图、A+ 和动态内容。');
-    text('.feature.echo .feature-copy>p','把智能控制、灯光细节与生活场景组织为完整 Listing 和 A+。');
-    text('.feature.cassini .feature-copy>p','围绕卧室场景，呈现时钟、无线充电、音箱及多语言商品内容。');
+    text('.feature.lighting .feature-copy>p','围绕感应、安装与空间照明，组织主副图与完整 A+ 内容。');
   }
   if(isBrand){
     document.querySelector('.ticker')?.remove();

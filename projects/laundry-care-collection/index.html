@@ -45,8 +45,8 @@
     @media(max-width:620px){.hero-gallery{height:580px;border-radius:20px}.hero-card figcaption{padding:20px 14px}.hero-card figcaption span:first-child{font-size:18px}.hero-card figcaption span:last-child{font-size:7px}.hero-card,.hero-card:first-child{flex-basis:14%}.hero-card:hover,.hero-card:focus-visible,.hero-card.is-active{flex:2.3 1 0}.series-track{margin-inline:-14px;padding:18px 14px 36px;scroll-padding-inline:14px}.artwork,.chapter--fragrance .artwork{flex-basis:88vw}.artwork img,.chapter--fragrance .artwork img{height:60vh;min-height:420px}.case-cover{border-radius:20px 20px 0 0}.fragrance-case__media{min-height:480px;border-radius:20px}.fragrance-tags{left:14px;bottom:14px}.fragrance-family{min-height:580px;margin-top:56px;border-radius:20px}.scent-tabs{top:12px;left:12px;right:12px;justify-content:center}.scent-tabs button{padding:9px 10px}.scent-story{right:12px;bottom:12px;left:12px;grid-template-columns:1fr;gap:14px;padding:18px}.scent-story h3{font-size:26px}.usage-head{display:block}.usage-head p{margin-top:8px}.usage-grid{grid-template-columns:1fr 1fr}.usage-card img{height:230px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-card,.hero-card img,.artwork,.artwork button,.reveal{transition:none}.reveal{opacity:1;transform:none}}
   </style>
-  <link rel="stylesheet" href="../../gallery.css?v=20261102">
-  <link rel="stylesheet" href="../../project-layout.css?v=20261102">
+  <link rel="stylesheet" href="../../gallery.css?v=20261102-cabinet">
+  <link rel="stylesheet" href="../../project-layout.css?v=20261102-cabinet">
 </head>
 <body id="top" class="care-page">
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -97,8 +97,8 @@
     const viewer=document.getElementById('viewer'),viewerImage=viewer.querySelector('img'),viewerCaption=viewer.querySelector('.viewer-caption');document.querySelectorAll('.zoomable').forEach(button=>button.addEventListener('click',()=>{const image=button.querySelector('img');viewerImage.src=image.currentSrc||image.src;viewerImage.alt=image.alt;viewerCaption.textContent=image.alt;viewer.showModal();document.body.classList.add('is-locked')}));const closeViewer=()=>viewer.close();viewer.querySelector('.viewer-close').addEventListener('click',closeViewer);viewer.addEventListener('click',event=>{if(event.target===viewer)closeViewer()});viewer.addEventListener('close',()=>{document.body.classList.remove('is-locked');viewerImage.src=''});
     const sections=[...document.querySelectorAll('.chapter')],navLinks=[...document.querySelectorAll('.project-index a')];if('IntersectionObserver'in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));const sectionObserver=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;navLinks.forEach(link=>link.classList.toggle('is-active',link.hash===`#${visible.target.id}`))},{rootMargin:'-18% 0px -66%',threshold:[0,.08,.2]});sections.forEach(section=>sectionObserver.observe(section))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible'));
   </script>
-  <script src="../../gallery.js?v=20261102" defer></script>
-  <script src="../../portfolio-editorial.js?v=20261102" defer></script>
+  <script src="../../gallery.js?v=20261102-cabinet" defer></script>
+  <script src="../../portfolio-editorial.js?v=20261102-cabinet" defer></script>
 </body>
 </html>
 
