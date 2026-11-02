@@ -6,7 +6,7 @@
   document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.target==='_blank'||e.metaKey||e.ctrlKey)return;const url=new URL(a.href,location.href);if(url.origin!==location.origin||!url.pathname.startsWith(root+'projects/'))return;const section=a.closest('[id]');try{sessionStorage.setItem('portfolio-origin',JSON.stringify({destination:url.pathname,href:location.pathname+location.search+(section?'#'+section.id:location.hash)}))}catch{}},true);
   if(location.pathname.includes('/projects/')){
     if(document.body.classList.contains('care-page')){
-      const sources=['laundry-500ml.webp','laundry-100ml.webp','fragrance-cards.webp'];document.querySelectorAll('.hero-card img').forEach((img,i)=>{img.src=root+'assets/covers-v2/'+sources[i]});
+
       text('.hero-intro','香薰片、100ml 与 500ml 洗衣液的品牌影像与完整详情设计。');
       text('.hero-meta span:nth-child(2)','品牌影像 / 完整详情');
       document.querySelectorAll('[data-series]').forEach(series=>{
@@ -39,12 +39,12 @@
       const more=document.querySelector('.unified-nav a[href="#legacy-overseas"]'),archive=document.querySelector('.archive');if(more&&archive?.id)more.href='#'+archive.id;
       document.querySelector('.hero-scope')?.remove();
       const tiles=[...document.querySelectorAll('.hero-tile')];
-      const robot=tiles[1];if(robot){robot.className='hero-tile hero-tile--product';robot.querySelector('img').src='assets/covers-v2/robot-1x.webp';robot.querySelector('img').alt='云米扫拖机器人 1X 产品视觉';robot.querySelector('figcaption b').textContent='消费电子'}
+      const robot=tiles[1];if(robot){robot.className='hero-tile hero-tile--product';robot.querySelector('img').dataset.mediaSrc='assets/covers-v2/robot-1x.webp';robot.querySelector('img').alt='云米扫拖机器人 1X 产品视觉';robot.querySelector('figcaption b').textContent='消费电子'}
       tiles[2]?.remove();
       [['.hero-tile--celebrity','01'],['.hero-tile--wash-100','02'],['.hero-tile--product','03']].forEach(([selector,number])=>text(selector+' figcaption span',number));
       text('.hero .hero-copy','明星整合营销、洗护香氛与小家电产品视觉。');
     }else{
-      const visual=document.querySelector('.hero-visual');if(visual)visual.innerHTML='<figure class="appliance-feature-image"><img src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器产品与结构视觉" fetchpriority="high"><figcaption>VIOMI / PRODUCT VISUAL</figcaption></figure>';
+      const visual=document.querySelector('.hero-visual');if(visual)visual.innerHTML='<figure class="appliance-feature-image"><img data-media-src="assets/covers-v2/handheld-vacuum.webp" alt="云米手持无线吸尘器产品与结构视觉" fetchpriority="high"><figcaption>VIOMI / PRODUCT VISUAL</figcaption></figure>';
       const cards=[...document.querySelectorAll('.work-grid>.project-card')];
       const main=document.querySelector('.work-grid');
       if(main&&cards.length>2){
@@ -77,12 +77,13 @@
     text('.hero-copy','从活动主视觉到商品内容，保持清晰一致的品牌表达。');
     document.querySelectorAll('.collection-card').forEach((card,i)=>{const ids=['detergent-100','detergent-500','fragrance'];if(i<3)card.href='projects/laundry-care-collection/index.html#'+ids[i];else card.remove()});
     const global=document.getElementById('global');
-    if(global){global.innerHTML='<div class="container"><div class="section-head"><div><p class="eyebrow">CROSS-MARKET CONTENT</p><h2>品牌的另一种表达。</h2></div><p>在海外商品内容中延续产品与场景语言。</p></div><div class="global-grid"><div class="global-visual"><img src="assets/overseas/echo-cost/aplus/aplus-03.webp" alt="ECHO 台灯 A+ 细节视觉" loading="lazy"></div><div class="global-content"><small>ECHO / AMAZON A+</small><h3>从产品细节，延伸到家居场景。</h3><p>通过材质光感、产品比例和场景内容，保持商品表达的一致性。</p><a class="button" href="projects/case-study/index.html?project=echo">查看 ECHO 完整项目 ↗</a></div></div></div>'}
+    if(global){global.innerHTML='<div class="container"><div class="section-head"><div><p class="eyebrow">CROSS-MARKET CONTENT</p><h2>品牌的另一种表达。</h2></div><p>在海外商品内容中延续产品与场景语言。</p></div><div class="global-grid"><div class="global-visual"><img data-media-src="assets/overseas/echo-cost/aplus/aplus-03.webp" alt="ECHO 台灯 A+ 细节视觉" loading="lazy"></div><div class="global-content"><small>ECHO / AMAZON A+</small><h3>从产品细节，延伸到家居场景。</h3><p>通过材质光感、产品比例和场景内容，保持商品表达的一致性。</p><a class="button" href="projects/case-study/index.html?project=echo">查看 ECHO 完整项目 ↗</a></div></div></div>'}
     const method=document.getElementById('method');
     if(method){method.className='section brand-observations';method.innerHTML='<div class="container"><div class="section-head"><div><p class="eyebrow">VISUAL APPROACH</p><h2>让视觉有延续。</h2></div></div><div class="brand-rules"><div><small>01 / 活动识别</small><p>从几光活动主视觉延展色彩、图形与主题字，适配会场、互动页和商品物料。</p></div><div><small>02 / 产品影像</small><p>用光感、织物和材质统一洗护产品的场景表达。</p></div><div><small>03 / 内容适配</small><p>保留产品识别，按平台、画幅与语言重组信息。</p></div></div></div>'}
     text('.unified-nav a[href="#method"]','视觉方法');
   }
   // Keep below-the-fold images lazy and decoding independent of interaction.
+  if(isDomestic)document.querySelectorAll('.hero-visual img[data-media-src]').forEach(img=>window.PortfolioMedia?.load(img));
   document.querySelectorAll('img').forEach(img=>{img.decoding='async';if(!img.hasAttribute('loading')&&img.getBoundingClientRect().top>innerHeight)img.loading='lazy'});
 })();
 

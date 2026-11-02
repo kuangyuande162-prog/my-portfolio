@@ -72,7 +72,7 @@ let activeImageIndex = 0;
 
 const renderImages = (item, section) => section.images.map(([src, number]) => `
   <button class="gallery-item" type="button" data-src="${src}" data-label="${item.title} · ${section.title} ${number}">
-    <img src="${src}" alt="${item.title} ${section.title} ${number}" loading="lazy" decoding="async">
+    <img data-media-src="${src}" alt="${item.title} ${section.title} ${number}" loading="lazy" decoding="async">
     <span>${number}</span>
   </button>`).join('');
 

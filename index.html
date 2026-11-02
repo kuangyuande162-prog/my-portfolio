@@ -131,6 +131,7 @@
       .load-in{opacity:1;transform:none;animation:none}.ambient{display:none}.curtain{display:none}
     }
   </style>
+  <script src="image-performance.js?v=20261102-fast" defer></script>
 </head>
 <body>
   <header class="header">
@@ -143,10 +144,10 @@
 
   <main class="selector" id="top">
     <div class="visuals" aria-hidden="true">
-      <figure class="visual is-active" style="--position:center 47%;--mobile-position:58% center"><img src="assets/overseas/cabinet-light-project-scene.webp" alt=""></figure>
-      <figure class="visual" style="--position:center 48%;--mobile-position:55% center"><img src="assets/covers-v2/handheld-vacuum.webp" alt=""></figure>
-      <figure class="visual" style="--position:center 42%;--mobile-position:58% center"><img src="assets/covers-v2/celebrity-campaign.webp" alt=""></figure>
-      <figure class="visual" style="--position:center 50%;--mobile-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt=""></figure>
+      <figure class="visual is-active" style="--position:center 47%;--mobile-position:58% center"><img data-media-manual data-media-src="assets/overseas/cabinet-light-project-scene.webp" alt=""></figure>
+      <figure class="visual" style="--position:center 48%;--mobile-position:55% center"><img data-media-manual data-media-src="assets/covers-v2/handheld-vacuum.webp" alt=""></figure>
+      <figure class="visual" style="--position:center 42%;--mobile-position:58% center"><img data-media-manual data-media-src="assets/covers-v2/celebrity-campaign.webp" alt=""></figure>
+      <figure class="visual" style="--position:center 50%;--mobile-position:52% center"><img data-media-manual data-media-src="assets/covers-v2/fragrance-cards.webp" alt=""></figure>
     </div>
     <div class="ambient" aria-hidden="true"></div>
     <div class="grid" aria-hidden="true"></div>
@@ -161,19 +162,19 @@
       <section class="selector-grid" aria-label="选择作品方向">
         <nav class="project-list load-in">
           <a class="project-link is-active" href="overseas.html" data-index="0" data-accent="#2997ff" data-kind="AMAZON / LISTING / A+" data-title="海外电商" data-desc="橱柜灯、感应照明与完整 Amazon 商品视觉。" data-tags="橱柜灯系列|Listing|A+ 内容">
-            <span class="mobile-card-visual" style="--card-position:58% center"><img src="assets/overseas/cabinet-light-project-scene.webp" alt="" loading="eager"></span>
+            <span class="mobile-card-visual" style="--card-position:58% center"><img data-media-src="assets/overseas/cabinet-light-project-scene.webp" alt="" loading="eager"></span>
             <span class="project-no">01</span><span class="project-title">海外电商</span><span class="project-kind">OVERSEAS</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="domestic.html?edition=appliance" data-index="1" data-accent="#7ec6ff" data-kind="PRODUCT / DETAIL / FUNCTION" data-title="国内小家电" data-desc="产品主视觉、功能表达、场景渲染与完整详情页。" data-tags="吸尘器|扫地机器人|厨房小电">
-            <span class="mobile-card-visual" style="--card-position:55% center"><img src="assets/covers-v2/handheld-vacuum.webp" alt="" loading="lazy"></span>
+            <span class="mobile-card-visual" style="--card-position:55% center"><img data-media-src="assets/covers-v2/handheld-vacuum.webp" alt="" loading="lazy"></span>
             <span class="project-no">02</span><span class="project-title">国内小家电</span><span class="project-kind">APPLIANCE</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="domestic.html" data-index="2" data-accent="#ff673f" data-kind="CAMPAIGN / COMMERCE / CONTENT" data-title="国内综合" data-desc="明星营销、平台活动与商品内容。" data-tags="几光 × 刘雨昕|洗护香氛|国内大促">
-            <span class="mobile-card-visual" style="--card-position:58% center"><img src="assets/covers-v2/celebrity-campaign.webp" alt="" loading="lazy"></span>
+            <span class="mobile-card-visual" style="--card-position:58% center"><img data-media-src="assets/covers-v2/celebrity-campaign.webp" alt="" loading="lazy"></span>
             <span class="project-no">03</span><span class="project-title">国内综合</span><span class="project-kind">DOMESTIC</span><span class="project-arrow">↗</span>
           </a>
           <a class="project-link" href="brand.html" data-index="3" data-accent="#d6c1a5" data-kind="BRAND / IMAGE / SYSTEM" data-title="品牌内容" data-desc="品牌视觉、产品内容与跨渠道视觉延展。" data-tags="RUFFY LIFE|香氛内容|整合视觉">
-            <span class="mobile-card-visual" style="--card-position:52% center"><img src="assets/covers-v2/fragrance-cards.webp" alt="" loading="lazy"></span>
+            <span class="mobile-card-visual" style="--card-position:52% center"><img data-media-src="assets/covers-v2/fragrance-cards.webp" alt="" loading="lazy"></span>
             <span class="project-no">04</span><span class="project-title">品牌内容</span><span class="project-kind">BRAND</span><span class="project-arrow">↗</span>
           </a>
         </nav>
@@ -208,6 +209,7 @@
         root.style.setProperty('--accent',accent);
         links.forEach((item,i)=>{item.classList.toggle('is-active',i===active);item.setAttribute('aria-current',i===active?'page':'false')});
         visuals.forEach((item,i)=>item.classList.toggle('is-active',i===active));
+        if(matchMedia('(min-width:651px)').matches){const img=visuals[active].querySelector('img');if(img?.dataset.mediaSrc){if(window.PortfolioMedia)window.PortfolioMedia.load(img);else document.addEventListener('DOMContentLoaded',()=>{if(!img.dataset.mediaSrc||!matchMedia('(min-width:651px)').matches)return;if(window.PortfolioMedia)window.PortfolioMedia.load(img);else{img.src=img.dataset.mediaSrc;delete img.dataset.mediaSrc}},{once:true})}}
         detail.kind.textContent=link.dataset.kind;
         detail.count.textContent=String(active+1).padStart(2,'0')+' / '+String(links.length).padStart(2,'0');
         detail.title.textContent=link.dataset.title;
@@ -245,6 +247,7 @@
         if(/^[1-4]$/.test(event.key)){select(Number(event.key)-1);links[active].focus()}
       });
       addEventListener('pageshow',()=>curtain.classList.remove('is-active'));
+      matchMedia('(min-width:651px)').addEventListener('change',()=>select(active));
       select(0);
     })();
   </script>
