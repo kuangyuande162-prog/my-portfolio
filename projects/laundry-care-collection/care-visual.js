@@ -1,0 +1,15 @@
+(()=>{
+ const sets=[['../../assets/covers-v2/laundry-500ml.webp','500ml 洗衣液产品影像','#detergent-500','PRODUCT IMAGE / 500ML'],['../../assets/covers-v2/laundry-100ml.webp','100ml 洗衣液产品影像','#detergent-100','PRODUCT IMAGE / 100ML'],['assets/optimized/fragrance-hero-v2.jpg','香薰片与扩香器产品系统','#fragrance','FRAGRANCE / PRODUCT SYSTEM']];
+ const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches,buttons=[...document.querySelectorAll('[data-care]')],img=document.getElementById('care-preview');
+ function select(i){const [src,alt,hash,label]=sets[i];buttons.forEach((b,n)=>b.setAttribute('aria-pressed',String(n===i)));img.alt=alt;img.removeAttribute('srcset');img.dataset.mediaSrc=src;window.PortfolioMedia.load(img);document.getElementById('care-enter').href=hash;document.getElementById('care-preview-kind').textContent=label;if(!reduced)img.animate([{opacity:.3},{opacity:1}],{duration:350})}
+ buttons.forEach((b,i)=>{b.addEventListener('click',()=>select(i));b.addEventListener('keydown',e=>{if(!['ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const n=(i+(e.key==='ArrowDown'?1:-1)+buttons.length)%buttons.length;select(n);buttons[n].focus()})});
+ // Complete series are always present; reading mode remains a visitor choice.
+ document.querySelectorAll('.delivery-expand').forEach(details=>{const series=details.querySelector('[data-series]');details.replaceWith(series)});
+ document.querySelectorAll('[data-series]').forEach(series=>{const continuous=matchMedia('(max-width:620px)').matches;series.classList.toggle('is-continuous',continuous);const controls=series.querySelector('.series-view-switch'),list=controls.querySelectorAll('button');list[0].textContent='连续阅读';list[1].textContent='图组总览';list.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===(continuous?0:1))));});
+ // Scent selection isolates the chosen part of the original triptych without altering the product.
+ document.querySelectorAll('[data-scent-family]').forEach(f=>{f.querySelector('.scent-tabs').setAttribute('role','group');const tabs=[...f.querySelectorAll('.scent-tabs button')];tabs.forEach((b,i)=>b.addEventListener('click',()=>{f.dataset.activeScent=String(i);tabs.forEach(t=>t.setAttribute('aria-pressed',String(t===b)))}));f.dataset.activeScent='0';tabs.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===0)))});
+ const links=[...document.querySelectorAll('.project-index a')];let ticking=false;
+ const update=()=>{ticking=false;let index=0;links.forEach((a,i)=>{if(document.querySelector(a.hash)?.getBoundingClientRect().top<180)index=i});links.forEach((a,i)=>{a.classList.toggle('is-active',i===index);if(i===index)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})};addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update)}},{passive:true});
+ if(location.hash){const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(target)requestAnimationFrame(()=>target.scrollIntoView({behavior:'instant',block:'start'}))}
+})();
+
