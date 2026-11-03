@@ -1,0 +1,46 @@
+{
+  "name": "风间",
+  "latin": "FENGJIAN",
+  "status": "concept-identity-master",
+  "colors": {
+    "ink": "#242925",
+    "paper": "#f6f5ee",
+    "silver": "#b9beb8"
+  },
+  "bottleExteriorProposalMm": {
+    "width": 60,
+    "depth": 32,
+    "height": 94
+  },
+  "cartonExteriorProposalMm": {
+    "width": 74,
+    "depth": 46,
+    "height": 110
+  },
+  "labelMm": {
+    "width": 42,
+    "height": 36
+  },
+  "note": "外观结构尺寸提案，容量、玻璃壁厚、瓶口与内托需在选定瓶器及打样后校核。 香调为概念设定，非实测配方。",
+  "productConcept": {
+    "name": "林隙",
+    "latin": "LIN XI",
+    "number": "01",
+    "type": "EAU DE PARFUM",
+    "volume": "50 mL",
+    "scentConcept": {
+      "top": [
+        "佛手柑",
+        "小豆蔻"
+      ],
+      "heart": [
+        "雪松",
+        "丝柏"
+      ],
+      "base": [
+        "岩兰草",
+        "苔藓"
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@
   if(isOverseas){
     items=[['橱柜灯项目','#work'],['更多项目','#archive']];
   }else if(isBrand){
-    items=[['品牌首页','#top'],['明星营销','#campaign'],['洗护香氛','#collection'],['跨市场','#global']];
+    items=[['品牌首页','#top'],['明星营销','#campaign'],['风间','#fengjian'],['洗护香氛','#collection'],['跨市场','#global']];
   }else if(isAppliance){
     const cards=[...document.querySelectorAll('#works .project-card')];
     cards.slice(0,4).forEach((card,index)=>card.id=`appliance-project-${index+1}`);
@@ -58,4 +58,3 @@
     document.querySelector(link.getAttribute('href'))?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   });
 })();
-
