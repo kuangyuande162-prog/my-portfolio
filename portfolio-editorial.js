@@ -48,10 +48,10 @@
       const cards=[...document.querySelectorAll('.work-grid>.project-card')];
       const main=document.querySelector('.work-grid');
       if(main&&cards.length>2){
-        const rest=document.createElement('details');rest.className='additional-projects';rest.id='additional-projects';rest.innerHTML='<summary><span>更多产品与品牌项目</span><small>厨房小电 / 环境电器 / 品牌营销</small><i>＋</i></summary><div class="additional-grid"></div>';main.after(rest);cards.slice(2).forEach(card=>rest.querySelector('.additional-grid').append(card));
-        const more=document.querySelector('.unified-nav a[href="#legacy-overseas"]');if(more){more.href='#additional-projects';more.addEventListener('click',()=>rest.open=true)}
-        const expandedId=location.hash.slice(1);if(expandedId&&rest.querySelector('#'+CSS.escape(expandedId)))rest.open=true;
-        document.querySelectorAll('.project-rail a').forEach(a=>a.addEventListener('click',()=>{if(rest.querySelector(a.hash))rest.open=true}));
+        const rest=document.createElement('section');rest.className='additional-projects';rest.id='additional-projects';rest.setAttribute('aria-labelledby','additional-projects-title');rest.innerHTML='<header class="additional-heading"><h3 id="additional-projects-title">更多产品与品牌项目</h3><small>厨房小电 / 环境电器 / 品牌营销</small></header><div class="additional-grid"></div>';main.after(rest);cards.slice(2).forEach(card=>rest.querySelector('.additional-grid').append(card));
+        const more=document.querySelector('.unified-nav a[href="#legacy-overseas"]');if(more)more.href='#additional-projects';
+        const initialTarget=location.hash&&!location.hash.startsWith('#project=')?document.getElementById(decodeURIComponent(location.hash.slice(1))):null;
+        if(initialTarget&&(initialTarget===rest||rest.contains(initialTarget)))requestAnimationFrame(()=>initialTarget.scrollIntoView({block:'start',behavior:'instant'}));
       }
       text('#works .section-head>p','吸尘器与扫地机器人完整案例。');
     }
