@@ -6,7 +6,7 @@
 
   let items=[];
   if(isOverseas){
-    items=[['橱柜灯项目','#work'],['更多项目','#archive'],['经历','#experience']];
+    items=[['橱柜灯项目','#work'],['更多项目','#archive']];
   }else if(isBrand){
     items=[['品牌首页','#top'],['明星营销','#campaign'],['洗护香氛','#collection'],['跨市场','#global']];
   }else if(isAppliance){
