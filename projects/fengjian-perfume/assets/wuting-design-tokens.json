@@ -1,0 +1,59 @@
+{
+  "name": "风间",
+  "latin": "FENGJIAN",
+  "status": "concept-identity-master",
+  "colors": {
+    "ink": "#242925",
+    "paper": "#f6f5ee",
+    "silver": "#b9beb8",
+    "mist": "#e6eceb",
+    "mistAccent": "#b5c2c3"
+  },
+  "bottleExteriorProposalMm": {
+    "width": 60,
+    "depth": 32,
+    "height": 94
+  },
+  "cartonExteriorProposalMm": {
+    "width": 74,
+    "depth": 46,
+    "height": 110
+  },
+  "labelMm": {
+    "width": 42,
+    "height": 36
+  },
+  "note": "外观结构尺寸提案，容量、玻璃壁厚、瓶口与内托需在选定瓶器及打样后校核。 香调为概念设定，非实测配方。",
+  "productConcept": {
+    "name": "雾汀",
+    "latin": "WU TING",
+    "number": "02",
+    "type": "EAU DE PARFUM",
+    "volume": "50 mL",
+    "scentConcept": {
+      "top": [
+        "柚子",
+        "白茶"
+      ],
+      "heart": [
+        "鸢尾",
+        "橙花"
+      ],
+      "base": [
+        "白麝香",
+        "雪松"
+      ]
+    }
+  },
+  "invariants": [
+    "沿用 01 林隙的瓶型、矩形瓶盖、瓶口和容量设定",
+    "沿用同一提盖盒与内托占位",
+    "同一 42×36 mm 信息面板与相同下沿基线",
+    "同一 Logo 路径、字号、层级与印刷位置"
+  ],
+  "variantChanges": [
+    "编号 02 / WU TING",
+    "雾蓝灰色瓶标与对应盒面印刷面板",
+    "香调创意设定与匹配的香调卡"
+  ]
+}
