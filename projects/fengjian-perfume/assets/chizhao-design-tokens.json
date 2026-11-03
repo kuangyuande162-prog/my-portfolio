@@ -1,0 +1,78 @@
+{
+  "brand": "风间 / FENGJIAN",
+  "name": "迟照",
+  "latin": "CHI ZHAO",
+  "category": "家居香氛 / 香氛蜡烛",
+  "code": "H01",
+  "status": "independent-product-concept",
+  "weightConcept": "180 g",
+  "materials": {
+    "vessel": "哑光暖灰陶瓷",
+    "lid": "胡桃木",
+    "wax": "乳白蜡体，具体配方未定义",
+    "wick": "单根棉芯",
+    "box": "灰棕色封背抽屉外套 + 米白抽屉 + 深色拉带 + 圆形纸质内托"
+  },
+  "exteriorDimensionsMm": {
+    "vessel": {
+      "diameter": 96,
+      "height": 64,
+      "innerDiameter": 82
+    },
+    "lid": {
+      "diameter": 98,
+      "thickness": 7,
+      "innerShoulderDiameter": 80
+    },
+    "closedHeight": 71,
+    "carton": {
+      "width": 118,
+      "depth": 118,
+      "height": 86
+    },
+    "drawer": {
+      "width": 112,
+      "depth": 112,
+      "height": 80
+    },
+    "insertOpeningDiameter": 101
+  },
+  "brandContinuity": [
+    "沿用风间中文与英文矢量字标",
+    "沿用间隙辅助符号与信息层级"
+  ],
+  "newDesign": [
+    "全新品类与独立 H01 编号",
+    "圆形陶瓷杯体与木质圆盖",
+    "抽屉式纸套包装及圆形内托"
+  ],
+  "scentConcept": {
+    "top": [
+      "红茶",
+      "陈皮"
+    ],
+    "heart": [
+      "雪松",
+      "柏木"
+    ],
+    "base": [
+      "安息香",
+      "琥珀"
+    ]
+  },
+  "colors": {
+    "ink": "#242925",
+    "paper": "#f6f5ee",
+    "ceramic": "#d4cec3",
+    "wood": "#493b30",
+    "kraft": "#c9bba4"
+  },
+  "note": "独立概念设计。尺寸、蜡重、陶瓷烧成公差、木盖装配、运输与燃烧表现需打样验证；未宣称实测燃烧时长、香气扩散或材料认证。",
+  "packagingArchitecture": "前抽式，外套后背封合；杯盖闭合后嵌入内托",
+  "selectedViews": {
+    "hero": "合盖产品与闭合包装",
+    "open": "开盖杯体与木盖正面",
+    "packaging": "封背外套与完全抽出的内托抽屉",
+    "detail": "陶瓷直印与木纹近景"
+  }
+}
